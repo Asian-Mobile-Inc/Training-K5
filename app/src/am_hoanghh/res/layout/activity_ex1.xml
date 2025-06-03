@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlExercise1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivLogoFacebook"
+        android:contentDescription="@string/imageview_content_description_logo"
+        android:src="@drawable/ic_facebook"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp">
+    </ImageView>
+    
+    <RelativeLayout
+        android:id="@+id/rlFormLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:paddingHorizontal="24dp"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/ivLogoFacebook">
+
+<!--        <EditText-->
+<!--            android:id="@+id/edtEmailInput"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="58dp"-->
+<!--            android:background="@drawable/bg_rounded_edittext"-->
+<!--            android:textSize="14sp"-->
+<!--            android:letterSpacing="0.01"-->
+<!--            android:paddingStart="20dp"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:autofillHints="emailAddress"-->
+<!--            tools:ignore="LabelFor,RtlSymmetry"-->
+<!--            android:hint="@string/edittext_hint_phone_or_email"-->
+<!--            android:textColorHint="#BABABA"/>-->
+
+        <EditText
+            android:id="@+id/edtEmailInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/bg_rounded_edittext"
+            android:hint="@string/edittext_hint_phone_or_email"
+            android:inputType="textEmailAddress"
+            android:letterSpacing="0.01"
+            android:paddingStart="20dp"
+            android:textColorHint="#BABABA"
+            android:textSize="14sp"
+            tools:ignore="LabelFor,RtlSymmetry"/>
+
+        <EditText
+            android:id="@+id/edtPasswordInput"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="14dp"
+            android:autofillHints="password"
+            android:background="@drawable/bg_rounded_edittext"
+            android:hint="@string/edittext_hint_password"
+            android:inputType="textPassword"
+            android:letterSpacing="0.01"
+            android:paddingStart="20dp"
+            android:textColorHint="#BABABA"
+            android:textSize="14sp"
+            tools:ignore="LabelFor,RtlSymmetry"
+            android:layout_below="@id/edtEmailInput"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/edtPasswordInput"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_login_button"
+            android:text="@string/button_text_login"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:letterSpacing="0.01">
+        </Button>
+    </RelativeLayout>
+</RelativeLayout>

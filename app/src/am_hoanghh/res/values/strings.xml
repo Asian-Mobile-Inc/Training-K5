@@ -1,3 +1,16 @@
 <resources>
-  <string name="app_name" translatable="false">ExHoangHH</string>
+    <string name="app_name" translatable="false">ExHoangHH</string>
+    <string name="imageview_content_description_logo">LOGO</string>
+    <string name="edittext_hint_password">Password</string>
+    <string name="button_text_login">Login</string>
+    <string name="example_gmail_com">Example@gmail.com</string>
+    <string name="edittext_hint_phone_or_email">Phone or email</string>
+    <string name="textview_text_calculator">Calculator</string>
+    <string name="textview_text_term_1">* Term 1</string>
+    <string name="edittext_hint_team_1">Term 1</string>
+    <string name="textview_text_term_2">* Term 2</string>
+    <string name="edittext_hint_team_2">Term 2</string>
+    <string name="textview_text_operations">Operations</string>
+    <string name="textview_text_result">Result</string>
+    <string name="textview_text_360">360</string>
 </resources>

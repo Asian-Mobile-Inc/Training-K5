@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llExercise2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvCalculator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:letterSpacing="0.01"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="62dp"
+        android:text="@string/textview_text_calculator">
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/llFormTeam1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/tvTeam1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textview_text_term_1"
+            android:textSize="14sp">
+        </TextView>
+        <EditText
+            android:id="@+id/edtTeam1Input"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:autofillHints="Term 1"
+            android:background="@drawable/bg_rounded_edittext"
+            android:hint="@string/edittext_hint_team_1"
+            android:inputType="text"
+            android:textColorHint="#BABABA"
+            android:textSize="14sp"
+            android:paddingStart="20dp"
+            tools:ignore="RtlSymmetry"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFormTeam2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="35dp">
+        <TextView
+            android:id="@+id/tvTeam2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textview_text_term_2"
+            android:textSize="14sp">
+        </TextView>
+        <EditText
+            android:id="@+id/edtTeam2Input"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:autofillHints="Team 1"
+            android:background="@drawable/bg_rounded_edittext"
+            android:hint="@string/edittext_hint_team_2"
+            android:inputType="text"
+            android:textColorHint="#BABABA"
+            android:textSize="14sp"
+            android:paddingStart="20dp"
+            tools:ignore="RtlSymmetry"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="35dp">
+        <TextView
+            android:id="@+id/tvOperations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textview_text_operations"
+            android:textSize="14sp">
+        </TextView>
+        <LinearLayout
+            android:id="@+id/llOperations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_rounded_textview"
+                android:layout_marginHorizontal="10dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_rounded_textview"
+                android:layout_marginHorizontal="10dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_rounded_textview"
+                android:layout_marginHorizontal="10dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_rounded_textview"
+                android:layout_marginHorizontal="10dp">
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/textview_text_result"
+            android:textColor="#1877F2"
+            android:layout_gravity="center_horizontal">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1877F2"
+            android:text="@string/textview_text_360"
+            android:layout_gravity="center_horizontal"
+            android:textSize="92sp"/>
+    </LinearLayout>
+</LinearLayout>
