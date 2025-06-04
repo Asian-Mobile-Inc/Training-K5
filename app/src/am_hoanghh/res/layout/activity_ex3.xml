@@ -88,7 +88,8 @@
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/tvFullName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnDeleteFullName"/>
+                app:layout_constraintEnd_toStartOf="@id/btnDeleteFullName"
+                tools:ignore="RtlSymmetry" />
 
             <Button
                 android:id="@+id/btnDeleteFullName"
@@ -113,8 +114,8 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/edtFullName"
-                app:layout_constraintTop_toTopOf="@+id/edtFullName"
-                android:layout_marginTop="80dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/edtFullName"
+                android:layout_marginTop="25dp"/>
 
             <EditText
                 android:id="@+id/edtNationalId"
@@ -128,205 +129,189 @@
                 android:paddingStart="20dp"
                 android:textColorHint="#BABABA"
                 android:textSize="14sp"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNationalId"
+                app:layout_constraintEnd_toStartOf="@id/btnDeleteNationalId"/>
 
             <Button
                 android:id="@+id/btnDeleteNationalId"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_marginRight="15dp"
-                android:layout_gravity="right|center_vertical"
+                android:layout_gravity="end"
                 android:background="@drawable/ic_delete"
                 android:visibility="gone"
                 tools:ignore="RtlHardcoded"
-                android:layout_marginTop="6dp"/>
+                android:layout_marginTop="6dp"
+                app:layout_constraintTop_toBottomOf="@id/tvNationalId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/edtNationalId"/>
 
-            <LinearLayout
-                android:id="@+id/llFormNationalId"
+            <ImageView
+                android:id="@+id/ivDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/imageview_content_description_degree"
+                android:src="@drawable/ic_degree"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/edtNationalId"
+                app:layout_constraintBottom_toTopOf="@+id/rbDegree"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvDegree"/>
+
+            <TextView
+                android:id="@+id/tvDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_text_degree"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/edtNationalId"
+                app:layout_constraintBottom_toTopOf="@+id/rbDegree"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivDegree"/>
+
+            <RadioGroup
+                android:id="@+id/rbDegree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="110dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
-                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
-                app:layout_constraintTop_toTopOf="@+id/llFormFullName">
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tvDegree"
+                app:layout_constraintBottom_toTopOf="@+id/tvHobbies"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="5dp">
 
-
-
-                <FrameLayout
-                    android:layout_width="fill_parent"
+                <RadioButton
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
-                    android:padding="5dp">
+                    android:layout_weight="1"
+                    android:text="@string/radiobutton_text_vocational"
+                    android:buttonTint="@color/radiobutton_selector_color" />
 
-
-                </FrameLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llDegree"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
-                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
-                app:layout_constraintTop_toTopOf="@+id/llFormNationalId"
-                android:layout_marginTop="100dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables,UselessParent">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/imageview_content_description_degree"
-                        android:src="@drawable/ic_degree"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/textview_text_degree"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="4dp">
-                    </TextView>
-                </LinearLayout>
-
-                <RadioGroup
-                    android:id="@+id/rbDegree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
-
-                    <RadioButton
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/radiobutton_text_vocational"
-                        android:buttonTint="@color/radiobutton_selector_color" />
-
-                    <RadioButton
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/radiobutton_text_associate"
-                        android:buttonTint="@color/radiobutton_selector_color"/>
-
-                    <RadioButton
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/radiobutton_text_bachelor"
-                        android:buttonTint="@color/radiobutton_selector_color"/>
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llHobbies"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
-                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
-                app:layout_constraintTop_toTopOf="@+id/llDegree"
-                android:layout_marginTop="75dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables,UselessParent">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/imageview_content_description_hobbies"
-                        android:src="@drawable/ic_hobbies"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/textview_text_hobbies"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginStart="4dp">
-                    </TextView>
-                </LinearLayout>
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/checkbox_text_reading_news"
-                    android:layout_marginTop="7dp"
+                    android:layout_weight="1"
+                    android:text="@string/radiobutton_text_associate"
                     android:buttonTint="@color/radiobutton_selector_color"/>
 
-                <CheckBox
-                    android:layout_width="wrap_content"
+                <RadioButton
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/checkbox_text_reading_books"
+                    android:layout_weight="1"
+                    android:text="@string/radiobutton_text_bachelor"
                     android:buttonTint="@color/radiobutton_selector_color"/>
+            </RadioGroup>
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/checkbox_text_reading_code"
-                    android:buttonTint="@color/radiobutton_selector_color"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/ivHobbies"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
-                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
-                app:layout_constraintTop_toTopOf="@+id/llHobbies"
-                android:layout_marginTop="140dp">
+                android:contentDescription="@string/imageview_content_description_hobbies"
+                android:src="@drawable/ic_hobbies"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/rbDegree"
+                app:layout_constraintBottom_toTopOf="@+id/cbReadingNews"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvHobbies"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/textview_text_additional_information"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvHobbies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_text_hobbies"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/rbDegree"
+                app:layout_constraintBottom_toTopOf="@+id/cbReadingNews"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivHobbies"/>
 
-                <FrameLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
-                    android:padding="5dp">
+            <CheckBox
+                android:id="@+id/cbReadingNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/checkbox_text_reading_news"
+                android:layout_marginTop="7dp"
+                android:buttonTint="@color/radiobutton_selector_color"
+                app:layout_constraintTop_toBottomOf="@+id/tvHobbies"
+                app:layout_constraintBottom_toTopOf="@+id/cbReadingBooks"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-                    <EditText
-                        android:id="@+id/edtAdditionalInfor"
-                        android:layout_width="match_parent"
-                        android:layout_height="138dp"
-                        android:layout_marginTop="10dp"
-                        android:autofillHints="Enter additional information"
-                        android:background="@drawable/bg_rounded_edittext"
-                        android:hint="@string/edittext_hint_enter_additional_information"
-                        android:inputType="text|textMultiLine"
-                        android:gravity="top"
-                        android:paddingStart="20dp"
-                        android:paddingTop="15dp"
-                        android:textColorHint="#BABABA"
-                        android:textSize="14sp"
-                        tools:ignore="RtlSymmetry"/>
+            <CheckBox
+                android:id="@+id/cbReadingBooks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/checkbox_text_reading_books"
+                android:buttonTint="@color/radiobutton_selector_color"
+                app:layout_constraintTop_toBottomOf="@+id/cbReadingNews"
+                app:layout_constraintBottom_toTopOf="@+id/cbReadingCode"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-                    <Button
-                        android:id="@+id/btnDeleteAdditionalInformation"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:background="@drawable/ic_delete"
-                        android:visibility="gone"
-                        tools:ignore="RtlHardcoded"
-                        android:layout_marginTop="-40dp"/>
-                </FrameLayout>
+            <CheckBox
+                android:id="@+id/cbReadingCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/checkbox_text_reading_code"
+                android:buttonTint="@color/radiobutton_selector_color"
+                app:layout_constraintTop_toBottomOf="@+id/cbReadingBooks"
+                app:layout_constraintBottom_toTopOf="@+id/tvAdditionalInformation"
+                app:layout_constraintStart_toStartOf="parent"/>
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvAdditionalInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_text_additional_information"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/cbReadingCode"
+                app:layout_constraintBottom_toTopOf="@+id/edtAdditionalInformation"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                android:id="@+id/edtAdditionalInformation"
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints="Enter additional information"
+                android:background="@drawable/bg_rounded_edittext"
+                android:hint="@string/edittext_hint_enter_additional_information"
+                android:inputType="text|textMultiLine"
+                android:gravity="top"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:textColorHint="#BABABA"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry"
+                app:layout_constraintTop_toBottomOf="@+id/tvAdditionalInformation"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <Button
+                android:id="@+id/btnDeleteAdditionalInformation"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="end"
+                android:background="@drawable/ic_delete"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded"
+                app:layout_constraintTop_toTopOf="@id/edtAdditionalInformation"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="15dp"/>
 
             <Button
                 android:id="@+id/btnSubmit"

@@ -69,7 +69,7 @@ public class Ex3Activity extends AppCompatActivity {
             binding.btnDeleteNationalId.setVisibility(View.GONE);
         });
 
-        binding.edtAdditionalInfor.setOnFocusChangeListener((v, hasFocus) -> {
+        binding.edtAdditionalInformation.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.btnDeleteAdditionalInformation.setVisibility(View.VISIBLE);
             } else {
@@ -78,8 +78,8 @@ public class Ex3Activity extends AppCompatActivity {
         });
 
         binding.btnDeleteAdditionalInformation.setOnClickListener(view -> {
-            binding.edtAdditionalInfor.setText("");
-            binding.edtAdditionalInfor.clearFocus();
+            binding.edtAdditionalInformation.setText("");
+            binding.edtAdditionalInformation.clearFocus();
             binding.btnDeleteAdditionalInformation.setVisibility(View.GONE);
         });
     }
