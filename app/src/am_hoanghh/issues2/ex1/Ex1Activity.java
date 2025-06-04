@@ -74,10 +74,10 @@ public class Ex1Activity extends AppCompatActivity {
         binding.btnSeenPassword.setOnClickListener(view -> {
            if(isPasswordVisible) {
                binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-               binding.btnSeenPassword.setBackgroundResource(R.drawable.ic_unseen);
+               binding.btnSeenPassword.setImageResource(R.drawable.ic_unseen);
            } else {
              binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-               binding.btnSeenPassword.setBackgroundResource(R.drawable.ic_seen);
+               binding.btnSeenPassword.setImageResource(R.drawable.ic_seen);
            }
 
            binding.edtPasswordInput.setSelection(binding.edtPasswordInput.getText().length());

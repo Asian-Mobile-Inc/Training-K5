@@ -36,4 +36,6 @@
     <string name="imageview_content_description_minus">Minus</string>
     <string name="imageview_content_description_multiply">Multiply</string>
     <string name="imageview_content_description_divide">Divide</string>
+    <string name="imagebutton_content_description_unseen">Unseen</string>
+    <string name="imagebutton_content_description_delete">Delete</string>
 </resources>
