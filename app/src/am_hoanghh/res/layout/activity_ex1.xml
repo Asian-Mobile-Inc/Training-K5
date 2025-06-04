@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp">
     </ImageView>
-    
+
     <RelativeLayout
         android:id="@+id/rlFormLogin"
         android:layout_width="match_parent"
@@ -24,61 +24,83 @@
         android:layout_centerVertical="true"
         android:layout_below="@id/ivLogoFacebook">
 
-<!--        <EditText-->
-<!--            android:id="@+id/edtEmailInput"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="58dp"-->
-<!--            android:background="@drawable/bg_rounded_edittext"-->
-<!--            android:textSize="14sp"-->
-<!--            android:letterSpacing="0.01"-->
-<!--            android:paddingStart="20dp"-->
-<!--            android:inputType="textEmailAddress"-->
-<!--            android:autofillHints="emailAddress"-->
-<!--            tools:ignore="LabelFor,RtlSymmetry"-->
-<!--            android:hint="@string/edittext_hint_phone_or_email"-->
-<!--            android:textColorHint="#BABABA"/>-->
+        <FrameLayout
+            android:id="@+id/flEmailInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:padding="5dp">
 
-        <EditText
-            android:id="@+id/edtEmailInput"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:autofillHints="emailAddress"
-            android:background="@drawable/bg_rounded_edittext"
-            android:hint="@string/edittext_hint_phone_or_email"
-            android:inputType="textEmailAddress"
-            android:letterSpacing="0.01"
-            android:paddingStart="20dp"
-            android:textColorHint="#BABABA"
-            android:textSize="14sp"
-            tools:ignore="LabelFor,RtlSymmetry"/>
+            <EditText
+                android:id="@+id/edtEmailInput"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/bg_rounded_edittext"
+                android:hint="@string/edittext_hint_phone_or_email"
+                android:inputType="textEmailAddress"
+                android:letterSpacing="0.01"
+                android:paddingStart="20dp"
+                android:textColorHint="#BABABA"
+                android:textSize="14sp"
+                tools:ignore="LabelFor,RtlSymmetry"/>
 
-        <EditText
-            android:id="@+id/edtPasswordInput"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="14dp"
-            android:autofillHints="password"
-            android:background="@drawable/bg_rounded_edittext"
-            android:hint="@string/edittext_hint_password"
-            android:inputType="textPassword"
-            android:letterSpacing="0.01"
-            android:paddingStart="20dp"
-            android:textColorHint="#BABABA"
-            android:textSize="14sp"
-            tools:ignore="LabelFor,RtlSymmetry"
-            android:layout_below="@id/edtEmailInput"/>
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/ic_delete"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/flPasswordInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:padding="5dp"
+            android:layout_below="@id/flEmailInput">
+
+            <EditText
+                android:id="@+id/edtPasswordInput"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="14dp"
+                android:autofillHints="password"
+                android:background="@drawable/bg_rounded_edittext"
+                android:hint="@string/edittext_hint_password"
+                android:inputType="textPassword"
+                android:letterSpacing="0.01"
+                android:paddingStart="20dp"
+                android:textColorHint="#BABABA"
+                android:textSize="14sp"
+                tools:ignore="LabelFor,RtlSymmetry" />
+
+            <Button
+                android:id="@+id/btnSeenPassword"
+                android:layout_width="20dp"
+                android:layout_height="14dp"
+                android:layout_marginRight="16dp"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/ic_unseen"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded"
+                android:layout_marginTop="7dp"/>
+        </FrameLayout>
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/edtPasswordInput"
-            android:layout_marginTop="30dp"
+            android:layout_below="@id/flPasswordInput"
+            android:layout_marginTop="29dp"
             android:background="@drawable/bg_login_button"
+            android:letterSpacing="0.01"
             android:text="@string/button_text_login"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:letterSpacing="0.01">
-        </Button>
+            android:textSize="18sp"/>
     </RelativeLayout>
 </RelativeLayout>

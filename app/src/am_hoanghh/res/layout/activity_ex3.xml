@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clExercise3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="issues2.ex3.Ex3Activity">
+
+    <View
+        android:id="@+id/viewBlueBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#1877F2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/textview_text_information"
+        android:textColor="#FFFFFF"
+        android:textSize="42sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp">
+    </TextView>
+
+    <ScrollView
+        android:id="@+id/svFormContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/bg_sv_form"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clFormContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/ivBlueBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:contentDescription="@string/imageview_content_description_blue_bar"
+                android:src="@drawable/ic_blue_bar"
+                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
+                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
+                app:layout_constraintTop_toTopOf="@+id/clFormContainer"/>
+
+            <LinearLayout
+                android:id="@+id/llFormFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
+                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
+                app:layout_constraintTop_toTopOf="@+id/clFormContainer">
+
+                <TextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textview_text_full_name"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/edtFullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:autofillHints="Name must be >= 3 characters"
+                        android:background="@drawable/bg_rounded_edittext"
+                        android:hint="@string/edittext_hint_name_must_be_3_characters"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:textColorHint="#BABABA"
+                        android:textSize="14sp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <Button
+                        android:id="@+id/btnDeleteFullName"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/ic_delete"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        android:layout_marginTop="6dp"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFormNationalId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
+                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
+                app:layout_constraintTop_toTopOf="@+id/llFormFullName">
+
+                <TextView
+                    android:id="@+id/tvNationalId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textview_text_national_id"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/edtNationalId"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:autofillHints="Must be exactly 9 digits"
+                        android:background="@drawable/bg_rounded_edittext"
+                        android:hint="@string/edittext_hint_must_be_exactly_9_digits"
+                        android:inputType="text"
+                        android:paddingStart="20dp"
+                        android:textColorHint="#BABABA"
+                        android:textSize="14sp"
+                        tools:ignore="RtlSymmetry" />
+
+                    <Button
+                        android:id="@+id/btnDeleteNationalId"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/ic_delete"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        android:layout_marginTop="6dp"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDegree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
+                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
+                app:layout_constraintTop_toTopOf="@+id/llFormNationalId"
+                android:layout_marginTop="100dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables,UselessParent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/imageview_content_description_degree"
+                        android:src="@drawable/ic_degree"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textview_text_degree"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="4dp">
+                    </TextView>
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/rbDegree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <RadioButton
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/radiobutton_text_vocational"
+                        android:buttonTint="@color/radiobutton_selector_color" />
+
+                    <RadioButton
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/radiobutton_text_associate"
+                        android:buttonTint="@color/radiobutton_selector_color"/>
+
+                    <RadioButton
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/radiobutton_text_bachelor"
+                        android:buttonTint="@color/radiobutton_selector_color"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHobbies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
+                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
+                app:layout_constraintTop_toTopOf="@+id/llDegree"
+                android:layout_marginTop="75dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables,UselessParent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/imageview_content_description_hobbies"
+                        android:src="@drawable/ic_hobbies"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textview_text_hobbies"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="4dp">
+                    </TextView>
+                </LinearLayout>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkbox_text_reading_news"
+                    android:layout_marginTop="7dp"
+                    android:buttonTint="@color/radiobutton_selector_color"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkbox_text_reading_books"
+                    android:buttonTint="@color/radiobutton_selector_color"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/checkbox_text_reading_code"
+                    android:buttonTint="@color/radiobutton_selector_color"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/clFormContainer"
+                app:layout_constraintStart_toStartOf="@+id/clFormContainer"
+                app:layout_constraintTop_toTopOf="@+id/llHobbies"
+                android:layout_marginTop="140dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textview_text_additional_information"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/edtAdditionalInfor"
+                        android:layout_width="match_parent"
+                        android:layout_height="138dp"
+                        android:layout_marginTop="10dp"
+                        android:autofillHints="Enter additional information"
+                        android:background="@drawable/bg_rounded_edittext"
+                        android:hint="@string/edittext_hint_enter_additional_information"
+                        android:inputType="text|textMultiLine"
+                        android:gravity="top"
+                        android:paddingStart="20dp"
+                        android:paddingTop="15dp"
+                        android:textColorHint="#BABABA"
+                        android:textSize="14sp"
+                        tools:ignore="RtlSymmetry"/>
+
+                    <Button
+                        android:id="@+id/btnDeleteAdditionalInformation"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/ic_delete"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        android:layout_marginTop="-40dp"/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_login_button"
+                android:letterSpacing="0.01"
+                android:text="@string/button_text_submit"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="570dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

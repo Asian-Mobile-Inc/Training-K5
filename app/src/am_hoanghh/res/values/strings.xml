@@ -12,5 +12,28 @@
     <string name="edittext_hint_team_2">Term 2</string>
     <string name="textview_text_operations">Operations</string>
     <string name="textview_text_result">Result</string>
-    <string name="textview_text_360">360</string>
+    <string name="textview_text_0">0</string>
+    <string name="imageview_content_description_blue_bar">Blue bar</string>
+    <string name="textview_text_information">Information</string>
+    <string name="textview_text_full_name">* Full name</string>
+    <string name="edittext_hint_name_must_be_3_characters"><![CDATA[Name must be >= 3 characters]]></string>
+    <string name="textview_text_national_id">* National ID</string>
+    <string name="edittext_hint_must_be_exactly_9_digits">Must be exactly 9 digits</string>
+    <string name="textview_text_degree">Degree</string>
+    <string name="imageview_content_description_degree">DEGREE</string>
+    <string name="radiobutton_text_vocational">Vocational</string>
+    <string name="radiobutton_text_associate">Associate</string>
+    <string name="radiobutton_text_bachelor">Bachelor</string>
+    <string name="imageview_content_description_hobbies">Hobbies</string>
+    <string name="textview_text_hobbies">Hobbies</string>
+    <string name="checkbox_text_reading_news">Reading news</string>
+    <string name="checkbox_text_reading_books">Reading books</string>
+    <string name="checkbox_text_reading_code">Reading code</string>
+    <string name="textview_text_additional_information">Additional Information</string>
+    <string name="edittext_hint_enter_additional_information">Enter additional information</string>
+    <string name="button_text_submit">SUBMIT</string>
+    <string name="imageview_content_description_plus">Plus</string>
+    <string name="imageview_content_description_minus">Minus</string>
+    <string name="imageview_content_description_multiply">Multiply</string>
+    <string name="imageview_content_description_divide">Divide</string>
 </resources>

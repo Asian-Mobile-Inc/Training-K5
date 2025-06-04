@@ -9,13 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name="issues2.ex3.Ex3Activity"
+            android:exported="false" />
+        <activity
             android:name="issues2.ex2.Ex2Activity"
             android:exported="false" />
         <activity
             android:name="issues2.ex1.Ex1Activity"
             android:exported="false" />
         <activity
-            android:name=".MainViewActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

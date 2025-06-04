@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llExercise2"
     android:layout_width="match_parent"
@@ -16,8 +17,9 @@
         android:letterSpacing="0.01"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="62dp"
-        android:text="@string/textview_text_calculator">
-    </TextView>
+        android:text="@string/textview_text_calculator"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 
     <LinearLayout
         android:id="@+id/llFormTeam1"
@@ -25,54 +27,97 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="40dp">
+
         <TextView
-            android:id="@+id/tvTeam1"
+            android:id="@+id/tvTerm1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/textview_text_term_1"
-            android:textSize="14sp">
-        </TextView>
-        <EditText
-            android:id="@+id/edtTeam1Input"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:autofillHints="Term 1"
-            android:background="@drawable/bg_rounded_edittext"
-            android:hint="@string/edittext_hint_team_1"
-            android:inputType="text"
-            android:textColorHint="#BABABA"
             android:textSize="14sp"
-            android:paddingStart="20dp"
-            tools:ignore="RtlSymmetry"
-            android:layout_marginTop="10dp"/>
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/edtTerm1Input"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:autofillHints="Term 1"
+                android:background="@drawable/bg_rounded_edittext"
+                android:hint="@string/edittext_hint_team_1"
+                android:inputType="text"
+                android:textColorHint="#BABABA"
+                android:textSize="14sp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/btnDeleteTerm1"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/ic_delete"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded"
+                android:layout_marginTop="6dp"/>
+        </FrameLayout>
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llFormTeam2"
+        android:id="@+id/llFormTerm2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="35dp">
+
         <TextView
-            android:id="@+id/tvTeam2"
+            android:id="@+id/tvTerm2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/textview_text_term_2"
-            android:textSize="14sp">
-        </TextView>
-        <EditText
-            android:id="@+id/edtTeam2Input"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:autofillHints="Team 1"
-            android:background="@drawable/bg_rounded_edittext"
-            android:hint="@string/edittext_hint_team_2"
-            android:inputType="text"
-            android:textColorHint="#BABABA"
             android:textSize="14sp"
-            android:paddingStart="20dp"
-            tools:ignore="RtlSymmetry"
-            android:layout_marginTop="10dp"/>
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/edtTerm2Input"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:autofillHints="Team 1"
+                android:background="@drawable/bg_rounded_edittext"
+                android:hint="@string/edittext_hint_team_2"
+                android:inputType="text"
+                android:textColorHint="#BABABA"
+                android:textSize="14sp"
+                android:paddingStart="20dp"
+                tools:ignore="RtlSymmetry"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/btnDeleteTerm2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/ic_delete"
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded"
+                android:layout_marginTop="6dp"/>
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -80,13 +125,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="35dp">
+
         <TextView
             android:id="@+id/tvOperations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/textview_text_operations"
-            android:textSize="14sp">
-        </TextView>
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
         <LinearLayout
             android:id="@+id/llOperations"
             android:layout_width="match_parent"
@@ -94,34 +142,45 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivPlus"
                 android:layout_width="72dp"
                 android:layout_height="58dp"
+                android:contentDescription="@string/imageview_content_description_plus"
+                android:src="@drawable/ic_plus"
                 android:background="@drawable/bg_rounded_textview"
-                android:layout_marginHorizontal="10dp">
-            </TextView>
+                android:scaleType="center"
+                android:layout_marginHorizontal="10dp"/>
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivMinus"
                 android:layout_width="72dp"
                 android:layout_height="58dp"
+                android:contentDescription="@string/imageview_content_description_minus"
+                android:src="@drawable/ic_minus"
                 android:background="@drawable/bg_rounded_textview"
-                android:layout_marginHorizontal="10dp">
-            </TextView>
+                android:scaleType="center"
+                android:layout_marginHorizontal="10dp"/>
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivMultiply"
                 android:layout_width="72dp"
                 android:layout_height="58dp"
+                android:contentDescription="@string/imageview_content_description_multiply"
+                android:src="@drawable/ic_multiply"
                 android:background="@drawable/bg_rounded_textview"
-                android:layout_marginHorizontal="10dp">
-            </TextView>
+                android:scaleType="center"
+                android:layout_marginHorizontal="10dp"/>
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivDivide"
                 android:layout_width="72dp"
                 android:layout_height="58dp"
+                android:contentDescription="@string/imageview_content_description_divide"
+                android:src="@drawable/ic_divide"
                 android:background="@drawable/bg_rounded_textview"
-                android:layout_marginHorizontal="10dp">
-            </TextView>
-
+                android:scaleType="center"
+                android:layout_marginHorizontal="10dp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -137,15 +196,18 @@
             android:textSize="20sp"
             android:text="@string/textview_text_result"
             android:textColor="#1877F2"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold">
         </TextView>
 
         <TextView
+            android:id="@+id/tvResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#1877F2"
-            android:text="@string/textview_text_360"
+            android:text="@string/textview_text_0"
             android:layout_gravity="center_horizontal"
-            android:textSize="92sp"/>
+            android:textSize="92sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
