@@ -43,11 +43,21 @@
         android:src="@drawable/ic_delete"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/tvWarningUsername"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_below="@+id/edtEmailInput"
+        android:layout_marginTop="5dp"
+        android:text="@string/textview_text_username_is_an_email_address"
+        android:textColor="@color/red_F82B1F"
+        android:visibility="gone" />
+
     <EditText
         android:id="@+id/edtPasswordInput"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_below="@id/edtEmailInput"
+        android:layout_below="@id/tvWarningUsername"
         android:layout_marginTop="14dp"
         android:autofillHints="password"
         android:background="@drawable/bg_rounded_edittext"
@@ -73,11 +83,21 @@
         android:src="@drawable/ic_unseen"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/tvWarningPassword"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_below="@+id/edtPasswordInput"
+        android:layout_marginTop="5dp"
+        android:text="@string/textview_text_password_8_characters"
+        android:textColor="@color/red_F82B1F"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/edtPasswordInput"
+        android:layout_below="@+id/tvWarningPassword"
         android:layout_marginTop="35dp"
         android:background="@drawable/bg_login_button"
         android:letterSpacing="0.01"

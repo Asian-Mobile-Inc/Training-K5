@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import issues2.ex1.Ex1Activity;
+import issues3.ex3.Ex3Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(getApplicationContext(), Ex1Activity.class);
+        Intent intent = new Intent(getApplicationContext(), Ex3Activity.class);
         startActivity(intent);
     }
 }

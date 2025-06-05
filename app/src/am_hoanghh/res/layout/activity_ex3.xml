@@ -82,6 +82,7 @@
                 android:paddingEnd="20dp"
                 android:textColorHint="#BABABA"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvWarningFullName"
                 app:layout_constraintEnd_toStartOf="@id/btnDeleteFullName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFullName" />
@@ -100,6 +101,18 @@
                 app:layout_constraintTop_toBottomOf="@id/tvFullName" />
 
             <TextView
+                android:id="@+id/tvWarningFullName"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/textview_text_full_name_required"
+                android:textColor="@color/red_F82B1F"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/tvNationalId"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
+
+            <TextView
                 android:id="@+id/tvNationalId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +123,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/edtNationalId"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
+                app:layout_constraintTop_toBottomOf="@+id/tvWarningFullName" />
 
             <EditText
                 android:id="@+id/edtNationalId"
@@ -125,6 +138,7 @@
                 android:paddingEnd="20dp"
                 android:textColorHint="#BABABA"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvWarningNationalId"
                 app:layout_constraintEnd_toStartOf="@id/btnDeleteNationalId"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNationalId" />
@@ -142,25 +156,37 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvNationalId" />
 
+            <TextView
+                android:id="@+id/tvWarningNationalId"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/textview_text_national_id_required"
+                android:textColor="@color/red_F82B1F"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/tvDegree"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNationalId" />
+
             <ImageView
                 android:id="@+id/ivDegree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:contentDescription="@string/imageview_content_description_degree"
                 android:src="@drawable/ic_degree"
                 app:layout_constraintBottom_toTopOf="@+id/rbDegree"
                 app:layout_constraintEnd_toStartOf="@+id/tvDegree"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtNationalId" />
+                app:layout_constraintTop_toBottomOf="@+id/tvWarningNationalId" />
 
             <TextView
                 android:id="@+id/tvDegree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/textview_text_degree"
                 android:textColor="#000000"
                 android:textSize="14sp"
@@ -168,7 +194,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/rbDegree"
                 app:layout_constraintStart_toEndOf="@+id/ivDegree"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtNationalId" />
+                app:layout_constraintTop_toBottomOf="@+id/tvWarningNationalId" />
 
             <RadioGroup
                 android:id="@+id/rbDegree"
@@ -289,7 +315,7 @@
                 android:paddingEnd="20dp"
                 android:textColorHint="#BABABA"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tvWarningAdditionalInformation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAdditionalInformation" />
@@ -305,6 +331,18 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/edtAdditionalInformation" />
+
+            <TextView
+                android:id="@+id/tvWarningAdditionalInformation"
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/textview_text_additional_information_required"
+                android:textColor="@color/red_F82B1F"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtAdditionalInformation" />
 
             <Button
                 android:id="@+id/btnSubmit"
