@@ -12,18 +12,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.asian.R;
 import com.example.asian.databinding.ActivityEx2Binding;
 
 import issues2.ex3.Ex3Activity;
 
 public class Ex2Activity extends AppCompatActivity {
+    private ActivityEx2Binding binding;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.example.asian.databinding.ActivityEx2Binding binding = ActivityEx2Binding.inflate(getLayoutInflater());
+        binding = ActivityEx2Binding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(binding.llExercise2, (v, insets) -> {
@@ -32,12 +34,12 @@ public class Ex2Activity extends AppCompatActivity {
             return insets;
         });
 
-        String character = getColoredSpanned("*", "#F82B1F");
-        String text1 = getColoredSpanned("Term 1","#000000");
+        String character = getColoredSpanned("*", String.valueOf(R.color.red_F82B1F));
+        String text1 = getColoredSpanned("Term 1", String.valueOf(R.color.black));
 
         binding.tvTerm1.setText(Html.fromHtml(character + " " + text1));
 
-        String text2 = getColoredSpanned("Term 2","#000000");
+        String text2 = getColoredSpanned("Term 2", String.valueOf(R.color.black));
 
         binding.tvTerm2.setText(Html.fromHtml(character + " " + text2));
 
@@ -71,7 +73,7 @@ public class Ex2Activity extends AppCompatActivity {
 
         binding.ivPlus.setOnClickListener(view -> {
             try {
-                if(!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()){
+                if (!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()) {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '+');
 
                     binding.tvResult.setText(String.valueOf(result));
@@ -79,13 +81,13 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText("ERROR");
+                binding.tvResult.setText(R.string.textview_error_result);
             }
         });
 
         binding.ivMinus.setOnClickListener(view -> {
             try {
-                if(!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()){
+                if (!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()) {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '-');
 
                     binding.tvResult.setText(String.valueOf(result));
@@ -93,13 +95,13 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText("ERROR");
+                binding.tvResult.setText(R.string.textview_error_result);
             }
         });
 
         binding.ivMultiply.setOnClickListener(view -> {
             try {
-                if(!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()){
+                if (!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()) {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '*');
 
                     binding.tvResult.setText(String.valueOf(result));
@@ -107,13 +109,13 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText("ERROR");
+                binding.tvResult.setText(R.string.textview_error_result);
             }
         });
 
         binding.ivDivide.setOnClickListener(view -> {
             try {
-                if(!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()){
+                if (!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()) {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '/');
 
                     binding.tvResult.setText(String.valueOf(result));
@@ -121,7 +123,7 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText("ERROR");
+                binding.tvResult.setText(R.string.textview_error_result);
             }
         });
     }
@@ -130,7 +132,7 @@ public class Ex2Activity extends AppCompatActivity {
         return "<font color=" + color + ">" + text + "</font>";
     }
 
-    private double calculation(double a, double b, char c){
+    private double calculation(double a, double b, char c) {
         double result = 0;
 
         switch (c) {
@@ -153,7 +155,7 @@ public class Ex2Activity extends AppCompatActivity {
         return result;
     }
 
-    private void delay(){
+    private void delay() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

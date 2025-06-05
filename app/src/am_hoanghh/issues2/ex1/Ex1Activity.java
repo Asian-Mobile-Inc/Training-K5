@@ -18,12 +18,15 @@ import com.example.asian.databinding.ActivityEx1Binding;
 import issues2.ex2.Ex2Activity;
 
 public class Ex1Activity extends AppCompatActivity {
+    private ActivityEx1Binding binding;
     private boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        com.example.asian.databinding.ActivityEx1Binding binding = ActivityEx1Binding.inflate(getLayoutInflater());
+
+        binding = ActivityEx1Binding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(binding.rlExercise1, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -58,9 +61,9 @@ public class Ex1Activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() > 0) {
+                if (charSequence.length() > 0) {
                     binding.btnSeenPassword.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     binding.btnSeenPassword.setVisibility(View.GONE);
                 }
             }
@@ -72,17 +75,17 @@ public class Ex1Activity extends AppCompatActivity {
         });
 
         binding.btnSeenPassword.setOnClickListener(view -> {
-           if(isPasswordVisible) {
-               binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-               binding.btnSeenPassword.setImageResource(R.drawable.ic_unseen);
-           } else {
-             binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-               binding.btnSeenPassword.setImageResource(R.drawable.ic_seen);
-           }
+            if (isPasswordVisible) {
+                binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                binding.btnSeenPassword.setImageResource(R.drawable.ic_unseen);
+            } else {
+                binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                binding.btnSeenPassword.setImageResource(R.drawable.ic_seen);
+            }
 
-           binding.edtPasswordInput.setSelection(binding.edtPasswordInput.getText().length());
+            binding.edtPasswordInput.setSelection(binding.edtPasswordInput.getText().length());
 
-           isPasswordVisible = !isPasswordVisible;
+            isPasswordVisible = !isPasswordVisible;
         });
     }
 }

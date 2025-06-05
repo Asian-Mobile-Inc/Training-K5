@@ -10,16 +10,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.asian.R;
 import com.example.asian.databinding.ActivityEx3Binding;
 
 import issues2.ex1.Ex1Activity;
 
 public class Ex3Activity extends AppCompatActivity {
+    private ActivityEx3Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        com.example.asian.databinding.ActivityEx3Binding binding = ActivityEx3Binding.inflate(getLayoutInflater());
+
+        binding = ActivityEx3Binding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(binding.clExercise3, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -27,12 +31,12 @@ public class Ex3Activity extends AppCompatActivity {
             return insets;
         });
 
-        String character = getColoredSpanned("*", "#F82B1F");
-        String text1 = getColoredSpanned("Full name","#000000");
+        String character = getColoredSpanned("*", String.valueOf(R.color.red_F82B1F));
+        String text1 = getColoredSpanned("Full name", String.valueOf(R.color.black));
 
         binding.tvFullName.setText(Html.fromHtml(character + " " + text1));
 
-        String text2 = getColoredSpanned("National ID","#000000");
+        String text2 = getColoredSpanned("National ID", String.valueOf(R.color.black));
 
         binding.tvNationalId.setText(Html.fromHtml(character + " " + text2));
 

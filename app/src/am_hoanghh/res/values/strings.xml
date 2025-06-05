@@ -38,4 +38,5 @@
     <string name="imageview_content_description_divide">Divide</string>
     <string name="imagebutton_content_description_unseen">Unseen</string>
     <string name="imagebutton_content_description_delete">Delete</string>
+    <string name="textview_error_result">ERROR</string>
 </resources>
