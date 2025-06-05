@@ -31,12 +31,12 @@ public class Ex3Activity extends AppCompatActivity {
             return insets;
         });
 
-        String character = getColoredSpanned("*", String.valueOf(R.color.red_F82B1F));
-        String text1 = getColoredSpanned("Full name", String.valueOf(R.color.black));
+        String character = getColoredSpanned("*", getColor(R.color.red_F82B1F));
+        String text1 = getColoredSpanned("Full name", getColor(R.color.black));
 
         binding.tvFullName.setText(Html.fromHtml(character + " " + text1));
 
-        String text2 = getColoredSpanned("National ID", String.valueOf(R.color.black));
+        String text2 = getColoredSpanned("National ID", getColor(R.color.black));
 
         binding.tvNationalId.setText(Html.fromHtml(character + " " + text2));
 
@@ -88,7 +88,7 @@ public class Ex3Activity extends AppCompatActivity {
         });
     }
 
-    private String getColoredSpanned(String text, String color) {
+    private String getColoredSpanned(String text, int color) {
         return "<font color=" + color + ">" + text + "</font>";
     }
 }

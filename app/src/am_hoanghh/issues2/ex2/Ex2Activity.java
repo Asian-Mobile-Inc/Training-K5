@@ -34,12 +34,12 @@ public class Ex2Activity extends AppCompatActivity {
             return insets;
         });
 
-        String character = getColoredSpanned("*", String.valueOf(R.color.red_F82B1F));
-        String text1 = getColoredSpanned("Term 1", String.valueOf(R.color.black));
+        String character = getColoredSpanned("*", getColor(R.color.red_F82B1F));
+        String text1 = getColoredSpanned("Term 1", getColor(R.color.black));
 
         binding.tvTerm1.setText(Html.fromHtml(character + " " + text1));
 
-        String text2 = getColoredSpanned("Term 2", String.valueOf(R.color.black));
+        String text2 = getColoredSpanned("Term 2", getColor(R.color.black));
 
         binding.tvTerm2.setText(Html.fromHtml(character + " " + text2));
 
@@ -81,7 +81,7 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText(R.string.textview_error_result);
+                binding.tvResult.setText(getString(R.string.textview_error_result));
             }
         });
 
@@ -95,7 +95,7 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText(R.string.textview_error_result);
+                binding.tvResult.setText(getString(R.string.textview_error_result));
             }
         });
 
@@ -109,7 +109,7 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText(R.string.textview_error_result);
+                binding.tvResult.setText(getString(R.string.textview_error_result));
             }
         });
 
@@ -123,12 +123,12 @@ public class Ex2Activity extends AppCompatActivity {
                     delay();
                 }
             } catch (NumberFormatException numberFormatException) {
-                binding.tvResult.setText(R.string.textview_error_result);
+                binding.tvResult.setText(getString(R.string.textview_error_result));
             }
         });
     }
 
-    private String getColoredSpanned(String text, String color) {
+    private String getColoredSpanned(String text, int color) {
         return "<font color=" + color + ">" + text + "</font>";
     }
 

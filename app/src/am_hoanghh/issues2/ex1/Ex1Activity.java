@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.databinding.ActivityEx1Binding;
 
@@ -77,10 +78,14 @@ public class Ex1Activity extends AppCompatActivity {
         binding.btnSeenPassword.setOnClickListener(view -> {
             if (isPasswordVisible) {
                 binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                binding.btnSeenPassword.setImageResource(R.drawable.ic_unseen);
+                Glide.with(this)
+                        .load(R.drawable.ic_unseen)
+                        .into(binding.btnSeenPassword);
             } else {
                 binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                binding.btnSeenPassword.setImageResource(R.drawable.ic_seen);
+                Glide.with(this)
+                        .load(R.drawable.ic_seen)
+                        .into(binding.btnSeenPassword);
             }
 
             binding.edtPasswordInput.setSelection(binding.edtPasswordInput.getText().length());
