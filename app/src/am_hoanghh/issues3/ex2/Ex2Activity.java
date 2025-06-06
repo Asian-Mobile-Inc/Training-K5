@@ -56,6 +56,10 @@ public class Ex2Activity extends AppCompatActivity {
         binding.edtTerm2Input.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.ivDeleteTerm2.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_delete)
+                        .into(binding.ivDeleteTerm2);
             } else {
                 binding.ivDeleteTerm2.setVisibility(View.GONE);
             }
@@ -125,6 +129,7 @@ public class Ex2Activity extends AppCompatActivity {
                         binding.tvResult.setText(String.valueOf(result));
 
                         binding.ivDeleteTerm2.setVisibility(View.GONE);
+                        binding.edtTerm2Input.clearFocus();
                         binding.tvWarningTerm2.setVisibility(View.GONE);
                     }
                 }

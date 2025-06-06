@@ -49,5 +49,8 @@
     <string name="imageview_content_description_delete">Delete</string>
     <string name="textview_text_full_name_required">Full name required</string>
     <string name="textview_text_national_id_required">National ID required</string>
-    <string name="textview_text_additional_information_required">Additional information required</string>
+    <string name="textview_text_additional_information_100_character">Additional information >= 100 character</string>
+    <string name="imageview_content_description_delete_fullname">Delete FullName</string>
+    <string name="imageview_content_description_delete_national_id">Delete National ID</string>
+    <string name="imageview_content_description_delete_additional_information">Delete Additional Information</string>
 </resources>

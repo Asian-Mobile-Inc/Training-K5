@@ -37,6 +37,8 @@ public class Ex1Activity extends AppCompatActivity {
         });
 
         binding.btnLogin.setOnClickListener(view -> {
+            boolean check = true;
+
             if (!emailValidate.isValid(String.valueOf(binding.edtEmailInput.getText()))) {
                 binding.btnDelete.setVisibility(View.VISIBLE);
 
@@ -45,7 +47,15 @@ public class Ex1Activity extends AppCompatActivity {
                         .into(binding.btnDelete);
 
                 binding.tvWarningUsername.setVisibility(View.VISIBLE);
-            } else if (String.valueOf(binding.edtPasswordInput.getText()).length() < 8) {
+
+                check = false;
+            } else {
+                binding.btnDelete.setVisibility(View.GONE);
+                binding.edtEmailInput.clearFocus();
+                binding.tvWarningUsername.setVisibility(View.GONE);
+            }
+
+            if (String.valueOf(binding.edtPasswordInput.getText()).length() < 8) {
                 binding.btnSeenPassword.setVisibility(View.VISIBLE);
 
                 Glide.with(this)
@@ -53,13 +63,15 @@ public class Ex1Activity extends AppCompatActivity {
                         .into(binding.btnSeenPassword);
 
                 binding.tvWarningPassword.setVisibility(View.VISIBLE);
+
+                check = false;
             } else {
-                binding.btnDelete.setVisibility(View.GONE);
-                binding.tvWarningUsername.setVisibility(View.GONE);
-
                 binding.btnSeenPassword.setVisibility(View.GONE);
+                binding.edtPasswordInput.clearFocus();
                 binding.tvWarningPassword.setVisibility(View.GONE);
+            }
 
+            if (check) {
                 Intent intent = new Intent(this, SubEx1Activity.class);
                 intent.putExtra(getString(R.string.text_email), binding.edtEmailInput.getText().toString());
                 startActivity(intent);
@@ -68,11 +80,11 @@ public class Ex1Activity extends AppCompatActivity {
 
         binding.edtEmailInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
+                binding.btnDelete.setVisibility(View.VISIBLE);
+
                 Glide.with(this)
                         .load(R.drawable.ic_delete)
                         .into(binding.btnDelete);
-
-                binding.btnDelete.setVisibility(View.VISIBLE);
             } else {
                 binding.btnDelete.setVisibility(View.GONE);
             }
@@ -84,36 +96,23 @@ public class Ex1Activity extends AppCompatActivity {
             binding.btnDelete.setVisibility(View.GONE);
         });
 
-        binding.edtPasswordInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        binding.edtPasswordInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                binding.btnSeenPassword.setVisibility(View.VISIBLE);
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() > 0) {
-                    binding.btnSeenPassword.setVisibility(View.VISIBLE);
-
-                    if (isPasswordVisible) {
-                        binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        Glide.with(getApplicationContext())
-                                .load(R.drawable.ic_unseen)
-                                .into(binding.btnSeenPassword);
-                    } else {
-                        binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                        Glide.with(getApplicationContext())
-                                .load(R.drawable.ic_seen)
-                                .into(binding.btnSeenPassword);
-                    }
+                if (isPasswordVisible) {
+                    binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    Glide.with(getApplicationContext())
+                            .load(R.drawable.ic_unseen)
+                            .into(binding.btnSeenPassword);
                 } else {
-                    binding.btnSeenPassword.setVisibility(View.GONE);
+                    binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    Glide.with(getApplicationContext())
+                            .load(R.drawable.ic_seen)
+                            .into(binding.btnSeenPassword);
                 }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
+            } else {
+                binding.btnSeenPassword.setVisibility(View.GONE);
             }
         });
 

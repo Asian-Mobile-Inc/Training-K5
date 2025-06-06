@@ -83,18 +83,19 @@
                 android:textColorHint="#BABABA"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvWarningFullName"
-                app:layout_constraintEnd_toStartOf="@id/btnDeleteFullName"
+                app:layout_constraintEnd_toStartOf="@id/ivDeleteFullName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFullName" />
 
-            <Button
-                android:id="@+id/btnDeleteFullName"
+            <ImageView
+                android:id="@+id/ivDeleteFullName"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/ic_delete"
+                android:contentDescription="@string/imageview_content_description_delete_fullname"
+                android:src="@drawable/ic_delete"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/edtFullName"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,18 +140,19 @@
                 android:textColorHint="#BABABA"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/tvWarningNationalId"
-                app:layout_constraintEnd_toStartOf="@id/btnDeleteNationalId"
+                app:layout_constraintEnd_toStartOf="@id/ivDeleteNationalId"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNationalId" />
 
-            <Button
-                android:id="@+id/btnDeleteNationalId"
+            <ImageView
+                android:id="@+id/ivDeleteNationalId"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/ic_delete"
+                android:contentDescription="@string/imageview_content_description_delete_national_id"
+                android:src="@drawable/ic_delete"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/edtNationalId"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -320,14 +322,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAdditionalInformation" />
 
-            <Button
-                android:id="@+id/btnDeleteAdditionalInformation"
+            <ImageView
+                android:id="@+id/ivDeleteAdditionalInformation"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/ic_delete"
+                android:contentDescription="@string/imageview_content_description_delete_additional_information"
+                android:src="@drawable/ic_delete"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/edtAdditionalInformation" />
@@ -337,7 +340,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="18dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/textview_text_additional_information_required"
+                android:text="@string/textview_text_additional_information_100_character"
                 android:textColor="@color/red_F82B1F"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
