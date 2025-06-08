@@ -1,11 +1,12 @@
 package com.example.asian;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import issues2.ex1.Ex1Activity;
+import issues4.LanguageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,8 +14,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(getApplicationContext(), Ex1Activity.class);
-        startActivity(intent);
     }
 }

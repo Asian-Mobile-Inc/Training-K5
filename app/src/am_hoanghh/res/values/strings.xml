@@ -39,4 +39,7 @@
     <string name="imagebutton_content_description_unseen">Unseen</string>
     <string name="imagebutton_content_description_delete">Delete</string>
     <string name="textview_error_result">ERROR</string>
+    <string name="textview_text_language">Language</string>
+    <string name="imageview_content_description_done">DONE</string>
+    <string name="imageview_content_description_flag">FLAG</string>
 </resources>
