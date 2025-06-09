@@ -82,6 +82,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
 
         viewHolder.getTextView().setText(languageItem.getLanguageName());
         viewHolder.getRadioButton().setChecked(viewHolder.getAdapterPosition() == selectedPosition);
+        viewHolder.itemView.setSelected(viewHolder.getAdapterPosition() == selectedPosition);
 
         viewHolder.getRadioButton().setOnClickListener(view -> {
             int previousPosition = selectedPosition;
@@ -97,11 +98,15 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
         return languageLists.size();
     }
 
-    public LanguageItem getSelectedItem() {
-        if (selectedPosition >= 0 && selectedPosition < languageLists.size()) {
-            return languageLists.get(selectedPosition);
-        }
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
 
-        return null;
+    public void setPosition(int position) {
+        int previousPosition = selectedPosition;
+        selectedPosition = position;
+
+        notifyItemChanged(previousPosition);
+        notifyItemChanged(selectedPosition);
     }
 }
