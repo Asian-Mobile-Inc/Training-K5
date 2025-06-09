@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    android:paddingTop="50dp"
+    tools:context=".ActivityEx2">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:gravity="center"
+        android:text="Calculator"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_term1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textSize="14sp"
+        android:text="* Term 1" />
+
+    <EditText
+        android:id="@+id/edt_term1"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:paddingRight="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="16dp"
+        android:inputType="text"
+        android:textSize="14sp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/myedittext"
+        android:hint="Term 1" />
+
+    <TextView
+        android:id="@+id/tv_term2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:text="* Term 2" />
+
+    <EditText
+        android:id="@+id/edt_term2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:background="@drawable/myedittext"
+        android:paddingRight="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:layout_marginBottom="30dp"
+        android:hint="Term 2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:text="Operations" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_inc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            app:srcCompat="@drawable/frame_26" />
+
+        <ImageButton
+            android:id="@+id/btn_dec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            app:srcCompat="@drawable/frame_27" />
+
+        <ImageButton
+            android:id="@+id/btn_mul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            app:srcCompat="@drawable/frame_28" />
+
+        <ImageButton
+            android:id="@+id/btn_div"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            app:srcCompat="@drawable/frame_29" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="92sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="0" />
+</LinearLayout>
