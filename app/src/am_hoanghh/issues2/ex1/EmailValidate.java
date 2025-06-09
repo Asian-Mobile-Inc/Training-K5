@@ -1,4 +1,4 @@
-package issues3.ex1;
+package issues2.ex1;
 
 import java.util.regex.Pattern;
 

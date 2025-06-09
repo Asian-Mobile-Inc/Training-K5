@@ -1,8 +1,7 @@
-package issues3.ex1;
+package issues2.ex1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

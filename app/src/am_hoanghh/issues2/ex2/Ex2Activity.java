@@ -1,28 +1,24 @@
 package issues2.ex2;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Html;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.databinding.ActivityEx2Binding;
-
-import issues2.ex3.Ex3Activity;
 
 public class Ex2Activity extends AppCompatActivity {
     private ActivityEx2Binding binding;
 
-    @SuppressLint("SetTextI18n")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityEx2Binding.inflate(getLayoutInflater());
@@ -60,6 +56,10 @@ public class Ex2Activity extends AppCompatActivity {
         binding.edtTerm2Input.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 binding.ivDeleteTerm2.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_delete)
+                        .into(binding.ivDeleteTerm2);
             } else {
                 binding.ivDeleteTerm2.setVisibility(View.GONE);
             }
@@ -77,8 +77,6 @@ public class Ex2Activity extends AppCompatActivity {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '+');
 
                     binding.tvResult.setText(String.valueOf(result));
-
-                    delay();
                 }
             } catch (NumberFormatException numberFormatException) {
                 binding.tvResult.setText(getString(R.string.textview_error_result));
@@ -91,8 +89,6 @@ public class Ex2Activity extends AppCompatActivity {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '-');
 
                     binding.tvResult.setText(String.valueOf(result));
-
-                    delay();
                 }
             } catch (NumberFormatException numberFormatException) {
                 binding.tvResult.setText(getString(R.string.textview_error_result));
@@ -105,8 +101,6 @@ public class Ex2Activity extends AppCompatActivity {
                     double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '*');
 
                     binding.tvResult.setText(String.valueOf(result));
-
-                    delay();
                 }
             } catch (NumberFormatException numberFormatException) {
                 binding.tvResult.setText(getString(R.string.textview_error_result));
@@ -116,11 +110,28 @@ public class Ex2Activity extends AppCompatActivity {
         binding.ivDivide.setOnClickListener(view -> {
             try {
                 if (!String.valueOf(binding.edtTerm1Input.getText()).isEmpty() && !String.valueOf(binding.edtTerm2Input.getText()).isEmpty()) {
-                    double result = calculation(Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText())), Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText())), '/');
+                    double term1 = Double.parseDouble(String.valueOf(binding.edtTerm1Input.getText()));
+                    double term2 = Double.parseDouble(String.valueOf(binding.edtTerm2Input.getText()));
 
-                    binding.tvResult.setText(String.valueOf(result));
+                    if (term2 == 0) {
+                        binding.ivDeleteTerm2.setVisibility(View.VISIBLE);
 
-                    delay();
+                        Glide.with(this)
+                                .load(R.drawable.ic_warning)
+                                .into(binding.ivDeleteTerm2);
+
+                        binding.tvWarningTerm2.setVisibility(View.VISIBLE);
+
+                        binding.tvResult.setText(getString(R.string.textview_error_result));
+                    } else {
+                        double result = calculation(term1, term2, '/');
+
+                        binding.tvResult.setText(String.valueOf(result));
+
+                        binding.ivDeleteTerm2.setVisibility(View.GONE);
+                        binding.edtTerm2Input.clearFocus();
+                        binding.tvWarningTerm2.setVisibility(View.GONE);
+                    }
                 }
             } catch (NumberFormatException numberFormatException) {
                 binding.tvResult.setText(getString(R.string.textview_error_result));
@@ -153,15 +164,5 @@ public class Ex2Activity extends AppCompatActivity {
         }
 
         return result;
-    }
-
-    private void delay() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), Ex3Activity.class);
-                startActivity(intent);
-            }
-        }, 2000);
     }
 }
