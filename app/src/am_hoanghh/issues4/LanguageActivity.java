@@ -103,17 +103,18 @@ public class LanguageActivity extends AppCompatActivity {
         languageLists.add(new LanguageItem(R.drawable.ic_poland, getString(R.string.language_item_poland)));
 
         // Setup adapter
-        LanguageAdapter languageAdapter = new LanguageAdapter(languageLists);
+        LanguagesAdapter languagesAdapter = new LanguagesAdapter();
         binding.rvLanguage.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvLanguage.setAdapter(languageAdapter);
+        binding.rvLanguage.setAdapter(languagesAdapter);
 
         // Set position of selected language position
-        languageAdapter.setPosition(languagePosition);
+        languagesAdapter.setPosition(languagePosition);
+        languagesAdapter.submitList(languageLists);
 
         binding.ivDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectedPosition = languageAdapter.getSelectedPosition();
+                int selectedPosition = languagesAdapter.getSelectedPosition();
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt(getString(R.string.language_position_key), selectedPosition);
