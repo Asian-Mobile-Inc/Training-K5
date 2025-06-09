@@ -18,6 +18,10 @@ android {
         am_hoanghh {
             java.srcDirs = ['src/am_hoanghh']
         }
+
+        am_hieunt {
+            java.srcDirs = ['src/am_hieunt']
+        }
     }
 
     buildTypes {
@@ -31,6 +35,10 @@ android {
 
         am_hoanghh {
             applicationId = "com.example.hoanghh"
+        }
+
+        am_hieunt {
+            applicationId = "com.example.hieunt"
         }
     }
 
