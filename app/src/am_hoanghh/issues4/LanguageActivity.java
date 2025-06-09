@@ -39,6 +39,7 @@ public class LanguageActivity extends AppCompatActivity {
 
         binding = ActivityLanguageBinding.inflate(getLayoutInflater());
 
+        // Initial language lists
         languages = new ArrayList<>(Arrays.asList(getString(R.string.item_list_language_english),
                 getString(R.string.item_list_language_spain),
                 getString(R.string.item_list_language_vietnam),
@@ -60,6 +61,7 @@ public class LanguageActivity extends AppCompatActivity {
                 getString(R.string.item_list_language_russia),
                 getString(R.string.item_list_language_poland)));
 
+        // Get selected language position
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.user_preferences_key), MODE_PRIVATE);
         int languagePosition = sharedPreferences.getInt(getString(R.string.language_position_key), 0);
 
@@ -72,10 +74,12 @@ public class LanguageActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
+        // Initial language item of recyclerview
         List<LanguageItem> languageLists = new ArrayList<>();
         languageLists.add(new LanguageItem(R.drawable.ic_english, getString(R.string.language_item_english)));
         languageLists.add(new LanguageItem(R.drawable.ic_spain, getString(R.string.language_item_spain)));
@@ -98,10 +102,12 @@ public class LanguageActivity extends AppCompatActivity {
         languageLists.add(new LanguageItem(R.drawable.ic_russia, getString(R.string.language_item_russia)));
         languageLists.add(new LanguageItem(R.drawable.ic_poland, getString(R.string.language_item_poland)));
 
+        // Setup adapter
         LanguageAdapter languageAdapter = new LanguageAdapter(languageLists);
         binding.rvLanguage.setLayoutManager(new LinearLayoutManager(this));
         binding.rvLanguage.setAdapter(languageAdapter);
 
+        // Set position of selected language position
         languageAdapter.setPosition(languagePosition);
 
         binding.ivDone.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +119,7 @@ public class LanguageActivity extends AppCompatActivity {
                 editor.putInt(getString(R.string.language_position_key), selectedPosition);
                 editor.apply();
 
+                // Restart activity
                 Intent intent = getIntent();
                 finish();
                 startActivity(intent);

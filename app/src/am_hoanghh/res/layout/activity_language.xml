@@ -6,58 +6,40 @@
     android:layout_height="match_parent"
     android:background="@color/blue_while_F0F9FE">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/tbLanguage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
         android:background="@android:color/transparent"
         android:elevation="0dp"
-        android:stateListAnimator="@null"
-        app:layout_constraintBottom_toTopOf="@+id/rvLanguage"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvLanguage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_text_language"
+        android:textColor="@color/primary_1877F2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:background="@android:color/transparent"
-                android:elevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/textview_text_language"
-                android:textColor="@color/primary_1877F2"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/clToolbar"
-                app:layout_constraintEnd_toEndOf="@+id/clToolbar"
-                app:layout_constraintStart_toStartOf="@+id/clToolbar"
-                app:layout_constraintTop_toTopOf="@+id/clToolbar" />
-
-            <ImageView
-                android:id="@+id/ivDone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:contentDescription="@string/imageview_content_description_done"
-                android:src="@drawable/ic_done"
-                app:layout_constraintBottom_toBottomOf="@+id/clToolbar"
-                app:layout_constraintEnd_toEndOf="@+id/clToolbar"
-                app:layout_constraintTop_toTopOf="@+id/clToolbar" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <ImageView
+        android:id="@+id/ivDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="@string/imageview_content_description_done"
+        android:src="@drawable/ic_done"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLanguage"
@@ -67,5 +49,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbLanguage" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
