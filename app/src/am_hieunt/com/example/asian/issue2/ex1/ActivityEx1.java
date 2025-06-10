@@ -24,6 +24,7 @@ public class ActivityEx1 extends AppCompatActivity {
     private Drawable mIcon;
     private Button mLogin;
     private TextView mTvErrorUsername, mTvErrorPassword;
+    private static final String INTENTCODE = "username";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -189,7 +190,7 @@ public class ActivityEx1 extends AppCompatActivity {
                 mPassword.setFocusableInTouchMode(true);
                 if (kt) {
                     Intent intent = new Intent(ActivityEx1.this, ActivityEx1_1.class);
-                    intent.putExtra("username", mUsername.getText().toString());
+                    intent.putExtra(INTENTCODE, mUsername.getText().toString());
                     startActivity(intent);
                 }
 
