@@ -56,9 +56,7 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
         holder.getRadioButton().setOnClickListener(view -> {
             selectedPosition = holder.getAdapterPosition();
 
-            setSelectedPositionOfLanguageLists(selectedPosition);
-
-            submitList(languageLists);
+            submitList(getNewLanguageList(selectedPosition));
         });
     }
 
@@ -71,7 +69,6 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
 
                 @Override
                 public boolean areContentsTheSame(@NonNull LanguageItem oldItem, @NonNull LanguageItem newItem) {
-                    Log.d("debug", String.valueOf(oldItem.isSelected() == newItem.isSelected()));
                     return oldItem.isSelected() == newItem.isSelected();
                 }
             };
@@ -109,11 +106,14 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
         selectedPosition = position;
     }
 
-    public void setSelectedPositionOfLanguageLists(int position) {
-        for (LanguageItem item: languageLists) {
-            item.setSelected(false);
+    public ArrayList<LanguageItem> getNewLanguageList(int position) {
+        ArrayList<LanguageItem> newLanguageLists = new ArrayList<>();
+        for (LanguageItem item : languageLists) {
+            newLanguageLists.add(new LanguageItem(item.getIcResId(), item.getLanguageName(), item.getLanguageCode()));
         }
 
-        languageLists.get(position).setSelected(true);
+        newLanguageLists.get(position).setSelected(true);
+
+        return newLanguageLists;
     }
 }

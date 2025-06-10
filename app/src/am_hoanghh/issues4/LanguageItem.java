@@ -3,11 +3,13 @@ package issues4;
 public class LanguageItem {
     private int icResId;
     private String languageName;
+    private String languageCode;
     private boolean isSelected;
 
-    public LanguageItem(int icResId, String languageName) {
+    public LanguageItem(int icResId, String languageName, String languageCode) {
         this.icResId = icResId;
         this.languageName = languageName;
+        this.languageCode = languageCode;
         this.isSelected = false;
     }
 
@@ -33,5 +35,13 @@ public class LanguageItem {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public String getLanguageCode() {
+        return languageCode;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
     }
 }

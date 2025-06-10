@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">ExHoangHH</string>
     <string name="imageview_content_description_logo">LOGO</string>
@@ -57,27 +58,30 @@
     <string name="imageview_content_description_flag">FLAG</string>
     <string name="language_position_key">language_position</string>
     <string name="user_preferences_key">UserPreferences</string>
-    <string name="language_item_english">English</string>
-    <string name="language_item_spainish">Spainish</string>
-    <string name="language_item_vietnamese">Vietnamese</string>
-    <string name="language_item_french">French</string>
+
+    <string name="language_item_english">Tiếng Anh</string>
+    <string name="language_item_spainish">Tây Ban Nha</string>
+    <string name="language_item_vietnamese">Tiếng Việt</string>
+    <string name="language_item_french">Tiếng Pháp</string>
     <string name="language_item_hindi">Hindi</string>
-    <string name="language_item_german">German</string>
-    <string name="language_item_portuguese">Portuguese</string>
-    <string name="language_item_italian">Italian</string>
-    <string name="language_item_arabic">Arabic</string>
-    <string name="language_item_japanese">Japanese</string>
-    <string name="language_item_korean">Korean</string>
+    <string name="language_item_german">Tiếng Đức</string>
+    <string name="language_item_portuguese">Bồ Đào Nha</string>
+    <string name="language_item_italian">Ý</string>
+    <string name="language_item_arabic">Ả Rập</string>
+    <string name="language_item_japanese">Tiếng Nhật</string>
+    <string name="language_item_korean">Tiếng Hàn</string>
     <string name="language_item_south_afrikaans">Afrikaans</string>
-    <string name="language_item_hebrew">Hebrew</string>
+    <string name="language_item_hebrew">Do Thái</string>
     <string name="language_item_hausa">Hausa</string>
-    <string name="language_item_chinese">Chinese</string>
-    <string name="language_item_turkish">Turkish</string>
-    <string name="language_item_bahasa_indonesia">Bahasa Indonesia</string>
-    <string name="language_item_dutch">Dutch</string>
-    <string name="language_item_russian">Russian</string>
-    <string name="language_item_polish">Polish</string>
-    <string name="language">Language</string>
+    <string name="language_item_chinese">Tiếng Trung</string>
+    <string name="language_item_turkish">Thổ Nhĩ Kỳ</string>
+    <string name="language_item_bahasa_indonesia">Indonesia</string>
+    <string name="language_item_dutch">Hà Lan</string>
+    <string name="language_item_russian">Tiếng Nga</string>
+    <string name="language_item_polish">Ba Lan</string>
+
+    <string name="language">Ngôn ngữ</string>
+
     <string name="language_code_english">en</string>
     <string name="language_code_spainish">es</string>
     <string name="language_code_vietnamese">vi</string>
