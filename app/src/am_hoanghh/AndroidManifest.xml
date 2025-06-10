@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name="issues2.ex1.SubEx1Activity"
+            android:exported="false" />
+        <activity
             android:name="issues2.ex3.Ex3Activity"
             android:exported="false" />
         <activity

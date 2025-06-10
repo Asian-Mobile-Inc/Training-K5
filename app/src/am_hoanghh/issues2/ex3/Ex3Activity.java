@@ -1,25 +1,25 @@
 package issues2.ex3;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.databinding.ActivityEx3Binding;
-
-import issues2.ex1.Ex1Activity;
 
 public class Ex3Activity extends AppCompatActivity {
     private ActivityEx3Binding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityEx3Binding.inflate(getLayoutInflater());
@@ -41,50 +41,101 @@ public class Ex3Activity extends AppCompatActivity {
         binding.tvNationalId.setText(Html.fromHtml(character + " " + text2));
 
         binding.btnSubmit.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), Ex1Activity.class);
-            startActivity(intent);
+            if (String.valueOf(binding.edtFullName.getText()).isEmpty()) {
+                binding.ivDeleteFullName.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_warning)
+                        .into(binding.ivDeleteFullName);
+
+                binding.tvWarningFullName.setVisibility(View.VISIBLE);
+            } else {
+                binding.ivDeleteFullName.setVisibility(View.GONE);
+                binding.edtFullName.clearFocus();
+                binding.tvWarningFullName.setVisibility(View.GONE);
+            }
+
+            if (String.valueOf(binding.edtNationalId.getText()).isEmpty()) {
+                binding.ivDeleteNationalId.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_warning)
+                        .into(binding.ivDeleteNationalId);
+
+                binding.tvWarningNationalId.setVisibility(View.VISIBLE);
+            } else {
+                binding.ivDeleteNationalId.setVisibility(View.GONE);
+                binding.edtNationalId.clearFocus();
+                binding.tvWarningNationalId.setVisibility(View.GONE);
+            }
+
+            if (String.valueOf(binding.edtAdditionalInformation.getText()).length() < 100) {
+                binding.ivDeleteAdditionalInformation.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_warning)
+                        .into(binding.ivDeleteAdditionalInformation);
+
+                binding.tvWarningAdditionalInformation.setVisibility(View.VISIBLE);
+            } else {
+                binding.ivDeleteAdditionalInformation.setVisibility(View.GONE);
+                binding.edtAdditionalInformation.clearFocus();
+                binding.tvWarningAdditionalInformation.setVisibility(View.GONE);
+            }
         });
 
         binding.edtFullName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                binding.btnDeleteFullName.setVisibility(View.VISIBLE);
+                binding.ivDeleteFullName.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_delete)
+                        .into(binding.ivDeleteFullName);
             } else {
-                binding.btnDeleteFullName.setVisibility(View.GONE);
+                binding.ivDeleteFullName.setVisibility(View.GONE);
             }
         });
 
-        binding.btnDeleteFullName.setOnClickListener(view -> {
+        binding.ivDeleteFullName.setOnClickListener(view -> {
             binding.edtFullName.setText("");
             binding.edtFullName.clearFocus();
-            binding.btnDeleteFullName.setVisibility(View.GONE);
+            binding.ivDeleteFullName.setVisibility(View.GONE);
         });
 
         binding.edtNationalId.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                binding.btnDeleteNationalId.setVisibility(View.VISIBLE);
+                binding.ivDeleteNationalId.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_delete)
+                        .into(binding.ivDeleteNationalId);
             } else {
-                binding.btnDeleteNationalId.setVisibility(View.GONE);
+                binding.ivDeleteNationalId.setVisibility(View.GONE);
             }
         });
 
-        binding.btnDeleteNationalId.setOnClickListener(view -> {
+        binding.ivDeleteNationalId.setOnClickListener(view -> {
             binding.edtNationalId.setText("");
             binding.edtNationalId.clearFocus();
-            binding.btnDeleteNationalId.setVisibility(View.GONE);
+            binding.ivDeleteNationalId.setVisibility(View.GONE);
         });
 
         binding.edtAdditionalInformation.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                binding.btnDeleteAdditionalInformation.setVisibility(View.VISIBLE);
+                binding.ivDeleteAdditionalInformation.setVisibility(View.VISIBLE);
+
+                Glide.with(this)
+                        .load(R.drawable.ic_delete)
+                        .into(binding.ivDeleteAdditionalInformation);
             } else {
-                binding.btnDeleteAdditionalInformation.setVisibility(View.GONE);
+                binding.ivDeleteAdditionalInformation.setVisibility(View.GONE);
             }
         });
 
-        binding.btnDeleteAdditionalInformation.setOnClickListener(view -> {
+        binding.ivDeleteAdditionalInformation.setOnClickListener(view -> {
             binding.edtAdditionalInformation.setText("");
             binding.edtAdditionalInformation.clearFocus();
-            binding.btnDeleteAdditionalInformation.setVisibility(View.GONE);
+            binding.ivDeleteAdditionalInformation.setVisibility(View.GONE);
         });
     }
 
