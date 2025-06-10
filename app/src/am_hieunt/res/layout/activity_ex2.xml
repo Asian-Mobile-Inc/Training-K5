@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    android:paddingTop="50dp"
+    tools:context=".issue2.ex2.ActivityEx2">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:gravity="center"
+        android:text="@string/calculator"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTerm1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/edtTerm1"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:importantForAutofill="no"
+        android:paddingRight="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="16dp"
+        android:inputType="text"
+        android:textSize="14sp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/my_edittext"
+        android:hint="@string/term_1"/>
+
+    <TextView
+        android:id="@+id/tvTerm2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/edtTerm2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:background="@drawable/my_edittext"
+        android:paddingRight="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:layout_marginBottom="30dp"
+        android:hint="@string/term_2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:text="@string/operations" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnInc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/icon_inc" />
+
+        <ImageButton
+            android:id="@+id/btnDec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/icon_dec"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageButton
+            android:id="@+id/btnMul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/icon_mul" />
+
+        <ImageButton
+            android:id="@+id/btnDiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/icon_div" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="92sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/_0" />
+</LinearLayout>

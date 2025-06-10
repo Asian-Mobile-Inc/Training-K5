@@ -1,3 +1,25 @@
 <resources>
-  <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="phone_or_email">Phone or email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="calculator">Calculator</string>
+    <string name="term_2">Term 2</string>
+    <string name="term_1">Term 1</string>
+    <string name="operations">Operations</string>
+    <string name="result">Result</string>
+    <string name="_0">0</string>
+    <string name="name_must_be_3_characters">Name must be ≥ 3 characters</string>
+    <string name="must_be_exactly_9_digits">Must be exactly 9 digits</string>
+    <string name="degree">Degree</string>
+    <string name="hobbies">Hobbies</string>
+    <string name="reading_news">Reading news</string>
+    <string name="reading_books">Reading books</string>
+    <string name="reading_code">Reading code</string>
+    <string name="additional_information">Additional Information</string>
+    <string name="bachelor">Bachelor</string>
+    <string name="associate">Associate</string>
+    <string name="vocational">Vocational</string>
+    <string name="enter_additional_information">Enter additional information</string>
+    <string name="infomation">Infomation</string>
 </resources>
