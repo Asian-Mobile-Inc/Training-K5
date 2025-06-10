@@ -21,6 +21,7 @@ public class Ex1Activity extends AppCompatActivity {
     private ActivityEx1Binding binding;
     private boolean isPasswordVisible = false;
     private EmailValidate emailValidate;
+    private static final String TEXT_EMAIL = "email";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class Ex1Activity extends AppCompatActivity {
 
             if (check) {
                 Intent intent = new Intent(this, SubEx1Activity.class);
-                intent.putExtra(getString(R.string.text_email), binding.edtEmailInput.getText().toString());
+                intent.putExtra(TEXT_EMAIL, binding.edtEmailInput.getText().toString());
                 startActivity(intent);
             }
         });
@@ -102,12 +103,12 @@ public class Ex1Activity extends AppCompatActivity {
 
                 if (isPasswordVisible) {
                     binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    Glide.with(getApplicationContext())
+                    Glide.with(this)
                             .load(R.drawable.ic_unseen)
                             .into(binding.btnSeenPassword);
                 } else {
                     binding.edtPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    Glide.with(getApplicationContext())
+                    Glide.with(this)
                             .load(R.drawable.ic_seen)
                             .into(binding.btnSeenPassword);
                 }

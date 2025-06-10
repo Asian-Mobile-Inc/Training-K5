@@ -14,6 +14,7 @@ import com.example.asian.databinding.ActivitySubScreenEx1Binding;
 
 public class SubEx1Activity extends AppCompatActivity {
     private ActivitySubScreenEx1Binding binding;
+    private static final String TEXT_EMAIL = "email";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class SubEx1Activity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        String email = intent.getStringExtra(getString(R.string.text_email));
+        String email = intent.getStringExtra(TEXT_EMAIL);
 
         if (email != null) {
             binding.tvEmail.setText(email);
