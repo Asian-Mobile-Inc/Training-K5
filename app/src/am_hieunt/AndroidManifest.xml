@@ -11,13 +11,13 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
         <activity
-            android:name=".ActivityEx2"
+            android:name=".issue2.ex1.ActivityEx1"
             android:exported="false" />
         <activity
-            android:name=".ActivityEx1"
+            android:name=".issue2.ex2.ActivityEx2"
             android:exported="false" />
         <activity
-            android:name=".ActivityEx3"
+            android:name=".issue2.ex3.ActivityEx3"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

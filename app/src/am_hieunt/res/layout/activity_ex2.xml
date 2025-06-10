@@ -10,10 +10,10 @@
     android:paddingRight="20dp"
     android:paddingBottom="20dp"
     android:paddingTop="50dp"
-    tools:context=".ActivityEx2">
+    tools:context=".issue2.ex2.ActivityEx2">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="39dp"
         android:gravity="center"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_term1"
+        android:id="@+id/tvTerm1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -36,7 +36,7 @@
         android:text="* Term 1" />
 
     <EditText
-        android:id="@+id/edt_term1"
+        android:id="@+id/edtTerm1"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:ems="10"
@@ -47,11 +47,11 @@
         android:inputType="text"
         android:textSize="14sp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/myedittext"
+        android:background="@drawable/my_edittext"
         android:hint="Term 1" />
 
     <TextView
-        android:id="@+id/tv_term2"
+        android:id="@+id/tvTerm2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -60,12 +60,12 @@
         android:text="* Term 2" />
 
     <EditText
-        android:id="@+id/edt_term2"
+        android:id="@+id/edtTerm2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:background="@drawable/myedittext"
+        android:background="@drawable/my_edittext"
         android:paddingRight="16dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
@@ -88,36 +88,36 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/btn_inc"
+            android:id="@+id/btnInc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
-            app:srcCompat="@drawable/frame_26" />
+            app:srcCompat="@drawable/icon_inc" />
 
         <ImageButton
-            android:id="@+id/btn_dec"
+            android:id="@+id/btnDec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
-            app:srcCompat="@drawable/frame_27" />
+            app:srcCompat="@drawable/icon_dec" />
 
         <ImageButton
-            android:id="@+id/btn_mul"
+            android:id="@+id/btnMul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
-            app:srcCompat="@drawable/frame_28" />
+            app:srcCompat="@drawable/icon_mul" />
 
         <ImageButton
-            android:id="@+id/btn_div"
+            android:id="@+id/btnDiv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
-            app:srcCompat="@drawable/frame_29" />
+            app:srcCompat="@drawable/icon_div" />
     </LinearLayout>
 
     <TextView
@@ -129,7 +129,7 @@
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/tv_result"
+        android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/blue"

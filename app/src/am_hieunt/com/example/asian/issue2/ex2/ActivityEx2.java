@@ -1,10 +1,9 @@
-package com.example.asian;
+package com.example.asian.issue2.ex2;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.MotionEvent;
@@ -18,11 +17,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.asian.R;
+
 public class ActivityEx2 extends AppCompatActivity {
-    private ImageButton btnInc, btnDec, btnMul, btnDiv;
-    private EditText edtTerm1, edtTerm2;
-    private TextView tvResult, tvTerm1, tvTerm2;
-    private double term1 = 0, term2 = 0;
+    private ImageButton mImgBtnInc, mImgBtnDec, mImgBtnMul, mImgBtnDiv;
+    private EditText mEdtTerm1, mEdtTerm2;
+    private TextView mTvResult, mTvTerm1, mTvTerm2;
+    private double mTerm1 = 0, mTerm2 = 0;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +35,17 @@ public class ActivityEx2 extends AppCompatActivity {
             return insets;
         });
 
-        btnInc = findViewById(R.id.btn_inc);
-        btnDec = findViewById(R.id.btn_dec);
-        btnMul = findViewById(R.id.btn_mul);
-        btnDiv = findViewById(R.id.btn_div);
+        mImgBtnInc = findViewById(R.id.btnInc);
+        mImgBtnDec = findViewById(R.id.btnDec);
+        mImgBtnMul = findViewById(R.id.btnMul);
+        mImgBtnDiv = findViewById(R.id.btnDiv);
 
-        edtTerm1 = findViewById(R.id.edt_term1);
-        edtTerm2 = findViewById(R.id.edt_term2);
+        mEdtTerm1 = findViewById(R.id.edtTerm1);
+        mEdtTerm2 = findViewById(R.id.edtTerm2);
 
-        tvResult = findViewById(R.id.tv_result);
-        tvTerm1 = findViewById(R.id.tv_term1);
-        tvTerm2 = findViewById(R.id.tv_term2);
+        mTvResult = findViewById(R.id.tvResult);
+        mTvTerm1 = findViewById(R.id.tvTerm1);
+        mTvTerm2 = findViewById(R.id.tvTerm2);
 
         SpannableStringBuilder spannable = new SpannableStringBuilder("* Term1");
         spannable.setSpan(
@@ -53,7 +54,7 @@ public class ActivityEx2 extends AppCompatActivity {
                 1, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
         );
-        tvTerm1.setText(spannable);
+        mTvTerm1.setText(spannable);
 
         spannable = new SpannableStringBuilder("* Term2");
         spannable.setSpan(
@@ -62,9 +63,9 @@ public class ActivityEx2 extends AppCompatActivity {
                 1, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
         );
-        tvTerm2.setText(spannable);
+        mTvTerm2.setText(spannable);
 
-        btnInc.setOnTouchListener((v, event) -> {
+        mImgBtnInc.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     v.setAlpha(0.5f);
@@ -72,19 +73,15 @@ public class ActivityEx2 extends AppCompatActivity {
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
                     v.setAlpha(1f);
-                    if (!edtTerm1.getText().toString().trim().isEmpty()) {
-                        term1 = Double.parseDouble(edtTerm1.getText().toString().trim());
-                    }
-                    if (!edtTerm2.getText().toString().trim().isEmpty()) {
-                        term2 = Double.parseDouble(edtTerm2.getText().toString().trim());
-                    }
-                    tvResult.setText((term1 + term2) + "");
+                    mTerm1 = getTerm1(mEdtTerm1.getText().toString().trim());
+                    mTerm2 = getTerm1(mEdtTerm2.getText().toString().trim());
+                    mTvResult.setText((mTerm1 + mTerm2) + "");
                     break;
             }
             return false;
         });
 
-        btnDec.setOnTouchListener(new View.OnTouchListener() {
+        mImgBtnDec.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -94,20 +91,16 @@ public class ActivityEx2 extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
                         v.setAlpha(1f);
-                        if (!edtTerm1.getText().toString().trim().isEmpty()) {
-                            term1 = Double.parseDouble(edtTerm1.getText().toString().trim());
-                        }
-                        if (!edtTerm2.getText().toString().trim().isEmpty()) {
-                            term2 = Double.parseDouble(edtTerm2.getText().toString().trim());
-                        }
-                        tvResult.setText((term1 - term2) + "");
+                        mTerm1 = getTerm1(mEdtTerm1.getText().toString().trim());
+                        mTerm2 = getTerm1(mEdtTerm2.getText().toString().trim());
+                        mTvResult.setText((mTerm1 - mTerm2) + "");
                         break;
                 }
                 return false;
             }
         });
 
-        btnMul.setOnTouchListener(new View.OnTouchListener() {
+        mImgBtnMul.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -117,20 +110,16 @@ public class ActivityEx2 extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
                         v.setAlpha(1f);
-                        if (!edtTerm1.getText().toString().trim().isEmpty()) {
-                            term1 = Double.parseDouble(edtTerm1.getText().toString().trim());
-                        }
-                        if (!edtTerm2.getText().toString().trim().isEmpty()) {
-                            term2 = Double.parseDouble(edtTerm2.getText().toString().trim());
-                        }
-                        tvResult.setText((term1 * term2) + "");
+                        mTerm1 = getTerm1(mEdtTerm1.getText().toString().trim());
+                        mTerm2 = getTerm1(mEdtTerm2.getText().toString().trim());
+                        mTvResult.setText((mTerm1 * mTerm2) + "");
                         break;
                 }
                 return false;
             }
         });
 
-        btnDiv.setOnTouchListener(new View.OnTouchListener() {
+        mImgBtnDiv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -140,17 +129,27 @@ public class ActivityEx2 extends AppCompatActivity {
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
                         v.setAlpha(1f);
-                        if (!edtTerm1.getText().toString().trim().isEmpty()) {
-                            term1 = Double.parseDouble(edtTerm1.getText().toString().trim());
-                        }
-                        if (!edtTerm2.getText().toString().trim().isEmpty()) {
-                            term2 = Double.parseDouble(edtTerm2.getText().toString().trim());
-                        }
-                        tvResult.setText((term1 / term2) + "");
+                        mTerm1 = getTerm1(mEdtTerm1.getText().toString().trim());
+                        mTerm2 = getTerm1(mEdtTerm2.getText().toString().trim());
+                        mTvResult.setText((mTerm1 / mTerm2) + "");
                         break;
                 }
                 return false;
             }
         });
+    }
+
+    private Double getTerm1(String term1) {
+        if (!term1.isEmpty()) {
+            return Double.parseDouble(term1);
+        }
+        return 0.0;
+    }
+
+    private Double getTerm2(String term2) {
+        if (!term2.isEmpty()) {
+            return Double.parseDouble(term2);
+        }
+        return 0.0;
     }
 }

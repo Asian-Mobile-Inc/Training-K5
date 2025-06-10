@@ -6,10 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".ActivityEx3">
+    tools:context=".issue2.ex3.ActivityEx3">
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Infomation"
@@ -23,24 +22,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
     <LinearLayout
-        android:id="@+id/ll"
+        android:id="@+id/llMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="130dp"
-        android:background="@drawable/mylinearlayout"
+        android:background="@drawable/my_linearlayout"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
         android:layout_marginBottom="100dp"
         android:orientation="vertical" >
         <View
-            android:id="@+id/v_line"
+            android:id="@+id/vLine"
             android:layout_width="70dp"
             android:layout_height="6dp"
             android:layout_gravity="center"
-            android:background="@drawable/myline" />
+            android:background="@drawable/my_line" />
         <TextView
-            android:id="@+id/tv_fullname"
+            android:id="@+id/tvFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -52,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/edt_fullname"
+            android:id="@+id/edtFullName"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:paddingTop="14dp"
@@ -60,13 +59,13 @@
             android:paddingLeft="16dp"
             android:paddingBottom="14dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/myedittext"
+            android:background="@drawable/my_edittext"
             android:ems="10"
             android:inputType="text"
             android:hint="Name must be ≥ 3 characters" />
 
         <TextView
-            android:id="@+id/tv_national"
+            android:id="@+id/tvNational"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="* National ID"
@@ -76,7 +75,7 @@
             android:layout_marginBottom="10dp"/>
 
         <EditText
-            android:id="@+id/edt_national"
+            android:id="@+id/edtNational"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:paddingTop="14dp"
@@ -84,7 +83,7 @@
             android:paddingLeft="16dp"
             android:paddingBottom="14dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/myedittext"
+            android:background="@drawable/my_edittext"
             android:ems="10"
             android:inputType="text"
             android:hint="Must be exactly 9 digits" />
@@ -93,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Degree"
-            android:drawableStart="@drawable/group"
+            android:drawableStart="@drawable/icon_degree"
             android:drawablePadding="8dp"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -107,33 +106,35 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/rb_vacational"
+                android:id="@+id/rbVacational"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Vocational" />
+                android:text="Vocational"
+                android:buttonTint="@color/radio_color"/>
 
             <RadioButton
-                android:id="@+id/rb_associate"
+                android:id="@+id/rbAssociate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="@color/radio_color"
                 android:text="Associate" />
 
             <RadioButton
-                android:id="@+id/rb_bachelor"
+                android:id="@+id/rbBachelor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="@color/radio_color"
                 android:text="Bachelor" />
         </RadioGroup>
 
         <TextView
-            android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hobbies"
-            android:drawableStart="@drawable/frame"
+            android:drawableStart="@drawable/icon_hobbies"
             android:drawablePadding="8dp"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -141,26 +142,28 @@
             android:layout_marginBottom="10dp" />
 
         <CheckBox
-            android:id="@+id/cb_rd_news"
+            android:id="@+id/cbRdNews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/radio_color"
             android:text="Reading news" />
 
         <CheckBox
-            android:id="@+id/cb_rd_books"
+            android:id="@+id/cbRdBooks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/radio_color"
             android:text="Reading books" />
 
         <CheckBox
-            android:id="@+id/cb_rd_code"
+            android:id="@+id/cbRdCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Reading code"
+            android:buttonTint="@color/radio_color"
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Additional Information"
@@ -174,7 +177,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextText4"
+                android:id="@+id/edtAddInfo"
                 android:layout_width="match_parent"
                 android:layout_height="185dp"
                 android:ems="10"
@@ -184,7 +187,7 @@
                 android:paddingLeft="16dp"
                 android:paddingBottom="14dp"
                 android:gravity="top|start"
-                android:background="@drawable/myedittext"
+                android:background="@drawable/my_edittext"
                 android:hint="Enter additional information"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -194,16 +197,16 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll"
+        app:layout_constraintTop_toBottomOf="@+id/llMain"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent" >
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="SUBMIT"
-            android:background="@drawable/mybutton"
+            android:background="@drawable/my_button"
             android:layout_marginBottom="20dp"
             android:textSize="18sp"
             android:textColor="@color/white"

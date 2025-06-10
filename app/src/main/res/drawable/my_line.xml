@@ -4,13 +4,11 @@
     android:shape="rectangle">
 
     <solid
-        android:color="@color/white" >
+        android:color="@color/blue" >
     </solid>
 
-    <!-- và đây là bán kính đường tròn ở 4 góc -->
     <corners
-        android:topLeftRadius="40dp"
-        android:topRightRadius="40dp" >
+        android:radius="9999dp" >
     </corners>
 
 </shape>

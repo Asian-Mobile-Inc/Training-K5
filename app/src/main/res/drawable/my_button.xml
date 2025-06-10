@@ -7,8 +7,6 @@
         android:color="@color/blue" >
     </solid>
 
-
-    <!-- các thuộc tính căn chỉnh-->
     <padding
         android:left="133dp"
         android:top="13dp"
@@ -16,7 +14,6 @@
         android:bottom="13dp" >
     </padding>
 
-    <!-- và đây là bán kính đường tròn ở 4 góc -->
     <corners
         android:radius="9999dp" >
     </corners>

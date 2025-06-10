@@ -1,4 +1,4 @@
-package com.example.asian;
+package com.example.asian.issue2.ex3;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,11 +17,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.asian.R;
+
 public class ActivityEx3 extends AppCompatActivity {
-    private View vLine;
-    private TextView tvFullName, tvNational;
-    private LinearLayout ll;
-    private float startY;
+    private View mVLine;
+    private TextView mTvFullName, mTvNational;
+    private LinearLayout mLlMain;
+    private float mStartY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,10 @@ public class ActivityEx3 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        vLine = findViewById(R.id.v_line);
-        tvFullName = findViewById(R.id.tv_fullname);
-        tvNational = findViewById(R.id.tv_national);
-        ll = findViewById(R.id.ll);
+        mVLine = findViewById(R.id.vLine);
+        mTvFullName = findViewById(R.id.tvFullName);
+        mTvNational = findViewById(R.id.tvNational);
+        mLlMain = findViewById(R.id.llMain);
 
         SpannableStringBuilder spannable = new SpannableStringBuilder("* Full name");
         spannable.setSpan(
@@ -45,7 +46,7 @@ public class ActivityEx3 extends AppCompatActivity {
                 1, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
         );
-        tvFullName.setText(spannable);
+        mTvFullName.setText(spannable);
 
         spannable = new SpannableStringBuilder("* National ID");
         spannable.setSpan(
@@ -54,23 +55,23 @@ public class ActivityEx3 extends AppCompatActivity {
                 1, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
         );
-        tvNational.setText(spannable);
+        mTvNational.setText(spannable);
 
-        vLine.setOnTouchListener(new View.OnTouchListener() {
+        mVLine.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        startY = event.getRawY();
+                        mStartY = event.getRawY();
                         return true;
                     case MotionEvent.ACTION_MOVE:
                         float currentY = event.getRawY();
-                        float deltaY = currentY - startY;
+                        float deltaY = currentY - mStartY;
 
                         if (deltaY < 50) {
-                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) ll.getLayoutParams();
+                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mLlMain.getLayoutParams();
                             params.topMargin = dpToPx(15);
-                            ll.setLayoutParams(params);
+                            mLlMain.setLayoutParams(params);
                         }
                         return true;
                 }
