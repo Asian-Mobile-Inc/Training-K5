@@ -10,14 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
-
         <activity
-            android:name=".MainViewActivity"
+            android:name=".ActivityEx2"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityEx1"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityEx3"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
