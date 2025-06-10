@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="39dp"
         android:gravity="center"
-        android:text="Calculator"
+        android:text="@string/calculator"
         android:textColor="@color/black"
         android:textSize="26sp"
         android:textStyle="bold"
@@ -32,14 +32,13 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_marginBottom="10dp"
-        android:textSize="14sp"
-        android:text="* Term 1" />
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/edtTerm1"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:ems="10"
+        android:importantForAutofill="no"
         android:paddingRight="16dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
@@ -48,7 +47,7 @@
         android:textSize="14sp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/my_edittext"
-        android:hint="Term 1" />
+        android:hint="@string/term_1"/>
 
     <TextView
         android:id="@+id/tvTerm2"
@@ -56,14 +55,13 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/black"
-        android:layout_marginBottom="10dp"
-        android:text="* Term 2" />
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/edtTerm2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="text"
         android:background="@drawable/my_edittext"
         android:paddingRight="16dp"
@@ -72,14 +70,14 @@
         android:paddingLeft="16dp"
         android:textSize="14sp"
         android:layout_marginBottom="30dp"
-        android:hint="Term 2" />
+        android:hint="@string/term_2" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_marginBottom="10dp"
-        android:text="Operations" />
+        android:text="@string/operations" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,6 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             app:srcCompat="@drawable/icon_inc" />
 
         <ImageButton
@@ -101,7 +101,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
-            app:srcCompat="@drawable/icon_dec" />
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/icon_dec"
+            tools:ignore="ImageContrastCheck" />
 
         <ImageButton
             android:id="@+id/btnMul"
@@ -109,6 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             app:srcCompat="@drawable/icon_mul" />
 
         <ImageButton
@@ -117,13 +122,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00F0F0F0"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             app:srcCompat="@drawable/icon_div" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Result"
+        android:text="@string/result"
         android:textSize="20sp"
         android:textColor="@color/blue"
         android:gravity="center"/>
@@ -136,5 +143,5 @@
         android:textSize="92sp"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="0" />
+        android:text="@string/_0" />
 </LinearLayout>

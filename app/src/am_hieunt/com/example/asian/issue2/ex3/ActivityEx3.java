@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +23,7 @@ import com.example.asian.R;
 public class ActivityEx3 extends AppCompatActivity {
     private View mVLine;
     private TextView mTvFullName, mTvNational;
-    private LinearLayout mLlMain;
+    private ScrollView mSvMenu;
     private float mStartY;
 
     @Override
@@ -37,7 +38,7 @@ public class ActivityEx3 extends AppCompatActivity {
         mVLine = findViewById(R.id.vLine);
         mTvFullName = findViewById(R.id.tvFullName);
         mTvNational = findViewById(R.id.tvNational);
-        mLlMain = findViewById(R.id.llMain);
+        mSvMenu = findViewById(R.id.svMenu);
 
         SpannableStringBuilder spannable = new SpannableStringBuilder("* Full name");
         spannable.setSpan(
@@ -69,9 +70,13 @@ public class ActivityEx3 extends AppCompatActivity {
                         float deltaY = currentY - mStartY;
 
                         if (deltaY < 50) {
-                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mLlMain.getLayoutParams();
-                            params.topMargin = dpToPx(15);
-                            mLlMain.setLayoutParams(params);
+                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mSvMenu.getLayoutParams();
+                            params.topMargin = dpToPx(20);
+                            mSvMenu.setLayoutParams(params);
+                        } else {
+                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mSvMenu.getLayoutParams();
+                            params.topMargin = dpToPx(120);
+                            mSvMenu.setLayoutParams(params);
                         }
                         return true;
                 }

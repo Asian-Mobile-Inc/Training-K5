@@ -5,216 +5,223 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/white"
     tools:context=".issue2.ex3.ActivityEx3">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Infomation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/infomation"
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp"
         android:textColor="@color/white"
+        android:background="@color/blue"
         android:textSize="43sp"
+        android:layout_marginBottom="100dp"
         android:fontFamily="@font/scriptmtbold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/svMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
-    <LinearLayout
-        android:id="@+id/llMain"
+
+    <ScrollView
+        android:id="@+id/svMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="130dp"
-        android:background="@drawable/my_linearlayout"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/my_scrollview"
         android:paddingTop="20dp"
-        android:layout_marginBottom="100dp"
-        android:orientation="vertical" >
-        <View
-            android:id="@+id/vLine"
-            android:layout_width="70dp"
-            android:layout_height="6dp"
-            android:layout_gravity="center"
-            android:background="@drawable/my_line" />
-        <TextView
-            android:id="@+id/tvFullName"
+        android:layout_marginBottom="100dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="* Full name"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/edtFullName"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:paddingTop="14dp"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
-            android:paddingBottom="14dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/my_edittext"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Name must be ≥ 3 characters" />
-
-        <TextView
-            android:id="@+id/tvNational"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="* National ID"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"/>
-
-        <EditText
-            android:id="@+id/edtNational"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:paddingTop="14dp"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
-            android:paddingBottom="14dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/my_edittext"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="Must be exactly 9 digits" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Degree"
-            android:drawableStart="@drawable/icon_degree"
-            android:drawablePadding="8dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"/>
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbVacational"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Vocational"
-                android:buttonTint="@color/radio_color"/>
-
-            <RadioButton
-                android:id="@+id/rbAssociate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/radio_color"
-                android:text="Associate" />
-
-            <RadioButton
-                android:id="@+id/rbBachelor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/radio_color"
-                android:text="Bachelor" />
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hobbies"
-            android:drawableStart="@drawable/icon_hobbies"
-            android:drawablePadding="8dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp" />
-
-        <CheckBox
-            android:id="@+id/cbRdNews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/radio_color"
-            android:text="Reading news" />
-
-        <CheckBox
-            android:id="@+id/cbRdBooks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/radio_color"
-            android:text="Reading books" />
-
-        <CheckBox
-            android:id="@+id/cbRdCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reading code"
-            android:buttonTint="@color/radio_color"
-            android:layout_marginBottom="30dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Additional Information"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtAddInfo"
+            <TextView
+                android:id="@+id/tvFullName"
                 android:layout_width="match_parent"
-                android:layout_height="185dp"
-                android:ems="10"
-                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/edtFullName"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:autofillHints="username"
                 android:paddingTop="14dp"
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
                 android:paddingBottom="14dp"
-                android:gravity="top|start"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/my_edittext"
-                android:hint="Enter additional information"/>
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+                android:ems="10"
+                android:inputType="text"
+                android:hint="@string/name_must_be_3_characters" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+            <TextView
+                android:id="@+id/tvNational"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/edtNational"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:autofillHints="phone"
+                android:paddingTop="14dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:paddingBottom="14dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/my_edittext"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="@string/must_be_exactly_9_digits" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/degree"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                app:drawableStartCompat="@drawable/icon_degree" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbVacational"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vocational"
+                    android:buttonTint="@color/radio_color"/>
+
+                <RadioButton
+                    android:id="@+id/rbAssociate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/radio_color"
+                    android:text="@string/associate" />
+
+                <RadioButton
+                    android:id="@+id/rbBachelor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/radio_color"
+                    android:text="@string/bachelor" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hobbies"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                app:drawableStartCompat="@drawable/icon_hobbies" />
+
+            <CheckBox
+                android:id="@+id/cbRdNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/radio_color"
+                android:text="@string/reading_news" />
+
+            <CheckBox
+                android:id="@+id/cbRdBooks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/radio_color"
+                android:text="@string/reading_books" />
+
+            <CheckBox
+                android:id="@+id/cbRdCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reading_code"
+                android:buttonTint="@color/radio_color"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/additional_information"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtAddInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:paddingTop="14dp"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingBottom="14dp"
+                    android:gravity="top|start"
+                    android:background="@drawable/my_edittext"
+                    android:hint="@string/enter_additional_information"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="70dp"
+        android:layout_height="8dp"
+        android:layout_gravity="center"
+        android:background="@drawable/my_line"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llMain"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent" >
-
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="SUBMIT"
-            android:background="@drawable/my_button"
-            android:layout_marginBottom="20dp"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/svMenu"
+        app:layout_constraintVertical_bias="0.01" />
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/my_button"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97" />
 </androidx.constraintlayout.widget.ConstraintLayout>
