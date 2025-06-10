@@ -39,6 +39,20 @@
     <string name="imagebutton_content_description_unseen">Unseen</string>
     <string name="imagebutton_content_description_delete">Delete</string>
     <string name="textview_error_result">ERROR</string>
+    <string name="imageview_content_description_back">Back</string>
+    <string name="imageview_content_description_avatar">Avatar</string>
+    <string name="textview_text_example_gmail_com">Example@gmail.com</string>
+    <string name="textview_text_username_is_an_email_address">Username is an email address</string>
+    <string name="textview_text_password_8_characters"><![CDATA[Password >=8 characters]]></string>
+    <string name="text_email">email</string>
+    <string name="textview_text_number_can_t_divide_0">Number can’t divide 0</string>
+    <string name="imageview_content_description_delete">Delete</string>
+    <string name="textview_text_full_name_required">Full name required</string>
+    <string name="textview_text_national_id_required">National ID required</string>
+    <string name="textview_text_additional_information_100_character">Additional information >= 100 character</string>
+    <string name="imageview_content_description_delete_fullname">Delete FullName</string>
+    <string name="imageview_content_description_delete_national_id">Delete National ID</string>
+    <string name="imageview_content_description_delete_additional_information">Delete Additional Information</string>
     <string name="textview_text_language">Language</string>
     <string name="imageview_content_description_done">DONE</string>
     <string name="imageview_content_description_flag">FLAG</string>
