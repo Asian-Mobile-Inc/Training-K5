@@ -80,30 +80,10 @@ public class LanguageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Initial language item of recyclerview
-        List<LanguageItem> languageLists = new ArrayList<>();
-        languageLists.add(new LanguageItem(R.drawable.ic_english, getString(R.string.language_item_english)));
-        languageLists.add(new LanguageItem(R.drawable.ic_spain, getString(R.string.language_item_spain)));
-        languageLists.add(new LanguageItem(R.drawable.ic_vietnam, getString(R.string.language_item_vietnam)));
-        languageLists.add(new LanguageItem(R.drawable.ic_france, getString(R.string.language_item_france)));
-        languageLists.add(new LanguageItem(R.drawable.ic_india, getString(R.string.language_item_india)));
-        languageLists.add(new LanguageItem(R.drawable.ic_germany, getString(R.string.language_item_germany)));
-        languageLists.add(new LanguageItem(R.drawable.ic_portugal, getString(R.string.language_item_portugal)));
-        languageLists.add(new LanguageItem(R.drawable.ic_italy, getString(R.string.language_item_italy)));
-        languageLists.add(new LanguageItem(R.drawable.ic_arabic, getString(R.string.language_item_arabic)));
-        languageLists.add(new LanguageItem(R.drawable.ic_japan, getString(R.string.language_item_japan)));
-        languageLists.add(new LanguageItem(R.drawable.ic_korea, getString(R.string.language_item_korea)));
-        languageLists.add(new LanguageItem(R.drawable.ic_south_africa, getString(R.string.language_item_south_africa)));
-        languageLists.add(new LanguageItem(R.drawable.ic_israel, getString(R.string.language_item_israel)));
-        languageLists.add(new LanguageItem(R.drawable.ic_nigeria, getString(R.string.language_item_nigeria)));
-        languageLists.add(new LanguageItem(R.drawable.ic_china, getString(R.string.language_item_china)));
-        languageLists.add(new LanguageItem(R.drawable.ic_turkey, getString(R.string.language_item_turkey)));
-        languageLists.add(new LanguageItem(R.drawable.ic_indonesia, getString(R.string.language_item_indonesia)));
-        languageLists.add(new LanguageItem(R.drawable.ic_netherlands, getString(R.string.language_item_netherlands)));
-        languageLists.add(new LanguageItem(R.drawable.ic_russia, getString(R.string.language_item_russia)));
-        languageLists.add(new LanguageItem(R.drawable.ic_poland, getString(R.string.language_item_poland)));
+        List<LanguageItem> languageLists = getLanguageLists(languagePosition);
 
         // Setup adapter
-        LanguagesAdapter languagesAdapter = new LanguagesAdapter();
+        LanguagesAdapter languagesAdapter = new LanguagesAdapter(languageLists);
         binding.rvLanguage.setLayoutManager(new LinearLayoutManager(this));
         binding.rvLanguage.setAdapter(languagesAdapter);
 
@@ -126,5 +106,34 @@ public class LanguageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public ArrayList<LanguageItem> getLanguageLists(int selectedItem) {
+        ArrayList<LanguageItem> languageLists = new ArrayList<>();
+
+        languageLists.add(new LanguageItem(R.drawable.ic_english, getString(R.string.language_item_english)));
+        languageLists.add(new LanguageItem(R.drawable.ic_spain, getString(R.string.language_item_spain)));
+        languageLists.add(new LanguageItem(R.drawable.ic_vietnam, getString(R.string.language_item_vietnam)));
+        languageLists.add(new LanguageItem(R.drawable.ic_france, getString(R.string.language_item_france)));
+        languageLists.add(new LanguageItem(R.drawable.ic_india, getString(R.string.language_item_india)));
+        languageLists.add(new LanguageItem(R.drawable.ic_germany, getString(R.string.language_item_germany)));
+        languageLists.add(new LanguageItem(R.drawable.ic_portugal, getString(R.string.language_item_portugal)));
+        languageLists.add(new LanguageItem(R.drawable.ic_italy, getString(R.string.language_item_italy)));
+        languageLists.add(new LanguageItem(R.drawable.ic_arabic, getString(R.string.language_item_arabic)));
+        languageLists.add(new LanguageItem(R.drawable.ic_japan, getString(R.string.language_item_japan)));
+        languageLists.add(new LanguageItem(R.drawable.ic_korea, getString(R.string.language_item_korea)));
+        languageLists.add(new LanguageItem(R.drawable.ic_south_africa, getString(R.string.language_item_south_africa)));
+        languageLists.add(new LanguageItem(R.drawable.ic_israel, getString(R.string.language_item_israel)));
+        languageLists.add(new LanguageItem(R.drawable.ic_nigeria, getString(R.string.language_item_nigeria)));
+        languageLists.add(new LanguageItem(R.drawable.ic_china, getString(R.string.language_item_china)));
+        languageLists.add(new LanguageItem(R.drawable.ic_turkey, getString(R.string.language_item_turkey)));
+        languageLists.add(new LanguageItem(R.drawable.ic_indonesia, getString(R.string.language_item_indonesia)));
+        languageLists.add(new LanguageItem(R.drawable.ic_netherlands, getString(R.string.language_item_netherlands)));
+        languageLists.add(new LanguageItem(R.drawable.ic_russia, getString(R.string.language_item_russia)));
+        languageLists.add(new LanguageItem(R.drawable.ic_poland, getString(R.string.language_item_poland)));
+
+        languageLists.get(selectedItem).setSelected(true);
+
+        return languageLists;
     }
 }

@@ -1,5 +1,6 @@
 package issues4;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,17 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.asian.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter.ViewHolder> {
     private static int selectedPosition = 0;
+    private List<LanguageItem> languageLists;
 
-    protected LanguagesAdapter() {
+    protected LanguagesAdapter(List<LanguageItem> languageLists) {
         super(DIFF_CALLBACK);
+        this.languageLists = languageLists;
     }
 
     @NonNull
@@ -45,15 +50,15 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
                 .into(holder.getImageView());
 
         holder.getTextView().setText(item.getLanguageName());
-        holder.getRadioButton().setChecked(holder.getAdapterPosition() == selectedPosition);
+        holder.getRadioButton().setChecked(item.isSelected());
         holder.itemView.setSelected(holder.getAdapterPosition() == selectedPosition);
 
         holder.getRadioButton().setOnClickListener(view -> {
-            int previousPosition = selectedPosition;
             selectedPosition = holder.getAdapterPosition();
 
-            notifyItemChanged(previousPosition);
-            notifyItemChanged(selectedPosition);
+            setSelectedPositionOfLanguageLists(selectedPosition);
+
+            submitList(languageLists);
         });
     }
 
@@ -61,12 +66,13 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
             new DiffUtil.ItemCallback<LanguageItem>() {
                 @Override
                 public boolean areItemsTheSame(@NonNull LanguageItem oldItem, @NonNull LanguageItem newItem) {
-                    return Objects.equals(oldItem.getLanguageName(), newItem.getLanguageName());
+                    return oldItem.getIcResId() == newItem.getIcResId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(@NonNull LanguageItem oldItem, @NonNull LanguageItem newItem) {
-                    return Objects.equals(oldItem.getLanguageName(), newItem.getLanguageName()) && oldItem.getIcResId() == newItem.getIcResId();
+                    Log.d("debug", String.valueOf(oldItem.isSelected() == newItem.isSelected()));
+                    return oldItem.isSelected() == newItem.isSelected();
                 }
             };
 
@@ -101,5 +107,13 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
 
     public void setPosition(int position) {
         selectedPosition = position;
+    }
+
+    public void setSelectedPositionOfLanguageLists(int position) {
+        for (LanguageItem item: languageLists) {
+            item.setSelected(false);
+        }
+
+        languageLists.get(position).setSelected(true);
     }
 }
