@@ -62,11 +62,18 @@
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
                 android:paddingBottom="14dp"
-                android:layout_marginBottom="30dp"
                 android:background="@drawable/my_edittext"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="@string/name_must_be_3_characters" />
+
+            <TextView
+                android:id="@+id/tvErrorFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/tvNational"
@@ -75,6 +82,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"/>
 
             <EditText
@@ -86,11 +94,18 @@
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
                 android:paddingBottom="14dp"
-                android:layout_marginBottom="30dp"
                 android:background="@drawable/my_edittext"
                 android:ems="10"
                 android:inputType="text"
                 android:hint="@string/must_be_exactly_9_digits" />
+
+            <TextView
+                android:id="@+id/tvErrorNational"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:visibility="gone"
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,13 +115,13 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 app:drawableStartCompat="@drawable/icon_degree" />
 
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -143,6 +158,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
                 app:drawableStartCompat="@drawable/icon_hobbies" />
 
             <CheckBox
@@ -164,8 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/reading_code"
-                android:buttonTint="@color/radio_color"
-                android:layout_marginBottom="30dp"/>
+                android:buttonTint="@color/radio_color"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -174,6 +189,15 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tvErrorAddInfo"
+                android:layout_width="match_parent"
+                android:textColor="@color/red"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginBottom="10dp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -181,19 +205,20 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtAddInfo"
+                    android:id="@+id/tiAddInfo"
                     android:layout_width="match_parent"
                     android:layout_height="185dp"
                     android:ems="10"
-                    android:inputType="text"
                     android:paddingTop="14dp"
                     android:paddingRight="16dp"
                     android:paddingLeft="16dp"
                     android:paddingBottom="14dp"
                     android:gravity="top|start"
                     android:background="@drawable/my_edittext"
+                    android:inputType="textMultiLine"
                     android:hint="@string/enter_additional_information"/>
             </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
     </ScrollView>
 

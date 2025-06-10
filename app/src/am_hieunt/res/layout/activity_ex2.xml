@@ -69,13 +69,22 @@
         android:paddingBottom="14dp"
         android:paddingLeft="16dp"
         android:textSize="14sp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
         android:hint="@string/term_2" />
+
+    <TextView
+        android:id="@+id/tvErrorDiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
         android:text="@string/operations" />
 
@@ -144,4 +153,5 @@
         android:gravity="center"
         android:textStyle="bold"
         android:text="@string/_0" />
+
 </LinearLayout>
