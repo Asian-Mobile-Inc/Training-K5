@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
         <activity
-            android:name=".issue2.ex1.ActivityEx1_1"
+            android:name=".issue3.ActivityEx1_1"
             android:theme="@style/AppTheme"
             android:label=""
             android:exported="false" />

@@ -20,7 +20,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.asian.R;
-import com.example.asian.issue2.ex1.ActivityEx1;
 
 public class ActivityEx2 extends AppCompatActivity {
     private ImageButton mImgBtnInc, mImgBtnDec, mImgBtnMul, mImgBtnDiv;
@@ -183,7 +182,7 @@ public class ActivityEx2 extends AppCompatActivity {
                             mTvErrorDiv.setVisibility(View.VISIBLE);
                             String errorDiv = getString(R.string.error_div);
                             mTvErrorDiv.setText(errorDiv);
-                            mIcon = ContextCompat.getDrawable(ActivityEx2.this, R.drawable.icon_alert);
+                            mIcon = ContextCompat.getDrawable(ActivityEx2.this, R.drawable.ic_alert);
                             mEdtTerm2.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                             mTvResult.setText("0");
                         } else {

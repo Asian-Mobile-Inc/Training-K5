@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.asian.R;
+import com.example.asian.issue3.ActivityEx1_1;
 
 public class ActivityEx1 extends AppCompatActivity {
     private EditText mUsername, mPassword;
@@ -54,7 +55,7 @@ public class ActivityEx1 extends AppCompatActivity {
                 if (s.length() == 0) {
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 } else {
-                    Drawable deleteIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_delete);
+                    Drawable deleteIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_delete);
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, deleteIcon, null);
                 }
             }
@@ -71,7 +72,7 @@ public class ActivityEx1 extends AppCompatActivity {
                 if (mUsername.getText().toString().isEmpty()) {
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 } else {
-                    Drawable deleteIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_delete);
+                    Drawable deleteIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_delete);
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, deleteIcon, null);
                 }
                 final int DRAWABLE_RIGHT = 2;
@@ -100,9 +101,9 @@ public class ActivityEx1 extends AppCompatActivity {
                     mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 } else {
                     if (mCheck) {
-                        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_hide);
+                        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
                     } else {
-                        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_eye);
+                        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_eye);
                     }
                     mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
@@ -119,9 +120,9 @@ public class ActivityEx1 extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 mTvErrorPassword.setVisibility(View.GONE);
                 if (mCheck) {
-                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_hide);
+                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
                 } else {
-                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_eye);
+                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_eye);
                 }
                 mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
 
@@ -132,13 +133,13 @@ public class ActivityEx1 extends AppCompatActivity {
                         if(event.getX() >= touchAreaStart) {
                             if (mCheck) {
                                 mPassword.setInputType(InputType.TYPE_CLASS_TEXT);;
-                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_eye);
+                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_eye);
                                 mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                                 mCheck = false;
                             } else {
                                 mCheck = true;
                                 mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_hide);
+                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
                                 mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                             }
                             return true;
@@ -165,7 +166,7 @@ public class ActivityEx1 extends AppCompatActivity {
                     String errorUsername = getString(R.string.error_username);
                     mTvErrorUsername.setText(errorUsername);
                     kt = false;
-                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_alert);
+                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_alert);
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                     mUsername.setSelected(true);
                 }
@@ -181,7 +182,7 @@ public class ActivityEx1 extends AppCompatActivity {
                     String errorPassword = getString(R.string.error_password);
                     mTvErrorPassword.setText(errorPassword);
                     kt = false;
-                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_alert);
+                    mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_alert);
                     mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                     mPassword.setSelected(true);
                 }

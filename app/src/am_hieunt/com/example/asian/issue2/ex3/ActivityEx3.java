@@ -23,7 +23,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.asian.R;
-import com.example.asian.issue2.ex2.ActivityEx2;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class ActivityEx3 extends AppCompatActivity {
@@ -108,6 +107,7 @@ public class ActivityEx3 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 mTvErrorFullName.setVisibility(View.GONE);
+                mEdtFullName.setSelected(false);
                 mEdtFullName.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 return false;
             }
@@ -117,6 +117,7 @@ public class ActivityEx3 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 mTvErrorNational.setVisibility(View.GONE);
+                mEdtNational.setSelected(false);
                 mEdtNational.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 return false;
             }
@@ -126,6 +127,7 @@ public class ActivityEx3 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 mTvErrorAddInfo.setVisibility(View.GONE);
+                mTiAddInfo.setSelected(false);
                 mTiAddInfo.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 return false;
             }
@@ -149,7 +151,7 @@ public class ActivityEx3 extends AppCompatActivity {
                     String errorFullName = getString(R.string.error_full_name);
                     mTvErrorFullName.setText(errorFullName);
                     mTvErrorFullName.setVisibility(View.VISIBLE);
-                    mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.icon_alert);
+                    mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.ic_alert);
                     mEdtFullName.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
 
@@ -162,7 +164,7 @@ public class ActivityEx3 extends AppCompatActivity {
                     mTvErrorNational.setVisibility(View.VISIBLE);
                     String errorNational = getString(R.string.error_national_id);
                     mTvErrorNational.setText(errorNational);
-                    mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.icon_alert);
+                    mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.ic_alert);
                     mEdtNational.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
 
@@ -174,7 +176,7 @@ public class ActivityEx3 extends AppCompatActivity {
                     mTvErrorAddInfo.setVisibility(View.VISIBLE);
                     String errorAddInfo = getString(R.string.error_additional_information);
                     mTvErrorAddInfo.setText(errorAddInfo);
-                    mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.icon_alert);
+                    mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.ic_alert);
                     mTiAddInfo.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
 

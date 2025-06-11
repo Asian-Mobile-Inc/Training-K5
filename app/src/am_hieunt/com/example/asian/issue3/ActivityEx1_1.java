@@ -1,4 +1,4 @@
-package com.example.asian.issue2.ex1;
+package com.example.asian.issue3;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -33,7 +33,7 @@ public class ActivityEx1_1 extends AppCompatActivity {
         mEdtUsername.setText(username);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
     }

@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".issue2.ex1.ActivityEx1_1">
+    tools:context=".issue3.ActivityEx1_1">
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:src="@drawable/icon_avatar"
+        android:src="@drawable/ic_avatar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
