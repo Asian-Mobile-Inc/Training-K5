@@ -16,10 +16,10 @@
             android:label=""
             android:exported="false" />
         <activity
-            android:name=".issue2.ex1.ActivityEx1"
+            android:name=".issue2.ex2.ActivityEx2"
             android:exported="false" />
         <activity
-            android:name=".issue2.ex2.ActivityEx2"
+            android:name=".issue2.ex1.ActivityEx1"
             android:exported="false" />
         <activity
             android:name=".issue2.ex3.ActivityEx3"

@@ -58,7 +58,8 @@ public class ActivityEx3 extends AppCompatActivity {
         mEdtNational = findViewById(R.id.edtNational);
         mTiAddInfo = findViewById(R.id.tiAddInfo);
 
-        SpannableStringBuilder spannable = new SpannableStringBuilder("* Full name");
+        String fullnamText = getString(R.string.full_name);
+        SpannableStringBuilder spannable = new SpannableStringBuilder(fullnamText);
         spannable.setSpan(
                 new ForegroundColorSpan(Color.RED),
                 0, // start
@@ -67,7 +68,8 @@ public class ActivityEx3 extends AppCompatActivity {
         );
         mTvFullName.setText(spannable);
 
-        spannable = new SpannableStringBuilder("* National ID");
+        String nationalText = getString(R.string.national_id);
+        spannable = new SpannableStringBuilder(nationalText);
         spannable.setSpan(
                 new ForegroundColorSpan(Color.RED),
                 0, // start
@@ -144,7 +146,8 @@ public class ActivityEx3 extends AppCompatActivity {
                     mTvErrorFullName.setVisibility(View.GONE);
                 } else {
                     mEdtFullName.setSelected(true);
-                    mTvErrorFullName.setText("Full name required");
+                    String errorFullName = getString(R.string.error_full_name);
+                    mTvErrorFullName.setText(errorFullName);
                     mTvErrorFullName.setVisibility(View.VISIBLE);
                     mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.icon_alert);
                     mEdtFullName.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
@@ -157,7 +160,8 @@ public class ActivityEx3 extends AppCompatActivity {
                 } else {
                     mEdtNational.setSelected(true);
                     mTvErrorNational.setVisibility(View.VISIBLE);
-                    mTvErrorNational.setText("National ID required");
+                    String errorNational = getString(R.string.error_national_id);
+                    mTvErrorNational.setText(errorNational);
                     mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.icon_alert);
                     mEdtNational.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
@@ -168,7 +172,8 @@ public class ActivityEx3 extends AppCompatActivity {
                 } else {
                     mTiAddInfo.setSelected(true);
                     mTvErrorAddInfo.setVisibility(View.VISIBLE);
-                    mTvErrorAddInfo.setText("Additional information >= 100 character");
+                    String errorAddInfo = getString(R.string.error_additional_information);
+                    mTvErrorAddInfo.setText(errorAddInfo);
                     mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.icon_alert);
                     mTiAddInfo.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }

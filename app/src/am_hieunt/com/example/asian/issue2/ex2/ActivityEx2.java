@@ -53,7 +53,8 @@ public class ActivityEx2 extends AppCompatActivity {
         mTvTerm2 = findViewById(R.id.tvTerm2);
         mTvErrorDiv = findViewById(R.id.tvErrorDiv);
 
-        SpannableStringBuilder spannable = new SpannableStringBuilder("* Term1");
+        String term1Text = getString(R.string.term1);
+        SpannableStringBuilder spannable = new SpannableStringBuilder(term1Text);
         spannable.setSpan(
                 new ForegroundColorSpan(Color.RED),
                 0, // start
@@ -62,7 +63,8 @@ public class ActivityEx2 extends AppCompatActivity {
         );
         mTvTerm1.setText(spannable);
 
-        spannable = new SpannableStringBuilder("* Term2");
+        String term2Text = getString(R.string.term2);
+        spannable = new SpannableStringBuilder(term2Text);
         spannable.setSpan(
                 new ForegroundColorSpan(Color.RED),
                 0, // start
@@ -179,7 +181,8 @@ public class ActivityEx2 extends AppCompatActivity {
                         if (mTerm2 == 0) {
                             mEdtTerm2.setSelected(true);
                             mTvErrorDiv.setVisibility(View.VISIBLE);
-                            mTvErrorDiv.setText("Number can’t divide 0");
+                            String errorDiv = getString(R.string.error_div);
+                            mTvErrorDiv.setText(errorDiv);
                             mIcon = ContextCompat.getDrawable(ActivityEx2.this, R.drawable.icon_alert);
                             mEdtTerm2.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                             mTvResult.setText("0");

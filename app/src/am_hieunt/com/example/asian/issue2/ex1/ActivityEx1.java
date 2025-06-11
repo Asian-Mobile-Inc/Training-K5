@@ -162,7 +162,8 @@ public class ActivityEx1 extends AppCompatActivity {
                     mUsername.setSelected(false);
                 } else {
                     mTvErrorUsername.setVisibility(View.VISIBLE);
-                    mTvErrorUsername.setText("* Tài khoản không đúng");
+                    String errorUsername = getString(R.string.error_username);
+                    mTvErrorUsername.setText(errorUsername);
                     kt = false;
                     mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_alert);
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
@@ -177,7 +178,8 @@ public class ActivityEx1 extends AppCompatActivity {
                     mPassword.setSelected(false);
                 } else {
                     mTvErrorPassword.setVisibility(View.VISIBLE);
-                    mTvErrorPassword.setText("* Mật khẩu không đúng");
+                    String errorPassword = getString(R.string.error_password);
+                    mTvErrorPassword.setText(errorPassword);
                     kt = false;
                     mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_alert);
                     mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
