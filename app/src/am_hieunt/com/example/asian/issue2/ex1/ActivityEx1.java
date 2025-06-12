@@ -89,6 +89,7 @@ public class ActivityEx1 extends AppCompatActivity {
             }
         });
 
+        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

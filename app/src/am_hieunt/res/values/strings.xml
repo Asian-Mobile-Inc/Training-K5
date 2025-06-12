@@ -21,16 +21,61 @@
     <string name="associate">Associate</string>
     <string name="vocational">Vocational</string>
     <string name="enter_additional_information">Enter additional information</string>
-    <string name="error_additional_information">Additional information >= 100 character</string>
     <string name="infomation">Infomation</string>
-    <string name="national_id">* National ID</string>
-    <string name="error_national_id">National ID required</string>
-    <string name="full_name">* Full name</string>
-    <string name="error_full_name">Full name required</string>
     <string name="submit">SUBMIT</string>
+    <string name="full_name">* Full name</string>
+    <string name="national_id">* National ID</string>
+    <string name="error_full_name">Full name required</string>
+    <string name="error_national_id">National ID required</string>
     <string name="term1">* Term 1</string>
     <string name="term2">* Term 2</string>
     <string name="error_div">Number can’t divide 0</string>
     <string name="error_username">* Tài khoản không đúng</string>
     <string name="error_password">* Mật khẩu không đúng</string>
+    <string name="error_additional_information">Additional information >= 100 character</string>
+
+    <string name="title_language">Language</string>
+    <string name="text_language_english">English</string>
+    <string name="text_language_spanish">Español</string>
+    <string name="text_language_vietnamese">Tiếng Việt</string>
+    <string name="text_language_french">Français</string>
+    <string name="text_language_hindi">हिन्दी</string>
+    <string name="text_language_german">Deutsch</string>
+    <string name="text_language_portuguese">Português</string>
+    <string name="text_language_italian">Italiano</string>
+    <string name="text_language_arabic">عربي</string>
+    <string name="text_language_japanese">日本語</string>
+    <string name="text_language_korean">이스라엘</string>
+    <string name="text_language_urdu">اُردُو</string>
+    <string name="text_language_afrikaans">Afrikaans</string>
+    <string name="text_language_hebrew">ישראל</string>
+    <string name="text_language_hausa">Harshen Hausa</string>
+    <string name="text_language_chinese">中国人</string>
+    <string name="text_language_turkish">Türkçe</string>
+    <string name="text_language_indonesia">Bahasa Indonesia</string>
+    <string name="text_language_dutch">Dutch</string>
+    <string name="text_language_russian">Русский</string>
+    <string name="text_language_polish">Polski</string>
+
+    <string name="code_language_english" translatable="false">en</string>
+    <string name="code_language_spanish" translatable="false">es</string>
+    <string name="code_language_vietnamese" translatable="false">vi</string>
+    <string name="code_language_french" translatable="false">fr</string>
+    <string name="code_language_hindi" translatable="false">hi</string>
+    <string name="code_language_german" translatable="false">de</string>
+    <string name="code_language_portuguese" translatable="false">pt</string>
+    <string name="code_language_italian" translatable="false">it</string>
+    <string name="code_language_arabic" translatable="false">ar</string>
+    <string name="code_language_japanese" translatable="false">ja</string>
+    <string name="code_language_korean" translatable="false">ko</string>
+    <string name="code_language_urdu" translatable="false">ur</string>
+    <string name="code_language_afrikaans" translatable="false">af</string>
+    <string name="code_language_hebrew" translatable="false">iw</string>
+    <string name="code_language_hausa" translatable="false">ha</string>
+    <string name="code_language_chinese" translatable="false">zh</string>
+    <string name="code_language_turkish" translatable="false">tr</string>
+    <string name="code_language_indonesia" translatable="false">in</string>
+    <string name="code_language_dutch" translatable="false">nl</string>
+    <string name="code_language_russian" translatable="false">ru</string>
+    <string name="code_language_polish" translatable="false">pl</string>
 </resources>
