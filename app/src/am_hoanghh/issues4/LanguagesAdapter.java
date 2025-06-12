@@ -53,10 +53,14 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
         holder.getRadioButton().setChecked(item.isSelected());
         holder.itemView.setSelected(holder.getAdapterPosition() == selectedPosition);
 
-        holder.getRadioButton().setOnClickListener(view -> {
+        holder.itemView.setOnClickListener(view -> {
             selectedPosition = holder.getAdapterPosition();
 
             submitList(getNewLanguageList(selectedPosition));
+        });
+
+        holder.getRadioButton().setOnClickListener(view -> {
+            holder.itemView.performClick();
         });
     }
 
