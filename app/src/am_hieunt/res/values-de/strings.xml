@@ -24,6 +24,17 @@
     <string name="infomation">Information</string>
     <string name="submit">Absenden</string>
 
+    <string name="full_name">* Vollständiger Name</string>
+    <string name="national_id">* Personalausweisnummer</string>
+    <string name="error_full_name">Vollständiger Name erforderlich</string>
+    <string name="error_national_id">Personalausweisnummer erforderlich</string>
+    <string name="term1">* Bedingung 1</string>
+    <string name="term2">* Bedingung 2</string>
+    <string name="error_div">Zahl kann nicht durch 0 geteilt werden</string>
+    <string name="error_username">* Ungültiger Benutzername</string>
+    <string name="error_password">* Ungültiges Passwort</string>
+    <string name="error_additional_information">Zusätzliche Informationen müssen mindestens 100 Zeichen enthalten</string>
+
     <string name="title_language">Sprache</string>
     <string name="text_language_english">Englisch</string>
     <string name="text_language_spanish">Spanisch</string>

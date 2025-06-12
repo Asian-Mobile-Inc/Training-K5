@@ -24,6 +24,17 @@
     <string name="infomation">Inligting</string>
     <string name="submit">DIEN IN</string>
 
+    <string name="full_name">* Volle naam</string>
+    <string name="national_id">* Nasionale ID</string>
+    <string name="error_full_name">Volle naam is vereis</string>
+    <string name="error_national_id">Nasionale ID is vereis</string>
+    <string name="term1">* Termyn 1</string>
+    <string name="term2">* Termyn 2</string>
+    <string name="error_div">Nommer kan nie deur 0 gedeel word nie</string>
+    <string name="error_username">* Gebruikerrekening is ongeldig</string>
+    <string name="error_password">* Wagwoord is ongeldig</string>
+    <string name="error_additional_information">Bykomende inligting moet minstens 100 karakters wees</string>
+
     <string name="title_language">Taal</string>
     <string name="text_language_english">Engels</string>
     <string name="text_language_spanish">Spaans</string>

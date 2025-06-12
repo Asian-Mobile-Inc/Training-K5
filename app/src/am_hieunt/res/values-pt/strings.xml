@@ -24,6 +24,17 @@
     <string name="infomation">Informação</string>
     <string name="submit">ENVIAR</string>
 
+    <string name="full_name">* Nome completo</string>
+    <string name="national_id">* ID nacional</string>
+    <string name="error_full_name">Nome completo é obrigatório</string>
+    <string name="error_national_id">ID nacional é obrigatório</string>
+    <string name="term1">* Termo 1</string>
+    <string name="term2">* Termo 2</string>
+    <string name="error_div">O número não pode ser dividido por 0</string>
+    <string name="error_username">* Nome de usuário inválido</string>
+    <string name="error_password">* Senha inválida</string>
+    <string name="error_additional_information">As informações adicionais devem ter pelo menos 100 caracteres</string>
+
     <string name="title_language">Idioma</string>
     <string name="text_language_english">Inglês</string>
     <string name="text_language_spanish">Espanhol</string>

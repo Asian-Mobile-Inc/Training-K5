@@ -24,6 +24,17 @@
     <string name="infomation">Information</string>
     <string name="submit">Soumettre</string>
 
+    <string name="full_name">* Nom complet</string>
+    <string name="national_id">* Numéro d&apos;identité nationale</string>
+    <string name="error_full_name">Nom complet requis</string>
+    <string name="error_national_id">Numéro d&apos;identité requis</string>
+    <string name="term1">* Terme 1</string>
+    <string name="term2">* Terme 2</string>
+    <string name="error_div">Le nombre ne peut pas être divisé par 0</string>
+    <string name="error_username">* Nom d&apos;utilisateur invalide</string>
+    <string name="error_password">* Mot de passe invalide</string>
+    <string name="error_additional_information">Les informations supplémentaires doivent contenir au moins 100 caractères</string>
+
     <string name="title_language">Langue</string>
     <string name="text_language_english">Anglais</string>
     <string name="text_language_spanish">Espagnol</string>

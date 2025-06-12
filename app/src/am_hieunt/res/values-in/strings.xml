@@ -24,6 +24,17 @@
     <string name="infomation">Informasi</string>
     <string name="submit">KIRIM</string>
 
+    <string name="full_name">* Nama lengkap</string>
+    <string name="national_id">* Nomor ID nasional</string>
+    <string name="error_full_name">Nama lengkap wajib diisi</string>
+    <string name="error_national_id">ID nasional wajib diisi</string>
+    <string name="term1">* Syarat 1</string>
+    <string name="term2">* Syarat 2</string>
+    <string name="error_div">Angka tidak bisa dibagi dengan 0</string>
+    <string name="error_username">* Nama pengguna tidak valid</string>
+    <string name="error_password">* Kata sandi tidak valid</string>
+    <string name="error_additional_information">Informasi tambahan harus minimal 100 karakter</string>
+
     <string name="title_language">Bahasa</string>
     <string name="text_language_english">Inggris</string>
     <string name="text_language_spanish">Spanyol</string>

@@ -24,6 +24,17 @@
     <string name="infomation">情報</string>
     <string name="submit">送信</string>
 
+    <string name="full_name">* 氏名</string>
+    <string name="national_id">* マイナンバー</string>
+    <string name="error_full_name">氏名は必須です</string>
+    <string name="error_national_id">マイナンバーは必須です</string>
+    <string name="term1">* 条件1</string>
+    <string name="term2">* 条件2</string>
+    <string name="error_div">0で割ることはできません</string>
+    <string name="error_username">* ユーザー名が無効です</string>
+    <string name="error_password">* パスワードが無効です</string>
+    <string name="error_additional_information">追加情報は100文字以上である必要があります</string>
+
     <string name="title_language">言語</string>
     <string name="text_language_english">英語</string>
     <string name="text_language_spanish">スペイン語</string>

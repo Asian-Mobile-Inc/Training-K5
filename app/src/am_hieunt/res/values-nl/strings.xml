@@ -12,7 +12,7 @@
     <string name="name_must_be_3_characters">Naam moet ≥ 3 tekens zijn</string>
     <string name="must_be_exactly_9_digits">Moet exact 9 cijfers zijn</string>
     <string name="degree">Diploma</string>
-    <string name="hobbies">Hobby's</string>
+    <string name="hobbies">Hobby&apos;s</string>
     <string name="reading_news">Nieuws lezen</string>
     <string name="reading_books">Boeken lezen</string>
     <string name="reading_code">Code lezen</string>
@@ -23,6 +23,17 @@
     <string name="enter_additional_information">Voer aanvullende informatie in</string>
     <string name="infomation">Informatie</string>
     <string name="submit">INDIENEN</string>
+
+    <string name="full_name">* Volledige naam</string>
+    <string name="national_id">* Nationaal ID</string>
+    <string name="error_full_name">Volledige naam is verplicht</string>
+    <string name="error_national_id">Nationaal ID is verplicht</string>
+    <string name="term1">* Voorwaarde 1</string>
+    <string name="term2">* Voorwaarde 2</string>
+    <string name="error_div">Getal kan niet door 0 worden gedeeld</string>
+    <string name="error_username">* Ongeldige gebruikersnaam</string>
+    <string name="error_password">* Ongeldig wachtwoord</string>
+    <string name="error_additional_information">Aanvullende informatie moet minimaal 100 tekens bevatten</string>
 
     <string name="title_language">Taal</string>
     <string name="text_language_english">Engels</string>

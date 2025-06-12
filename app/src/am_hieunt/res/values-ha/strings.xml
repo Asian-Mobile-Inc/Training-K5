@@ -12,17 +12,28 @@
     <string name="name_must_be_3_characters">Sunan dole ya kasance aƙalla haruffa 3</string>
     <string name="must_be_exactly_9_digits">Dole ne ya kasance daidai lambobi 9</string>
     <string name="degree">Digiri</string>
-    <string name="hobbies">Sha'awa</string>
+    <string name="hobbies">Sha&apos;awa</string>
     <string name="reading_news">Karanta labarai</string>
     <string name="reading_books">Karanta littattafai</string>
     <string name="reading_code">Karanta lambar shirin</string>
     <string name="additional_information">Ƙarin bayani</string>
     <string name="bachelor">Digiri na farko</string>
     <string name="associate">Na haɗin gwiwa</string>
-    <string name="vocational">Na sana'a</string>
+    <string name="vocational">Na sana&apos;a</string>
     <string name="enter_additional_information">Shigar da ƙarin bayani</string>
     <string name="infomation">Bayani</string>
     <string name="submit">Gabatar</string>
+
+    <string name="full_name">* Cikakken suna</string>
+    <string name="national_id">* Lambar Shaidar Ƙasa</string>
+    <string name="error_full_name">Cikakken suna ya zama dole</string>
+    <string name="error_national_id">Lambar shaidar ƙasa ta zama dole</string>
+    <string name="term1">* Sharadi na 1</string>
+    <string name="term2">* Sharadi na 2</string>
+    <string name="error_div">Ba za a iya raba lamba da sifili ba</string>
+    <string name="error_username">* Sunan mai amfani ba daidai ba ne</string>
+    <string name="error_password">* Kalmar sirri ba daidai ba ce</string>
+    <string name="error_additional_information">Ƙarin bayani dole ne ya kasance harufi 100 ko fiye</string>
 
     <string name="title_language">Harshe</string>
     <string name="text_language_english">Turanci</string>

@@ -24,6 +24,17 @@
     <string name="infomation">معلومات</string>
     <string name="submit">جمع کریں</string>
 
+    <string name="full_name">* پورا نام</string>
+    <string name="national_id">* قومی شناختی نمبر</string>
+    <string name="error_full_name">پورا نام درکار ہے</string>
+    <string name="error_national_id">قومی شناختی نمبر درکار ہے</string>
+    <string name="term1">* شرط 1</string>
+    <string name="term2">* شرط 2</string>
+    <string name="error_div">عدد کو 0 سے تقسیم نہیں کیا جا سکتا</string>
+    <string name="error_username">* غلط صارف نام</string>
+    <string name="error_password">* غلط پاس ورڈ</string>
+    <string name="error_additional_information">اضافی معلومات کم از کم 100 حروف پر مشتمل ہونی چاہیے</string>
+
     <string name="title_language">زبان</string>
     <string name="text_language_english">انگریزی</string>
     <string name="text_language_spanish">ہسپانوی</string>

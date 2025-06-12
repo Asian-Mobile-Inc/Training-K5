@@ -24,6 +24,17 @@
     <string name="infomation">Bilgi</string>
     <string name="submit">GÖNDER</string>
 
+    <string name="full_name">* Tam ad</string>
+    <string name="national_id">* Ulusal Kimlik Numarası</string>
+    <string name="error_full_name">Tam ad gerekli</string>
+    <string name="error_national_id">Ulusal kimlik gerekli</string>
+    <string name="term1">* Koşul 1</string>
+    <string name="term2">* Koşul 2</string>
+    <string name="error_div">Sayı 0&apos;a bölünemez</string>
+    <string name="error_username">* Geçersiz kullanıcı adı</string>
+    <string name="error_password">* Geçersiz şifre</string>
+    <string name="error_additional_information">Ek bilgi en az 100 karakter olmalıdır</string>
+
     <string name="title_language">Dil</string>
     <string name="text_language_english">İngilizce</string>
     <string name="text_language_spanish">İspanyolca</string>

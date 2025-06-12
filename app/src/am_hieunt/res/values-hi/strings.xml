@@ -24,6 +24,17 @@
     <string name="infomation">जानकारी</string>
     <string name="submit">जमा करें</string>
 
+    <string name="full_name">* पूरा नाम</string>
+    <string name="national_id">* राष्ट्रीय पहचान संख्या</string>
+    <string name="error_full_name">पूरा नाम आवश्यक है</string>
+    <string name="error_national_id">राष्ट्रीय पहचान संख्या आवश्यक है</string>
+    <string name="term1">* शर्त 1</string>
+    <string name="term2">* शर्त 2</string>
+    <string name="error_div">संख्या को 0 से विभाजित नहीं किया जा सकता</string>
+    <string name="error_username">* उपयोगकर्ता नाम गलत है</string>
+    <string name="error_password">* पासवर्ड गलत है</string>
+    <string name="error_additional_information">अतिरिक्त जानकारी कम से कम 100 वर्ण की होनी चाहिए</string>
+
     <string name="title_language">भाषा</string>
     <string name="text_language_english">अंग्रेज़ी</string>
     <string name="text_language_spanish">स्पेनिश</string>

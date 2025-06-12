@@ -24,6 +24,17 @@
     <string name="infomation">Информация</string>
     <string name="submit">ОТПРАВИТЬ</string>
 
+    <string name="full_name">* Полное имя</string>
+    <string name="national_id">* Национальный ID</string>
+    <string name="error_full_name">Полное имя обязательно</string>
+    <string name="error_national_id">Национальный ID обязателен</string>
+    <string name="term1">* Условие 1</string>
+    <string name="term2">* Условие 2</string>
+    <string name="error_div">Нельзя делить на 0</string>
+    <string name="error_username">* Неверное имя пользователя</string>
+    <string name="error_password">* Неверный пароль</string>
+    <string name="error_additional_information">Дополнительная информация должна содержать не менее 100 символов</string>
+
     <string name="title_language">Язык</string>
     <string name="text_language_english">Английский</string>
     <string name="text_language_spanish">Испанский</string>

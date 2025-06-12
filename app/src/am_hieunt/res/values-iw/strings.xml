@@ -24,6 +24,17 @@
     <string name="infomation">מידע</string>
     <string name="submit">שלח</string>
 
+    <string name="full_name">* שם מלא</string>
+    <string name="national_id">* מספר תעודת זהות</string>
+    <string name="error_full_name">יש להזין שם מלא</string>
+    <string name="error_national_id">יש להזין מספר תעודת זהות</string>
+    <string name="term1">* תנאי 1</string>
+    <string name="term2">* תנאי 2</string>
+    <string name="error_div">לא ניתן לחלק את המספר ב־0</string>
+    <string name="error_username">* שם משתמש לא תקין</string>
+    <string name="error_password">* סיסמה שגויה</string>
+    <string name="error_additional_information">מידע נוסף חייב להכיל לפחות 100 תווים</string>
+
     <string name="title_language">שפה</string>
     <string name="text_language_english">אנגלית</string>
     <string name="text_language_spanish">ספרדית</string>

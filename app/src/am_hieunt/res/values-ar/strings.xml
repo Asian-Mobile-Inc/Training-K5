@@ -24,6 +24,17 @@
     <string name="infomation">معلومة</string>
     <string name="submit">إرسال</string>
 
+    <string name="full_name">* الاسم الكامل</string>
+    <string name="national_id">* رقم الهوية الوطنية</string>
+    <string name="error_full_name">الاسم الكامل مطلوب</string>
+    <string name="error_national_id">رقم الهوية الوطنية مطلوب</string>
+    <string name="term1">* البند 1</string>
+    <string name="term2">* البند 2</string>
+    <string name="error_div">لا يمكن قسمة الرقم على 0</string>
+    <string name="error_username">* اسم المستخدم غير صحيح</string>
+    <string name="error_password">* كلمة المرور غير صحيحة</string>
+    <string name="error_additional_information">يجب أن تكون المعلومات الإضافية 100 حرف أو أكثر</string>
+
     <string name="title_language">اللغة</string>
     <string name="text_language_english">الإنجليزية</string>
     <string name="text_language_spanish">الإسبانية</string>

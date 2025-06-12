@@ -24,6 +24,17 @@
     <string name="infomation">Information</string>
     <string name="submit">SUBMIT</string>
 
+    <string name="full_name">* Full name</string>
+    <string name="national_id">* National ID</string>
+    <string name="error_full_name">Full name required</string>
+    <string name="error_national_id">National ID required</string>
+    <string name="term1">* Term 1</string>
+    <string name="term2">* Term 2</string>
+    <string name="error_div">Number can’t be divided by 0</string>
+    <string name="error_username">* Invalid username</string>
+    <string name="error_password">* Invalid password</string>
+    <string name="error_additional_information">Additional information must be at least 100 characters</string>
+
     <string name="title_language">Language</string>
     <string name="text_language_english">English</string>
     <string name="text_language_spanish">Spanish</string>

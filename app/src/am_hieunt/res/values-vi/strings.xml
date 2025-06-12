@@ -24,6 +24,17 @@
     <string name="infomation">Thông tin</string>
     <string name="submit">GỬI</string>
 
+    <string name="full_name">* Họ và tên</string>
+    <string name="national_id">* CMND/CCCD</string>
+    <string name="error_full_name">Vui lòng nhập họ và tên</string>
+    <string name="error_national_id">Vui lòng nhập số CMND/CCCD</string>
+    <string name="term1">* Học kỳ 1</string>
+    <string name="term2">* Học kỳ 2</string>
+    <string name="error_div">Không thể chia cho 0</string>
+    <string name="error_username">* Tên tài khoản không đúng</string>
+    <string name="error_password">* Mật khẩu không đúng</string>
+    <string name="error_additional_information">Thông tin bổ sung phải từ 100 ký tự trở lên</string>
+
     <string name="title_language">Ngôn ngữ</string>
     <string name="text_language_english">Tiếng Anh</string>
     <string name="text_language_spanish">Tiếng Tây Ban Nha</string>

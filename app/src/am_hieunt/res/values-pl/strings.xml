@@ -24,6 +24,17 @@
     <string name="infomation">Informacje</string>
     <string name="submit">PRZEŚLIJ</string>
 
+    <string name="full_name">* Pełne imię i nazwisko</string>
+    <string name="national_id">* Numer identyfikacyjny</string>
+    <string name="error_full_name">Pełne imię i nazwisko jest wymagane</string>
+    <string name="error_national_id">Numer identyfikacyjny jest wymagany</string>
+    <string name="term1">* Warunek 1</string>
+    <string name="term2">* Warunek 2</string>
+    <string name="error_div">Nie można dzielić przez 0</string>
+    <string name="error_username">* Nieprawidłowa nazwa użytkownika</string>
+    <string name="error_password">* Nieprawidłowe hasło</string>
+    <string name="error_additional_information">Dodatkowe informacje muszą mieć co najmniej 100 znaków</string>
+
     <string name="title_language">Język</string>
     <string name="text_language_english">Angielski</string>
     <string name="text_language_spanish">Hiszpański</string>
