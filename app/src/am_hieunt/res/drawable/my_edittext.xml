@@ -1,4 +1,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true" android:drawable="@drawable/my_edittext_focused" />
+    <item android:state_selected="true" android:drawable="@drawable/my_edittext_error" />
     <item android:drawable="@drawable/my_edittext_default" />
 </selector>

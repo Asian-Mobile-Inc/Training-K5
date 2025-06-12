@@ -21,5 +21,16 @@
     <string name="associate">Associate</string>
     <string name="vocational">Vocational</string>
     <string name="enter_additional_information">Enter additional information</string>
+    <string name="error_additional_information">Additional information >= 100 character</string>
     <string name="infomation">Infomation</string>
+    <string name="national_id">* National ID</string>
+    <string name="error_national_id">National ID required</string>
+    <string name="full_name">* Full name</string>
+    <string name="error_full_name">Full name required</string>
+    <string name="submit">SUBMIT</string>
+    <string name="term1">* Term 1</string>
+    <string name="term2">* Term 2</string>
+    <string name="error_div">Number can’t divide 0</string>
+    <string name="error_username">* Tài khoản không đúng</string>
+    <string name="error_password">* Mật khẩu không đúng</string>
 </resources>

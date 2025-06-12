@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name" translatable="false">ExHoangHH</string>
+    <string name="imageview_content_description_logo">LOGO</string>
+    <string name="edittext_hint_password">Password</string>
+    <string name="button_text_login">Login</string>
+    <string name="example_gmail_com">Example@gmail.com</string>
+    <string name="edittext_hint_phone_or_email">Phone or email</string>
+    <string name="textview_text_calculator">Calculator</string>
+    <string name="textview_text_term_1">* Term 1</string>
+    <string name="edittext_hint_team_1">Term 1</string>
+    <string name="textview_text_term_2">* Term 2</string>
+    <string name="edittext_hint_team_2">Term 2</string>
+    <string name="textview_text_operations">Operations</string>
+    <string name="textview_text_result">Result</string>
+    <string name="textview_text_0">0</string>
+    <string name="imageview_content_description_blue_bar">Blue bar</string>
+    <string name="textview_text_information">Information</string>
+    <string name="textview_text_full_name">* Full name</string>
+    <string name="edittext_hint_name_must_be_3_characters"><![CDATA[Name must be >= 3 characters]]></string>
+    <string name="textview_text_national_id">* National ID</string>
+    <string name="edittext_hint_must_be_exactly_9_digits">Must be exactly 9 digits</string>
+    <string name="textview_text_degree">Degree</string>
+    <string name="imageview_content_description_degree">DEGREE</string>
+    <string name="radiobutton_text_vocational">Vocational</string>
+    <string name="radiobutton_text_associate">Associate</string>
+    <string name="radiobutton_text_bachelor">Bachelor</string>
+    <string name="imageview_content_description_hobbies">Hobbies</string>
+    <string name="textview_text_hobbies">Hobbies</string>
+    <string name="checkbox_text_reading_news">Reading news</string>
+    <string name="checkbox_text_reading_books">Reading books</string>
+    <string name="checkbox_text_reading_code">Reading code</string>
+    <string name="textview_text_additional_information">Additional Information</string>
+    <string name="edittext_hint_enter_additional_information">Enter additional information</string>
+    <string name="button_text_submit">SUBMIT</string>
+    <string name="imageview_content_description_plus">Plus</string>
+    <string name="imageview_content_description_minus">Minus</string>
+    <string name="imageview_content_description_multiply">Multiply</string>
+    <string name="imageview_content_description_divide">Divide</string>
+    <string name="imagebutton_content_description_unseen">Unseen</string>
+    <string name="imagebutton_content_description_delete">Delete</string>
+    <string name="textview_error_result">ERROR</string>
+    <string name="imageview_content_description_back">Back</string>
+    <string name="imageview_content_description_avatar">Avatar</string>
+    <string name="textview_text_example_gmail_com">Example@gmail.com</string>
+    <string name="textview_text_username_is_an_email_address">Username is an email address</string>
+    <string name="textview_text_password_8_characters"><![CDATA[Password >=8 characters]]></string>
+    <string name="text_email">email</string>
+    <string name="textview_text_number_can_t_divide_0">Number can’t divide 0</string>
+    <string name="imageview_content_description_delete">Delete</string>
+    <string name="textview_text_full_name_required">Full name required</string>
+    <string name="textview_text_national_id_required">National ID required</string>
+    <string name="textview_text_additional_information_100_character">Additional information >= 100 character</string>
+    <string name="imageview_content_description_delete_fullname">Delete FullName</string>
+    <string name="imageview_content_description_delete_national_id">Delete National ID</string>
+    <string name="imageview_content_description_delete_additional_information">Delete Additional Information</string>
+    <string name="imageview_content_description_done">DONE</string>
+    <string name="imageview_content_description_flag">FLAG</string>
+    <string name="language_position_key">language_position</string>
+    <string name="user_preferences_key">UserPreferences</string>
+
+    <string name="language_item_english">inglese</string>
+    <string name="language_item_spainish">Spagnolo</string>
+    <string name="language_item_vietnamese">Vietnamese</string>
+    <string name="language_item_french">francese</string>
+    <string name="language_item_hindi">Hindi</string>
+    <string name="language_item_german">tedesco</string>
+    <string name="language_item_portuguese">portoghese</string>
+    <string name="language_item_italian">Italiano</string>
+    <string name="language_item_arabic">arabo</string>
+    <string name="language_item_japanese">giapponese</string>
+    <string name="language_item_korean">Korean</string>
+    <string name="language_item_south_afrikaans">Afrikaans</string>
+    <string name="language_item_hebrew">ebraico</string>
+    <string name="language_item_hausa">Hausa</string>
+    <string name="language_item_chinese">Cinese</string>
+    <string name="language_item_turkish">turco</string>
+    <string name="language_item_bahasa_indonesia">Bahasa Indonesia</string>
+    <string name="language_item_dutch">olandese</string>
+    <string name="language_item_russian">Russo</string>
+    <string name="language_item_polish">migliorare</string>
+
+    <string name="language">lingua</string>
+</resources>

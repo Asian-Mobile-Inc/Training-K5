@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name="issues4.LanguageActivity"
+            android:exported="false"/>
+        <activity
             android:name="issues5.Issues5Activity"
             android:exported="true">
             <intent-filter>
