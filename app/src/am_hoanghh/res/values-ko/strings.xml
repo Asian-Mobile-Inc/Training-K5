@@ -80,25 +80,4 @@
     <string name="language_item_polish">개선하다</string>
 
     <string name="language">수화</string>
-
-    <string name="language_code_english">en</string>
-    <string name="language_code_spainish">es</string>
-    <string name="language_code_vietnamese">vi</string>
-    <string name="language_code_french">fr</string>
-    <string name="language_code_hindi">hi</string>
-    <string name="language_code_german">de</string>
-    <string name="language_code_portuguese">pt</string>
-    <string name="language_code_italian">it</string>
-    <string name="language_code_arabic">ar</string>
-    <string name="language_code_japanese">ja</string>
-    <string name="language_code_korean">ko</string>
-    <string name="language_code_south_afrikaans">af</string>
-    <string name="language_code_hebrew">iw</string>
-    <string name="language_code_hausa">ha</string>
-    <string name="language_code_chinese">zh</string>
-    <string name="language_code_turkish">tr</string>
-    <string name="language_code_bahasa_indonesia">in</string>
-    <string name="language_code_dutch">nl</string>
-    <string name="language_code_russian">ru</string>
-    <string name="language_code_polish">pl</string>
 </resources>
