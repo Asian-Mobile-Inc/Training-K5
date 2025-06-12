@@ -12,14 +12,14 @@
     <string name="name_must_be_3_characters">Sunan dole ya kasance aƙalla haruffa 3</string>
     <string name="must_be_exactly_9_digits">Dole ne ya kasance daidai lambobi 9</string>
     <string name="degree">Digiri</string>
-    <string name="hobbies">Sha&apos;awa</string>
+    <string name="hobbies">Sha\'awa</string>
     <string name="reading_news">Karanta labarai</string>
     <string name="reading_books">Karanta littattafai</string>
     <string name="reading_code">Karanta lambar shirin</string>
     <string name="additional_information">Ƙarin bayani</string>
     <string name="bachelor">Digiri na farko</string>
     <string name="associate">Na haɗin gwiwa</string>
-    <string name="vocational">Na sana&apos;a</string>
+    <string name="vocational">Na sana\'a</string>
     <string name="enter_additional_information">Shigar da ƙarin bayani</string>
     <string name="infomation">Bayani</string>
     <string name="submit">Gabatar</string>

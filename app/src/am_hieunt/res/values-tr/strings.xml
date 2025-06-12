@@ -30,7 +30,7 @@
     <string name="error_national_id">Ulusal kimlik gerekli</string>
     <string name="term1">* Koşul 1</string>
     <string name="term2">* Koşul 2</string>
-    <string name="error_div">Sayı 0&apos;a bölünemez</string>
+    <string name="error_div">Sayı 0\'a bölünemez</string>
     <string name="error_username">* Geçersiz kullanıcı adı</string>
     <string name="error_password">* Geçersiz şifre</string>
     <string name="error_additional_information">Ek bilgi en az 100 karakter olmalıdır</string>
