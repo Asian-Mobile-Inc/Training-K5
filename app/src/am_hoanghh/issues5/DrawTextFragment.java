@@ -1,8 +1,6 @@
 package issues5;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +12,13 @@ import androidx.navigation.Navigation;
 
 import com.example.asian.R;
 import com.example.asian.databinding.FragmentDrawTextBinding;
-import com.example.asian.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 
 public class DrawTextFragment extends Fragment {
     private FragmentDrawTextBinding binding;
     private ArrayList<DrawText> lists;
+    private static final String DRAW_ANIME = "Draw Anime";
 
     @Nullable
     @Override
@@ -30,26 +28,27 @@ public class DrawTextFragment extends Fragment {
         return binding.getRoot();
     }
 
-    @SuppressLint("ResourceType")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         lists = new ArrayList<>();
-        lists.add(new DrawText("Draw Anime", R.font.fuzzy_bubbles));
-        lists.add(new DrawText("Draw Anime", R.font.fugaz_one));
-        lists.add(new DrawText("Draw Anime", R.font.frijole));
-        lists.add(new DrawText("Draw Anime", R.font.fredericka_the_great));
-        lists.add(new DrawText("Draw Anime", R.font.fredericka_the_great));
-        lists.add(new DrawText("Draw Anime", R.font.fontdiner_swanky));
-        lists.add(new DrawText("Draw Anime", R.font.inter_thin));
-        lists.add(new DrawText("Draw Anime", R.font.bigshot_one));
-        lists.add(new DrawText("Draw Anime", R.font.boogaloo));
-        lists.add(new DrawText("Draw Anime", R.font.scriptmtbold));
-        lists.add(new DrawText("Draw Anime", R.font.montserrat_thin));
-        lists.add(new DrawText("Draw Anime", R.font.mr_dafoe));
+        lists.add(new DrawText(DRAW_ANIME, R.font.fuzzy_bubbles));
+        lists.add(new DrawText(DRAW_ANIME, R.font.fugaz_one));
+        lists.add(new DrawText(DRAW_ANIME, R.font.frijole));
+        lists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
+        lists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
+        lists.add(new DrawText(DRAW_ANIME, R.font.fontdiner_swanky));
+        lists.add(new DrawText(DRAW_ANIME, R.font.inter_thin));
+        lists.add(new DrawText(DRAW_ANIME, R.font.bigshot_one));
+        lists.add(new DrawText(DRAW_ANIME, R.font.boogaloo));
+        lists.add(new DrawText(DRAW_ANIME, R.font.scriptmtbold));
+        lists.add(new DrawText(DRAW_ANIME, R.font.montserrat_thin));
+        lists.add(new DrawText(DRAW_ANIME, R.font.mr_dafoe));
 
-        DrawTextGridViewAdapter gridViewAdapter = new DrawTextGridViewAdapter(getContext(), lists);
+        DrawTextGridViewAdapter gridViewAdapter = new DrawTextGridViewAdapter(getContext(), lists, typeface -> {
+            binding.tvHome.setTypeface(typeface);
+        });
         binding.gvDrawText.setAdapter(gridViewAdapter);
 
         binding.ivHome.setOnClickListener(new View.OnClickListener() {

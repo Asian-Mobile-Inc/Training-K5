@@ -20,6 +20,10 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private ArrayList<Home> lists;
+    private static final String LUFFY = "#Luffy";
+    private static final String NARUTO = "#Naruto";
+    private static final String RONALDO = "#Ronaldo";
+    private static final String MESSI = "#Messi";
 
     @Nullable
     @Override
@@ -34,10 +38,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         lists = new ArrayList<>();
-        lists.add(new Home("#Luffy", R.drawable.img_home_luffy_1, 19425, false));
-        lists.add(new Home("#Naruto", R.drawable.img_home_luffy_2, 98271, false));
-        lists.add(new Home("#Ronaldo", R.drawable.img_home_luffy_3, 2353, false));
-        lists.add(new Home("#Messi", R.drawable.img_home_luffy_4, 253, false));
+        lists.add(new Home(LUFFY, R.drawable.img_home_luffy_1, 19425, false));
+        lists.add(new Home(NARUTO, R.drawable.img_home_luffy_2, 98271, false));
+        lists.add(new Home(RONALDO, R.drawable.img_home_luffy_3, 2353, false));
+        lists.add(new Home(MESSI, R.drawable.img_home_luffy_4, 253, false));
 
         HomeGridViewAdapter gridViewAdapter = new HomeGridViewAdapter(getContext(), lists);
         binding.gvHome.setAdapter(gridViewAdapter);

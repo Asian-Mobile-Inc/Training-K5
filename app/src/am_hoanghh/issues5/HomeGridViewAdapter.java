@@ -42,10 +42,27 @@ public class HomeGridViewAdapter extends ArrayAdapter<Home> {
             Glide.with(itemView.getContext())
                     .load(model.getImage())
                     .transform(new CenterCrop(), new RoundedCorners(24))
+                    .override(175, 215)
                     .into(ivItemGrid);
 
             tvTitle.setText(model.getTitle());
             tvLikeNumber.setText(String.valueOf(model.getLike()));
+
+            ivHeart.setOnClickListener(v -> {
+                if (model.isFavorite()) {
+                    Glide.with(getContext())
+                            .load(R.drawable.ic_heart)
+                            .into(ivHeart);
+
+                    model.setFavorite(false);
+                } else {
+                    Glide.with(getContext())
+                            .load(R.drawable.ic_heart_gradient)
+                            .into(ivHeart);
+
+                    model.setFavorite(true);
+                }
+            });
         }
 
         return itemView;
