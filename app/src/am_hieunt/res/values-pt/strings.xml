@@ -56,26 +56,4 @@
     <string name="text_language_dutch">Holandês</string>
     <string name="text_language_russian">Russo</string>
     <string name="text_language_polish">Polonês</string>
-
-    <string name="code_language_english">en</string>
-    <string name="code_language_spanish">es</string>
-    <string name="code_language_vietnamese">vi</string>
-    <string name="code_language_french">fr</string>
-    <string name="code_language_hindi">hi</string>
-    <string name="code_language_german">de</string>
-    <string name="code_language_portuguese">pt</string>
-    <string name="code_language_italian">it</string>
-    <string name="code_language_arabic">ar</string>
-    <string name="code_language_japanese">ja</string>
-    <string name="code_language_korean">ko</string>
-    <string name="code_language_urdu">ur</string>
-    <string name="code_language_afrikaans">af</string>
-    <string name="code_language_hebrew">iw</string>
-    <string name="code_language_hausa">ha</string>
-    <string name="code_language_chinese">zh</string>
-    <string name="code_language_turkish">tr</string>
-    <string name="code_language_indonesia">in</string>
-    <string name="code_language_dutch">nl</string>
-    <string name="code_language_russian">ru</string>
-    <string name="code_language_polish">pl</string>
 </resources>
