@@ -57,6 +57,7 @@
     <string name="imageview_content_description_flag">FLAG</string>
     <string name="language_position_key">language_position</string>
     <string name="user_preferences_key">UserPreferences</string>
+
     <string name="language_item_english">English</string>
     <string name="language_item_spainish">Spainish</string>
     <string name="language_item_vietnamese">Vietnamese</string>
@@ -77,5 +78,6 @@
     <string name="language_item_dutch">Dutch</string>
     <string name="language_item_russian">Russian</string>
     <string name="language_item_polish">Polish</string>
+
     <string name="language">Language</string>
 </resources>

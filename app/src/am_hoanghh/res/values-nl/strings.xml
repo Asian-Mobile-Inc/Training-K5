@@ -57,25 +57,27 @@
     <string name="imageview_content_description_flag">FLAG</string>
     <string name="language_position_key">language_position</string>
     <string name="user_preferences_key">UserPreferences</string>
-    <string name="language_item_english">English</string>
-    <string name="language_item_spainish">Spainish</string>
-    <string name="language_item_vietnamese">Vietnamese</string>
-    <string name="language_item_french">French</string>
+
+    <string name="language_item_english">Engels</string>
+    <string name="language_item_spainish">Spanje</string>
+    <string name="language_item_vietnamese">Vietnamees</string>
+    <string name="language_item_french">Frans</string>
     <string name="language_item_hindi">Hindi</string>
-    <string name="language_item_german">German</string>
-    <string name="language_item_portuguese">Portuguese</string>
-    <string name="language_item_italian">Italian</string>
-    <string name="language_item_arabic">Arabic</string>
-    <string name="language_item_japanese">Japanese</string>
-    <string name="language_item_korean">Korean</string>
+    <string name="language_item_german">Duits</string>
+    <string name="language_item_portuguese">Portugees</string>
+    <string name="language_item_italian">Italiaans</string>
+    <string name="language_item_arabic">Arabisch</string>
+    <string name="language_item_japanese">Japanners</string>
+    <string name="language_item_korean">Koreaans</string>
     <string name="language_item_south_afrikaans">Afrikaans</string>
-    <string name="language_item_hebrew">Hebrew</string>
+    <string name="language_item_hebrew">Hebreeuws</string>
     <string name="language_item_hausa">Hausa</string>
-    <string name="language_item_chinese">Chinese</string>
-    <string name="language_item_turkish">Turkish</string>
+    <string name="language_item_chinese">Chinees</string>
+    <string name="language_item_turkish">Turk</string>
     <string name="language_item_bahasa_indonesia">Bahasa Indonesia</string>
-    <string name="language_item_dutch">Dutch</string>
-    <string name="language_item_russian">Russian</string>
-    <string name="language_item_polish">Polish</string>
-    <string name="language">Language</string>
+    <string name="language_item_dutch">Nederlanders</string>
+    <string name="language_item_russian">Russisch</string>
+    <string name="language_item_polish">Pools</string>
+
+    <string name="language">gebarentaal</string>
 </resources>

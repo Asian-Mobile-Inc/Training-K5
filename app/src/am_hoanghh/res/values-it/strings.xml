@@ -57,25 +57,27 @@
     <string name="imageview_content_description_flag">FLAG</string>
     <string name="language_position_key">language_position</string>
     <string name="user_preferences_key">UserPreferences</string>
-    <string name="language_item_english">English</string>
-    <string name="language_item_spainish">Spainish</string>
+
+    <string name="language_item_english">inglese</string>
+    <string name="language_item_spainish">Spagnolo</string>
     <string name="language_item_vietnamese">Vietnamese</string>
-    <string name="language_item_french">French</string>
+    <string name="language_item_french">francese</string>
     <string name="language_item_hindi">Hindi</string>
-    <string name="language_item_german">German</string>
-    <string name="language_item_portuguese">Portuguese</string>
-    <string name="language_item_italian">Italian</string>
-    <string name="language_item_arabic">Arabic</string>
-    <string name="language_item_japanese">Japanese</string>
+    <string name="language_item_german">tedesco</string>
+    <string name="language_item_portuguese">portoghese</string>
+    <string name="language_item_italian">Italiano</string>
+    <string name="language_item_arabic">arabo</string>
+    <string name="language_item_japanese">giapponese</string>
     <string name="language_item_korean">Korean</string>
     <string name="language_item_south_afrikaans">Afrikaans</string>
-    <string name="language_item_hebrew">Hebrew</string>
+    <string name="language_item_hebrew">ebraico</string>
     <string name="language_item_hausa">Hausa</string>
-    <string name="language_item_chinese">Chinese</string>
-    <string name="language_item_turkish">Turkish</string>
+    <string name="language_item_chinese">Cinese</string>
+    <string name="language_item_turkish">turco</string>
     <string name="language_item_bahasa_indonesia">Bahasa Indonesia</string>
-    <string name="language_item_dutch">Dutch</string>
-    <string name="language_item_russian">Russian</string>
-    <string name="language_item_polish">Polish</string>
-    <string name="language">Language</string>
+    <string name="language_item_dutch">olandese</string>
+    <string name="language_item_russian">Russo</string>
+    <string name="language_item_polish">migliorare</string>
+
+    <string name="language">lingua</string>
 </resources>

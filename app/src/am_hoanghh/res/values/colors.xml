@@ -7,4 +7,7 @@
     <color name="gray">#E6E6E6</color>
     <color name="blue">#1877F2</color>
     <color name="red_F82B1F">#F82B1F</color>
+    <color name="primary_1877F2">#1877F2</color>
+    <color name="blue_while_F0F9FE">#F0F9FE</color>
+    <color name="neutral_gray_1F1F1F">#1F1F1F</color>
 </resources>
