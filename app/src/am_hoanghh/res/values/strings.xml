@@ -53,4 +53,19 @@
     <string name="imageview_content_description_delete_fullname">Delete FullName</string>
     <string name="imageview_content_description_delete_national_id">Delete National ID</string>
     <string name="imageview_content_description_delete_additional_information">Delete Additional Information</string>
+    <string name="imageview_content_description_crown">CROWN</string>
+    <string name="imageview_content_description_setting">SETTING</string>
+    <string name="imageview_content_description_question">QUESTION</string>
+    <string name="textview_text_previous_text">Previous text</string>
+    <string name="imageview_content_description_pen">PEN</string>
+    <string name="imageview_content_description_heart">HEART</string>
+    <string name="imageview_content_description_image">IMAGE</string>
+    <string name="imageview_content_description_home">HOME</string>
+    <string name="textview_text_home">Home</string>
+    <string name="imageview_content_description_draw_text">DRAW TEXT</string>
+    <string name="textview_text_draw_text">Draw Text</string>
+    <string name="imageview_content_description_draw">DRAW</string>
+    <string name="textview_text_draw">Draw</string>
+    <string name="imageview_content_description_mine">MINE</string>
+    <string name="textview_text_mine">Mine</string>
 </resources>

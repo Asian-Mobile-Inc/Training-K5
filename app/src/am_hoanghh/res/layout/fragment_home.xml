@@ -1,0 +1,142 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvPreviousText"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_home_rounded_textview"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:paddingHorizontal="120dp"
+        android:paddingVertical="50dp"
+        android:text="@string/textview_text_previous_text"
+        android:textColor="@color/neutral_C3C3C3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/gvHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridView
+        android:id="@+id/gvHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:numColumns="2"
+        android:verticalSpacing="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPreviousText" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_nav_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageview_content_description_home"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toTopOf="@id/tvHome"
+            app:layout_constraintEnd_toStartOf="@id/ivDrawText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_home"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivHome"
+            app:layout_constraintStart_toStartOf="@id/ivHome"
+            app:layout_constraintTop_toBottomOf="@id/ivHome" />
+
+        <ImageView
+            android:id="@+id/ivDrawText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageview_content_description_draw_text"
+            android:src="@drawable/ic_draw_text"
+            app:layout_constraintBottom_toTopOf="@id/tvDrawText"
+            app:layout_constraintEnd_toStartOf="@id/ivDraw"
+            app:layout_constraintStart_toEndOf="@id/ivHome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDrawText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_draw_text"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivDrawText"
+            app:layout_constraintStart_toStartOf="@id/ivDrawText"
+            app:layout_constraintTop_toBottomOf="@id/ivDrawText" />
+
+        <ImageView
+            android:id="@+id/ivDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageview_content_description_draw"
+            android:src="@drawable/ic_draw"
+            app:layout_constraintBottom_toTopOf="@id/tvDraw"
+            app:layout_constraintEnd_toStartOf="@id/ivMine"
+            app:layout_constraintStart_toEndOf="@id/ivDrawText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_draw"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivDraw"
+            app:layout_constraintStart_toStartOf="@id/ivDraw"
+            app:layout_constraintTop_toBottomOf="@id/ivDraw" />
+
+        <ImageView
+            android:id="@+id/ivMine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageview_content_description_mine"
+            android:src="@drawable/ic_mine"
+            app:layout_constraintBottom_toTopOf="@id/tvMine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivDraw"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_mine"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivMine"
+            app:layout_constraintStart_toStartOf="@id/ivMine"
+            app:layout_constraintTop_toBottomOf="@id/ivMine" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
