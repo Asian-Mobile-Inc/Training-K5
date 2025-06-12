@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".issue4.ActivityLanguage">
+    tools:context=".issue4.view.ActivityLanguage">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

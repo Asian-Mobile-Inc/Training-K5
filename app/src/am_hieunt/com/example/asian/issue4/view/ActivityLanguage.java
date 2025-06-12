@@ -1,4 +1,4 @@
-package com.example.asian.issue4;
+package com.example.asian.issue4.view;
 
 import android.os.Bundle;
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">ExHieuNT</string>
-    <string name="phone_or_email">Telefoon of e-pos</string>
+    <string name="phone_or_email">Foon of e-pos</string>
     <string name="password">Wagwoord</string>
     <string name="login">Teken in</string>
     <string name="calculator">Sakrekenaar</string>
@@ -16,18 +16,18 @@
     <string name="reading_news">Lees nuus</string>
     <string name="reading_books">Lees boeke</string>
     <string name="reading_code">Lees kode</string>
-    <string name="additional_information">Bykomende inligting</string>
+    <string name="additional_information">Bykomende Inligting</string>
     <string name="bachelor">Baccalaureus</string>
-    <string name="associate">Assosiaat</string>
+    <string name="associate">Geassosieer</string>
     <string name="vocational">Beroepsgerig</string>
     <string name="enter_additional_information">Voer bykomende inligting in</string>
     <string name="infomation">Inligting</string>
-    <string name="submit">SUBMIT</string>
+    <string name="submit">DIEN IN</string>
 
     <string name="title_language">Taal</string>
     <string name="text_language_english">Engels</string>
     <string name="text_language_spanish">Spaans</string>
-    <string name="text_language_vietnamese">Viëtnamees</string>
+    <string name="text_language_vietnamese">Vietnamees</string>
     <string name="text_language_french">Frans</string>
     <string name="text_language_hindi">Hindi</string>
     <string name="text_language_german">Duits</string>
@@ -40,7 +40,7 @@
     <string name="text_language_afrikaans">Afrikaans</string>
     <string name="text_language_hebrew">Hebreeus</string>
     <string name="text_language_hausa">Hausa</string>
-    <string name="text_language_chinese">Chinees</string>
+    <string name="text_language_chinese">Sjinees</string>
     <string name="text_language_turkish">Turks</string>
     <string name="text_language_indonesia">Indonesies</string>
     <string name="text_language_dutch">Nederlands</string>
