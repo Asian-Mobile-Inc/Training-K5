@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">电话号码或电子邮箱</string>
     <string name="password">密码</string>
     <string name="login">登录</string>

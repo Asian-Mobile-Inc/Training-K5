@@ -93,7 +93,7 @@
             android:background="#00F0F0F0"
             android:contentDescription="@null"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/icon_inc" />
+            app:srcCompat="@drawable/ic_inc" />
 
         <ImageButton
             android:id="@+id/btnDec"
@@ -103,7 +103,7 @@
             android:background="#00F0F0F0"
             android:contentDescription="@null"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/icon_dec"
+            app:srcCompat="@drawable/ic_dec"
             tools:ignore="ImageContrastCheck" />
 
         <ImageButton
@@ -114,7 +114,7 @@
             android:background="#00F0F0F0"
             android:contentDescription="@null"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/icon_mul" />
+            app:srcCompat="@drawable/ic_mul" />
 
         <ImageButton
             android:id="@+id/btnDiv"
@@ -124,7 +124,7 @@
             android:background="#00F0F0F0"
             android:contentDescription="@null"
             android:importantForAccessibility="no"
-            app:srcCompat="@drawable/icon_div" />
+            app:srcCompat="@drawable/ic_div" />
     </LinearLayout>
 
     <TextView

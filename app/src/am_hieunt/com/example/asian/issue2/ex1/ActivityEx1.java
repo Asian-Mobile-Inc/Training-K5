@@ -44,7 +44,7 @@ public class ActivityEx1 extends AppCompatActivity {
                 if (s.length() == 0) {
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 } else {
-                    Drawable deleteIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_delete);
+                    Drawable deleteIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_delete);
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, deleteIcon, null);
                 }
             }
@@ -71,7 +71,7 @@ public class ActivityEx1 extends AppCompatActivity {
             }
         });
 
-        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_hide);
+        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -103,13 +103,13 @@ public class ActivityEx1 extends AppCompatActivity {
                         if(event.getX() >= touchAreaStart) {
                             if (mCheck) {
                                 mPassword.setInputType(InputType.TYPE_CLASS_TEXT);;
-                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_eye);
+                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_eye);
                                 mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                                 mCheck = false;
                             } else {
                                 mCheck = true;
                                 mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.icon_hide);
+                                mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
                                 mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                             }
                             return true;

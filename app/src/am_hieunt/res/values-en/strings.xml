@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">Phone or Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>

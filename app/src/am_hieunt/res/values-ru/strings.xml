@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">Телефон или электронная почта</string>
     <string name="password">Пароль</string>
     <string name="login">Войти</string>

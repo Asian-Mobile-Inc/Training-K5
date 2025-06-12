@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">فون یا ای میل</string>
     <string name="password">پاس ورڈ</string>
     <string name="login">لاگ ان کریں</string>
