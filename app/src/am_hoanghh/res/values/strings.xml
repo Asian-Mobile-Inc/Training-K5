@@ -68,4 +68,11 @@
     <string name="textview_text_draw">Draw</string>
     <string name="imageview_content_description_mine">MINE</string>
     <string name="textview_text_mine">Mine</string>
+    <string name="textview_text_draw_anime">Draw Anime</string>
+    <string name="imageview_content_description_paper">PAPER</string>
+    <string name="imageview_content_description_pencil">PENCIL</string>
+    <string name="textview_text_my_album">My Album</string>
+    <string name="textview_text_favourite">Favourite</string>
+    <string name="textview_text_draw_now">Draw now!</string>
+    <string name="imageview_content_description_yellow_bar">YELLOW BAR</string>
 </resources>

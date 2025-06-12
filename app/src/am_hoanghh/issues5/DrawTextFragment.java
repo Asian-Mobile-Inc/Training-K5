@@ -1,6 +1,8 @@
 package issues5;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class DrawTextFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -38,25 +41,21 @@ public class DrawTextFragment extends Fragment {
         lists.add(new DrawText("Draw Anime", R.font.frijole));
         lists.add(new DrawText("Draw Anime", R.font.fredericka_the_great));
         lists.add(new DrawText("Draw Anime", R.font.fredericka_the_great));
-        lists.add(new DrawText("Draw Anime", R.font.adlam_display));
-        lists.add(new DrawText("Draw Anime", R.font.bruno_ace_sc));
         lists.add(new DrawText("Draw Anime", R.font.fontdiner_swanky));
         lists.add(new DrawText("Draw Anime", R.font.inter_thin));
-        lists.add(new DrawText("Draw Anime", R.font.baloo_2));
         lists.add(new DrawText("Draw Anime", R.font.bigshot_one));
         lists.add(new DrawText("Draw Anime", R.font.boogaloo));
         lists.add(new DrawText("Draw Anime", R.font.scriptmtbold));
-        lists.add(new DrawText("Draw Anime", R.font.lexend_thin));
         lists.add(new DrawText("Draw Anime", R.font.montserrat_thin));
         lists.add(new DrawText("Draw Anime", R.font.mr_dafoe));
 
         DrawTextGridViewAdapter gridViewAdapter = new DrawTextGridViewAdapter(getContext(), lists);
-        binding.gvHome.setAdapter(gridViewAdapter);
+        binding.gvDrawText.setAdapter(gridViewAdapter);
 
-        binding.ivDrawText.setOnClickListener(new View.OnClickListener() {
+        binding.ivHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.drawTextFragment);
+                Navigation.findNavController(view).navigate(R.id.homeFragment);
             }
         });
 

@@ -35,18 +35,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="70dp"
         android:background="@drawable/bg_nav_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            android:id="@+id/ivYellowBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imageview_content_description_yellow_bar"
+            android:src="@drawable/ic_bar_nav_mine"
+            app:layout_constraintBottom_toTopOf="@id/ivHome"
+            app:layout_constraintEnd_toEndOf="@id/ivHome"
+            app:layout_constraintStart_toStartOf="@id/ivHome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/ivHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/imageview_content_description_home"
-            android:src="@drawable/ic_home"
+            android:src="@drawable/ic_home_yellow"
             app:layout_constraintBottom_toTopOf="@id/tvHome"
             app:layout_constraintEnd_toStartOf="@id/ivDrawText"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +82,7 @@
             android:id="@+id/ivDrawText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/imageview_content_description_draw_text"
             android:src="@drawable/ic_draw_text"
             app:layout_constraintBottom_toTopOf="@id/tvDrawText"
@@ -93,6 +107,7 @@
             android:id="@+id/ivDraw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/imageview_content_description_draw"
             android:src="@drawable/ic_draw"
             app:layout_constraintBottom_toTopOf="@id/tvDraw"
@@ -117,6 +132,7 @@
             android:id="@+id/ivMine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/imageview_content_description_mine"
             android:src="@drawable/ic_mine"
             app:layout_constraintBottom_toTopOf="@id/tvMine"

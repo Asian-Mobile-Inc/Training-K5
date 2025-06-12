@@ -1,10 +1,211 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tvHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="mine" />
+        android:layout_height="130dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_home_rounded_textview"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:paddingHorizontal="155dp"
+        android:paddingVertical="50dp"
+        android:text="@string/textview_text_draw"
+        android:textColor="@color/black_181818"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/clNavBarMine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clNavBarMine"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bg_nav_bar_mine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHome">
+
+        <TextView
+            android:id="@+id/tvMyAlbum"
+            android:layout_width="180dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_nav_bar_textview"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:gravity="center"
+            android:text="@string/textview_text_my_album"
+            android:textColor="@color/black_181818"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvFavourite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFavourite"
+            android:layout_width="180dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_nav_bar_textview"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:gravity="center"
+            android:text="@string/textview_text_favourite"
+            android:textColor="@color/black_181818"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvMyAlbum"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/ivAlbumMine"
+        android:layout_width="265dp"
+        android:layout_height="201dp"
+        android:layout_marginTop="90dp"
+        android:contentDescription="@string/imageview_content_description_mine"
+        android:src="@drawable/img_mine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clNavBarMine" />
+
+    <TextView
+        android:layout_width="156dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_rounded_textview_mine"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:gravity="center"
+        android:text="@string/textview_text_draw_now"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivAlbumMine" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/bg_nav_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/imageview_content_description_home"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toTopOf="@id/tvHomeNavBar"
+            app:layout_constraintEnd_toStartOf="@id/ivDrawText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHomeNavBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_home"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivHome"
+            app:layout_constraintStart_toStartOf="@id/ivHome"
+            app:layout_constraintTop_toBottomOf="@id/ivHome" />
+
+        <ImageView
+            android:id="@+id/ivDrawText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/imageview_content_description_draw_text"
+            android:src="@drawable/ic_draw_text"
+            app:layout_constraintBottom_toTopOf="@id/tvDrawText"
+            app:layout_constraintEnd_toStartOf="@id/ivDraw"
+            app:layout_constraintStart_toEndOf="@id/ivHome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDrawText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_draw_text"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivDrawText"
+            app:layout_constraintStart_toStartOf="@id/ivDrawText"
+            app:layout_constraintTop_toBottomOf="@id/ivDrawText" />
+
+        <ImageView
+            android:id="@+id/ivDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/imageview_content_description_draw"
+            android:src="@drawable/ic_draw"
+            app:layout_constraintBottom_toTopOf="@id/tvDraw"
+            app:layout_constraintEnd_toStartOf="@id/ivMine"
+            app:layout_constraintStart_toEndOf="@id/ivDrawText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_draw"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivDraw"
+            app:layout_constraintStart_toStartOf="@id/ivDraw"
+            app:layout_constraintTop_toBottomOf="@id/ivDraw" />
+
+        <ImageView
+            android:id="@+id/ivYellowBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/imageview_content_description_yellow_bar"
+            android:src="@drawable/ic_bar_nav_mine"
+            app:layout_constraintBottom_toTopOf="@id/ivMine"
+            app:layout_constraintEnd_toEndOf="@id/ivMine"
+            app:layout_constraintStart_toStartOf="@id/ivMine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivMine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/imageview_content_description_mine"
+            android:src="@drawable/ic_mine_yellow"
+            app:layout_constraintBottom_toTopOf="@id/tvMine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivDraw"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuzzy_bubbles"
+            android:text="@string/textview_text_mine"
+            android:textColor="@color/gray_9B9B9B"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/ivMine"
+            app:layout_constraintStart_toStartOf="@id/ivMine"
+            app:layout_constraintTop_toBottomOf="@id/ivMine" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
