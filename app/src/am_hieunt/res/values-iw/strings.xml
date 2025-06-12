@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">טלפון או אימייל</string>
     <string name="password">סיסמה</string>
     <string name="login">התחברות</string>

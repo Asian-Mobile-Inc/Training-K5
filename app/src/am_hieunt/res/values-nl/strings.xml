@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">Telefoon of e-mail</string>
     <string name="password">Wachtwoord</string>
     <string name="login">Inloggen</string>
@@ -12,7 +11,7 @@
     <string name="name_must_be_3_characters">Naam moet ≥ 3 tekens zijn</string>
     <string name="must_be_exactly_9_digits">Moet exact 9 cijfers zijn</string>
     <string name="degree">Diploma</string>
-    <string name="hobbies">Hobby&apos;s</string>
+    <string name="hobbies">Hobby\'s</string>
     <string name="reading_news">Nieuws lezen</string>
     <string name="reading_books">Boeken lezen</string>
     <string name="reading_code">Code lezen</string>

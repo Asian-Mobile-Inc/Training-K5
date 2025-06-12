@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">전화번호 또는 이메일</string>
     <string name="password">비밀번호</string>
     <string name="login">로그인</string>

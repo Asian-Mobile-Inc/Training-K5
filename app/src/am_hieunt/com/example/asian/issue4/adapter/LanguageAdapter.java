@@ -3,11 +3,11 @@ package com.example.asian.issue4.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.asian.R;
@@ -20,8 +20,15 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
     private List<Language> mLanguages;
     private int mSelectedPosotion = -1;
 
-    public LanguageAdapter(List<Language> languages) {
+    public interface OnLanguageSelectedListen {
+        void onLanguageSelected(Language language);
+    }
+
+    private OnLanguageSelectedListen mListener;
+
+    public LanguageAdapter(List<Language> languages, OnLanguageSelectedListen listener) {
         this.mLanguages = languages;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -43,6 +50,20 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 mSelectedPosotion = holder.getAdapterPosition();
+                if (mListener != null) {
+                    mListener.onLanguageSelected(language);
+                }
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.cvLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSelectedPosotion = holder.getAdapterPosition();
+                if (mListener != null) {
+                    mListener.onLanguageSelected(language);
+                }
                 notifyDataSetChanged();
             }
         });
@@ -57,11 +78,13 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
         public ShapeableImageView sivFlag;
         public TextView tvName;
         public RadioButton rbSelect;
+        public CardView cvLanguage;
         public ViewHolder(View view) {
             super(view);
             sivFlag = view.findViewById(R.id.sivFlag);
             tvName = view.findViewById(R.id.tvName);
             rbSelect = view.findViewById(R.id.rbSelect);
+            cvLanguage = view.findViewById(R.id.cvLanguage);
         }
     }
 }

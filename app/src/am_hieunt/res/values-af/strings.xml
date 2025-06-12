@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">Foon of e-pos</string>
     <string name="password">Wagwoord</string>
     <string name="login">Teken in</string>

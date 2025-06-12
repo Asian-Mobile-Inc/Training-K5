@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">ExHieuNT</string>
     <string name="phone_or_email">Téléphone ou e-mail</string>
     <string name="password">Mot de passe</string>
     <string name="login">Connexion</string>
