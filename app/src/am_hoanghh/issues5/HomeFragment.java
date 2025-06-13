@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.asian.R;
 import com.example.asian.databinding.FragmentHomeBinding;
@@ -37,34 +38,21 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initHomeLists();
+
+        initHomeAdapter();
+    }
+
+    private void initHomeLists() {
         lists = new ArrayList<>();
         lists.add(new Home(LUFFY, R.drawable.img_home_luffy_1, 19425, false));
         lists.add(new Home(NARUTO, R.drawable.img_home_luffy_2, 98271, false));
         lists.add(new Home(RONALDO, R.drawable.img_home_luffy_3, 2353, false));
         lists.add(new Home(MESSI, R.drawable.img_home_luffy_4, 253, false));
+    }
 
+    private void initHomeAdapter() {
         HomeGridViewAdapter gridViewAdapter = new HomeGridViewAdapter(getContext(), lists);
         binding.gvHome.setAdapter(gridViewAdapter);
-
-        binding.ivDrawText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.drawTextFragment);
-            }
-        });
-
-        binding.ivDraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.drawFragment);
-            }
-        });
-
-        binding.ivMine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.mineFragment);
-            }
-        });
     }
 }

@@ -32,6 +32,12 @@ public class DrawTextFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initDrawTextLists();
+
+        initDrawTextAdapter();
+    }
+
+    private void initDrawTextLists() {
         lists = new ArrayList<>();
         lists.add(new DrawText(DRAW_ANIME, R.font.fuzzy_bubbles));
         lists.add(new DrawText(DRAW_ANIME, R.font.fugaz_one));
@@ -45,31 +51,12 @@ public class DrawTextFragment extends Fragment {
         lists.add(new DrawText(DRAW_ANIME, R.font.scriptmtbold));
         lists.add(new DrawText(DRAW_ANIME, R.font.montserrat_thin));
         lists.add(new DrawText(DRAW_ANIME, R.font.mr_dafoe));
+    }
 
+    private void initDrawTextAdapter() {
         DrawTextGridViewAdapter gridViewAdapter = new DrawTextGridViewAdapter(getContext(), lists, typeface -> {
             binding.tvHome.setTypeface(typeface);
         });
         binding.gvDrawText.setAdapter(gridViewAdapter);
-
-        binding.ivHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.homeFragment);
-            }
-        });
-
-        binding.ivDraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.drawFragment);
-            }
-        });
-
-        binding.ivMine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.mineFragment);
-            }
-        });
     }
 }

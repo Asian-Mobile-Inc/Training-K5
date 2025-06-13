@@ -35,6 +35,10 @@ public class MineFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initListeners();
+    }
+
+    private void initListeners() {
         binding.tvMyAlbum.setOnClickListener(v -> {
 //            Glide.with(this)
 //                    .load(R.drawable.bg_nav_bar_textview_yellow)
@@ -58,27 +62,6 @@ public class MineFragment extends Fragment {
             binding.tvMyAlbum.setBackgroundResource(R.drawable.bg_nav_bar_textview);
 
             binding.tvFavourite.setBackgroundResource(R.drawable.bg_nav_bar_textview_yellow);
-        });
-
-        binding.ivHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.homeFragment);
-            }
-        });
-
-        binding.ivDrawText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.drawTextFragment);
-            }
-        });
-
-        binding.ivDraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.drawFragment);
-            }
         });
     }
 }
