@@ -80,4 +80,27 @@
     <string name="language_item_polish">يحسن</string>
 
     <string name="language">لغة</string>
+
+    <string name="imageview_content_description_crown">CROWN</string>
+    <string name="imageview_content_description_setting">SETTING</string>
+    <string name="imageview_content_description_question">QUESTION</string>
+    <string name="textview_text_previous_text">Previous text</string>
+    <string name="imageview_content_description_pen">PEN</string>
+    <string name="imageview_content_description_heart">HEART</string>
+    <string name="imageview_content_description_image">IMAGE</string>
+    <string name="imageview_content_description_home">HOME</string>
+    <string name="textview_text_home">Home</string>
+    <string name="imageview_content_description_draw_text">DRAW TEXT</string>
+    <string name="textview_text_draw_text">Draw Text</string>
+    <string name="imageview_content_description_draw">DRAW</string>
+    <string name="textview_text_draw">Draw</string>
+    <string name="imageview_content_description_mine">MINE</string>
+    <string name="textview_text_mine">Mine</string>
+    <string name="textview_text_draw_anime">Draw Anime</string>
+    <string name="imageview_content_description_paper">PAPER</string>
+    <string name="imageview_content_description_pencil">PENCIL</string>
+    <string name="textview_text_my_album">My Album</string>
+    <string name="textview_text_favourite">Favourite</string>
+    <string name="textview_text_draw_now">Draw now!</string>
+    <string name="imageview_content_description_yellow_bar">YELLOW BAR</string>
 </resources>
