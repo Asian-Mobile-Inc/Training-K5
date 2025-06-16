@@ -2,17 +2,12 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/</item>
-        <item>@font/adlam_display</item>
-        <item>@font/baloo_2</item>
         <item>@font/bigshot_one</item>
         <item>@font/boogaloo</item>
-        <item>@font/bruno_ace_sc</item>
-        <item>@font/fontdiner_swanky</item>
         <item>@font/fredericka_the_great</item>
         <item>@font/frijole</item>
         <item>@font/fugaz_one</item>
         <item>@font/inter_thin</item>
-        <item>@font/lexend_thin</item>
         <item>@font/montserrat_thin</item>
         <item>@font/mr_dafoe</item>
     </array>
