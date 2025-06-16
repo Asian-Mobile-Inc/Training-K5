@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.asian.databinding.ActivityIssue6Ex1Binding;
 
@@ -24,6 +25,21 @@ public class Issue6MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        initViewPager();
+    }
+
+    private void initViewPager() {
+        binding.viewPager.setAdapter(new MyPagerAdapter(binding.viewPager, this));
+
+        binding.viewPager.setOffscreenPageLimit(2);
+
+        binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
         });
     }
 }
