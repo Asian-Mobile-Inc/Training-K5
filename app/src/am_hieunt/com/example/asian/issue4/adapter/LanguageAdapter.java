@@ -1,5 +1,7 @@
 package com.example.asian.issue4.adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +10,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.issue4.model.Language;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHolder> {
-    private List<Language> mLanguages;
-    private int mSelectedPosotion = -1;
+public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewHolder> {
+    private Context mContext;
 
     public interface OnLanguageSelectedListen {
         void onLanguageSelected(Language language);
@@ -26,10 +31,23 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
 
     private OnLanguageSelectedListen mListener;
 
-    public LanguageAdapter(List<Language> languages, OnLanguageSelectedListen listener) {
-        this.mLanguages = languages;
+    public LanguageAdapter(Context context, OnLanguageSelectedListen listener) {
+        super(DIFF_CALLBACK);
         this.mListener = listener;
+        this.mContext = context;
     }
+
+    private static final DiffUtil.ItemCallback<Language> DIFF_CALLBACK = new DiffUtil.ItemCallback<Language>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Language oldLang, @NonNull Language newLang) {
+            return oldLang.getCode().equals(newLang.getCode());
+        }
+        @SuppressLint("DiffUtilEquals")
+        @Override
+        public boolean areContentsTheSame(@NonNull Language oldLang, @NonNull Language newLang) {
+            return oldLang.equals(newLang);
+        }
+    };
 
     @NonNull
     @Override
@@ -41,37 +59,32 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Language language = mLanguages.get(position);
-        holder.sivFlag.setImageResource(language.getFlagId());
+        Language language = getItem(position);
+        Glide.with(mContext)
+                        .load(language.getFlagId())
+                        .into(holder.sivFlag);
         holder.tvName.setText(language.getName());
-        holder.rbSelect.setChecked(mSelectedPosotion == position);
+        holder.rbSelect.setChecked(language.getSelected());
 
         holder.rbSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSelectedPosotion = holder.getAdapterPosition();
                 if (mListener != null) {
                     mListener.onLanguageSelected(language);
                 }
-                notifyDataSetChanged();
+                submitList(updateAdapter(holder.getAdapterPosition()));
             }
         });
 
         holder.cvLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSelectedPosotion = holder.getAdapterPosition();
                 if (mListener != null) {
                     mListener.onLanguageSelected(language);
                 }
-                notifyDataSetChanged();
+                submitList(updateAdapter(holder.getAdapterPosition()));
             }
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return mLanguages.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -87,4 +100,21 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             cvLanguage = view.findViewById(R.id.cvLanguage);
         }
     }
+
+    private List<Language> updateAdapter(int selectedPosition) {
+        List<Language> updatedList = new ArrayList<>();
+        List<Language> currentList = getCurrentList();
+        for (int i = 0; i < currentList.size(); i++) {
+            Language oldItem = currentList.get(i);
+            boolean isSelected = (i == selectedPosition);
+            if (oldItem.getSelected() != isSelected) {
+                Language newItem = new Language(oldItem.getFlagId(), oldItem.getCode(), oldItem.getName(), isSelected);
+                updatedList.add(newItem);
+            } else {
+                updatedList.add(oldItem);
+            }
+        }
+        return updatedList;
+    }
+
 }

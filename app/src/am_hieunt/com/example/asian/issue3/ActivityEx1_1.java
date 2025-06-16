@@ -25,17 +25,13 @@ public class ActivityEx1_1 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         String username = getIntent().getStringExtra("username");
-
         mEdtUsername = findViewById(R.id.edtUsername);
         mEdtUsername.setFocusable(false);
         mEdtUsername.setText(username);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
     }
 
     @Override

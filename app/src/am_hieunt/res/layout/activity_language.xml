@@ -44,7 +44,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/blue"
                 android:gravity="center" />
-
             <ImageButton
                 android:id="@+id/ibSelect"
                 android:layout_width="32dp"
@@ -52,9 +51,7 @@
                 android:importantForAccessibility="no"
                 android:background="@color/transparent"
                 app:srcCompat="@drawable/ic_select" />
-
         </LinearLayout>
-
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView

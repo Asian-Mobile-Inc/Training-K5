@@ -27,12 +27,10 @@ public class ActivityEx1 extends AppCompatActivity {
     private TextView mTvErrorUsername, mTvErrorPassword;
     private static final String INTENTCODE = "username";
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ex1);
-
         mCheck = true;
         mUsername = findViewById(R.id.edtUsername);
         mPassword = findViewById(R.id.edtPassword);
@@ -41,13 +39,16 @@ public class ActivityEx1 extends AppCompatActivity {
         mTvErrorPassword = findViewById(R.id.tvErrorPassword);
         mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
+        initListener();
+    }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void initListener() {
         mUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mUsername.setFocusable(true);
@@ -59,7 +60,6 @@ public class ActivityEx1 extends AppCompatActivity {
                     mUsername.setCompoundDrawablesWithIntrinsicBounds(null, null, deleteIcon, null);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -89,13 +89,10 @@ public class ActivityEx1 extends AppCompatActivity {
             }
         });
 
-        mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_hide);
         mPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
@@ -109,10 +106,8 @@ public class ActivityEx1 extends AppCompatActivity {
                     mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -126,7 +121,6 @@ public class ActivityEx1 extends AppCompatActivity {
                     mIcon = ContextCompat.getDrawable(ActivityEx1.this, R.drawable.ic_eye);
                 }
                 mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
-
                 final int DRAWABLE_RIGHT = 2;
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     if(mPassword.getCompoundDrawables()[DRAWABLE_RIGHT] != null) {
@@ -175,7 +169,7 @@ public class ActivityEx1 extends AppCompatActivity {
                 String upperCaseRegex= ".*[A-Z].*";
                 String numberRegex= ".*[0-9].*";
                 if (mPassword.getText().toString().length() >= 8 && (mPassword.getText().toString().matches(specialCharRegex)
-                    || mPassword.getText().toString().matches(upperCaseRegex) || mPassword.getText().toString().matches(numberRegex))) {
+                        || mPassword.getText().toString().matches(upperCaseRegex) || mPassword.getText().toString().matches(numberRegex))) {
                     mTvErrorPassword.setVisibility(View.GONE);
                     mPassword.setSelected(false);
                 } else {
@@ -187,7 +181,6 @@ public class ActivityEx1 extends AppCompatActivity {
                     mPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                     mPassword.setSelected(true);
                 }
-
                 mUsername.setFocusable(true);
                 mUsername.setFocusableInTouchMode(true);
                 mPassword.setFocusable(true);
@@ -197,7 +190,6 @@ public class ActivityEx1 extends AppCompatActivity {
                     intent.putExtra(INTENTCODE, mUsername.getText().toString());
                     startActivity(intent);
                 }
-
             }
         });
     }

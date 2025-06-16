@@ -4,11 +4,13 @@ public class Language {
     private int mFlagId;
     private String mCode;
     private String mName;
+    private Boolean mSelected;
 
-    public Language(int mFlagId, String mCode, String mName) {
+    public Language(int mFlagId, String mCode, String mName, Boolean mSelected) {
         this.mFlagId = mFlagId;
         this.mCode = mCode;
         this.mName = mName;
+        this.mSelected = mSelected;
     }
 
     public int getFlagId() {
@@ -33,5 +35,13 @@ public class Language {
 
     public void setName(String mName) {
         this.mName = mName;
+    }
+
+    public Boolean getSelected() {
+        return mSelected;
+    }
+
+    public void setSelected(Boolean mSlected) {
+        this.mSelected = mSlected;
     }
 }
