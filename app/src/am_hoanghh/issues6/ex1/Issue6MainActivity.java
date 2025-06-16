@@ -32,9 +32,8 @@ public class Issue6MainActivity extends AppCompatActivity {
 
     private void initViewPager() {
         binding.viewPager.setAdapter(new MyPagerAdapter(binding.viewPager, this));
-
         binding.viewPager.setOffscreenPageLimit(2);
-
+        binding.viewPager.setUserInputEnabled(false);
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {

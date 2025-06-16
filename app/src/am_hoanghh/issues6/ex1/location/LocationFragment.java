@@ -3,8 +3,10 @@ package issues6.ex1.location;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +20,21 @@ import androidx.fragment.app.Fragment;
 import com.example.asian.R;
 import com.example.asian.databinding.FragmentLocationBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
+import java.util.Objects;
 
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private FragmentLocationBinding binding;
@@ -34,6 +45,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private LocationRequest locationRequest;
     private Marker currentLocationMarker;
     private SupportMapFragment mapFragment;
+    private boolean firstUpdateLocation;
 
     @Nullable
     @Override
@@ -46,9 +58,13 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setupLocationService();
+    }
+
+    private void setupLocationService() {
         locationClient = LocationServices.getFusedLocationProviderClient(requireContext());
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync((OnMapReadyCallback) this);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -70,22 +86,39 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         locationRequest.setFastestInterval(5000);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                //Location Permission already granted
-                locationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
-                googleMap.setMyLocationEnabled(true);
-            } else {
-                //Request Location Permission
-                checkLocationPermission();
-            }
-        }
-        else {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
             googleMap.setMyLocationEnabled(true);
         }
-
     }
+
+    LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            List<Location> locationList = locationResult.getLocations();
+            if (locationList.size() > 0) {
+                // The last location in the list is the newest
+                Location location = locationList.get(locationList.size() - 1);
+                Log.d("MapsActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
+                lastLocation = location;
+                if (currentLocationMarker != null) {
+                    currentLocationMarker.remove();
+                }
+
+                // Place current location marker
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                markerOptions.title("Current Position");
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+                currentLocationMarker = googleMap.addMarker(markerOptions);
+
+                if (!firstUpdateLocation) {
+                    // Just move map camera in the first time
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+                    firstUpdateLocation = true;
+                }
+            }
+        }
+    };
 }

@@ -11,6 +11,7 @@ import issues6.ex1.permission.PermissionFragment;
 
 public class MyPagerAdapter extends FragmentStateAdapter {
     private final ViewPager2 viewPager;
+
     public MyPagerAdapter(ViewPager2 viewPager, @NonNull FragmentActivity fa) {
         super(fa);
         this.viewPager = viewPager;

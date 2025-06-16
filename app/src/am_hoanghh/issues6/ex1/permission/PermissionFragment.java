@@ -48,9 +48,7 @@ public class PermissionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         checkAlreadyGranted();
-
         initListeners();
-
         initLocationPermissionLauncher();
     }
 
@@ -63,7 +61,6 @@ public class PermissionFragment extends Fragment {
                         // permission already granted
                         Toast.makeText(getContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
                         setAllowedPermission();
-
                         viewPager.setCurrentItem(1);
                     } else if (!ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
                         binding.switchCompat.setChecked(false);
@@ -79,12 +76,10 @@ public class PermissionFragment extends Fragment {
                         // granted permission
                         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
                         setAllowedPermission();
-
                         viewPager.setCurrentItem(1);
                     }
                 } else {
                     Toast.makeText(getContext(), "GPS disabled", Toast.LENGTH_SHORT).show();
-
                     setNotAllowedPermission();
                 }
             }
@@ -122,7 +117,6 @@ public class PermissionFragment extends Fragment {
             // permission already granted
             Toast.makeText(getContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
             setAllowedPermission();
-
             viewPager.setCurrentItem(1);
         }
     }
