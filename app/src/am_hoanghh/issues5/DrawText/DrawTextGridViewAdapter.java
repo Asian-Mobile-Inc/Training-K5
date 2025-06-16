@@ -1,4 +1,4 @@
-package issues5;
+package issues5.DrawText;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -35,7 +35,6 @@ public class DrawTextGridViewAdapter extends ArrayAdapter<DrawText> {
         }
 
         DrawText model = getItem(position);
-
         TextView tvDrawText = itemView.findViewById(R.id.tvDrawText);
 
         if (model != null) {
@@ -55,9 +54,7 @@ public class DrawTextGridViewAdapter extends ArrayAdapter<DrawText> {
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     selectedItem = position;
-
                     notifyDataSetChanged();
-
                     listener.onDrawTextSelected(typeface);
                 }
             });

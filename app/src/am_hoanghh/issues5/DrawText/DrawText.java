@@ -1,4 +1,4 @@
-package issues5;
+package issues5.DrawText;
 
 public class DrawText {
     private String content;

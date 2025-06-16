@@ -1,4 +1,4 @@
-package issues5;
+package issues5.Home;
 
 public class Home {
     private String title;

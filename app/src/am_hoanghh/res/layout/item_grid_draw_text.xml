@@ -16,5 +16,4 @@
         android:text="@string/textview_text_draw_anime"
         android:textColor="@color/gray_9B9B9B"
         android:textSize="14sp" />
-
 </androidx.cardview.widget.CardView>

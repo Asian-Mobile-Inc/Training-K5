@@ -1,4 +1,4 @@
-package issues5;
+package issues5.Home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -25,18 +25,17 @@ public class HomeGridViewAdapter extends ArrayAdapter<Home> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-
         View itemView = convertView;
         if (itemView == null) {
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_grid_home, parent, false);
         }
 
-        Home model = getItem(position);
-
         ImageView ivItemGrid = itemView.findViewById(R.id.ivItemGrid);
         ImageView ivHeart = itemView.findViewById(R.id.ivHeart);
         TextView tvTitle = itemView.findViewById(R.id.tvTitle);
         TextView tvLikeNumber = itemView.findViewById(R.id.tvLikeNumber);
+
+        Home model = getItem(position);
 
         if (model != null) {
             Glide.with(itemView.getContext())
@@ -53,13 +52,11 @@ public class HomeGridViewAdapter extends ArrayAdapter<Home> {
                     Glide.with(getContext())
                             .load(R.drawable.ic_heart)
                             .into(ivHeart);
-
                     model.setFavorite(false);
                 } else {
                     Glide.with(getContext())
                             .load(R.drawable.ic_heart_gradient)
                             .into(ivHeart);
-
                     model.setFavorite(true);
                 }
             });

@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import issues5.Draw.DrawFragment;
+import issues5.DrawText.DrawTextFragment;
+import issues5.Home.HomeFragment;
+import issues5.Mine.MineFragment;
+
 public class MyPagerAdapter extends FragmentStateAdapter {
     public MyPagerAdapter(@NonNull FragmentActivity fa) {
         super(fa);
@@ -32,4 +37,3 @@ public class MyPagerAdapter extends FragmentStateAdapter {
         return 4;
     }
 }
-

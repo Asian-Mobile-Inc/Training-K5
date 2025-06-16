@@ -26,9 +26,7 @@ public class Issues5Activity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initToolbar();
-
         initViewPager();
-
         initListeners();
     }
 
@@ -40,9 +38,7 @@ public class Issues5Activity extends AppCompatActivity {
 
     private void initViewPager() {
         binding.viewPager.setAdapter(new MyPagerAdapter(this));
-
         binding.viewPager.setOffscreenPageLimit(4);
-
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -74,25 +70,21 @@ public class Issues5Activity extends AppCompatActivity {
         Glide.with(this)
                 .load(position == 0 ? R.drawable.ic_home_yellow : R.drawable.ic_home)
                 .into(binding.ivHome);
-
         binding.ivYellowBarHome.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
 
         Glide.with(this)
                 .load(position == 1 ? R.drawable.ic_draw_text_yellow : R.drawable.ic_draw_text)
                 .into(binding.ivDrawText);
-
         binding.ivYellowBarDrawText.setVisibility(position == 1 ? View.VISIBLE : View.GONE);
 
         Glide.with(this)
                 .load(position == 2 ? R.drawable.ic_draw_yellow : R.drawable.ic_draw)
                 .into(binding.ivDraw);
-
         binding.ivYellowBarDraw.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
 
         Glide.with(this)
                 .load(position == 3 ? R.drawable.ic_mine_yellow : R.drawable.ic_mine)
                 .into(binding.ivMine);
-
         binding.ivYellowBarMine.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
     }
 }

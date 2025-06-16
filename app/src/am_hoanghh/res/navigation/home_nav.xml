@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="issues5.HomeFragment"
+        android:name="issues5.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/drawTextFragment"
-        android:name="issues5.DrawTextFragment"
+        android:name="issues5.DrawText.DrawTextFragment"
         android:label="fragment_draw_text"
         tools:layout="@layout/fragment_draw_text" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/drawFragment"
-        android:name="issues5.DrawFragment"
+        android:name="issues5.Draw.DrawFragment"
         android:label="fragment_draw"
         tools:layout="@layout/fragment_draw" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/mineFragment"
-        android:name="issues5.MineFragment"
+        android:name="issues5.Mine.MineFragment"
         android:label="fragment_mine"
         tools:layout="@layout/fragment_mine" >
         <action
