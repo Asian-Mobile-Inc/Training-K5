@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,6 +66,7 @@ public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewH
                         .into(holder.sivFlag);
         holder.tvName.setText(language.getName());
         holder.rbSelect.setChecked(language.getSelected());
+        holder.clLanguage.setSelected(language.getSelected());
 
         holder.rbSelect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,16 +74,18 @@ public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewH
                 if (mListener != null) {
                     mListener.onLanguageSelected(language);
                 }
+                holder.clLanguage.setSelected(true);
                 submitList(updateAdapter(holder.getAdapterPosition()));
             }
         });
 
-        holder.cvLanguage.setOnClickListener(new View.OnClickListener() {
+        holder.clLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onLanguageSelected(language);
                 }
+                holder.clLanguage.setSelected(true);
                 submitList(updateAdapter(holder.getAdapterPosition()));
             }
         });
@@ -91,13 +95,13 @@ public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewH
         public ShapeableImageView sivFlag;
         public TextView tvName;
         public RadioButton rbSelect;
-        public CardView cvLanguage;
+        public ConstraintLayout clLanguage;
         public ViewHolder(View view) {
             super(view);
             sivFlag = view.findViewById(R.id.sivFlag);
             tvName = view.findViewById(R.id.tvName);
             rbSelect = view.findViewById(R.id.rbSelect);
-            cvLanguage = view.findViewById(R.id.cvLanguage);
+            clLanguage = view.findViewById(R.id.clLanguage);
         }
     }
 

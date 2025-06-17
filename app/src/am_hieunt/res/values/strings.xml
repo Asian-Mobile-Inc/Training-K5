@@ -1,61 +1,61 @@
 <resources>
     <string name="app_name" translatable="false">ExHieuNT</string>
-    <string name="phone_or_email">Phone or email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="calculator">Calculator</string>
-    <string name="term_2">Term 2</string>
-    <string name="term_1">Term 1</string>
-    <string name="operations">Operations</string>
-    <string name="result">Result</string>
-    <string name="_0">0</string>
-    <string name="name_must_be_3_characters">Name must be ≥ 3 characters</string>
-    <string name="must_be_exactly_9_digits">Must be exactly 9 digits</string>
-    <string name="degree">Degree</string>
-    <string name="hobbies">Hobbies</string>
-    <string name="reading_news">Reading news</string>
-    <string name="reading_books">Reading books</string>
-    <string name="reading_code">Reading code</string>
-    <string name="additional_information">Additional Information</string>
-    <string name="bachelor">Bachelor</string>
-    <string name="associate">Associate</string>
-    <string name="vocational">Vocational</string>
-    <string name="enter_additional_information">Enter additional information</string>
-    <string name="infomation">Infomation</string>
-    <string name="submit">SUBMIT</string>
-    <string name="full_name">* Full name</string>
-    <string name="national_id">* National ID</string>
-    <string name="error_full_name">Full name required</string>
-    <string name="error_national_id">National ID required</string>
-    <string name="term1">* Term 1</string>
-    <string name="term2">* Term 2</string>
-    <string name="error_div">Number can’t divide 0</string>
-    <string name="error_username">* Tài khoản không đúng</string>
-    <string name="error_password">* Mật khẩu không đúng</string>
-    <string name="error_additional_information">Additional information >= 100 character</string>
+    <string name="phone_or_email" translatable="false">Phone or email</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="calculator" translatable="false">Calculator</string>
+    <string name="term_2" translatable="false">Term 2</string>
+    <string name="term_1" translatable="false">Term 1</string>
+    <string name="operations" translatable="false">Operations</string>
+    <string name="result" translatable="false">Result</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="name_must_be_3_characters" translatable="false">Name must be ≥ 3 characters</string>
+    <string name="must_be_exactly_9_digits" translatable="false">Must be exactly 9 digits</string>
+    <string name="degree" translatable="false">Degree</string>
+    <string name="hobbies" translatable="false">Hobbies</string>
+    <string name="reading_news" translatable="false">Reading news</string>
+    <string name="reading_books" translatable="false">Reading books</string>
+    <string name="reading_code" translatable="false">Reading code</string>
+    <string name="additional_information" translatable="false">Additional Information</string>
+    <string name="bachelor" translatable="false">Bachelor</string>
+    <string name="associate" translatable="false">Associate</string>
+    <string name="vocational" translatable="false">Vocational</string>
+    <string name="enter_additional_information" translatable="false">Enter additional information</string>
+    <string name="infomation" translatable="false">Infomation</string>
+    <string name="submit" translatable="false">SUBMIT</string>
+    <string name="full_name" translatable="false">* Full name</string>
+    <string name="national_id" translatable="false">* National ID</string>
+    <string name="error_full_name" translatable="false">Full name required</string>
+    <string name="error_national_id" translatable="false">National ID required</string>
+    <string name="term1" translatable="false">* Term 1</string>
+    <string name="term2" translatable="false">* Term 2</string>
+    <string name="error_div" translatable="false">Number can’t divide 0</string>
+    <string name="error_username" translatable="false">* Tài khoản không đúng</string>
+    <string name="error_password" translatable="false">* Mật khẩu không đúng</string>
+    <string name="error_additional_information" translatable="false">Additional information >= 100 character</string>
 
     <string name="title_language">Language</string>
-    <string name="text_language_english">English</string>
-    <string name="text_language_spanish">Español</string>
-    <string name="text_language_vietnamese">Tiếng Việt</string>
-    <string name="text_language_french">Français</string>
-    <string name="text_language_hindi">हिन्दी</string>
-    <string name="text_language_german">Deutsch</string>
-    <string name="text_language_portuguese">Português</string>
-    <string name="text_language_italian">Italiano</string>
-    <string name="text_language_arabic">عربي</string>
-    <string name="text_language_japanese">日本語</string>
-    <string name="text_language_korean">이스라엘</string>
-    <string name="text_language_urdu">اُردُو</string>
-    <string name="text_language_afrikaans">Afrikaans</string>
-    <string name="text_language_hebrew">ישראל</string>
-    <string name="text_language_hausa">Harshen Hausa</string>
-    <string name="text_language_chinese">中国人</string>
-    <string name="text_language_turkish">Türkçe</string>
-    <string name="text_language_indonesia">Bahasa Indonesia</string>
-    <string name="text_language_dutch">Dutch</string>
-    <string name="text_language_russian">Русский</string>
-    <string name="text_language_polish">Polski</string>
+    <string name="text_language_english" translatable="false">English</string>
+    <string name="text_language_spanish" translatable="false">Español</string>
+    <string name="text_language_vietnamese" translatable="false">Tiếng Việt</string>
+    <string name="text_language_french" translatable="false">Français</string>
+    <string name="text_language_hindi" translatable="false">हिन्दी</string>
+    <string name="text_language_german" translatable="false">Deutsch</string>
+    <string name="text_language_portuguese" translatable="false">Português</string>
+    <string name="text_language_italian" translatable="false">Italiano</string>
+    <string name="text_language_arabic" translatable="false">عربي</string>
+    <string name="text_language_japanese" translatable="false">日本語</string>
+    <string name="text_language_korean" translatable="false">이스라엘</string>
+    <string name="text_language_urdu" translatable="false">اُردُو</string>
+    <string name="text_language_afrikaans" translatable="false">Afrikaans</string>
+    <string name="text_language_hebrew" translatable="false">ישראל</string>
+    <string name="text_language_hausa" translatable="false">Harshen Hausa</string>
+    <string name="text_language_chinese" translatable="false">中国人</string>
+    <string name="text_language_turkish" translatable="false">Türkçe</string>
+    <string name="text_language_indonesia" translatable="false">Bahasa Indonesia</string>
+    <string name="text_language_dutch" translatable="false">Dutch</string>
+    <string name="text_language_russian" translatable="false">Русский</string>
+    <string name="text_language_polish" translatable="false">Polski</string>
 
     <string name="code_language_english" translatable="false">en</string>
     <string name="code_language_spanish" translatable="false">es</string>
