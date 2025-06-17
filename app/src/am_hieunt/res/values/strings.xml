@@ -59,4 +59,82 @@
     <string name="favourite">Favourite</string>
     <string name="your_gallery_is_empty_let_s_fix_that">Your gallery is empty... let’s fix that!</string>
     <string name="draw_now">Draw now!</string>
+    <string name="phone_or_email" translatable="false">Phone or email</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="calculator" translatable="false">Calculator</string>
+    <string name="term_2" translatable="false">Term 2</string>
+    <string name="term_1" translatable="false">Term 1</string>
+    <string name="operations" translatable="false">Operations</string>
+    <string name="result" translatable="false">Result</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="name_must_be_3_characters" translatable="false">Name must be ≥ 3 characters</string>
+    <string name="must_be_exactly_9_digits" translatable="false">Must be exactly 9 digits</string>
+    <string name="degree" translatable="false">Degree</string>
+    <string name="hobbies" translatable="false">Hobbies</string>
+    <string name="reading_news" translatable="false">Reading news</string>
+    <string name="reading_books" translatable="false">Reading books</string>
+    <string name="reading_code" translatable="false">Reading code</string>
+    <string name="additional_information" translatable="false">Additional Information</string>
+    <string name="bachelor" translatable="false">Bachelor</string>
+    <string name="associate" translatable="false">Associate</string>
+    <string name="vocational" translatable="false">Vocational</string>
+    <string name="enter_additional_information" translatable="false">Enter additional information</string>
+    <string name="infomation" translatable="false">Infomation</string>
+    <string name="submit" translatable="false">SUBMIT</string>
+    <string name="full_name" translatable="false">* Full name</string>
+    <string name="national_id" translatable="false">* National ID</string>
+    <string name="error_full_name" translatable="false">Full name required</string>
+    <string name="error_national_id" translatable="false">National ID required</string>
+    <string name="term1" translatable="false">* Term 1</string>
+    <string name="term2" translatable="false">* Term 2</string>
+    <string name="error_div" translatable="false">Number can’t divide 0</string>
+    <string name="error_username" translatable="false">* Tài khoản không đúng</string>
+    <string name="error_password" translatable="false">* Mật khẩu không đúng</string>
+    <string name="error_additional_information" translatable="false">Additional information >= 100 character</string>
+
+    <string name="title_language">Language</string>
+    <string name="text_language_english" translatable="false">English</string>
+    <string name="text_language_spanish" translatable="false">Español</string>
+    <string name="text_language_vietnamese" translatable="false">Tiếng Việt</string>
+    <string name="text_language_french" translatable="false">Français</string>
+    <string name="text_language_hindi" translatable="false">हिन्दी</string>
+    <string name="text_language_german" translatable="false">Deutsch</string>
+    <string name="text_language_portuguese" translatable="false">Português</string>
+    <string name="text_language_italian" translatable="false">Italiano</string>
+    <string name="text_language_arabic" translatable="false">عربي</string>
+    <string name="text_language_japanese" translatable="false">日本語</string>
+    <string name="text_language_korean" translatable="false">이스라엘</string>
+    <string name="text_language_urdu" translatable="false">اُردُو</string>
+    <string name="text_language_afrikaans" translatable="false">Afrikaans</string>
+    <string name="text_language_hebrew" translatable="false">ישראל</string>
+    <string name="text_language_hausa" translatable="false">Harshen Hausa</string>
+    <string name="text_language_chinese" translatable="false">中国人</string>
+    <string name="text_language_turkish" translatable="false">Türkçe</string>
+    <string name="text_language_indonesia" translatable="false">Bahasa Indonesia</string>
+    <string name="text_language_dutch" translatable="false">Dutch</string>
+    <string name="text_language_russian" translatable="false">Русский</string>
+    <string name="text_language_polish" translatable="false">Polski</string>
+
+    <string name="code_language_english" translatable="false">en</string>
+    <string name="code_language_spanish" translatable="false">es</string>
+    <string name="code_language_vietnamese" translatable="false">vi</string>
+    <string name="code_language_french" translatable="false">fr</string>
+    <string name="code_language_hindi" translatable="false">hi</string>
+    <string name="code_language_german" translatable="false">de</string>
+    <string name="code_language_portuguese" translatable="false">pt</string>
+    <string name="code_language_italian" translatable="false">it</string>
+    <string name="code_language_arabic" translatable="false">ar</string>
+    <string name="code_language_japanese" translatable="false">ja</string>
+    <string name="code_language_korean" translatable="false">ko</string>
+    <string name="code_language_urdu" translatable="false">ur</string>
+    <string name="code_language_afrikaans" translatable="false">af</string>
+    <string name="code_language_hebrew" translatable="false">iw</string>
+    <string name="code_language_hausa" translatable="false">ha</string>
+    <string name="code_language_chinese" translatable="false">zh</string>
+    <string name="code_language_turkish" translatable="false">tr</string>
+    <string name="code_language_indonesia" translatable="false">in</string>
+    <string name="code_language_dutch" translatable="false">nl</string>
+    <string name="code_language_russian" translatable="false">ru</string>
+    <string name="code_language_polish" translatable="false">pl</string>
 </resources>
