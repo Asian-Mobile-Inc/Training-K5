@@ -84,4 +84,11 @@
     <string name="textview_text_location">Location</string>
     <string name="textview_text_permission_is_not_allowed">Permission is not allowed</string>
     <string name="textview_text_permission_is_allowed">Permission is allowed</string>
+    <string name="imageview_content_description_company">COMPANY</string>
+    <string name="textview_text_asian_mobile_company">Asian Mobile Company</string>
+    <string name="imageview_content_description_location">LOCATION</string>
+    <string name="imageview_content_description_camera">CAMERA</string>
+    <string name="imageview_content_description_person">PERSON</string>
+    <string name="imageview_content_description_police">POLICE</string>
+    <string name="imageview_content_description_parking">PARKING</string>
 </resources>

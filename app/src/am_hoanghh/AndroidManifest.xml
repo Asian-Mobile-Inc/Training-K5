@@ -20,12 +20,15 @@
         <service
             android:name="issues6.ex2.GpsService"
             android:foregroundServiceType="location" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCOS7zHlbUPMhn_s4AoHIuY4Q4vgiYVfSg" />
 
         <activity
             android:name="issues6.ex2.Issue6Ex2Activity"
+            android:exported="false" />
+        <activity
+            android:name="issues6.ex1.LocationActivity"
+            android:exported="false" />
+        <activity
+            android:name="issues6.ex1.PermissionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="issues6.ex1.Issue6Ex1Activity"
-            android:exported="false" />
         <activity
             android:name="issues4.LanguageActivity"
             android:exported="false" />
