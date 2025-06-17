@@ -11,7 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.asian.databinding.ActivityIssue6Ex1Binding;
 
-public class Issue6MainActivity extends AppCompatActivity {
+public class Issue6Ex1Activity extends AppCompatActivity {
     private ActivityIssue6Ex1Binding binding;
 
     @Override

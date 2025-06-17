@@ -30,6 +30,10 @@ public class PermissionFragment extends Fragment {
     private FragmentPermissionBinding binding;
     private ActivityResultLauncher<String> requestPermissionLauncher;
     private final ViewPager2 viewPager;
+    private static final String PERMISSION_ALREADY_GRANTED = "Permission already granted";
+    private static final String GPS_PERMISSION_DENIED = "GPS permission denied";
+    private static final String GPS_DISABLED = "GPS disabled";
+    private static final String PACKAGE = "package";
 
     public PermissionFragment(ViewPager2 viewPager2) {
         this.viewPager = viewPager2;
@@ -58,8 +62,8 @@ public class PermissionFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        // permission already granted
-                        Toast.makeText(getContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
+                        // Permission already granted
+                        Toast.makeText(getContext(), PERMISSION_ALREADY_GRANTED, Toast.LENGTH_SHORT).show();
                         setAllowedPermission();
                         viewPager.setCurrentItem(1);
                     } else if (!ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -68,18 +72,18 @@ public class PermissionFragment extends Fragment {
                         // Move to settings
                         new Handler(Looper.getMainLooper()).postDelayed(() -> {
                             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                            Uri uri = Uri.fromParts("package", requireContext().getPackageName(), null);
+                            Uri uri = Uri.fromParts(PACKAGE, requireContext().getPackageName(), null);
                             intent.setData(uri);
                             startActivity(intent);
                         }, 1000);
                     } else {
-                        // granted permission
+                        // Granted permission
                         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
                         setAllowedPermission();
                         viewPager.setCurrentItem(1);
                     }
                 } else {
-                    Toast.makeText(getContext(), "GPS disabled", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), GPS_DISABLED, Toast.LENGTH_SHORT).show();
                     setNotAllowedPermission();
                 }
             }
@@ -90,10 +94,10 @@ public class PermissionFragment extends Fragment {
         requestPermissionLauncher =
                 registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                     if (isGranted) {
-                        Toast.makeText(getContext(), "GPS permission granted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), PERMISSION_ALREADY_GRANTED, Toast.LENGTH_SHORT).show();
                         setAllowedPermission();
                     } else {
-                        Toast.makeText(getContext(), "GPS permission denied", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), GPS_PERMISSION_DENIED, Toast.LENGTH_SHORT).show();
                         binding.switchCompat.setChecked(false);
                         setNotAllowedPermission();
                     }
@@ -115,7 +119,7 @@ public class PermissionFragment extends Fragment {
     private void checkAlreadyGranted() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // permission already granted
-            Toast.makeText(getContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), PERMISSION_ALREADY_GRANTED, Toast.LENGTH_SHORT).show();
             setAllowedPermission();
             viewPager.setCurrentItem(1);
         }

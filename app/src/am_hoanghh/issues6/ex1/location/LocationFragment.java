@@ -3,7 +3,6 @@ package issues6.ex1.location;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -34,11 +32,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
-import java.util.Objects;
 
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private FragmentLocationBinding binding;
-
     private GoogleMap googleMap;
     private FusedLocationProviderClient locationClient;
     private Location lastLocation;
@@ -46,6 +42,9 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private Marker currentLocationMarker;
     private SupportMapFragment mapFragment;
     private boolean firstUpdateLocation;
+    private LocationCallback locationCallback;
+    private static final String LOCATION = "Location";
+    private static final String CURRENT_POSITION = "Current Position";
 
     @Nullable
     @Override
@@ -57,8 +56,8 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         setupLocationService();
+        createLocationCallback();
     }
 
     private void setupLocationService() {
@@ -92,33 +91,33 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    LocationCallback locationCallback = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            List<Location> locationList = locationResult.getLocations();
-            if (locationList.size() > 0) {
-                // The last location in the list is the newest
-                Location location = locationList.get(locationList.size() - 1);
-                Log.d("MapsActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
-                lastLocation = location;
-                if (currentLocationMarker != null) {
-                    currentLocationMarker.remove();
-                }
+    private void createLocationCallback() {
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                Location location = locationResult.getLastLocation();
+                if (location != null) {
+                    Log.d(LOCATION, "Location: " + location.getLatitude() + " " + location.getLongitude());
+                    lastLocation = location;
+                    if (currentLocationMarker != null) {
+                        currentLocationMarker.remove();
+                    }
 
-                // Place current location marker
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title("Current Position");
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-                currentLocationMarker = googleMap.addMarker(markerOptions);
+                    // Place current location marker
+                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(CURRENT_POSITION);
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+                    currentLocationMarker = googleMap.addMarker(markerOptions);
 
-                if (!firstUpdateLocation) {
-                    // Just move map camera in the first time
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
-                    firstUpdateLocation = true;
+                    if (!firstUpdateLocation) {
+                        // Just move map camera in the first time
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+                        firstUpdateLocation = true;
+                    }
                 }
             }
-        }
-    };
+        };
+    }
 }
