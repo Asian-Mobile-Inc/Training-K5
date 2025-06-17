@@ -42,8 +42,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void createPhotoList() {
-        mPhotos.add(new Photo(R.drawable.img_tanjiro, "#Tanjiro", 19425, true));
-        mPhotos.add(new Photo(R.drawable.img_zenitsu, "#Zenitsu", 19425, false));
+        mPhotos.add(new Photo(R.drawable.img_tanjiro, "#Luffy", 19425, true));
+        mPhotos.add(new Photo(R.drawable.img_zenitsu, "#Lyffy", 19425, false));
         mPhotos.add(new Photo(R.drawable.img_cover, "#Luffy", 19425, false));
         mPhotos.add(new Photo(R.drawable.img_naruto, "#Naruto", 19425, true));
     }

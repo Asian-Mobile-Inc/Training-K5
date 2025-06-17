@@ -52,16 +52,19 @@ public class PhotoAdapter extends ListAdapter<Photo, PhotoAdapter.ViewHolder> {
         Photo photo = getItem(position);
         Glide.with(mContext)
                 .load(photo.getPhotoId())
+                .skipMemoryCache(true)
                 .into(holder.sivPhoto);
         holder.tvName.setText(photo.getName());
         holder.tvPen.setText(String.valueOf(photo.getPen()));
         if (photo.getFavorite()) {
             Glide.with(mContext)
                     .load(R.drawable.ic_favourite_selected)
+                    .skipMemoryCache(true)
                     .into(holder.ivFavorite);
         } else {
             Glide.with(mContext)
                     .load(R.drawable.ic_favourite)
+                    .skipMemoryCache(true)
                     .into(holder.ivFavorite);
         }
         holder.ivFavorite.setOnClickListener(new View.OnClickListener() {
