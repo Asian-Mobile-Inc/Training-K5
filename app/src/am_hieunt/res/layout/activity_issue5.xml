@@ -28,11 +28,12 @@
         android:layout_height="108dp"
         android:text="@string/previous_text"
         android:gravity="center"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/fuzzybubbles_regular"
-        android:background="@drawable/my_out_line"
+        android:background="@drawable/my_out_line_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llHome" />

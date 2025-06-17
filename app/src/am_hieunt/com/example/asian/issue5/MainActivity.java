@@ -1,6 +1,7 @@
 package com.example.asian.issue5;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.draw:
                         mVpConstraint.setCurrentItem(2);
-                        mStr = "Draw";
                         break;
                     case R.id.mine:
                         mVpConstraint.setCurrentItem(3);
@@ -78,22 +78,30 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 switch (position) {
                     case 0:
-                        setTextPrevious(mStr);
+                        if (!mStr.equals("Home")) {
+                            setTextPrevious(mStr);
+                        }
                         mStr = "Home";
                         mBNV.getMenu().getItem(0).setChecked(true);
                         break;
                     case 1:
-                        setTextPrevious(mStr);
+                        if (!mStr.equals("Draw text")) {
+                            setTextPrevious(mStr);
+                        }
                         mStr = "Draw text";
                         mBNV.getMenu().getItem(1).setChecked(true);
                         break;
                     case 2:
-                        setTextPrevious(mStr);
+                        if (!mStr.equals("Draw")) {
+                            setTextPrevious(mStr);
+                        }
                         mStr = "Draw";
                         mBNV.getMenu().getItem(2).setChecked(true);
                         break;
                     case 3:
-                        setTextPrevious(mStr);
+                        if (!mStr.equals("Mine")) {
+                            setTextPrevious(mStr);
+                        }
                         mStr = "Mine";
                         mBNV.getMenu().getItem(3).setChecked(true);
                         break;
@@ -104,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTextPrevious(String text) {
         if (!mStr.isEmpty()) {
+            mTvPrevious.setTextColor(Color.BLACK);
             mTvPrevious.setText(text);
         }
     }

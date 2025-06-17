@@ -40,4 +40,23 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="previous_text">Previous text</string>
+    <string name="draw_anime">Draw Anime</string>
+
+    <string name="font_fuzzybubbles">fonts/fuzzybubbles_regular.ttf</string>
+    <string name="font_fugazone">fonts/fugazone.ttf</string>
+    <string name="font_frijole">fonts/frijole.ttf</string>
+    <string name="font_frederickathegreat">fonts/frederickathegreat.ttf</string>
+    <string name="font_forte">fonts/forte.ttf</string>
+    <string name="font_inter">fonts/inter.ttf</string>
+    <string name="font_baloo2">fonts/baloo2.ttf</string>
+    <string name="font_bigshotone">fonts/bigshotone.ttf</string>
+    <string name="font_boogaloo">fonts/boogaloo.ttf</string>
+    <string name="font_brushscript">fonts/brushscript.ttf</string>
+    <string name="font_lexend">fonts/lexend.ttf</string>
+    <string name="font_montserrat">fonts/montserrat.ttf</string>
+    <string name="font_mrdafoe">fonts/mrdafoe.ttf</string>
+    <string name="my_album">My Album</string>
+    <string name="favourite">Favourite</string>
+    <string name="your_gallery_is_empty_let_s_fix_that">Your gallery is empty... let’s fix that!</string>
+    <string name="draw_now">Draw now!</string>
 </resources>
