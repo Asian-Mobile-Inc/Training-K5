@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".issue2.ex3.ActivityEx3">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +24,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
-
     <ScrollView
         android:id="@+id/svMenu"
         android:layout_width="match_parent"
@@ -34,14 +32,12 @@
         android:background="@drawable/my_scrollview"
         android:paddingTop="20dp"
         android:layout_marginBottom="100dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="vertical" >
-
             <TextView
                 android:id="@+id/tvFullName"
                 android:layout_width="match_parent"
@@ -53,7 +49,6 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/full_name"
                 app:layout_constraintStart_toStartOf="parent" />
-
             <EditText
                 android:id="@+id/edtFullName"
                 android:layout_width="match_parent"
@@ -67,7 +62,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:hint="@string/name_must_be_3_characters" />
-
             <TextView
                 android:id="@+id/tvErrorFullName"
                 android:layout_width="match_parent"
@@ -75,7 +69,6 @@
                 android:textColor="@color/red"
                 android:visibility="gone"
                 android:layout_marginTop="10dp" />
-
             <TextView
                 android:id="@+id/tvNational"
                 android:layout_width="match_parent"
@@ -86,7 +79,6 @@
                 android:text="@string/national_id"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"/>
-
             <EditText
                 android:id="@+id/edtNational"
                 android:layout_width="match_parent"
@@ -100,7 +92,6 @@
                 android:ems="10"
                 android:inputType="text"
                 android:hint="@string/must_be_exactly_9_digits" />
-
             <TextView
                 android:id="@+id/tvErrorNational"
                 android:layout_width="match_parent"
@@ -108,7 +99,6 @@
                 android:textColor="@color/red"
                 android:visibility="gone"
                 android:layout_marginTop="10dp" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,12 +110,10 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 app:drawableStartCompat="@drawable/ic_degree" />
-
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <RadioButton
                     android:id="@+id/rbVacational"
                     android:layout_width="wrap_content"
@@ -133,7 +121,6 @@
                     android:layout_weight="1"
                     android:text="@string/vocational"
                     android:buttonTint="@color/radio_color"/>
-
                 <RadioButton
                     android:id="@+id/rbAssociate"
                     android:layout_width="wrap_content"
@@ -141,7 +128,6 @@
                     android:layout_weight="1"
                     android:buttonTint="@color/radio_color"
                     android:text="@string/associate" />
-
                 <RadioButton
                     android:id="@+id/rbBachelor"
                     android:layout_width="wrap_content"
@@ -150,7 +136,6 @@
                     android:buttonTint="@color/radio_color"
                     android:text="@string/bachelor" />
             </RadioGroup>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,28 +147,24 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="30dp"
                 app:drawableStartCompat="@drawable/ic_hobbies" />
-
             <CheckBox
                 android:id="@+id/cbRdNews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/radio_color"
                 android:text="@string/reading_news" />
-
             <CheckBox
                 android:id="@+id/cbRdBooks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/radio_color"
                 android:text="@string/reading_books" />
-
             <CheckBox
                 android:id="@+id/cbRdCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/reading_code"
                 android:buttonTint="@color/radio_color"/>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -193,7 +174,6 @@
                 android:textStyle="bold"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp" />
-
             <TextView
                 android:id="@+id/tvErrorAddInfo"
                 android:layout_width="match_parent"
@@ -201,11 +181,9 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_marginBottom="10dp" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiAddInfo"
                     android:layout_width="match_parent"
@@ -220,10 +198,8 @@
                     android:inputType="textMultiLine"
                     android:hint="@string/enter_additional_information"/>
             </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
     </ScrollView>
-
     <View
         android:id="@+id/vLine"
         android:layout_width="70dp"

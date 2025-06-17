@@ -28,7 +28,6 @@ public class ActivityEx2 extends AppCompatActivity {
     private double mTerm1 = 0, mTerm2 = 0;
     private Drawable mIcon;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,40 +37,23 @@ public class ActivityEx2 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         mImgBtnInc = findViewById(R.id.btnInc);
         mImgBtnDec = findViewById(R.id.btnDec);
         mImgBtnMul = findViewById(R.id.btnMul);
         mImgBtnDiv = findViewById(R.id.btnDiv);
-
         mEdtTerm1 = findViewById(R.id.edtTerm1);
         mEdtTerm2 = findViewById(R.id.edtTerm2);
-
         mTvResult = findViewById(R.id.tvResult);
         mTvTerm1 = findViewById(R.id.tvTerm1);
         mTvTerm2 = findViewById(R.id.tvTerm2);
         mTvErrorDiv = findViewById(R.id.tvErrorDiv);
+        mTvTerm1.setText(initText(getString(R.string.term1)));
+        mTvTerm2.setText(initText(getString(R.string.term2)));
+        initListener();
+    }
 
-        String term1Text = getString(R.string.term1);
-        SpannableStringBuilder spannable = new SpannableStringBuilder(term1Text);
-        spannable.setSpan(
-                new ForegroundColorSpan(Color.RED),
-                0, // start
-                1, // end
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        );
-        mTvTerm1.setText(spannable);
-
-        String term2Text = getString(R.string.term2);
-        spannable = new SpannableStringBuilder(term2Text);
-        spannable.setSpan(
-                new ForegroundColorSpan(Color.RED),
-                0, // start
-                1, // end
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        );
-        mTvTerm2.setText(spannable);
-
+    @SuppressLint("ClickableViewAccessibility")
+    private void initListener() {
         mEdtTerm2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -199,6 +181,17 @@ public class ActivityEx2 extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private String initText(String str) {
+        SpannableStringBuilder spannable = new SpannableStringBuilder(str);
+        spannable.setSpan(
+                new ForegroundColorSpan(Color.RED),
+                0,
+                1,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        );
+        return spannable.toString();
     }
 
     private Double getTerm1(String term1) {
