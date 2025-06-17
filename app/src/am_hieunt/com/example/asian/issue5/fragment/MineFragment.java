@@ -32,6 +32,7 @@ public class MineFragment extends Fragment {
         mTvMyAlbum = view.findViewById(R.id.tvMyAlbum);
         mTvFavourite = view.findViewById(R.id.tvFavourite);
         mTvMyAlbum.setSelected(true);
+        mTvMyAlbum.setTextColor(Color.BLACK);
         initListener();
         return view;
     }
