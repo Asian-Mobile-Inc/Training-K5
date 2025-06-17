@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -66,7 +67,7 @@ public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewH
                         .into(holder.sivFlag);
         holder.tvName.setText(language.getName());
         holder.rbSelect.setChecked(language.getSelected());
-        holder.clLanguage.setSelected(language.getSelected());
+        holder.llLanguage.setSelected(language.getSelected());
 
         holder.rbSelect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,18 +75,18 @@ public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewH
                 if (mListener != null) {
                     mListener.onLanguageSelected(language);
                 }
-                holder.clLanguage.setSelected(true);
+                holder.llLanguage.setSelected(true);
                 submitList(updateAdapter(holder.getAdapterPosition()));
             }
         });
 
-        holder.clLanguage.setOnClickListener(new View.OnClickListener() {
+        holder.llLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onLanguageSelected(language);
                 }
-                holder.clLanguage.setSelected(true);
+                holder.llLanguage.setSelected(true);
                 submitList(updateAdapter(holder.getAdapterPosition()));
             }
         });
@@ -95,13 +96,13 @@ public class LanguageAdapter extends ListAdapter<Language, LanguageAdapter.ViewH
         public ShapeableImageView sivFlag;
         public TextView tvName;
         public RadioButton rbSelect;
-        public ConstraintLayout clLanguage;
+        public LinearLayout llLanguage;
         public ViewHolder(View view) {
             super(view);
             sivFlag = view.findViewById(R.id.sivFlag);
             tvName = view.findViewById(R.id.tvName);
             rbSelect = view.findViewById(R.id.rbSelect);
-            clLanguage = view.findViewById(R.id.clLanguage);
+            llLanguage = view.findViewById(R.id.llLanguage);
         }
     }
 
