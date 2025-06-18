@@ -3,23 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvHome"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="@drawable/bg_home_rounded_textview"
-        android:fontFamily="@font/fuzzy_bubbles"
-        android:paddingHorizontal="130dp"
-        android:paddingVertical="50dp"
-        android:text="@string/textview_text_draw_text"
-        android:textColor="@color/black_181818"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/ivPaper"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/ivPaper"
         android:layout_width="200dp"
@@ -29,7 +12,7 @@
         android:src="@drawable/img_draw_paper"
         app:layout_constraintEnd_toStartOf="@id/ivPencil"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHome" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivPencil"
@@ -40,5 +23,5 @@
         android:src="@drawable/img_draw_pencil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivPaper"
-        app:layout_constraintTop_toBottomOf="@id/tvHome" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

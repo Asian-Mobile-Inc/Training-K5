@@ -43,7 +43,6 @@ public class HomeGridViewAdapter extends ArrayAdapter<Home> {
                     .transform(new CenterCrop(), new RoundedCorners(24))
                     .override(175, 215)
                     .into(ivItemGrid);
-
             tvTitle.setText(model.getTitle());
             tvLikeNumber.setText(String.valueOf(model.getLike()));
 

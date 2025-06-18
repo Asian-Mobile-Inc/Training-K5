@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.asian.R;
 import com.example.asian.databinding.FragmentHomeBinding;
@@ -47,7 +48,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void initHomeAdapter() {
-        HomeGridViewAdapter gridViewAdapter = new HomeGridViewAdapter(getContext(), lists);
-        binding.gvHome.setAdapter(gridViewAdapter);
+        HomeAdapter homeAdapter = new HomeAdapter(getContext(), lists);
+        binding.rvHome.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.rvHome.setAdapter(homeAdapter);
+        homeAdapter.submitList(lists);
     }
 }

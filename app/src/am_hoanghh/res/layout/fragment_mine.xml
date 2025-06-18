@@ -3,25 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvHome"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="@drawable/bg_home_rounded_textview"
-        android:fontFamily="@font/fuzzy_bubbles"
-        android:paddingHorizontal="155dp"
-        android:paddingVertical="50dp"
-        android:text="@string/textview_text_draw"
-        android:textColor="@color/black_181818"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/clNavBarMine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clNavBarMine"
+    <View
+        android:id="@+id/viewNavBarMine"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginHorizontal="16dp"
@@ -29,38 +12,37 @@
         android:background="@drawable/bg_nav_bar_mine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHome">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvMyAlbum"
-            android:layout_width="180dp"
-            android:layout_height="36dp"
-            android:background="@drawable/bg_nav_bar_textview_yellow"
-            android:fontFamily="@font/fuzzy_bubbles"
-            android:gravity="center"
-            android:text="@string/textview_text_my_album"
-            android:textColor="@color/black_181818"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvFavourite"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvMyAlbum"
+        android:layout_width="180dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_nav_bar_textview_yellow"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:gravity="center"
+        android:text="@string/textview_text_my_album"
+        android:textColor="@color/black_181818"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewNavBarMine"
+        app:layout_constraintEnd_toStartOf="@id/tvFavourite"
+        app:layout_constraintStart_toStartOf="@+id/viewNavBarMine"
+        app:layout_constraintTop_toTopOf="@+id/viewNavBarMine" />
 
-        <TextView
-            android:id="@+id/tvFavourite"
-            android:layout_width="180dp"
-            android:layout_height="36dp"
-            android:background="@drawable/bg_nav_bar_textview"
-            android:fontFamily="@font/fuzzy_bubbles"
-            android:gravity="center"
-            android:text="@string/textview_text_favourite"
-            android:textColor="@color/black_181818"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvMyAlbum"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvFavourite"
+        android:layout_width="180dp"
+        android:layout_height="36dp"
+        android:background="@drawable/bg_nav_bar_textview"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:gravity="center"
+        android:text="@string/textview_text_favourite"
+        android:textColor="@color/black_181818"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewNavBarMine"
+        app:layout_constraintEnd_toEndOf="@+id/viewNavBarMine"
+        app:layout_constraintStart_toEndOf="@id/tvMyAlbum"
+        app:layout_constraintTop_toTopOf="@+id/viewNavBarMine" />
 
     <ImageView
         android:id="@+id/ivAlbumMine"
@@ -71,7 +53,7 @@
         android:src="@drawable/img_mine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clNavBarMine" />
+        app:layout_constraintTop_toBottomOf="@+id/viewNavBarMine" />
 
     <TextView
         android:layout_width="156dp"

@@ -1,23 +1,24 @@
 package issues5;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.asian.R;
 import com.example.asian.databinding.ActivityIssues5Binding;
 
-public class Issues5Activity extends AppCompatActivity {
+import issues5.DrawText.OnDrawTextSelectedListener;
+
+public class Issues5Activity extends AppCompatActivity implements OnDrawTextSelectedListener {
     private ActivityIssues5Binding binding;
+    private String previousFragmentName = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class Issues5Activity extends AppCompatActivity {
         initToolbar();
         initViewPager();
         initListeners();
+        updateNewFragmentName();
     }
 
     private void initToolbar() {
@@ -44,6 +46,7 @@ public class Issues5Activity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 setImageViewActive(position);
+                updateNewFragmentName();
             }
         });
     }
@@ -86,5 +89,22 @@ public class Issues5Activity extends AppCompatActivity {
                 .load(position == 3 ? R.drawable.ic_mine_yellow : R.drawable.ic_mine)
                 .into(binding.ivMine);
         binding.ivYellowBarMine.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
+    }
+
+    private void updateNewFragmentName() {
+        binding.tvPreviousFragment.setText(previousFragmentName);
+
+        int currentItem = binding.viewPager.getCurrentItem();
+        Fragment currentFragment = getSupportFragmentManager().findFragmentByTag("f" + currentItem);
+        if (currentFragment != null) {
+            previousFragmentName = currentFragment.getClass().getSimpleName().replace("Fragment", "");
+        } else {
+            previousFragmentName = "Home";
+        }
+    }
+
+    @Override
+    public void onDrawTextSelected(Typeface typeface) {
+        binding.tvPreviousFragment.setTypeface(typeface);
     }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.asian.R;
 import com.example.asian.databinding.FragmentDrawTextBinding;
@@ -37,7 +38,7 @@ public class DrawTextFragment extends Fragment {
 
     private void initDrawTextLists() {
         lists = new ArrayList<>();
-        lists.add(new DrawText(DRAW_ANIME, R.font.fuzzy_bubbles));
+        lists.add(new DrawText(DRAW_ANIME, R.font.fuzzy_bubbles, true));
         lists.add(new DrawText(DRAW_ANIME, R.font.fugaz_one));
         lists.add(new DrawText(DRAW_ANIME, R.font.frijole));
         lists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
@@ -52,9 +53,14 @@ public class DrawTextFragment extends Fragment {
     }
 
     private void initDrawTextAdapter() {
-        DrawTextGridViewAdapter gridViewAdapter = new DrawTextGridViewAdapter(getContext(), lists, typeface -> {
-            binding.tvHome.setTypeface(typeface);
+        DrawTextAdapter drawTextAdapter = new DrawTextAdapter(getContext(), lists, typeface -> {
+            if (getActivity() instanceof OnDrawTextSelectedListener) {
+                ((OnDrawTextSelectedListener) getActivity()).onDrawTextSelected(typeface);
+            }
         });
-        binding.gvDrawText.setAdapter(gridViewAdapter);
+
+        binding.rvDrawText.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.rvDrawText.setAdapter(drawTextAdapter);
+        drawTextAdapter.submitList(lists);
     }
 }
