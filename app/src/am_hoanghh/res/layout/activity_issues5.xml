@@ -95,53 +95,31 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/ivYellowBarHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/imageview_content_description_yellow_bar"
-        android:src="@drawable/ic_bar_nav_mine"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/ivHome"
-        app:layout_constraintEnd_toEndOf="@id/ivHome"
-        app:layout_constraintStart_toStartOf="@id/ivHome"
-        app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
-
-    <ImageView
         android:id="@+id/ivHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:contentDescription="@string/imageview_content_description_home"
-        android:src="@drawable/ic_home"
-        app:layout_constraintBottom_toTopOf="@id/tvHome"
+        android:padding="15dp"
+        android:src="@drawable/ic_home_selector"
+        app:layout_constraintBottom_toBottomOf="@id/viewBottomNav"
         app:layout_constraintEnd_toStartOf="@id/ivDrawText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivYellowBarHome" />
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav"
+        app:layout_constraintVertical_bias="0.35" />
 
     <TextView
         android:id="@+id/tvHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:drawablePadding="40dp"
         android:fontFamily="@font/fuzzy_bubbles"
         android:text="@string/textview_text_home"
-        android:textColor="@color/black_181818"
+        android:textColor="@color/text_color_nav_bar_selector"
         android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_bar_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/ivHome"
         app:layout_constraintStart_toStartOf="@id/ivHome"
-        app:layout_constraintTop_toBottomOf="@id/ivHome" />
-
-    <ImageView
-        android:id="@+id/ivYellowBarDrawText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/imageview_content_description_yellow_bar"
-        android:src="@drawable/ic_bar_nav_mine"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/ivDrawText"
-        app:layout_constraintEnd_toEndOf="@id/ivDrawText"
-        app:layout_constraintStart_toStartOf="@id/ivDrawText"
         app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
 
     <ImageView
@@ -149,35 +127,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imageview_content_description_draw_text"
-        android:src="@drawable/ic_draw_text"
-        app:layout_constraintBottom_toTopOf="@id/tvDrawText"
+        android:padding="15dp"
+        android:src="@drawable/ic_draw_text_selector"
+        app:layout_constraintBottom_toBottomOf="@id/viewBottomNav"
         app:layout_constraintEnd_toStartOf="@id/ivDraw"
         app:layout_constraintStart_toEndOf="@id/ivHome"
-        app:layout_constraintTop_toBottomOf="@id/ivYellowBarDrawText" />
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav"
+        app:layout_constraintVertical_bias="0.35" />
 
     <TextView
         android:id="@+id/tvDrawText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawablePadding="40dp"
         android:fontFamily="@font/fuzzy_bubbles"
         android:text="@string/textview_text_draw_text"
-        android:textColor="@color/gray_9B9B9B"
+        android:textColor="@color/text_color_nav_bar_selector"
         android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_bar_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/ivDrawText"
         app:layout_constraintStart_toStartOf="@id/ivDrawText"
-        app:layout_constraintTop_toBottomOf="@id/ivDrawText" />
-
-    <ImageView
-        android:id="@+id/ivYellowBarDraw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/imageview_content_description_yellow_bar"
-        android:src="@drawable/ic_bar_nav_mine"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/ivDraw"
-        app:layout_constraintEnd_toEndOf="@id/ivDraw"
-        app:layout_constraintStart_toStartOf="@id/ivDraw"
         app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
 
     <ImageView
@@ -185,57 +155,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imageview_content_description_draw"
-        android:src="@drawable/ic_draw"
-        app:layout_constraintBottom_toTopOf="@id/tvDraw"
+        android:padding="15dp"
+        android:src="@drawable/ic_draw_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivMine"
         app:layout_constraintStart_toEndOf="@id/ivDrawText"
-        app:layout_constraintTop_toBottomOf="@id/ivYellowBarDraw" />
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav"
+        app:layout_constraintVertical_bias="0.35" />
 
     <TextView
         android:id="@+id/tvDraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawablePadding="40dp"
         android:fontFamily="@font/fuzzy_bubbles"
         android:text="@string/textview_text_draw"
-        android:textColor="@color/gray_9B9B9B"
+        android:textColor="@color/text_color_nav_bar_selector"
         android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_bar_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/ivDraw"
         app:layout_constraintStart_toStartOf="@id/ivDraw"
-        app:layout_constraintTop_toBottomOf="@id/ivDraw" />
-
-    <ImageView
-        android:id="@+id/ivYellowBarMine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/imageview_content_description_yellow_bar"
-        android:src="@drawable/ic_bar_nav_mine"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/ivMine"
-        app:layout_constraintEnd_toEndOf="@id/ivMine"
-        app:layout_constraintStart_toStartOf="@id/ivMine"
         app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
+
 
     <ImageView
         android:id="@+id/ivMine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imageview_content_description_mine"
-        android:src="@drawable/ic_mine"
-        app:layout_constraintBottom_toTopOf="@id/tvMine"
+        android:padding="15dp"
+        android:src="@drawable/ic_mine_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ivDraw"
-        app:layout_constraintTop_toBottomOf="@id/ivYellowBarMine" />
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav"
+        app:layout_constraintVertical_bias="0.35" />
 
     <TextView
         android:id="@+id/tvMine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawablePadding="40dp"
+        android:fontFamily="@font/fuzzy_bubbles"
         android:text="@string/textview_text_mine"
-        android:textColor="@color/gray_9B9B9B"
+        android:textColor="@color/text_color_nav_bar_selector"
         android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_bar_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/ivMine"
         app:layout_constraintStart_toStartOf="@id/ivMine"
-        app:layout_constraintTop_toBottomOf="@id/ivMine" />
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

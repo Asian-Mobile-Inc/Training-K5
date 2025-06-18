@@ -19,8 +19,6 @@ public class MyPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case 0:
-                return new HomeFragment();
             case 1:
                 return new DrawTextFragment();
             case 2:

@@ -1,12 +1,15 @@
 package issues5;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -19,6 +22,12 @@ import issues5.DrawText.OnDrawTextSelectedListener;
 public class Issues5Activity extends AppCompatActivity implements OnDrawTextSelectedListener {
     private ActivityIssues5Binding binding;
     private String previousFragmentName = "";
+    private static final int HOME_POSITION = 0;
+    private static final int DRAW_TEXT_POSITION = 1;
+    private static final int DRAW_POSITION = 2;
+    private static final int MINE_POSITION = 3;
+    private static final String HOME = "Home";
+    private static final String FRAGMENT = "Fragment";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +54,7 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                setImageViewActive(position);
+                setSelectedNavBarItem(position);
                 updateNewFragmentName();
             }
         });
@@ -53,42 +62,55 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
 
     private void initListeners() {
         binding.ivHome.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(0);
+            binding.viewPager.setCurrentItem(HOME_POSITION);
         });
 
         binding.ivDrawText.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(1);
+            binding.viewPager.setCurrentItem(DRAW_TEXT_POSITION);
         });
 
         binding.ivDraw.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(2);
+            binding.viewPager.setCurrentItem(DRAW_POSITION);
         });
 
         binding.ivMine.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(3);
+            binding.viewPager.setCurrentItem(MINE_POSITION);
         });
     }
 
-    private void setImageViewActive(int position) {
-        Glide.with(this)
-                .load(position == 0 ? R.drawable.ic_home_yellow : R.drawable.ic_home)
-                .into(binding.ivHome);
-        binding.ivYellowBarHome.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-
-        Glide.with(this)
-                .load(position == 1 ? R.drawable.ic_draw_text_yellow : R.drawable.ic_draw_text)
-                .into(binding.ivDrawText);
-        binding.ivYellowBarDrawText.setVisibility(position == 1 ? View.VISIBLE : View.GONE);
-
-        Glide.with(this)
-                .load(position == 2 ? R.drawable.ic_draw_yellow : R.drawable.ic_draw)
-                .into(binding.ivDraw);
-        binding.ivYellowBarDraw.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
-
-        Glide.with(this)
-                .load(position == 3 ? R.drawable.ic_mine_yellow : R.drawable.ic_mine)
-                .into(binding.ivMine);
-        binding.ivYellowBarMine.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
+    private void setSelectedNavBarItem(int position) {
+        binding.ivHome.setSelected(position == HOME_POSITION);
+        binding.tvHome.setSelected(position == HOME_POSITION);
+        binding.tvHome.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                ContextCompat.getDrawable(this, position == HOME_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
+                null,
+                null
+        );
+        binding.ivDrawText.setSelected(position == DRAW_TEXT_POSITION);
+        binding.tvDrawText.setSelected(position == DRAW_TEXT_POSITION);
+        binding.tvDrawText.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                ContextCompat.getDrawable(this, position == DRAW_TEXT_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
+                null,
+                null
+        );
+        binding.ivDraw.setSelected(position == DRAW_POSITION);
+        binding.tvDraw.setSelected(position == DRAW_POSITION);
+        binding.tvDraw.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                ContextCompat.getDrawable(this, position == DRAW_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
+                null,
+                null
+        );
+        binding.ivMine.setSelected(position == MINE_POSITION);
+        binding.tvMine.setSelected(position == MINE_POSITION);
+        binding.tvMine.setCompoundDrawablesWithIntrinsicBounds(
+                null,
+                ContextCompat.getDrawable(this, position == MINE_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
+                null,
+                null
+        );
     }
 
     private void updateNewFragmentName() {
@@ -97,9 +119,9 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
         int currentItem = binding.viewPager.getCurrentItem();
         Fragment currentFragment = getSupportFragmentManager().findFragmentByTag("f" + currentItem);
         if (currentFragment != null) {
-            previousFragmentName = currentFragment.getClass().getSimpleName().replace("Fragment", "");
+            previousFragmentName = currentFragment.getClass().getSimpleName().replace(FRAGMENT, "");
         } else {
-            previousFragmentName = "Home";
+            previousFragmentName = HOME;
         }
     }
 
