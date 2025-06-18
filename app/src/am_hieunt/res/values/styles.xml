@@ -28,19 +28,15 @@
     <style name="rounded_corner">
         <item name="cornerSize">20dp</item>
     </style>
-
     <style name="circle">
         <item name="cornerSize">50%</item>
     </style>
-
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/blue</item>
     </style>
-
     <style name="Toolbar.TitleText"
         parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/lexend</item>
     </style>
-
 </resources>

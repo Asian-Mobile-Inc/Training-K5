@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,11 +51,11 @@ public class DrawTextAdapter extends ListAdapter<DrawText, DrawTextAdapter.ViewH
     @Override
     public void onBindViewHolder(@NonNull DrawTextAdapter.ViewHolder holder, int position) {
         DrawText drawText = getItem(position);
-        holder.clDrawText.setSelected(drawText.getSelected());
-        holder.tvTitle.setTextColor(Color.BLACK);
+        holder.tvTitle.setSelected(drawText.getSelected());
+        holder.tvTitle.setTextColor(drawText.getSelected() ? ContextCompat.getColor(mContext, R.color.black) : ContextCompat.getColor(mContext, R.color.gray_9B9B9B));
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), drawText.getFont());
         holder.tvTitle.setTypeface(typeface);
-        holder.clDrawText.setOnClickListener(new View.OnClickListener() {
+        holder.tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 submitList(updateDrawText(holder.getAdapterPosition()));
@@ -64,11 +65,9 @@ public class DrawTextAdapter extends ListAdapter<DrawText, DrawTextAdapter.ViewH
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitle;
-        public ConstraintLayout clDrawText;
         public ViewHolder(@NonNull View view) {
             super(view);
             tvTitle = view.findViewById(R.id.tvTitle);
-            clDrawText = view.findViewById(R.id.clDrawText);
         }
     }
 
