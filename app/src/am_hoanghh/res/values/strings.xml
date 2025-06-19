@@ -78,4 +78,9 @@
     <string name="language_item_russian">Russian</string>
     <string name="language_item_polish">Polish</string>
     <string name="language">Language</string>
+    <string name="imageview_content_description_image_download">IMAGE DOWNLOAD</string>
+    <string name="textview_text_download">Download</string>
+    <string name="imageview_content_description_download_icon">DOWNLOAD ICON</string>
+    <string name="imageview_content_description_success">SUCCESS</string>
+    <string name="textview_text_downloaded_successfully">Downloaded successfully</string>
 </resources>

@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="issues4.LanguageActivity"
+            android:name="issues7.ex1.Issues7Ex1Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="issues4.LanguageActivity"
+            android:exported="true" />
         <activity
             android:name="issues2.ex1.SubEx1Activity"
             android:exported="false" />
@@ -35,5 +38,5 @@
 
         </activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

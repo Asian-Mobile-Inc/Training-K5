@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/ivDownload"
+        android:layout_width="312dp"
+        android:layout_height="312dp"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/imageview_content_description_image_download"
+        android:src="@drawable/img_download"
+        app:layout_constraintBottom_toTopOf="@id/viewDownload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewDownload"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="55dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_view_download"
+        app:layout_constraintTop_toBottomOf="@+id/ivDownload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivDownloadIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/imageview_content_description_download_icon"
+        android:src="@drawable/ic_download"
+        android:layout_marginStart="70dp"
+        app:layout_constraintTop_toTopOf="@id/viewDownload"
+        app:layout_constraintStart_toStartOf="@id/viewDownload"
+        app:layout_constraintBottom_toBottomOf="@id/viewDownload"
+        app:layout_constraintEnd_toStartOf="@id/tvDownload"/>
+
+    <TextView
+        android:id="@+id/tvDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_text_download"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/viewDownload"
+        app:layout_constraintBottom_toBottomOf="@id/viewDownload"
+        app:layout_constraintStart_toEndOf="@id/ivDownloadIcon"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
