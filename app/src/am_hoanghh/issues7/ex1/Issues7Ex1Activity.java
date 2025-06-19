@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -15,19 +14,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.asian.R;
-import com.example.asian.databinding.ActivityEx1Issues7Binding;
+import com.example.asian.databinding.ActivityIssues7Binding;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Issues7Ex1Activity extends AppCompatActivity {
-    private ActivityEx1Issues7Binding binding;
+    private ActivityIssues7Binding binding;
+    private static final String IMAGE_URL = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEx1Issues7Binding.inflate(getLayoutInflater());
+        binding = ActivityIssues7Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         initListeners();
@@ -35,7 +35,7 @@ public class Issues7Ex1Activity extends AppCompatActivity {
 
     private void initListeners() {
         binding.viewDownload.setOnClickListener(v -> {
-            String url = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
+            String url = IMAGE_URL;
             String fileName = url.substring(url.lastIndexOf('/') + 1);
             File file = new File(getFilesDir(), fileName);
 
@@ -51,7 +51,6 @@ public class Issues7Ex1Activity extends AppCompatActivity {
                 });
             }));
             executorService.shutdown();
-
         });
     }
 
@@ -67,10 +66,10 @@ public class Issues7Ex1Activity extends AppCompatActivity {
 
     private void showToast() {
         Toast toast = new Toast(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.toast_download, null);
+        View view = LayoutInflater.from(this).inflate(R.layout.toast_download_success, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 100);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
         toast.show();
     }
 }

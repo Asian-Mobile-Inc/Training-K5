@@ -83,4 +83,6 @@
     <string name="imageview_content_description_download_icon">DOWNLOAD ICON</string>
     <string name="imageview_content_description_success">SUCCESS</string>
     <string name="textview_text_downloaded_successfully">Downloaded successfully</string>
+    <string name="textview_text_download_failed">Download failed</string>
+    <string name="textview_text_try_again">"Try Again"</string>
 </resources>
