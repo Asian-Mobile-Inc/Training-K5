@@ -1,10 +1,7 @@
 package issues5;
 
-import android.annotation.SuppressLint;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +10,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.databinding.ActivityIssues5Binding;
 
@@ -61,56 +57,25 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
     }
 
     private void initListeners() {
-        binding.ivHome.setOnClickListener(v -> {
+        binding.tvHome.setOnClickListener(v -> {
             binding.viewPager.setCurrentItem(HOME_POSITION);
         });
-
-        binding.ivDrawText.setOnClickListener(v -> {
+        binding.tvDrawText.setOnClickListener(v -> {
             binding.viewPager.setCurrentItem(DRAW_TEXT_POSITION);
         });
-
-        binding.ivDraw.setOnClickListener(v -> {
+        binding.tvDraw.setOnClickListener(v -> {
             binding.viewPager.setCurrentItem(DRAW_POSITION);
         });
-
-        binding.ivMine.setOnClickListener(v -> {
+        binding.tvMine.setOnClickListener(v -> {
             binding.viewPager.setCurrentItem(MINE_POSITION);
         });
     }
 
     private void setSelectedNavBarItem(int position) {
-        binding.ivHome.setSelected(position == HOME_POSITION);
         binding.tvHome.setSelected(position == HOME_POSITION);
-        binding.tvHome.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                ContextCompat.getDrawable(this, position == HOME_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
-                null,
-                null
-        );
-        binding.ivDrawText.setSelected(position == DRAW_TEXT_POSITION);
         binding.tvDrawText.setSelected(position == DRAW_TEXT_POSITION);
-        binding.tvDrawText.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                ContextCompat.getDrawable(this, position == DRAW_TEXT_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
-                null,
-                null
-        );
-        binding.ivDraw.setSelected(position == DRAW_POSITION);
         binding.tvDraw.setSelected(position == DRAW_POSITION);
-        binding.tvDraw.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                ContextCompat.getDrawable(this, position == DRAW_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
-                null,
-                null
-        );
-        binding.ivMine.setSelected(position == MINE_POSITION);
         binding.tvMine.setSelected(position == MINE_POSITION);
-        binding.tvMine.setCompoundDrawablesWithIntrinsicBounds(
-                null,
-                ContextCompat.getDrawable(this, position == MINE_POSITION ? R.drawable.ic_bar_nav : R.drawable.transparent_drawable),
-                null,
-                null
-        );
     }
 
     private void updateNewFragmentName() {
