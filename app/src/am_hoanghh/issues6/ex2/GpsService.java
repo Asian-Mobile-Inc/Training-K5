@@ -36,9 +36,7 @@ public class GpsService extends Service {
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
     private static final String LOCATION = "Location";
-    private static final String TRACKING_LOCATION = "Tracking location";
     private static final String GPS_IS_RUNNING_IN_BACKGROUND = "GPS is running in background";
-    private static final String GPS_TRACKING = "GPS Tracking";
     private static final String NETWORK = "Network";
     private BroadcastReceiver receiver;
     private IntentFilter intentFilter;
@@ -109,12 +107,12 @@ public class GpsService extends Service {
     private Notification createNotification() {
         String channelId = "gps_channel";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId, GPS_TRACKING, NotificationManager.IMPORTANCE_LOW);
+            NotificationChannel channel = new NotificationChannel(channelId, getString(R.string.notification_channel_name_gps_tracking), NotificationManager.IMPORTANCE_LOW);
             getSystemService(NotificationManager.class).createNotificationChannel(channel);
         }
 
         return new NotificationCompat.Builder(this, channelId)
-                .setContentTitle(TRACKING_LOCATION)
+                .setContentTitle(getString(R.string.notification_content_title_tracking_location))
                 .setContentText(GPS_IS_RUNNING_IN_BACKGROUND)
                 .setSmallIcon(R.drawable.ic_warning)
                 .build();
