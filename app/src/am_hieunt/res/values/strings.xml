@@ -78,4 +78,10 @@
     <string name="code_language_dutch" translatable="false">nl</string>
     <string name="code_language_russian" translatable="false">ru</string>
     <string name="code_language_polish" translatable="false">pl</string>
+    <string name="location">Location</string>
+    <string name="permission">Permission</string>
+    <string name="allow_necessary_permissions">Allow necessary permissions for full functionality. Your data stays private.</string>
+    <string name="permission_is_not_allowed">Permission is not allowed</string>
+    <string name="asian_mobile_company">Asian Mobile Company</string>
+    <string name="permission_is_allowed">Permission is allowed</string>
 </resources>
