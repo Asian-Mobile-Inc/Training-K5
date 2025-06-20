@@ -78,31 +78,31 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 switch (position) {
                     case 0:
-                        if (!mStr.equals("Home")) {
+                        if (!mStr.equals(getString(R.string.home))) {
                             setTextPrevious(mStr);
                         }
-                        mStr = "Home";
+                        mStr = getString(R.string.home);
                         mBNV.getMenu().getItem(0).setChecked(true);
                         break;
                     case 1:
-                        if (!mStr.equals("Draw text")) {
+                        if (!mStr.equals(getString(R.string.draw_text))) {
                             setTextPrevious(mStr);
                         }
-                        mStr = "Draw text";
+                        mStr = getString(R.string.draw_text);
                         mBNV.getMenu().getItem(1).setChecked(true);
                         break;
                     case 2:
-                        if (!mStr.equals("Draw")) {
+                        if (!mStr.equals(getString(R.string.draw))) {
                             setTextPrevious(mStr);
                         }
-                        mStr = "Draw";
+                        mStr = getString(R.string.draw);
                         mBNV.getMenu().getItem(2).setChecked(true);
                         break;
                     case 3:
-                        if (!mStr.equals("Mine")) {
+                        if (!mStr.equals(getString(R.string.mine))) {
                             setTextPrevious(mStr);
                         }
-                        mStr = "Mine";
+                        mStr = getString(R.string.mine);
                         mBNV.getMenu().getItem(3).setChecked(true);
                         break;
                 }
