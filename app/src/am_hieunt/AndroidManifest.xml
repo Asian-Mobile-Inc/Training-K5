@@ -11,6 +11,12 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
         <activity
+            android:name=".issue7.ex1.DownloadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issue5.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".issue2.ex3.ActivityEx3"
             android:exported="false" />
         <activity
@@ -28,7 +34,7 @@
             android:name=".issue4.ActivityLanguage"
             android:exported="false" />
         <activity
-            android:name=".issue5.MainActivity"
+            android:name=".issue7.ex2.DownloadActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,5 +43,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
