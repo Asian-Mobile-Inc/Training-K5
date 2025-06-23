@@ -30,8 +30,6 @@ import java.util.Locale;
 
 public class LocationActivity extends AppCompatActivity {
     private TextView mTvLocation;
-    private LocationManager mLocationManager;
-    private LocationListener mLocationListener;
     private String mAddress;
     private final String LOG_LOCATION = "LOCATION ACTIVITY";
 
@@ -52,8 +50,8 @@ public class LocationActivity extends AppCompatActivity {
     }
 
     public void initLocationUpdate() {
-        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        mLocationListener = new LocationListener() {
+        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationListener mLocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
                 double lat = location.getLatitude();
@@ -68,7 +66,7 @@ public class LocationActivity extends AppCompatActivity {
                         mTvLocation.setText(mAddress);
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         };

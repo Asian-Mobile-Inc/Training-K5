@@ -1,6 +1,7 @@
 package com.example.asian.issue6.ex1;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.example.asian.R;
 
 public class PermissionActivity extends AppCompatActivity {
     private TextView mTvPermission;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch mSLocation;
     private Boolean mCheck = false;
     private ActivityResultLauncher<String[]> mLocationPermissionRequest;
@@ -37,6 +39,10 @@ public class PermissionActivity extends AppCompatActivity {
         });
         mTvPermission = findViewById(R.id.tvPermission);
         mSLocation = findViewById(R.id.sLocation);
+        initListener();
+    }
+
+    private void initListener() {
         mLocationPermissionRequest = registerForActivityResult(
                 new ActivityResultContracts.RequestMultiplePermissions(), result -> {
                     Boolean fineLocationGranted = null;
@@ -56,10 +62,6 @@ public class PermissionActivity extends AppCompatActivity {
                     } else mCheck = false;
                 }
         );
-        initListener();
-    }
-
-    private void initListener() {
         mSLocation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -69,11 +71,13 @@ public class PermissionActivity extends AppCompatActivity {
     }
 
     private void requestPermissions() {
-        mLocationPermissionRequest.launch(new String[] {
-                Manifest.permission.FOREGROUND_SERVICE_LOCATION,
-                Manifest.permission.POST_NOTIFICATIONS,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            mLocationPermissionRequest.launch(new String[] {
+                    Manifest.permission.FOREGROUND_SERVICE_LOCATION,
+                    Manifest.permission.POST_NOTIFICATIONS,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            });
+        }
     }
 }

@@ -14,9 +14,7 @@ public class InternetReceiver extends BroadcastReceiver {
         boolean isConnected = isNetworkConnected(context);
         Intent serviceIntent = new Intent(context, LocationService.class);
         serviceIntent.putExtra("connected", isConnected);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(serviceIntent);
-        } else context.startService(serviceIntent);
+        context.startService(serviceIntent);
     }
 
     private boolean isNetworkConnected(Context context) {
