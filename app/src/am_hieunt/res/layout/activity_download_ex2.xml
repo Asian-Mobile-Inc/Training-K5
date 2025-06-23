@@ -43,6 +43,7 @@
             android:textSize="12sp"
             android:visibility="gone"
             android:textColor="@color/gray"
+            android:layout_marginBottom="10dp"
             android:gravity="center"/>
         <ProgressBar
             android:id="@+id/pbDownload"
@@ -54,7 +55,7 @@
             android:visibility="gone"
             android:paddingStart="50dp"
             android:paddingEnd="50dp"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="25dp"/>
     </LinearLayout>
     <Button
         android:id="@+id/btnDownload"

@@ -49,6 +49,7 @@ public class DownloadTask extends AsyncTask<String, Integer, Bitmap> {
     private final LinearLayout mLlDownload;
     private final long mStartTime;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public DownloadTask(Activity contextParent) {
         this.contextParent = contextParent;
         mTvProgress = this.contextParent.findViewById(R.id.tvProgress);
@@ -57,6 +58,7 @@ public class DownloadTask extends AsyncTask<String, Integer, Bitmap> {
         mSivDownload = contextParent.findViewById(R.id.sivDownload);
         mBtnDownload = contextParent.findViewById(R.id.btnDownload);
         mLlDownload = contextParent.findViewById(R.id.llDownload);
+        mLlDownload.setBackground(contextParent.getDrawable(R.drawable.my_dotted_success));
         mSivDownload.setVisibility(View.GONE);
         mTvProgress.setVisibility(View.VISIBLE);
         mTvSpeed.setVisibility(View.VISIBLE);
