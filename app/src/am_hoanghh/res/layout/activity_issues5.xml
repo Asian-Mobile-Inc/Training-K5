@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home_screen">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tvPreviousFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:elevation="0dp">
+
+            <ImageView
+                android:id="@+id/ivCrown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/imageview_content_description_crown"
+                android:src="@drawable/ic_crown"
+                app:layout_constraintBottom_toBottomOf="@id/clToolbar"
+                app:layout_constraintEnd_toStartOf="@id/ivSetting"
+                app:layout_constraintStart_toStartOf="@id/clToolbar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:contentDescription="@string/imageview_content_description_setting"
+                android:src="@drawable/ic_setting"
+                app:layout_constraintBottom_toBottomOf="@id/clToolbar"
+                app:layout_constraintEnd_toStartOf="@id/ivQuestion"
+                app:layout_constraintStart_toEndOf="@id/ivCrown"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:contentDescription="@string/imageview_content_description_question"
+                android:src="@drawable/ic_question"
+                app:layout_constraintBottom_toBottomOf="@id/clToolbar"
+                app:layout_constraintStart_toEndOf="@id/ivSetting"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tvPreviousFragment"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_home_rounded_textview"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:gravity="center"
+        android:paddingHorizontal="120dp"
+        android:paddingVertical="50dp"
+        android:textColor="@color/black_181818"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/viewPager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPreviousFragment" />
+
+    <View
+        android:id="@+id/viewBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/bg_nav_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:padding="15dp"
+        android:text="@string/textview_text_home"
+        android:textColor="@color/text_color_nav_bar_selector"
+        android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_home_selector"
+        app:layout_constraintBottom_toBottomOf="@id/viewBottomNav"
+        app:layout_constraintEnd_toStartOf="@id/tvDrawText"
+        app:layout_constraintStart_toStartOf="@id/viewBottomNav"
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
+
+    <TextView
+        android:id="@+id/tvDrawText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:padding="15dp"
+        android:text="@string/textview_text_draw_text"
+        android:textColor="@color/text_color_nav_bar_selector"
+        android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_draw_text_selector"
+        app:layout_constraintBottom_toBottomOf="@id/viewBottomNav"
+        app:layout_constraintEnd_toStartOf="@id/tvDraw"
+        app:layout_constraintStart_toEndOf="@id/tvHome"
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
+
+    <TextView
+        android:id="@+id/tvDraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:padding="15dp"
+        android:text="@string/textview_text_draw"
+        android:textColor="@color/text_color_nav_bar_selector"
+        android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_draw_selector"
+        app:layout_constraintBottom_toBottomOf="@id/viewBottomNav"
+        app:layout_constraintEnd_toStartOf="@id/tvMine"
+        app:layout_constraintStart_toEndOf="@id/tvDrawText"
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
+
+    <TextView
+        android:id="@+id/tvMine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/fuzzy_bubbles"
+        android:padding="15dp"
+        android:text="@string/textview_text_mine"
+        android:textColor="@color/text_color_nav_bar_selector"
+        android:textSize="12sp"
+        app:drawableTopCompat="@drawable/ic_mine_selector"
+        app:layout_constraintBottom_toBottomOf="@id/viewBottomNav"
+        app:layout_constraintEnd_toEndOf="@id/viewBottomNav"
+        app:layout_constraintStart_toEndOf="@id/tvDraw"
+        app:layout_constraintTop_toTopOf="@id/viewBottomNav" />
+</androidx.constraintlayout.widget.ConstraintLayout>

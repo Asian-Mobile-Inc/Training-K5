@@ -1,5 +1,30 @@
 <resources>
     <string name="app_name" translatable="false">ExHieuNT</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="previous_text" translatable="false">Previous text</string>
+    <string name="draw_anime" translatable="false">Draw Anime</string>
+    <string name="font_fuzzybubbles" translatable="false">fonts/fuzzybubbles_regular.ttf</string>
+    <string name="font_fugazone" translatable="false">fonts/fugazone.ttf</string>
+    <string name="font_frijole" translatable="false">fonts/frijole.ttf</string>
+    <string name="font_frederickathegreat" translatable="false">fonts/frederickathegreat.ttf</string>
+    <string name="font_forte" translatable="false">fonts/forte.ttf</string>
+    <string name="font_inter" translatable="false">fonts/inter.ttf</string>
+    <string name="font_baloo2" translatable="false">fonts/baloo2.ttf</string>
+    <string name="font_bigshotone" translatable="false">fonts/bigshotone.ttf</string>
+    <string name="font_boogaloo" translatable="false">fonts/boogaloo.ttf</string>
+    <string name="font_brushscript" translatable="false">fonts/brushscript.ttf</string>
+    <string name="font_lexend" translatable="false">fonts/lexend.ttf</string>
+    <string name="font_montserrat" translatable="false">fonts/montserrat.ttf</string>
+    <string name="font_mrdafoe" translatable="false">fonts/mrdafoe.ttf</string>
+    <string name="my_album" translatable="false">My Album</string>
+    <string name="favourite" translatable="false">Favourite</string>
+    <string name="your_gallery_is_empty_let_s_fix_that" translatable="false">Your gallery is empty... let’s fix that!</string>
+    <string name="draw_now" translatable="false">Draw now!</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="draw_text" translatable="false">Draw Text</string>
+    <string name="draw" translatable="false">Draw</string>
+    <string name="mine" translatable="false">Mine</string>
+
     <string name="phone_or_email" translatable="false">Phone or email</string>
     <string name="password" translatable="false">Password</string>
     <string name="login" translatable="false">Login</string>

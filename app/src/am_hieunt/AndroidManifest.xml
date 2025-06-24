@@ -22,7 +22,7 @@
         <receiver
             android:name=".issue6.ex2.StopServiceReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true"/>
         <receiver
             android:name=".issue6.ex2.InternetReceiver"
             android:enabled="true"
@@ -60,6 +60,9 @@
         <activity
             android:name=".issue2.ex2.ActivityEx2"
             android:exported="false" />
+        <activity
+            android:name=".issue5.MainActivity"
+            android:exported="false"/>
         <activity
             android:name=".issue6.ex1.PermissionActivity"
             android:exported="true">
