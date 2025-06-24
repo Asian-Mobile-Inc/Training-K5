@@ -21,8 +21,11 @@
             android:name="issues7.ex1.Issues7Ex1Activity"
             android:exported="false" />
         <activity
+            android:name="issues5.Issues5Activity"
+            android:exported="false" />
+        <activity
             android:name="issues4.LanguageActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name="issues2.ex1.SubEx1Activity"
             android:exported="false" />
@@ -37,8 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
+            android:exported="false">
         </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
