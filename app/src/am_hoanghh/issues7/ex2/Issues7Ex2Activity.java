@@ -99,7 +99,6 @@ public class Issues7Ex2Activity extends AppCompatActivity {
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
             mBinding.progressBarDownload.setProgress(progress[0]);
-//            Log.d("DEBUG", getString(R.string.text_progress, progress[0]));
             mBinding.tvProgress.setText(getString(R.string.text_progress, progress[0]));
         }
 
