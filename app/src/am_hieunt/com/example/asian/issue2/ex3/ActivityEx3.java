@@ -35,7 +35,6 @@ public class ActivityEx3 extends AppCompatActivity {
     private Button mBtnSubmit;
     private Drawable mIcon;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,27 +55,13 @@ public class ActivityEx3 extends AppCompatActivity {
         mEdtFullName = findViewById(R.id.edtFullName);
         mEdtNational = findViewById(R.id.edtNational);
         mTiAddInfo = findViewById(R.id.tiAddInfo);
+        mTvFullName.setText(initText(getString(R.string.full_name)));
+        mTvNational.setText(initText(getString(R.string.national_id)));
+        initListener();
+    }
 
-        String fullnamText = getString(R.string.full_name);
-        SpannableStringBuilder spannable = new SpannableStringBuilder(fullnamText);
-        spannable.setSpan(
-                new ForegroundColorSpan(Color.RED),
-                0, // start
-                1, // end
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        );
-        mTvFullName.setText(spannable);
-
-        String nationalText = getString(R.string.national_id);
-        spannable = new SpannableStringBuilder(nationalText);
-        spannable.setSpan(
-                new ForegroundColorSpan(Color.RED),
-                0, // start
-                1, // end
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        );
-        mTvNational.setText(spannable);
-
+    @SuppressLint("ClickableViewAccessibility")
+    private void initListener() {
         mVLine.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -87,7 +72,6 @@ public class ActivityEx3 extends AppCompatActivity {
                     case MotionEvent.ACTION_MOVE:
                         float currentY = event.getRawY();
                         float deltaY = currentY - mStartY;
-
                         if (deltaY < 50) {
                             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mSvMenu.getLayoutParams();
                             params.topMargin = dpToPx(20);
@@ -142,7 +126,6 @@ public class ActivityEx3 extends AppCompatActivity {
                 mEdtNational.setFocusableInTouchMode(false);
                 mTiAddInfo.setFocusable(false);
                 mTiAddInfo.setFocusableInTouchMode(false);
-
                 if (mEdtFullName.getText().toString().length() >= 3) {
                     mEdtFullName.setSelected(false);
                     mTvErrorFullName.setVisibility(View.GONE);
@@ -154,7 +137,6 @@ public class ActivityEx3 extends AppCompatActivity {
                     mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.ic_alert);
                     mEdtFullName.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
-
                 String numberRegex= ".*[0-9].*";
                 if (mEdtNational.getText().toString().matches(numberRegex) && mEdtNational.getText().toString().length() == 9) {
                     mEdtNational.setSelected(false);
@@ -167,7 +149,6 @@ public class ActivityEx3 extends AppCompatActivity {
                     mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.ic_alert);
                     mEdtNational.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
-
                 if (mTiAddInfo.getText().toString().length() >= 100) {
                     mTiAddInfo.setSelected(false);
                     mTvErrorAddInfo.setVisibility(View.GONE);
@@ -179,7 +160,6 @@ public class ActivityEx3 extends AppCompatActivity {
                     mIcon = ContextCompat.getDrawable(ActivityEx3.this, R.drawable.ic_alert);
                     mTiAddInfo.setCompoundDrawablesWithIntrinsicBounds(null, null, mIcon, null);
                 }
-
                 mEdtFullName.setFocusable(true);
                 mEdtFullName.setFocusableInTouchMode(true);
                 mEdtNational.setFocusable(true);
@@ -190,7 +170,18 @@ public class ActivityEx3 extends AppCompatActivity {
         });
     }
 
-    public int dpToPx(float dp) {
+    private String initText(String str) {
+        SpannableStringBuilder spannable = new SpannableStringBuilder(str);
+        spannable.setSpan(
+                new ForegroundColorSpan(Color.RED),
+                0,
+                1,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+        );
+        return spannable.toString();
+    }
+
+    private int dpToPx(float dp) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 dp,

@@ -21,6 +21,14 @@ android {
 
         am_hieunt {
             java.srcDirs = ['src/am_hieunt']
+            assets {
+                srcDirs 'src\\am_hieunt\\assets'
+            }
+        }
+        main {
+            assets {
+                srcDirs 'src\\main\\assets'
+            }
         }
     }
 

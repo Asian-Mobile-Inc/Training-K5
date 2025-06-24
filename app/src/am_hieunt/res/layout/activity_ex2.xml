@@ -11,7 +11,6 @@
     android:paddingBottom="20dp"
     android:paddingTop="50dp"
     tools:context=".issue2.ex2.ActivityEx2">
-
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
@@ -25,7 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tvTerm1"
         android:layout_width="match_parent"
@@ -33,7 +31,6 @@
         android:textColor="@color/black"
         android:layout_marginBottom="10dp"
         android:textSize="14sp" />
-
     <EditText
         android:id="@+id/edtTerm1"
         android:layout_width="match_parent"
@@ -48,7 +45,6 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/my_edittext"
         android:hint="@string/term_1"/>
-
     <TextView
         android:id="@+id/tvTerm2"
         android:layout_width="match_parent"
@@ -56,7 +52,6 @@
         android:textSize="14sp"
         android:textColor="@color/black"
         android:layout_marginBottom="10dp"/>
-
     <EditText
         android:id="@+id/edtTerm2"
         android:layout_width="match_parent"
@@ -71,7 +66,6 @@
         android:textSize="14sp"
         android:layout_marginBottom="10dp"
         android:hint="@string/term_2" />
-
     <TextView
         android:id="@+id/tvErrorDiv"
         android:layout_width="match_parent"
@@ -79,7 +73,6 @@
         android:textColor="@color/red"
         android:visibility="gone"
         android:layout_marginBottom="10dp" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,13 +80,11 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
         android:text="@string/operations" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginBottom="30dp"
         android:orientation="horizontal">
-
         <ImageButton
             android:id="@+id/btnInc"
             android:layout_width="wrap_content"
@@ -103,7 +94,6 @@
             android:contentDescription="@null"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_inc" />
-
         <ImageButton
             android:id="@+id/btnDec"
             android:layout_width="wrap_content"
@@ -114,7 +104,6 @@
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_dec"
             tools:ignore="ImageContrastCheck" />
-
         <ImageButton
             android:id="@+id/btnMul"
             android:layout_width="wrap_content"
@@ -124,7 +113,6 @@
             android:contentDescription="@null"
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_mul" />
-
         <ImageButton
             android:id="@+id/btnDiv"
             android:layout_width="wrap_content"
@@ -135,7 +123,6 @@
             android:importantForAccessibility="no"
             app:srcCompat="@drawable/ic_div" />
     </LinearLayout>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -143,7 +130,6 @@
         android:textSize="20sp"
         android:textColor="@color/blue"
         android:gravity="center"/>
-
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
@@ -153,5 +139,4 @@
         android:gravity="center"
         android:textStyle="bold"
         android:text="@string/_0" />
-
 </LinearLayout>
