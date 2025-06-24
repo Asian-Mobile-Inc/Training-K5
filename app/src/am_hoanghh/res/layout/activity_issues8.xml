@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,6 +27,7 @@
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:autofillHints="username"
+            android:backgroundTint="@color/purple_7989F0"
             android:gravity="center"
             android:inputType="text"
             android:labelFor="@id/tvUsername"
@@ -33,7 +35,7 @@
             android:textColorLink="@color/red_F82B1F"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:backgroundTint="@color/purple_7989F0"/>
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/tvUserAge"
@@ -49,12 +51,13 @@
             android:layout_width="96dp"
             android:layout_height="50dp"
             android:autofillHints="age"
+            android:backgroundTint="@color/purple_7989F0"
             android:gravity="center"
             android:inputType="numberDecimal"
             android:labelFor="@id/tvUserAge"
             android:textColor="@color/white"
             android:textSize="28sp"
-            android:backgroundTint="@color/purple_7989F0"/>
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/tvAddUser"
@@ -162,27 +165,27 @@
         android:id="@+id/flDeleteAll"
         android:layout_width="224dp"
         android:layout_height="52dp"
-        android:background="@drawable/bg_delete_all"
-        android:visibility="gone"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="5dp"
-        android:layout_gravity="bottom|center_horizontal">
+        android:background="@drawable/bg_delete_all"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/ivDeleteAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
             android:layout_marginStart="70dp"
             android:contentDescription="@string/imageview_content_description_delete_all"
-            android:src="@drawable/ic_delete_all"
-            android:layout_gravity="center_vertical|start"/>
+            android:src="@drawable/ic_delete_all" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
             android:layout_marginStart="100dp"
             android:text="@string/textview_text_delete_all"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center_vertical|start"/>
+            android:textStyle="bold" />
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
