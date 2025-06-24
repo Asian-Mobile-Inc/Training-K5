@@ -103,4 +103,7 @@
     <string name="code_language_dutch" translatable="false">nl</string>
     <string name="code_language_russian" translatable="false">ru</string>
     <string name="code_language_polish" translatable="false">pl</string>
+    <string name="user_name" translatable="false">User name</string>
+    <string name="user_age" translatable="false">User age</string>
+    <string name="add_user" translatable="false">Add user</string>
 </resources>

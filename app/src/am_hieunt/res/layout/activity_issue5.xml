@@ -19,6 +19,7 @@
         android:background="@drawable/my_shadow_top"
         app:labelVisibilityMode="labeled"
         android:paddingTop="2dp"
+        app:itemBackground="@drawable/nav_item_selector"
         app:itemIconTint="@color/bottom_nav_icon_color"
         app:itemTextColor="@color/bottom_nav_text_color"
         app:itemTextAppearanceActive="@style/BottomNavText"

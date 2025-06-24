@@ -1,6 +1,11 @@
 package com.example.asian.issue8.View;
 
+import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,7 +19,8 @@ import com.example.asian.issue8.Model.User;
 import com.example.asian.issue8.ViewModel.UserViewModel;
 
 public class UserActivity extends AppCompatActivity {
-    private TextView mTvUserName, mTvAge;
+    private EditText mEdtUserName, mEdtAge;
+    private ScrollView mSvListUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +32,21 @@ public class UserActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        mTvUserName = findViewById(R.id.tvUserName);
-        mTvAge = findViewById(R.id.tvAge);
+        mEdtUserName = findViewById(R.id.edtUserName);
+        mEdtAge = findViewById(R.id.edtAge);
+//        mSvListUser = findViewById(R.id.svListUser);
+        initListener();
         User user = new User();
-        user.setUsername("Hoang");
-        user.setAge(21);
-        UserViewModel.getInstance(this).insertUser(user);
+//        user.setUsername("Hieu");
+//        user.setAge(21);
+//        UserViewModel.getInstance(this).insertUser(user);
 //        user = UserViewModel.getInstance(this).getUser(1);
 //        mTvUserName.setText(user.getUsername());
 //        mTvAge.setText(user.getAge() + "");
 //        UserViewModel.getInstance(this).deleteAllUser();
+    }
+
+    private void initListener() {
+
     }
 }
