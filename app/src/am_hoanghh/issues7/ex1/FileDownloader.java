@@ -7,23 +7,23 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class FileDownloader implements Runnable {
-    private String fileURL;
-    private String saveDir;
-    private final Runnable onSuccess;
+    private final String mFileUrl;
+    private final String mSaveDir;
+    private final Runnable mOnSuccess;
 
     public FileDownloader(String fileURL, String saveDir, Runnable onSuccess) {
-        this.fileURL = fileURL;
-        this.saveDir = saveDir;
-        this.onSuccess = onSuccess;
+        this.mFileUrl = fileURL;
+        this.mSaveDir = saveDir;
+        this.mOnSuccess = onSuccess;
     }
 
     @Override
     public void run() {
-        downloadFile(fileURL, saveDir);
+        downloadFile(mFileUrl, mSaveDir);
     }
 
-    private void downloadFile(String fileURL, String saveDir) {
-        try (InputStream in = new BufferedInputStream(new URL(fileURL).openStream());
+    private void downloadFile(String fileUrl, String saveDir) {
+        try (InputStream in = new BufferedInputStream(new URL(fileUrl).openStream());
              FileOutputStream out = new FileOutputStream(saveDir)) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
@@ -31,7 +31,7 @@ public class FileDownloader implements Runnable {
                 out.write(dataBuffer, 0, bytesRead);
             }
 
-            if (onSuccess != null) onSuccess.run();
+            if (mOnSuccess != null) mOnSuccess.run();
         } catch (IOException e) {
             e.printStackTrace();
         }

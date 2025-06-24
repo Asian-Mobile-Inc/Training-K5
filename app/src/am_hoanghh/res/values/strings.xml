@@ -85,4 +85,5 @@
     <string name="textview_text_downloaded_successfully">Downloaded successfully</string>
     <string name="textview_text_download_failed">Download failed</string>
     <string name="textview_text_try_again">"Try Again"</string>
+    <string name="text_progress">%1$d %%</string>
 </resources>

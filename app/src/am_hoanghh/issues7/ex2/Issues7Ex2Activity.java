@@ -27,20 +27,21 @@ import java.net.URL;
 import java.util.Objects;
 
 public class Issues7Ex2Activity extends AppCompatActivity {
-    private ActivityIssues7Binding binding;
+    private ActivityIssues7Binding mBinding;
     private static final String IMAGE_URL = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
+    private static final String ERROR = "ERROR";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityIssues7Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mBinding = ActivityIssues7Binding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
         initListeners();
     }
 
     private void initListeners() {
-        binding.viewDownload.setOnClickListener(v -> {
+        mBinding.viewDownload.setOnClickListener(v -> {
             MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
             myAsyncTasks.execute();
         });
@@ -86,7 +87,7 @@ public class Issues7Ex2Activity extends AppCompatActivity {
                 outputStream.close();
 
             } catch (Exception e) {
-                Log.e("Error", Objects.requireNonNull(e.getMessage()));
+                Log.e(ERROR, Objects.requireNonNull(e.getMessage()));
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();
@@ -97,8 +98,9 @@ public class Issues7Ex2Activity extends AppCompatActivity {
 
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
-            binding.progressBarDownload.setProgress(progress[0]);
-            binding.tvProgress.setText(progress[0] + "%");
+            mBinding.progressBarDownload.setProgress(progress[0]);
+//            Log.d("DEBUG", getString(R.string.text_progress, progress[0]));
+            mBinding.tvProgress.setText(getString(R.string.text_progress, progress[0]));
         }
 
         @Override
@@ -136,32 +138,32 @@ public class Issues7Ex2Activity extends AppCompatActivity {
                 .load(bitmap)
                 .transform(new CenterCrop(), new RoundedCorners(24))
                 .override(312, 312)
-                .into(binding.ivDownload);
-        binding.viewDownload.setEnabled(false);
-        binding.viewDownload.setOnClickListener(null);
+                .into(mBinding.ivDownload);
+        mBinding.viewDownload.setEnabled(false);
+        mBinding.viewDownload.setOnClickListener(null);
         showToastSuccess();
     }
 
     private void setupLoadFailed() {
-        binding.tvDownload.setText(getString(R.string.textview_text_try_again));
+        mBinding.tvDownload.setText(getString(R.string.textview_text_try_again));
         Glide.with(getApplicationContext())
                 .load(R.drawable.img_failed)
                 .transform(new CenterCrop(), new RoundedCorners(24))
                 .override(312, 312)
-                .into(binding.ivDownload);
+                .into(mBinding.ivDownload);
         showToastFailed();
     }
 
     private void hideProgressBar() {
-        binding.progressBarDownload.setVisibility(View.GONE);
-        binding.tvProgress.setVisibility(View.GONE);
+        mBinding.progressBarDownload.setVisibility(View.GONE);
+        mBinding.tvProgress.setVisibility(View.GONE);
     }
 
     private void setupProgressBar() {
-        binding.progressBarDownload.setIndeterminate(false);
-        binding.progressBarDownload.setMax(100);
-        binding.progressBarDownload.setVisibility(View.VISIBLE);
-        binding.tvProgress.setVisibility(View.VISIBLE);
+        mBinding.progressBarDownload.setIndeterminate(false);
+        mBinding.progressBarDownload.setMax(100);
+        mBinding.progressBarDownload.setVisibility(View.VISIBLE);
+        mBinding.tvProgress.setVisibility(View.VISIBLE);
     }
 
     private void hideIvDownload() {
@@ -169,6 +171,6 @@ public class Issues7Ex2Activity extends AppCompatActivity {
                 .load(0)
                 .transform(new CenterCrop(), new RoundedCorners(24))
                 .override(312, 312)
-                .into(binding.ivDownload);
+                .into(mBinding.ivDownload);
     }
 }

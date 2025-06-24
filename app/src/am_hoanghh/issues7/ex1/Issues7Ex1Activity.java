@@ -21,32 +21,33 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Issues7Ex1Activity extends AppCompatActivity {
-    private ActivityIssues7Binding binding;
+    private ActivityIssues7Binding mBinding;
     private static final String IMAGE_URL = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
+    private static final String DEBUG = "DEBUG";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityIssues7Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mBinding = ActivityIssues7Binding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
         initListeners();
     }
 
     private void initListeners() {
-        binding.viewDownload.setOnClickListener(v -> {
+        mBinding.viewDownload.setOnClickListener(v -> {
             String url = IMAGE_URL;
             String fileName = url.substring(url.lastIndexOf('/') + 1);
             File file = new File(getFilesDir(), fileName);
 
             ExecutorService executorService = Executors.newFixedThreadPool(3);
             executorService.execute(new FileDownloader(url, file.getAbsolutePath(), () -> {
-                Log.d("debug", "Download success: " + file.getAbsolutePath());
+                Log.d(DEBUG, "Download success: " + file.getAbsolutePath());
 
                 runOnUiThread(() -> {
                     loadIntoImageView(file);
-                    binding.viewDownload.setEnabled(false);
-                    binding.viewDownload.setOnClickListener(null);
+                    mBinding.viewDownload.setEnabled(false);
+                    mBinding.viewDownload.setOnClickListener(null);
                     showToast();
                 });
             }));
@@ -60,7 +61,7 @@ public class Issues7Ex1Activity extends AppCompatActivity {
                     .load(file)
                     .transform(new CenterCrop(), new RoundedCorners(24))
                     .override(312, 312)
-                    .into(binding.ivDownload);
+                    .into(mBinding.ivDownload);
         }
     }
 
