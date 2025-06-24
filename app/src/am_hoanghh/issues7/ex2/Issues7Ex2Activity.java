@@ -67,7 +67,7 @@ public class Issues7Ex2Activity extends AppCompatActivity {
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 int fileLength = urlConnection.getContentLength();
 
-                byte data[] = new byte[1024];
+                byte[] data = new byte[1024];
                 long total = 0;
                 int count;
                 while ((count = inputStream.read(data)) != -1) {
