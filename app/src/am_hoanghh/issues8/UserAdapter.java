@@ -22,14 +22,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserAdapter extends ListAdapter<UserModel, UserAdapter.ViewHolder> {
-    private final DBHandler dbHandler;
-    private final Context context;
+    private final DBHandler mDbHandler;
+    private final Context mContext;
     private static final String DEBUG = "DEBUG";
 
     protected UserAdapter(DBHandler dbHandler, Context context) {
         super(DIFF_CALLBACK);
-        this.dbHandler = dbHandler;
-        this.context = context;
+        this.mDbHandler = dbHandler;
+        this.mContext = context;
     }
 
     @NonNull
@@ -43,28 +43,28 @@ public class UserAdapter extends ListAdapter<UserModel, UserAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserModel userModel = getItem(position);
 
-        holder.binding.tvCountNumber.setText(String.valueOf(userModel.getCountNumber()));
-        holder.binding.tvUsername.setText(userModel.getName());
-        holder.binding.tvAge.setText(context.getString(R.string.textview_text_years_old, userModel.getAge()));
+        holder.mBinding.tvCountNumber.setText(String.valueOf(userModel.getCountNumber()));
+        holder.mBinding.tvUsername.setText(userModel.getName());
+        holder.mBinding.tvAge.setText(mContext.getString(R.string.textview_text_years_old, userModel.getAge()));
 
-        Dialog dialog = new Dialog(context);
+        Dialog dialog = new Dialog(mContext);
 
-        holder.binding.ivDeleteUser.setOnClickListener(v -> {
+        holder.mBinding.ivDeleteUser.setOnClickListener(v -> {
             Log.d(DEBUG, String.valueOf(userModel.getId()));
 
             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            DialogConfirmDeleteBinding dialogBinding = DialogConfirmDeleteBinding.inflate(LayoutInflater.from(context));
+            DialogConfirmDeleteBinding dialogBinding = DialogConfirmDeleteBinding.inflate(LayoutInflater.from(mContext));
             dialog.setContentView(dialogBinding.getRoot());
             Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.setCancelable(false);
 
-            dialogBinding.tvExplain.setText(context.getString(R.string.textview_text_are_you_sure_you_want_to_delete, userModel.getName()));
+            dialogBinding.tvExplain.setText(mContext.getString(R.string.textview_text_are_you_sure_you_want_to_delete, userModel.getName()));
             dialogBinding.tvCancel.setOnClickListener(view -> {
                 dialog.dismiss();
             });
             dialogBinding.tvConfirm.setOnClickListener(view -> {
                 dialog.dismiss();
-                dbHandler.deleteUserById(userModel.getId());
+                mDbHandler.deleteUserById(userModel.getId());
                 List<UserModel> oldLists = new ArrayList<>(getCurrentList());
                 oldLists.remove(holder.getAdapterPosition());
 
@@ -95,11 +95,11 @@ public class UserAdapter extends ListAdapter<UserModel, UserAdapter.ViewHolder> 
             };
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ItemRvUserBinding binding;
+        private final ItemRvUserBinding mBinding;
 
         public ViewHolder(ItemRvUserBinding binding) {
             super(binding.getRoot());
-            this.binding = binding;
+            this.mBinding = binding;
         }
     }
 }
