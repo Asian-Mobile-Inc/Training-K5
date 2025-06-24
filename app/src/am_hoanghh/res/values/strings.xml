@@ -100,4 +100,22 @@
     <string name="textview_text_favourite">Favourite</string>
     <string name="textview_text_draw_now">Draw now!</string>
     <string name="imageview_content_description_yellow_bar">YELLOW BAR</string>
+    <string name="imageview_content_description_permissions">PERMISSIONS</string>
+    <string name="textview_text_permission">Permission</string>
+    <string name="textview_text_allow_necessary_permissions_for_full_functionality_your_data_stays_private">Allow necessary permissions for full functionality. Your data stays private.</string>
+    <string name="textview_text_location">Location</string>
+    <string name="textview_text_permission_is_not_allowed">Permission is not allowed</string>
+    <string name="textview_text_permission_is_allowed">Permission is allowed</string>
+    <string name="imageview_content_description_company">COMPANY</string>
+    <string name="textview_text_asian_mobile_company">Asian Mobile Company</string>
+    <string name="imageview_content_description_location">LOCATION</string>
+    <string name="imageview_content_description_camera">CAMERA</string>
+    <string name="imageview_content_description_person">PERSON</string>
+    <string name="imageview_content_description_police">POLICE</string>
+    <string name="imageview_content_description_parking">PARKING</string>
+    <string name="toast_text_permission_already_granted">Permission already granted</string>
+    <string name="toast_text_gps_permission_denied">GPS permission denied</string>
+    <string name="toast_text_gps_disabled">GPS disabled</string>
+    <string name="notification_content_title_tracking_location">Tracking location</string>
+    <string name="notification_channel_name_gps_tracking">GPS Tracking</string>
 </resources>
