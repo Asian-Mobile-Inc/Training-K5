@@ -8,11 +8,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name="issues4.LanguageActivity"
-            android:exported="false"/>
-        <activity
-            android:name="issues5.Issues5Activity"
+            android:name="issues8.Issues8Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="issues4.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name="issues5.Issues5Activity"
+            android:exported="false" />
         <activity
             android:name="issues2.ex1.SubEx1Activity"
             android:exported="false" />
@@ -34,8 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
