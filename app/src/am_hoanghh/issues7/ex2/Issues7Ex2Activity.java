@@ -152,7 +152,7 @@ public class Issues7Ex2Activity extends AppCompatActivity {
                 .into(mBinding.ivDownload);
         showToastFailed();
     }
-
+git
     private void hideProgressBar() {
         mBinding.progressBarDownload.setVisibility(View.GONE);
         mBinding.tvProgress.setVisibility(View.GONE);
