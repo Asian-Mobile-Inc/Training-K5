@@ -17,21 +17,21 @@ import com.example.asian.R;
 import com.example.asian.databinding.ActivityPermissionBinding;
 
 public class PermissionActivity extends AppCompatActivity {
-    private ActivityPermissionBinding binding;
-    private ActivityResultLauncher<String> requestPermissionLauncher;
+    private ActivityPermissionBinding mBinding;
+    private ActivityResultLauncher<String> mRequestPermissionLauncher;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPermissionBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mBinding = ActivityPermissionBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
         initListeners();
         initLocationPermissionLauncher();
     }
 
     private void initListeners() {
-        binding.switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mBinding.switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -41,7 +41,7 @@ public class PermissionActivity extends AppCompatActivity {
                         setAllowedPermission();
                         moveToLocationActivity();
                     } else {
-                        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
+                        mRequestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.toast_text_gps_disabled), Toast.LENGTH_SHORT).show();
@@ -52,7 +52,7 @@ public class PermissionActivity extends AppCompatActivity {
     }
 
     private void initLocationPermissionLauncher() {
-        requestPermissionLauncher =
+        mRequestPermissionLauncher =
                 registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                     if (isGranted) {
                         Toast.makeText(this, getString(R.string.toast_text_permission_already_granted), Toast.LENGTH_SHORT).show();
@@ -60,22 +60,22 @@ public class PermissionActivity extends AppCompatActivity {
                         moveToLocationActivity();
                     } else {
                         Toast.makeText(this, getString(R.string.toast_text_gps_permission_denied), Toast.LENGTH_SHORT).show();
-                        binding.switchCompat.setChecked(false);
+                        mBinding.switchCompat.setChecked(false);
                         setNotAllowedPermission();
                     }
                 });
     }
 
     private void setNotAllowedPermission() {
-        binding.tvAllowedPermission.setText(getString(R.string.textview_text_permission_is_not_allowed));
-        binding.tvAllowedPermission.setTextColor(getColor(R.color.red_FF3131));
-        binding.switchCompat.setChecked(false);
+        mBinding.tvAllowedPermission.setText(getString(R.string.textview_text_permission_is_not_allowed));
+        mBinding.tvAllowedPermission.setTextColor(getColor(R.color.red_FF3131));
+        mBinding.switchCompat.setChecked(false);
     }
 
     private void setAllowedPermission() {
-        binding.tvAllowedPermission.setText(getString(R.string.textview_text_permission_is_allowed));
-        binding.tvAllowedPermission.setTextColor(getColor(R.color.primary_1877F2));
-        binding.switchCompat.setChecked(true);
+        mBinding.tvAllowedPermission.setText(getString(R.string.textview_text_permission_is_allowed));
+        mBinding.tvAllowedPermission.setTextColor(getColor(R.color.primary_1877F2));
+        mBinding.switchCompat.setChecked(true);
     }
 
     private void moveToLocationActivity() {

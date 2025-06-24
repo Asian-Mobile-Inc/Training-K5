@@ -19,17 +19,17 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 public class LocationActivity extends AppCompatActivity {
-    private ActivityLocationBinding binding;
-    private FusedLocationProviderClient locationClient;
-    private LocationRequest locationRequest;
-    private LocationCallback locationCallback;
+    private ActivityLocationBinding mBinding;
+    private FusedLocationProviderClient mLocationClient;
+    private LocationRequest mLocationRequest;
+    private LocationCallback mLocationCallback;
     private static final String LOCATION = "Location";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLocationBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mBinding = ActivityLocationBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
         setupLocationService();
         createLocationCallback();
@@ -39,39 +39,39 @@ public class LocationActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (locationClient != null) {
+        if (mLocationClient != null) {
             removeLocationUpdates();
         }
     }
 
     private void setupLocationService() {
-        locationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+        mLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
     }
 
     private void startLocationUpdates() {
-        locationRequest = new LocationRequest();
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(5000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+            mLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
         }
     }
 
     private void removeLocationUpdates() {
-        locationClient.removeLocationUpdates(locationCallback);
-        locationClient = null;
+        mLocationClient.removeLocationUpdates(mLocationCallback);
+        mLocationClient = null;
     }
 
     private void createLocationCallback() {
-        locationCallback = new LocationCallback() {
+        mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 Location location = locationResult.getLastLocation();
                 if (location != null) {
                     String result = "Lat: " + location.getLatitude() + ", Lng: " + location.getLongitude();
-                    binding.tvLocation.setText(result);
+                    mBinding.tvLocation.setText(result);
                     Log.d(LOCATION, result);
                 }
             }

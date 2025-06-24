@@ -32,21 +32,22 @@ import com.google.android.gms.location.LocationServices;
 import java.util.Objects;
 
 public class GpsService extends Service {
-    private FusedLocationProviderClient locationClient;
-    private LocationRequest locationRequest;
-    private LocationCallback locationCallback;
+    private FusedLocationProviderClient mLocationClient;
+    private LocationRequest mLocationRequest;
+    private LocationCallback mLocationCallback;
     private static final String LOCATION = "Location";
     private static final String GPS_IS_RUNNING_IN_BACKGROUND = "GPS is running in background";
     private static final String NETWORK = "Network";
-    private BroadcastReceiver receiver;
-    private IntentFilter intentFilter;
+    private static final String GPS_CHANNEL = "gps_channel";
+    private BroadcastReceiver mReceiver;
+    private IntentFilter mIntentFilter;
 
     @Override
     public void onCreate() {
         super.onCreate();
         createFilter();
         createReceiver();
-        registerReceiver(receiver, intentFilter);
+        registerReceiver(mReceiver, mIntentFilter);
     }
 
     @Override
@@ -60,10 +61,10 @@ public class GpsService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (locationClient != null) {
+        if (mLocationClient != null) {
             removeLocationUpdates();
         }
-        unregisterReceiver(receiver);
+        unregisterReceiver(mReceiver);
     }
 
     @Nullable
@@ -73,27 +74,27 @@ public class GpsService extends Service {
     }
 
     private void setupLocationService() {
-        locationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+        mLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
     }
 
     private void startLocationUpdates() {
-        locationRequest = new LocationRequest();
-        locationRequest.setInterval(20000);
-        locationRequest.setFastestInterval(20000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // High priority
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(20000);
+        mLocationRequest.setFastestInterval(20000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // High priority
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+            mLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
         }
     }
 
     private void removeLocationUpdates() {
-        locationClient.removeLocationUpdates(locationCallback);
-        locationClient = null;
+        mLocationClient.removeLocationUpdates(mLocationCallback);
+        mLocationClient = null;
     }
 
     private void createLocationCallback() {
-        locationCallback = new LocationCallback() {
+        mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 Location location = locationResult.getLastLocation();
@@ -105,7 +106,7 @@ public class GpsService extends Service {
     }
 
     private Notification createNotification() {
-        String channelId = "gps_channel";
+        String channelId = GPS_CHANNEL;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(channelId, getString(R.string.notification_channel_name_gps_tracking), NotificationManager.IMPORTANCE_LOW);
             getSystemService(NotificationManager.class).createNotificationChannel(channel);
@@ -119,8 +120,8 @@ public class GpsService extends Service {
     }
 
     private void createFilter() {
-        intentFilter = new IntentFilter();
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
     }
 
     /*
@@ -129,7 +130,7 @@ public class GpsService extends Service {
      */
 
     private void createReceiver() {
-        receiver = new BroadcastReceiver() {
+        mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (Objects.equals(intent.getAction(), ConnectivityManager.CONNECTIVITY_ACTION)) {
@@ -138,14 +139,14 @@ public class GpsService extends Service {
 
                     if (activeNetwork != null && activeNetwork.isConnected()) {
                         Log.d(NETWORK, "Internet");
-                        if (locationClient == null) {
+                        if (mLocationClient == null) {
                             setupLocationService();
                             createLocationCallback();
                             startLocationUpdates();
                         }
                     } else {
                         Log.d(NETWORK, "No internet");
-                        if (locationClient != null) {
+                        if (mLocationClient != null) {
                             removeLocationUpdates();
                         }
                     }
