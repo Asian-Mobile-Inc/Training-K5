@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_weather">
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="10dp"
+        android:text="@string/textview_text_da_nang"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:drawableStartCompat="@drawable/ic_home_weather"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/textview_text__21"
+        android:textColor="@color/white"
+        android:textSize="102sp"
+        app:layout_constraintEnd_toEndOf="@id/tvLocation"
+        app:layout_constraintStart_toStartOf="@id/tvLocation"
+        app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+    <TextView
+        android:id="@+id/tvStatusWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_text_partly_cloudy"
+        android:textColor="@color/blue_ABE4FF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/tvLocation"
+        app:layout_constraintStart_toStartOf="@id/tvLocation"
+        app:layout_constraintTop_toBottomOf="@id/tvTemperature" />
+
+    <TextView
+        android:id="@+id/tvHighLowTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="H:29°  L:15°"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="@id/tvLocation"
+        app:layout_constraintStart_toStartOf="@id/tvLocation"
+        app:layout_constraintTop_toBottomOf="@id/tvStatusWeather" />
+
+    <View
+        android:id="@+id/viewCardWeather"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginHorizontal="13dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_card_weather"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHighLowTemperature"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/tvRainFall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="6 mm"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="@id/viewCardWeather"
+        app:layout_constraintTop_toTopOf="@id/viewCardWeather" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Total in the past 24 hours"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/tvRainFall"
+        app:layout_constraintTop_toBottomOf="@id/tvRainFall" />
+
+    <RelativeLayout
+        android:id="@+id/rlWeather"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_card_weather"
+        app:layout_constraintEnd_toEndOf="@id/viewCardWeather"
+        app:layout_constraintStart_toStartOf="@id/viewCardWeather"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+    <TextView
+        android:id="@+id/tvRain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="@string/textview_text_rain"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:drawableStartCompat="@drawable/ic_rain"
+        app:layout_constraintBottom_toBottomOf="@id/viewCardWeather"
+        app:layout_constraintEnd_toStartOf="@id/tvWintryMix"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rlWeather" />
+
+    <TextView
+        android:id="@+id/tvWintryMix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="@string/textview_text_wintry_mix"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:drawableStartCompat="@drawable/ic_wintry_mix"
+        app:layout_constraintBottom_toBottomOf="@id/tvRain"
+        app:layout_constraintEnd_toStartOf="@id/tvSnow"
+        app:layout_constraintStart_toEndOf="@id/tvRain"
+        app:layout_constraintTop_toTopOf="@id/tvRain" />
+
+    <TextView
+        android:id="@+id/tvSnow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="@string/textview_text_snow"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:drawableStartCompat="@drawable/ic_snow"
+        app:layout_constraintBottom_toBottomOf="@id/tvRain"
+        app:layout_constraintEnd_toStartOf="@id/tvTemperatureIcon"
+        app:layout_constraintStart_toEndOf="@id/tvWintryMix"
+        app:layout_constraintTop_toTopOf="@id/tvRain" />
+
+    <TextView
+        android:id="@+id/tvTemperatureIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="@string/textview_text_temperature"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:drawableStartCompat="@drawable/ic_temperature"
+        app:layout_constraintBottom_toBottomOf="@id/tvRain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvSnow"
+        app:layout_constraintTop_toTopOf="@id/tvRain" />
+</androidx.constraintlayout.widget.ConstraintLayout>

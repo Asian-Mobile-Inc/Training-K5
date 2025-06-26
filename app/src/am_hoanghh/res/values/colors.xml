@@ -17,4 +17,11 @@
     <color name="yellow_FCCF11">#FCCF11</color>
     <color name="gray_AFAFAF">#AFAFAF</color>
     <color name="red_FF3131">#FF3131</color>
+    <color name="blue_ABE4FF">#ABE4FF</color>
+    <color name="yellow_FFAD2A">#FFAD2A</color>
+    <color name="white_15FFFFFF">#15FFFFFF</color>
+    <color name="blue_81CFFA">#81CFFA</color>
+    <color name="purple_8185FA">#8185FA</color>
+    <color name="white_40FFFFFF">#40FFFFFF</color>
+    <color name="white_96FFFFFF">#96FFFFFF</color>
 </resources>

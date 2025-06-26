@@ -118,4 +118,11 @@
     <string name="toast_text_gps_disabled">GPS disabled</string>
     <string name="notification_content_title_tracking_location">Tracking location</string>
     <string name="notification_channel_name_gps_tracking">GPS Tracking</string>
+    <string name="textview_text_da_nang">ĐÀ NẴNG</string>
+    <string name="textview_text__21">21°</string>
+    <string name="textview_text_partly_cloudy">Partly Cloudy</string>
+    <string name="textview_text_temperature">Temperature</string>
+    <string name="textview_text_rain">Rain</string>
+    <string name="textview_text_wintry_mix">Wintry mix</string>
+    <string name="textview_text_snow">Snow</string>
 </resources>
