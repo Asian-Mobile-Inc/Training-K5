@@ -8,12 +8,13 @@ import android.net.NetworkInfo;
 import android.os.Build;
 
 public class InternetReceiver extends BroadcastReceiver {
+    private final String KEY_CONNECTED = "connected";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean isConnected = isNetworkConnected(context);
         Intent serviceIntent = new Intent(context, LocationService.class);
-        serviceIntent.putExtra("connected", isConnected);
+        serviceIntent.putExtra(KEY_CONNECTED, isConnected);
         context.startService(serviceIntent);
     }
 

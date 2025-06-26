@@ -40,6 +40,7 @@ public class LocationService extends Service {
     private Location lastLocation;
     private final String NOTIFICATION_CHANEL = "location_chanel";
     private final String LOG_LOCATION = "LOCATION SERVICE";
+    private final String KEY_CONNECTED = "connected";
     @Override
     public void onCreate() {
         super.onCreate();
@@ -66,8 +67,8 @@ public class LocationService extends Service {
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
         return new NotificationCompat.Builder(this, NOTIFICATION_CHANEL)
-                .setContentTitle("Location Service")
-                .setContentText("Running")
+                .setContentTitle(getString(R.string.location_service))
+                .setContentText(getString(R.string.running))
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setDeleteIntent(deleteIntent)
                 .build();
@@ -102,7 +103,7 @@ public class LocationService extends Service {
                     if (lastLocation != null) {
                         Log.d(LOG_LOCATION, "Lat: " + lastLocation.getLatitude() + ", Lon: " + lastLocation.getLongitude());
                     }
-                } else Log.d(LOG_LOCATION, "Không có kết nối Internet");
+                } else Log.d(LOG_LOCATION, getString(R.string.no_internet));
                 handler.postDelayed(this,20000);
             }
         };
@@ -111,8 +112,8 @@ public class LocationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && intent.hasExtra("connected")) {
-            isNetworkConnected = intent.getBooleanExtra("connected", true);
+        if (intent != null && intent.hasExtra(KEY_CONNECTED)) {
+            isNetworkConnected = intent.getBooleanExtra(KEY_CONNECTED, true);
         }
         startForeground(1, createNotification());
         return START_STICKY;
