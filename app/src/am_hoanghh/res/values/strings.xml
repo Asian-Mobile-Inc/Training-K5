@@ -118,4 +118,12 @@
     <string name="toast_text_gps_disabled">GPS disabled</string>
     <string name="notification_content_title_tracking_location">Tracking location</string>
     <string name="notification_channel_name_gps_tracking">GPS Tracking</string>
+    <string name="imageview_content_description_image_download">IMAGE DOWNLOAD</string>
+    <string name="textview_text_download">Download</string>
+    <string name="imageview_content_description_download_icon">DOWNLOAD ICON</string>
+    <string name="imageview_content_description_success">SUCCESS</string>
+    <string name="textview_text_downloaded_successfully">Downloaded successfully</string>
+    <string name="textview_text_download_failed">Download failed</string>
+    <string name="textview_text_try_again">"Try Again"</string>
+    <string name="text_progress">%1$d %%</string>
 </resources>

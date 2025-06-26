@@ -23,6 +23,9 @@
 
         <activity
             android:name="issues6.ex2.Issue6Ex2Activity"
+            android:exported="false"/>
+        <activity
+            android:name="issues7.ex2.Issues7Ex2Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="issues7.ex1.Issues7Ex1Activity"
+            android:exported="false" />
         <activity
             android:name="issues6.ex1.LocationActivity"
             android:exported="false" />
@@ -59,6 +65,7 @@
             android:exported="false">
         </activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
