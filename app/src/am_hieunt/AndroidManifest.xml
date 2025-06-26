@@ -31,7 +31,7 @@
             android:name=".issue4.ActivityLanguage"
             android:exported="false" />
         <activity
-            android:name=".issue8.View.UserActivity"
+            android:name=".issue8.view.UserActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

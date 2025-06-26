@@ -1,7 +1,8 @@
-package com.example.asian.issue8.Model;
+package com.example.asian.issue8.model;
 
 public class User {
     private int user_id;
+    private int number;
     private String user_name;
     private int age;
 
@@ -27,5 +28,13 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

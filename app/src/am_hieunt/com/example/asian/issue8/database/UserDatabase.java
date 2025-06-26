@@ -1,9 +1,11 @@
-package com.example.asian.issue8.Model;
+package com.example.asian.issue8.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.asian.issue8.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +82,19 @@ public class UserDatabase {
             }
             cursor.close();
             return users;
+        }
+        return null;
+    }
+
+    public User getNewUser() {
+        String sql = "SELECT * FROM " + DatabaseHandler.TABLE_NAME;
+        Cursor cursor = db.rawQuery(sql, null);
+        User user = new User();
+        if (cursor != null) {
+            cursor.moveToLast();
+            user = cursorToUser(cursor);
+            cursor.close();
+            return user;
         }
         return null;
     }

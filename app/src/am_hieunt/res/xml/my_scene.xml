@@ -6,13 +6,12 @@
         motion:constraintSetEnd="@+id/end"
         motion:duration="1000">
         <OnSwipe
-            motion:touchAnchorId="@+id/vLine"
-            motion:touchAnchorSide="top"
+            motion:touchRegionId="@id/clListUser"
             motion:dragDirection="dragUp" />
     </Transition>
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/rvListUser"
+            android:id="@+id/clListUser"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
@@ -24,7 +23,7 @@
     </ConstraintSet>
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/rvListUser"
+            android:id="@+id/clListUser"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
