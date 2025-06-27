@@ -53,7 +53,9 @@ public class Weather extends View {
             canvas.drawRect((float) (i * widthChart) / 24, heightChart - (float) heightChart / 12 * hours.get(i).getRain(), (float) (i * widthChart) / 24 + (float) widthChart / 24 / 4, heightChart, paintRain);
             canvas.drawRect((float) (i * widthChart) / 24 + (float) widthChart / 24 / 4, heightChart - (float) heightChart / 12 * hours.get(i).getWintryMix(), (float) (i * widthChart) / 24 + 2* ((float) widthChart / 24 / 4), heightChart, paintWintryMix);
         }
-        for (int i = 0; i<hours.size(); i++)
+        for (int i = 0; i<3; i++) {
+            canvas.drawText("0" + i*3, getHeight(), 0 , paintCoordinate);
+        }
     }
 
     @Override
