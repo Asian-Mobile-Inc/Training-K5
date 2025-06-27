@@ -10,9 +10,13 @@
     <color name="primary_1877F2">#1877F2</color>
     <color name="blue_while_F0F9FE">#F0F9FE</color>
     <color name="neutral_gray_1F1F1F">#1F1F1F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue_B3BDFF">#B3BDFF</color>
+    <color name="purple_576CEC">#576CEC</color>
     <color name="neutral_C3C3C3">#C3C3C3</color>
     <color name="black_181818">#181818</color>
     <color name="gray_9B9B9B">#9B9B9B</color>
-    <color name="white">#FFFFFF</color>
     <color name="yellow_FCCF11">#FCCF11</color>
+    <color name="gray_AFAFAF">#AFAFAF</color>
+    <color name="red_FF3131">#FF3131</color>
 </resources>
