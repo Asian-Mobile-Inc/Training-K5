@@ -6,6 +6,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -15,6 +17,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -34,19 +37,30 @@ public class LocationService extends Service {
     private LocationManager mLocationManager;
     private LocationListener mLocationListener;
     private Boolean isNetworkConnected = true;
-    private InternetReceiver mInternetReceiver;
     private Handler handler;
     private Runnable locationTask;
     private Location lastLocation;
     private final String NOTIFICATION_CHANEL = "location_chanel";
     private final String LOG_LOCATION = "LOCATION SERVICE";
-    private final String KEY_CONNECTED = "connected";
+
+    private final BroadcastReceiver internetStatus = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            isNetworkConnected = isNetworkConnected(context);
+        }
+    };
+
+    private boolean isNetworkConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        mInternetReceiver = new InternetReceiver();
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(mInternetReceiver, filter);
+        registerReceiver(internetStatus, filter);
         handler = new Handler();
         initLocationUpdate();
         initLocationTask();
@@ -112,9 +126,6 @@ public class LocationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && intent.hasExtra(KEY_CONNECTED)) {
-            isNetworkConnected = intent.getBooleanExtra(KEY_CONNECTED, true);
-        }
         startForeground(1, createNotification());
         return START_STICKY;
     }
@@ -122,9 +133,7 @@ public class LocationService extends Service {
     @Override
     public void onDestroy() {
         handler.removeCallbacks(locationTask);
-        if (mInternetReceiver != null) {
-            unregisterReceiver(mInternetReceiver);
-        }
+        unregisterReceiver(internetStatus);
         if (mLocationManager != null && mLocationListener != null) {
             mLocationManager.removeUpdates(mLocationListener);
         }
