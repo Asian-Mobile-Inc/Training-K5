@@ -89,9 +89,8 @@ public class UserActivity extends AppCompatActivity {
         mTvDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUsers = mUserAdapter.getCurrentList();
-                if (mUsers.size() > 0) {
-                    mTvContent.setText(getString(R.string.are_you_sure_you_want_to_delete_all) + " " + mUsers.size() + " " + getString(R.string.users) + " ?");
+                if (mUserAdapter.getCurrentList().size() > 0) {
+                    mTvContent.setText(getString(R.string.are_you_sure_you_want_to_delete_all) + " " + mUserAdapter.getCurrentList().size() + " " + getString(R.string.users) + " ?");
                     mAlertDialog.show();
                 }
             }
@@ -153,7 +152,6 @@ public class UserActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

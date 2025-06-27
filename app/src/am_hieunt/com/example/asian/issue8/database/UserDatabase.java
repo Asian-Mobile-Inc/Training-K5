@@ -42,13 +42,6 @@ public class UserDatabase {
         db.insert(DatabaseHandler.TABLE_NAME, null, values);
     }
 
-    public void updateUser(User user) {
-        ContentValues values = new ContentValues();
-        values.put(DatabaseHandler.KEY_USERNAME, user.getUsername());
-        values.put(DatabaseHandler.KEY_AGE, user.getAge());
-        db.update(DatabaseHandler.TABLE_NAME,values,DatabaseHandler.KEY_ID + " = ?", new String[] {String.valueOf(user.getId())});
-    }
-
     public void deleteUser(int id) {
         db.delete(DatabaseHandler.TABLE_NAME, DatabaseHandler.KEY_ID + " = ?", new String[]{String.valueOf(id)});
     }
@@ -56,18 +49,6 @@ public class UserDatabase {
     public void deleteAllUser() {
         String sql = "DELETE FROM " + DatabaseHandler.TABLE_NAME;
         db.execSQL(sql);
-    }
-
-    public User getUser(int id) {
-        String sql = "SELECT * FROM " + DatabaseHandler.TABLE_NAME + " WHERE id = ?";
-        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(id)});
-        if (cursor != null) {
-            cursor.moveToFirst();
-            User user = cursorToUser(cursor);
-            cursor.close();
-            return user;
-        }
-        return null;
     }
 
     public List<User> getAllUser() {
