@@ -33,7 +33,7 @@ public class UserActivity extends AppCompatActivity {
     private EditText mEdtUserName, mEdtAge;
     private RecyclerView mRvListUser;
     private UserAdapter mUserAdapter;
-    private Button mBtnShow, mTvDeleteDialogAll, mBtnAddUser;
+    private Button mBtnShow, mTvDeleteAll, mBtnAddUser;
     private TextView mTvLabel, mTvContent, mTvCancelDialog, mTvDeleteDialog;;
     private ImageView mIvList;
     private List<User> mUsers;
@@ -58,10 +58,10 @@ public class UserActivity extends AppCompatActivity {
         mEdtAge = findViewById(R.id.edtAge);
         mBtnShow = findViewById(R.id.btnShow);
         mRvListUser = findViewById(R.id.rvListUser);
-        mTvDeleteDialogAll = findViewById(R.id.btnDeleteAll);
+        mTvDeleteAll = findViewById(R.id.btnDeleteAll);
         mBtnAddUser = findViewById(R.id.btnAddUser);
         mRvListUser.setVisibility(View.GONE);
-        mTvDeleteDialogAll.setVisibility(View.GONE);
+        mTvDeleteAll.setVisibility(View.GONE);
         mTvLabel = findViewById(R.id.tvLabel);
         mIvList = findViewById(R.id.ivList);
         mUsers = new ArrayList<>();
@@ -83,14 +83,17 @@ public class UserActivity extends AppCompatActivity {
                 mIvList.setVisibility(View.GONE);
                 mBtnShow.setVisibility(View.GONE);
                 mRvListUser.setVisibility(View.VISIBLE);
-                mTvDeleteDialogAll.setVisibility(View.VISIBLE);
+                mTvDeleteAll.setVisibility(View.VISIBLE);
             }
         });
-        mTvDeleteDialogAll.setOnClickListener(new View.OnClickListener() {
+        mTvDeleteAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTvContent.setText(getString(R.string.are_you_sure_you_want_to_delete_all) + " " + mUsers.size() + " " + getString(R.string.users) + " ?");
-                mAlertDialog.show();
+                mUsers = mUserAdapter.getCurrentList();
+                if (mUsers.size() > 0) {
+                    mTvContent.setText(getString(R.string.are_you_sure_you_want_to_delete_all) + " " + mUsers.size() + " " + getString(R.string.users) + " ?");
+                    mAlertDialog.show();
+                }
             }
         });
         mTvCancelDialog.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +107,8 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mAlertDialog.dismiss();
                 UserDatabase.getInstance(UserActivity.this).deleteAllUser();
-                List<User> users = new ArrayList<>();
-                mUserAdapter.submitList(users);
+                mUsers = new ArrayList<>();
+                mUserAdapter.submitList(mUsers);
             }
         });
         mEdtUserName.addTextChangedListener(new TextWatcher() {
