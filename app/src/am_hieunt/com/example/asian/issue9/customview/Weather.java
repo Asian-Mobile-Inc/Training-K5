@@ -16,7 +16,7 @@ import com.example.asian.issue9.model.Hour;
 import java.util.List;
 
 public class Weather extends View {
-    private Paint paintRain, paintWintryMix;
+    private Paint paintRain, paintWintryMix, paintCoordinate;
     private List<Hour> hours;
 
     public Weather(Context context, List<Hour> hours) {
@@ -27,6 +27,10 @@ public class Weather extends View {
         paintWintryMix = new Paint();
         paintWintryMix.setColor(context.getColor(R.color.blue_8185FA));
         paintWintryMix.setStyle(Paint.Style.FILL);
+        paintCoordinate = new Paint();
+        paintCoordinate.setColor(context.getColor(R.color.gray));
+        paintCoordinate.setAlpha(20);
+        paintCoordinate.setStrokeWidth(10);
         this.hours = hours;
     }
 
@@ -41,10 +45,15 @@ public class Weather extends View {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawLine(0, getHeight(), getWidth(), getHeight(), paintCoordinate);
+        canvas.drawLine(getWidth(), getHeight(), getWidth(), 0, paintCoordinate);
+        float widthChart = getWidth() - 5;
+        float heightChart = getHeight() - 5;
         for (int i = 0; i<hours.size(); i++) {
-            canvas.drawRect((float) (i * getWidth()) / 24, getHeight() - (float) getHeight() / 12 * hours.get(i).getRain(), (float) (i * getWidth()) / 24 + (float) getWidth() / 24 / 4, getHeight(), paintRain);
-            canvas.drawRect((float) (i * getWidth()) / 24 + (float) getWidth() / 24 / 4, getHeight() - (float) getHeight() / 12 * hours.get(i).getRain(), (float) (i * getWidth()) / 24 + (float) getWidth() / 24 / 4, getHeight(), paintWintryMix);
+            canvas.drawRect((float) (i * widthChart) / 24, heightChart - (float) heightChart / 12 * hours.get(i).getRain(), (float) (i * widthChart) / 24 + (float) widthChart / 24 / 4, heightChart, paintRain);
+            canvas.drawRect((float) (i * widthChart) / 24 + (float) widthChart / 24 / 4, heightChart - (float) heightChart / 12 * hours.get(i).getWintryMix(), (float) (i * widthChart) / 24 + 2* ((float) widthChart / 24 / 4), heightChart, paintWintryMix);
         }
+        for (int i = 0; i<hours.size(); i++)
     }
 
     @Override
