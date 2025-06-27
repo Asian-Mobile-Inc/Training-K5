@@ -125,4 +125,11 @@
     <string name="textview_text_rain">Rain</string>
     <string name="textview_text_wintry_mix">Wintry mix</string>
     <string name="textview_text_snow">Snow</string>
+    <string name="textview_text_number_mm">%1$.1f mm</string>
+    <string name="textview_text_total_in_the_past_24_hours">Total in the past 24 hours</string>
+    <string name="textview_text_high_29_low_15">H:29° L:15°</string>
+    <string name="imageview_content_description_weather">WEATHER</string>
+    <string name="textview_text_number_temperature">%1$.1f°</string>
+    <string name="textview_text_hour">%1$02d:00</string>
+    <string name="drawtext_text_hour">%1$02d</string>
 </resources>
