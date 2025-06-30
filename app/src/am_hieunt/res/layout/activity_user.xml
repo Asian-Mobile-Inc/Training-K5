@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
     tools:showPaths="true"
+    android:background="@color/blue"
     app:layoutDescription="@xml/my_scene"
     tools:context=".issue8.view.UserActivity">
     <TextView
@@ -95,6 +95,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
         android:translationZ="2dp"
+        android:paddingTop="50dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:background="@drawable/my_scrollview"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
