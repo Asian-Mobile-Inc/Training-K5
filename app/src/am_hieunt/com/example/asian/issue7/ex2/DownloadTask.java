@@ -46,8 +46,8 @@ public class DownloadTask extends AsyncTask<String, Integer, Bitmap> {
     @SuppressLint("StaticFieldLeak")
     private final Button mBtnDownload;
     @SuppressLint("StaticFieldLeak")
-    private final LinearLayout mLlDownload;
     private final long mStartTime;
+    private final View mVDownload;
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public DownloadTask(Activity contextParent) {
@@ -57,8 +57,8 @@ public class DownloadTask extends AsyncTask<String, Integer, Bitmap> {
         mPbDownload = this.contextParent.findViewById(R.id.pbDownload);
         mSivDownload = contextParent.findViewById(R.id.sivDownload);
         mBtnDownload = contextParent.findViewById(R.id.btnDownload);
-        mLlDownload = contextParent.findViewById(R.id.llDownload);
-        mLlDownload.setBackground(contextParent.getDrawable(R.drawable.my_dotted_success));
+        mVDownload = contextParent.findViewById(R.id.vDownload);
+        mVDownload.setBackground(contextParent.getDrawable(R.drawable.my_dotted_success));
         mSivDownload.setVisibility(View.GONE);
         mTvProgress.setVisibility(View.VISIBLE);
         mTvSpeed.setVisibility(View.VISIBLE);
@@ -142,9 +142,9 @@ public class DownloadTask extends AsyncTask<String, Integer, Bitmap> {
             mSivDownload.setImageBitmap(mBitmap);
             toastSuccess();
         } else {
-            mLlDownload.setBackground(contextParent.getDrawable(R.drawable.my_dotted_fail));
             mBtnDownload.setClickable(true);
             mBtnDownload.setSelected(false);
+            mVDownload.setBackground(contextParent.getDrawable(R.drawable.my_dotted_fail));
             Glide.with(contextParent)
                     .load(R.drawable.ic_download_fail)
                     .into(mSivDownload);
