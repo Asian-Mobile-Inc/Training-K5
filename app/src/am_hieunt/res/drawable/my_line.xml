@@ -6,7 +6,9 @@
     <solid
         android:color="@color/blue" >
     </solid>
+    <padding android:top="10dp" android:bottom="10dp">
 
+    </padding>
     <corners
         android:radius="9999dp" >
     </corners>
