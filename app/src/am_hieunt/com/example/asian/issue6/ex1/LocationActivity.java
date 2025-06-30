@@ -1,6 +1,8 @@
 package com.example.asian.issue6.ex1;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -8,7 +10,10 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -56,17 +61,19 @@ public class LocationActivity extends AppCompatActivity {
             public void onLocationChanged(@NonNull Location location) {
                 double lat = location.getLatitude();
                 double lon = location.getLongitude();
-                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-                try {
-                    List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
-                    if (addresses != null && !addresses.isEmpty()) {
-                        Address address = addresses.get(0);
-                        mAddress = address.getAddressLine(0);
-                        Log.d(LOG_LOCATION, mAddress);
-                        mTvLocation.setText(mAddress);
+                if (isNetworkConnected()) {
+                    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                    try {
+                        List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
+                        if (addresses != null && !addresses.isEmpty()) {
+                            Address address = addresses.get(0);
+                            mAddress = address.getAddressLine(0);
+                            Log.d(LOG_LOCATION, mAddress);
+                            mTvLocation.setText(mAddress);
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
                 }
             }
         };
@@ -81,4 +88,12 @@ public class LocationActivity extends AppCompatActivity {
             );
         }
     }
+
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
 }
