@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_location">
+
+    <View
+        android:id="@+id/viewLocation"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_view_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <ImageView
+        android:id="@+id/ivCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/imageview_content_description_company"
+        android:src="@drawable/ic_company"
+        app:layout_constraintBottom_toTopOf="@id/ivLocation"
+        app:layout_constraintEnd_toStartOf="@id/tvCompany"
+        app:layout_constraintStart_toStartOf="@id/viewLocation"
+        app:layout_constraintTop_toTopOf="@id/viewLocation" />
+
+    <TextView
+        android:id="@+id/tvCompany"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/textview_text_asian_mobile_company"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivCompany"
+        app:layout_constraintTop_toTopOf="@id/ivCompany" />
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/imageview_content_description_location"
+        android:src="@drawable/ic_location"
+        app:layout_constraintEnd_toStartOf="@id/tvLocation"
+        app:layout_constraintStart_toStartOf="@id/ivCompany"
+        app:layout_constraintTop_toBottomOf="@id/ivCompany" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivLocation"
+        app:layout_constraintTop_toTopOf="@id/ivLocation" />
+
+    <ImageView
+        android:id="@+id/ivCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/imageview_content_description_camera"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@id/viewLocation"
+        app:layout_constraintEnd_toStartOf="@id/ivPerson"
+        app:layout_constraintStart_toStartOf="@id/ivLocation"
+        app:layout_constraintTop_toBottomOf="@id/ivLocation"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <ImageView
+        android:id="@+id/ivPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/imageview_content_description_person"
+        android:src="@drawable/ic_person"
+        app:layout_constraintBottom_toBottomOf="@id/ivCamera"
+        app:layout_constraintEnd_toStartOf="@id/ivPolice"
+        app:layout_constraintStart_toEndOf="@id/ivCamera"
+        app:layout_constraintTop_toTopOf="@id/ivCamera" />
+
+    <ImageView
+        android:id="@+id/ivPolice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/imageview_content_description_police"
+        android:src="@drawable/ic_police"
+        app:layout_constraintBottom_toBottomOf="@id/ivPerson"
+        app:layout_constraintEnd_toStartOf="@id/ivParking"
+        app:layout_constraintStart_toEndOf="@id/ivPerson"
+        app:layout_constraintTop_toTopOf="@id/ivPerson" />
+
+    <ImageView
+        android:id="@+id/ivParking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/imageview_content_description_parking"
+        android:src="@drawable/ic_parking"
+        app:layout_constraintBottom_toBottomOf="@id/ivPolice"
+        app:layout_constraintStart_toEndOf="@id/ivPolice"
+        app:layout_constraintTop_toTopOf="@id/ivPolice" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -8,6 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <receiver
+            android:name="issues6.ex2.GpsService"
+            android:exported="true"
+            tools:ignore="Instantiatable">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="issues6.ex2.GpsService"
+            android:foregroundServiceType="location" />
 
         <activity
             android:name="issues8.Issues8Activity"
@@ -19,11 +32,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="issues4.LanguageActivity"
+            android:name="issues7.ex2.Issues7Ex2Activity"
+            android:exported="false" />
+        <activity
+            android:name="issues7.ex1.Issues7Ex1Activity"
+            android:exported="false" />
+        <activity
+            android:name="issues6.ex2.Issue6Ex2Activity"
+            android:exported="false"/>
+        <activity
+            android:name="issues6.ex1.LocationActivity"
+            android:exported="false" />
+        <activity
+            android:name="issues6.ex1.PermissionActivity"
             android:exported="false" />
         <activity
             android:name="issues5.Issues5Activity"
             android:exported="false" />
+        <activity
+            android:name="issues4.LanguageActivity"
+            android:exported="false"/>
         <activity
             android:name="issues2.ex1.SubEx1Activity"
             android:exported="false" />
@@ -40,5 +68,13 @@
             android:name=".MainActivity"
             android:exported="false" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
