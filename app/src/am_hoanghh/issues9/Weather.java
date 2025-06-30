@@ -15,7 +15,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -47,10 +46,10 @@ public class Weather extends View {
     private final OnTouchChartListener mListener;
 
     private ScaleGestureDetector mScaleGestureDetector;
-    private float lastTouchX;
-    private boolean isDragging = false;
-    private float translateX = 0f;
-    private float scaleFactor = 1.0f;
+    private float mLastTouchX;
+    private boolean mIsDragging = false;
+    private float mTranslateX = 0f;
+    private float mScaleFactor = 1.0f;
 
     private static int sLevelRain;
     private static float sMaxXValue;
@@ -61,6 +60,10 @@ public class Weather extends View {
     private static final float MARGIN_CHART_TO_RIGHT = 25.0f;
     private static final float MARGIN_CHART_TO_TOP = 30.0f;
     private static final float MARGIN_CHART_TO_BOTTOM = 30.0f;
+    private static final float MARGIN_ICON_WEATHER_TO_TOP = 12.0f;
+    private static final int MAX_HOUR_ITEM_INIT = 15;
+    private static final float MARGIN_COLUMN = 4;
+    private static final int ROW_NUMBER = 5;
 
     public Weather(Context context, List<Hour> hourLists, OnTouchChartListener listener) {
         super(context);
@@ -124,17 +127,21 @@ public class Weather extends View {
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        canvas.translate(translateX, 0);
-        canvas.scale(scaleFactor, 1.0f);
+
+        float rightEdge = getWidth() - dpToFloat(MARGIN_CHART_TO_RIGHT);
+        canvas.clipRect(0, 0, rightEdge, getHeight());
+        canvas.translate(mTranslateX, 0);
+        canvas.scale(mScaleFactor, 1.0f);
 
         drawColumnChart(canvas);
         drawTemperature(canvas);
         drawPolygonGradient(canvas);
-        drawDottedLine(canvas);
-        drawSolidLine(canvas);
         drawSlider(canvas);
 
         canvas.restore();
+
+        drawDottedLine(canvas);
+        drawSolidLine(canvas);
     }
 
     @Override
@@ -145,24 +152,24 @@ public class Weather extends View {
     }
 
     private void drawTemperature(Canvas canvas) {
-        int maxX = 15;
         float maxY = getMaxValueTemperature();
 
-        float factorX = (getWidth() - dpToFloat(25)) / (float) maxX;
-        float factorY = (getHeight() - dpToFloat(60)) / maxY;
+        float factorX = (getWidth() - dpToFloat(MARGIN_CHART_TO_RIGHT)) / (float) MAX_HOUR_ITEM_INIT;
+        float factorY = (getHeight() - dpToFloat(MARGIN_CHART_TO_TOP + MARGIN_CHART_TO_BOTTOM)) / maxY;
 
         // To draw polygon gradient
         mPointLists.clear();
-        mPointLists.add(new Point(0, getHeight() - dpToFloat(30)));
+        mPointLists.add(new Point(0, getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM)));
         for (int i = 1; i < mHourLists.size(); ++i) {
             int x0 = i - 1;
             float y0 = mHourLists.get(i - 1).getmTemperature();
             float y1 = mHourLists.get(i).getmTemperature();
 
-            int sx = (int) (x0 * factorX);
-            int sy = getHeight() - (int) dpToFloat(30) - (int) (y0 * factorY);
-            int ex = (int) (i * factorX);
-            int ey = getHeight() - (int) dpToFloat(30) - (int) (y1 * factorY);
+            float sx = x0 * factorX;
+            float sy = getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM) - (y0 * factorY);
+            float ex = i * factorX;
+            float ey = getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM) - (y1 * factorY);
+
             canvas.drawLine(sx, sy * 2, ex, ey * 2, mTempPaint);
 
             if (i == 1) {
@@ -172,10 +179,10 @@ public class Weather extends View {
 
             if (i == mHourLists.size() - 1) {
                 sMaxXValue = ex;
-                mPointLists.add(new Point(ex, getHeight() - dpToFloat(30)));
+                mPointLists.add(new Point(ex, getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM)));
             }
         }
-        mPointLists.add(new Point(0, getHeight() - dpToFloat(30)));
+        mPointLists.add(new Point(0, getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM)));
     }
 
     private void drawPolygonGradient(Canvas canvas) {
@@ -189,22 +196,22 @@ public class Weather extends View {
     }
 
     private void drawColumnChart(Canvas canvas) {
-        float barWidth = dpToFloat(6);
-        int maxX = 15;
+        float barWidth = dpToFloat(BAR_WIDTH);
         float maxY = getMaxValueColumnChart();
-        float factorX = (getWidth() - dpToFloat(41)) / (float) maxX;
-        float factorY = (getHeight() - dpToFloat(60)) / maxY;
-        sLevelRain = (int) maxY / 5;
+        float factorX = (getWidth() - dpToFloat(59)) / (float) MAX_HOUR_ITEM_INIT;
+        float factorY = (getHeight() - dpToFloat(MARGIN_CHART_TO_TOP + MARGIN_CHART_TO_BOTTOM)) / maxY;
+        sLevelRain = (int) maxY / ROW_NUMBER;
 
         for (int i = 0; i < mHourLists.size(); i++) {
+            float xR = i * factorX + dpToFloat(MARGIN_COLUMN);
+
             // Draw rain column
-            float xR = i * factorX + dpToFloat(4);
-            float yR = (float) (getHeight() - dpToFloat(30) - mHourLists.get(i).getmRain() * factorY);
-            canvas.drawRoundRect(xR, yR, xR + barWidth, getHeight() - dpToFloat(30), 70f, 30f, mRainPaint);
+            float yR = getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM) - mHourLists.get(i).getmRain() * factorY;
+            canvas.drawRoundRect(xR, yR, xR + barWidth, getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM), 70f, 30f, mRainPaint);
 
             // Draw wintry column
-            float yW = (float) (getHeight() - dpToFloat(30) - mHourLists.get(i).getmWintry() * factorY);
-            canvas.drawRoundRect(xR + barWidth, yW, xR + barWidth * 2, getHeight() - dpToFloat(30), 70f, 30f, mWintryPaint);
+            float yW = (float) (getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM) - mHourLists.get(i).getmWintry() * factorY);
+            canvas.drawRoundRect(xR + barWidth, yW, xR + barWidth * 2, getHeight() - dpToFloat(MARGIN_CHART_TO_BOTTOM), 70f, 30f, mWintryPaint);
 
             // Draw hour text
             if (i % 4 == 0) {
@@ -214,14 +221,14 @@ public class Weather extends View {
             // Draw icon weather bitmap
             Bitmap bitmap = getBitmapFromStatusWeather(mHourLists.get(i));
             Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-            float top = dpToFloat(12);
+            float top = dpToFloat(MARGIN_ICON_WEATHER_TO_TOP);
             RectF rectF = new RectF(xR, top, xR + bitmap.getWidth(), top + bitmap.getHeight());
             canvas.drawBitmap(bitmap, rect, rectF, mStatusWeatherPaint);
         }
     }
 
     private void drawDottedLine(Canvas canvas) {
-        float factorX = (float) (getWidth() - dpToFloat(25)) / 4;
+        float factorX = (getWidth() - dpToFloat(MARGIN_CHART_TO_RIGHT)) / 4;
         float y = (float) getHeight() - dpToFloat(10);
         for (int i = 1; i < 4; i++) {
             float x1 = factorX * i;
@@ -230,14 +237,14 @@ public class Weather extends View {
     }
 
     private void drawSolidLine(Canvas canvas) {
-        float factorX = (float) (getWidth() - dpToFloat(25)) / 4;
+        float factorX = (getWidth() - dpToFloat(MARGIN_CHART_TO_RIGHT)) / 4;
         float y = (float) getHeight() - dpToFloat(10);
         canvas.drawLine(factorX * 4, y, factorX * 4, 0, mSolidLinePaint);
 
-        float factorY = (float) (getHeight() - dpToFloat(60)) / 5;
+        float factorY = (getHeight() - dpToFloat(MARGIN_CHART_TO_TOP + MARGIN_CHART_TO_BOTTOM)) / ROW_NUMBER;
         for (int i = 0; i < 6; i++) {
-            float xPoint = (float) (getWidth() - dpToFloat(25));
-            float yPoint = dpToFloat(30) + factorY * i;
+            float xPoint = (float) (getWidth() - dpToFloat(MARGIN_CHART_TO_RIGHT));
+            float yPoint = dpToFloat(MARGIN_CHART_TO_TOP) + factorY * i;
             canvas.drawLine(0, yPoint, xPoint, yPoint, mSolidLinePaint);
 
             // Draw level rain text
@@ -251,31 +258,31 @@ public class Weather extends View {
         mScaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleGestureDetector.SimpleOnScaleGestureListener() {
             @Override
             public boolean onScale(@NonNull ScaleGestureDetector detector) {
-                float proposedScale = scaleFactor * detector.getScaleFactor();
+                float proposedScale = mScaleFactor * detector.getScaleFactor();
                 float newContentWidth = sMaxXValue * proposedScale;
                 if (newContentWidth < getWidth()) {
                     proposedScale = getWidth() / sMaxXValue;
                 }
                 proposedScale = Math.max(0.5f, Math.min(proposedScale, 2.0f));
-                scaleFactor = proposedScale;
+                mScaleFactor = proposedScale;
                 invalidate();
                 return true;
             }
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mScaleGestureDetector.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                lastTouchX = event.getX();
-                isDragging = true;
+                mLastTouchX = event.getX();
+                mIsDragging = true;
                 sIsActionDown = true;
 
-                float clickXInChart = (event.getX() - translateX) / scaleFactor;
-                int maxX = 15;
-                float factorX = (getWidth() - dpToFloat(41)) / (float) maxX;
+                float clickXInChart = (event.getX() - mTranslateX) / mScaleFactor;
+                float factorX = (getWidth() - dpToFloat(59)) / (float) MAX_HOUR_ITEM_INIT;
 
                 int selectedIndex = Math.round((clickXInChart - dpToFloat(6)) / factorX);
                 if (selectedIndex < 0) selectedIndex = 0;
@@ -286,17 +293,17 @@ public class Weather extends View {
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (isDragging) {
-                    float dx = event.getX() - lastTouchX;
-                    translateX += dx;
+                if (mIsDragging) {
+                    float dx = event.getX() - mLastTouchX;
+                    mTranslateX += dx;
                     checkContentOutOfWidth();
-                    lastTouchX = event.getX();
+                    mLastTouchX = event.getX();
                     invalidate();
                 }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                isDragging = false;
+                mIsDragging = false;
                 sIsActionDown = false;
                 mListener.onTouchListener(-1);
                 invalidate();
@@ -329,16 +336,16 @@ public class Weather extends View {
     }
 
     private void checkContentOutOfWidth() {
-        float contentWidth = sMaxXValue * scaleFactor;
+        float contentWidth = sMaxXValue * mScaleFactor;
         float maxTranslateX = getWidth() - contentWidth;
 
         if (contentWidth <= getWidth()) {
-            translateX = 0;
+            mTranslateX = 0;
         } else {
-            if (translateX > 0) {
-                translateX = 0;
-            } else if (translateX < maxTranslateX) {
-                translateX = maxTranslateX;
+            if (mTranslateX > 0) {
+                mTranslateX = 0;
+            } else if (mTranslateX < maxTranslateX) {
+                mTranslateX = maxTranslateX;
             }
         }
     }
