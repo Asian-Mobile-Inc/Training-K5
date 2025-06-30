@@ -103,4 +103,8 @@
     <string name="code_language_dutch" translatable="false">nl</string>
     <string name="code_language_russian" translatable="false">ru</string>
     <string name="code_language_polish" translatable="false">pl</string>
+    <string name="download" translatable="false">Download</string>
+    <string name="try_again" translatable="false">Try Again</string>
+    <string name="downloaded_successfully" translatable="false">Downloaded successfully</string>
+    <string name="downloaded_failed" translatable="false">Downloaded failed</string>
 </resources>
