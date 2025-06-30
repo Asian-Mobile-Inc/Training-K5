@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "userManager";
+    private static final String DATABASE_NAME = "User";
     private static final int DATABASE_VERSION = 1;
-    public static final String TABLE_NAME = "users";
-    public static final String KEY_ID = "id";
-    public static final String KEY_USERNAME = "username";
+    public static final String TABLE_NAME = "User";
+    public static final String KEY_ID = "user_id";
+    public static final String KEY_USERNAME = "user_name";
     public static final String KEY_AGE = "age";
 
     public DatabaseHandler(Context context) {

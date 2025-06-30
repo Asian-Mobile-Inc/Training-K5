@@ -5,11 +5,14 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -49,9 +52,9 @@ public class UserActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
             return insets;
         });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.clListUser), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rvListUser), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, systemBars.bottom);
+            v.setPadding(dpToPx(20), dpToPx(50), dpToPx(20), systemBars.bottom);
             return insets;
         });
         mEdtUserName = findViewById(R.id.edtUserName);
@@ -60,7 +63,6 @@ public class UserActivity extends AppCompatActivity {
         mRvListUser = findViewById(R.id.rvListUser);
         mTvDeleteAll = findViewById(R.id.btnDeleteAll);
         mBtnAddUser = findViewById(R.id.btnAddUser);
-        mRvListUser.setVisibility(View.GONE);
         mTvDeleteAll.setVisibility(View.GONE);
         mTvLabel = findViewById(R.id.tvLabel);
         mIvList = findViewById(R.id.ivList);
@@ -68,7 +70,6 @@ public class UserActivity extends AppCompatActivity {
         mUsers = UserDatabase.getInstance(this).getAllUser();
         mUserAdapter = new UserAdapter(this);
         mRvListUser.setAdapter(mUserAdapter);
-        mUserAdapter.submitList(mUsers);
         mRvListUser.setLayoutManager(new LinearLayoutManager(this));
         initAlertDialog();
         initListener();
@@ -82,8 +83,8 @@ public class UserActivity extends AppCompatActivity {
                 mTvLabel.setVisibility(View.GONE);
                 mIvList.setVisibility(View.GONE);
                 mBtnShow.setVisibility(View.GONE);
-                mRvListUser.setVisibility(View.VISIBLE);
                 mTvDeleteAll.setVisibility(View.VISIBLE);
+                mUserAdapter.submitList(mUsers);
             }
         });
         mTvDeleteAll.setOnClickListener(new View.OnClickListener() {
@@ -167,5 +168,9 @@ public class UserActivity extends AppCompatActivity {
         if (mAlertDialog.getWindow() != null) {
             mAlertDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.my_dialog));
         }
+    }
+
+    private int dpToPx(int dp) {
+        return Math.round(dp * this.getResources().getDisplayMetrics().density);
     }
 }
