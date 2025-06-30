@@ -126,4 +126,9 @@
     <string name="textview_text_download_failed">Download failed</string>
     <string name="textview_text_try_again">"Try Again"</string>
     <string name="text_progress">%1$d %%</string>
+    <string name="textview_text_all">ALL</string>
+    <string name="textview_text_favorite">FAVORITE</string>
+    <string name="imageview_content_description_app">APP</string>
+    <string name="textview_text_your_hodername">Your hodername</string>
+    <string name="imageview_content_description_favorite">FAVORITE</string>
 </resources>
