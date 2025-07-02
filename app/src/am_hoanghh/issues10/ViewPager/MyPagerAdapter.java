@@ -1,26 +1,36 @@
-package issues10;
+package issues10.ViewPager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import issues10.All.AllFragment;
+import issues10.Favorite.FavoriteFragment;
+
 public class MyPagerAdapter extends FragmentStateAdapter {
+    private final Fragment[] mFragments;
+
     public MyPagerAdapter(FragmentActivity fa) {
         super(fa);
+        mFragments = new Fragment []{
+            new AllFragment(),
+            new FavoriteFragment()
+        };
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        if (position == 1) {
-            return new FavoriteFragment();
-        }
-        return new AllFragment();
+        return mFragments[position];
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return mFragments.length;
+    }
+
+    public Fragment getFragment(int position) {
+        return mFragments[position];
     }
 }
