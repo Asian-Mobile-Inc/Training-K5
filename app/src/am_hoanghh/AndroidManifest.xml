@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <receiver
             android:name="issues6.ex2.GpsService"
             android:exported="true"
@@ -21,7 +22,8 @@
             android:name="issues6.ex2.GpsService"
             android:foregroundServiceType="location" />
 
-        <activity android:name="issues10.Issues10Activity"
+        <activity
+            android:name="issues10.Issues10Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +32,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="issues8.Issues8Activity"
+            android:exported="false" />
+        <activity
             android:name="issues7.ex2.Issues7Ex2Activity"
             android:exported="false" />
         <activity
@@ -37,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name="issues6.ex2.Issue6Ex2Activity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="issues6.ex1.LocationActivity"
             android:exported="false" />
@@ -64,9 +69,9 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -75,4 +80,5 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
