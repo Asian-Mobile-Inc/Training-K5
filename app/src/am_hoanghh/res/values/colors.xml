@@ -23,4 +23,7 @@
     <color name="gray_B0B0B0">#B0B0B0</color>
     <color name="red_FA6161">#FA6161</color>
     <color name="purple_7989F0">#7989F0</color>
+    <color name="gray_D3D3D3">#D3D3D3</color>
+    <color name="blue_1877F2">#1877F2</color>
+    <color name="black_40000000">#40000000</color>
 </resources>
