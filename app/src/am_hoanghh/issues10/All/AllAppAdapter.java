@@ -1,6 +1,8 @@
 package issues10.All;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -15,8 +17,10 @@ import com.example.asian.R;
 import com.example.asian.databinding.ItemRvAppBinding;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Queue;
 
 import issues10.Model.AppModel;
 import issues10.Util.DBHandler;
@@ -26,6 +30,8 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
     private final DBHandler mDbHandler;
     private static final int WIDTH_ICON = 46;
     private static final int WIDTH_FAV_ICON = 24;
+    private static final int DELAY = 1000;
+    private static final int IS_FAVORITE_TRUE = 1;
 
     protected AllAppAdapter(Context context, DBHandler dbHandler) {
         super(DIFF_CALLBACK);
@@ -36,8 +42,8 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemRvAppBinding mBinding = ItemRvAppBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new AllAppAdapter.ViewHolder(mBinding);
+        ItemRvAppBinding binding = ItemRvAppBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new AllAppAdapter.ViewHolder(binding);
     }
 
     @Override
@@ -50,21 +56,16 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
                 .into(holder.mBinding.ivIconApp);
         holder.mBinding.tvAppName.setText(item.getmName());
         Glide.with(mContext)
-                .load(item.getmIsFavorite() == 1 ? R.drawable.ic_heart_fill_blue : R.drawable.ic_heart_line_blue)
+                .load(item.getmIsFavorite() == IS_FAVORITE_TRUE ? R.drawable.ic_heart_fill_blue : R.drawable.ic_heart_line_blue)
                 .override(pxToDp(WIDTH_FAV_ICON, mContext), pxToDp(WIDTH_FAV_ICON, mContext))
                 .into(holder.mBinding.ivFavorite);
         holder.mBinding.ivFavorite.setOnClickListener(v -> {
-            List<AppModel> currentLists = new ArrayList<>(getCurrentList());
-            AppModel currentItem = currentLists.get(holder.getAdapterPosition());
-            currentLists.set(holder.getAdapterPosition(), new AppModel(currentItem.getmId(), currentItem.getmIcon(), currentItem.getmName(), currentItem.getmIsFavorite() ^ 1));
-            submitList(currentLists);
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    mDbHandler.updateApp(currentItem.getmIsFavorite() ^ 1, currentItem.getmId());
-                }
-            }).start();
+            holder.mBinding.ivFavorite.setEnabled(false);
+            mDbHandler.updateApp(item.getmIsFavorite() ^ 1, item.getmId());
+            submitList(mDbHandler.readApps());
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                holder.mBinding.ivFavorite.setEnabled(true);
+            }, DELAY);
         });
     }
 

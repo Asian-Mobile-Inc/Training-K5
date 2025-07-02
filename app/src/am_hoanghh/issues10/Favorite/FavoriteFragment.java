@@ -19,7 +19,6 @@ import issues10.Util.DBHandler;
 
 public class FavoriteFragment extends Fragment {
     private FragmentFavoriteBinding mBinding;
-    private List<AppModel> mFavoriteAppModelLists;
     private DBHandler mDbHandler;
     private FavoriteAppAdapter mAdapter;
 
@@ -50,7 +49,7 @@ public class FavoriteFragment extends Fragment {
     }
 
     public void refresh() {
-        mFavoriteAppModelLists = mDbHandler.readAppsByFavorite(1);
-        mAdapter.submitList(mFavoriteAppModelLists);
+        List<AppModel> favoriteAppModelLists = mDbHandler.readAppsByFavorite(1);
+        mAdapter.submitList(favoriteAppModelLists);
     }
 }

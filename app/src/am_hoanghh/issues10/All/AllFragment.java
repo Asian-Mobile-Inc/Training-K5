@@ -20,7 +20,6 @@ import issues10.Util.DBHandler;
 
 public class AllFragment extends Fragment {
     private FragmentAllBinding mBinding;
-    private List<AppModel> mAppModelLists;
     private DBHandler mDbHandler;
     private AllAppAdapter mAdapter;
 
@@ -47,8 +46,8 @@ public class AllFragment extends Fragment {
     }
 
     public void refresh() {
-        mAppModelLists = mDbHandler.readApps();
-        mAdapter.submitList(mAppModelLists);
+        List<AppModel> appModelLists = mDbHandler.readApps();
+        mAdapter.submitList(appModelLists);
     }
 
     private void initDbHandler() {

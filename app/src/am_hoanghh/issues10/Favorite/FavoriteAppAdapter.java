@@ -24,6 +24,7 @@ public class FavoriteAppAdapter extends ListAdapter<AppModel, FavoriteAppAdapter
     private final DBHandler mDbHandler;
     private static final int WIDTH_ICON = 46;
     private static final int WIDTH_FAV_ICON = 24;
+    private static final int IS_FAVORITE_TRUE = 1;
 
     protected FavoriteAppAdapter(Context context, DBHandler dbHandler) {
         super(DIFF_CALLBACK);
@@ -34,8 +35,8 @@ public class FavoriteAppAdapter extends ListAdapter<AppModel, FavoriteAppAdapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemRvAppBinding mBinding = ItemRvAppBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new ViewHolder(mBinding);
+        ItemRvAppBinding binding = ItemRvAppBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
@@ -48,12 +49,12 @@ public class FavoriteAppAdapter extends ListAdapter<AppModel, FavoriteAppAdapter
                 .into(holder.mBinding.ivIconApp);
         holder.mBinding.tvAppName.setText(item.getmName());
         Glide.with(mContext)
-                .load(item.getmIsFavorite() == 1 ? R.drawable.ic_heart_fill_blue : R.drawable.ic_heart_line_blue)
+                .load(item.getmIsFavorite() == IS_FAVORITE_TRUE ? R.drawable.ic_heart_fill_blue : R.drawable.ic_heart_line_blue)
                 .override(pxToDp(WIDTH_FAV_ICON, mContext), pxToDp(WIDTH_FAV_ICON, mContext))
                 .into(holder.mBinding.ivFavorite);
         holder.mBinding.ivFavorite.setOnClickListener(v -> {
             mDbHandler.updateApp(item.getmIsFavorite() ^ 1, item.getmId());
-            submitList(mDbHandler.readAppsByFavorite(1));
+            submitList(mDbHandler.readAppsByFavorite(IS_FAVORITE_TRUE));
         });
     }
 
