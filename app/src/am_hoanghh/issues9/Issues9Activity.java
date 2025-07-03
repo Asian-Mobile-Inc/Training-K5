@@ -24,44 +24,9 @@ public class Issues9Activity extends AppCompatActivity {
         setContentView(mBinding.getRoot());
 
         initHourLists();
-        Weather weather = new Weather(this, mHourLists, mOnTouchChartListener);
+        Weather weather = new Weather(this, mHourLists);
         mBinding.rlWeather.addView(weather);
     }
-
-    private final OnTouchChartListener mOnTouchChartListener = new OnTouchChartListener() {
-        @Override
-        public void onTouchListener(int selectedIndex) {
-            if (selectedIndex >= 0) {
-                Hour item = mHourLists.get(selectedIndex);
-                mBinding.tvRainFall.setText(getString(R.string.textview_text_number_mm, item.getmRain()));
-
-                // Draw status weather icon
-                int resourceId = 0;
-                if (item.getmRain() > 0) {
-                    resourceId = R.drawable.ic_rain_big;
-                } else if (item.getmWintry() > 0) {
-                    resourceId = R.drawable.ic_cloud_big;
-                } else {
-                    resourceId = R.drawable.ic_sun_big;
-                }
-                mBinding.ivStatusWeather.setVisibility(View.VISIBLE);
-                Glide.with(getApplicationContext())
-                        .load(resourceId)
-                        .override(34, 34)
-                        .into(mBinding.ivStatusWeather);
-
-                mBinding.tvTemperatureHour.setText(getString(R.string.textview_text_number_temperature, item.getmTemperature()));
-                mBinding.tvDescription.setText("");
-                mBinding.tvHour.setText(getString(R.string.textview_text_hour, selectedIndex));
-            } else {
-                mBinding.tvRainFall.setText("");
-                mBinding.ivStatusWeather.setVisibility(View.GONE);
-                mBinding.tvTemperatureHour.setText("");
-                mBinding.tvDescription.setText(getString(R.string.textview_text_total_in_the_past_24_hours));
-                mBinding.tvHour.setText("");
-            }
-        }
-    };
 
     private void initHourLists() {
         mHourLists = Arrays.asList(
