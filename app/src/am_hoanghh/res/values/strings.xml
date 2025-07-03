@@ -140,4 +140,6 @@
     <string name="textview_text_number_temperature">%1$.1f°</string>
     <string name="textview_text_hour">%1$02d:00</string>
     <string name="drawtext_text_hour">%1$02d</string>
+    <string name="text_0_mm">0 mm</string>
+    <string name="text_level_rain">%1$.2f</string>
 </resources>
