@@ -3,9 +3,10 @@ package issues12;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -35,6 +36,10 @@ public class Issues12Activity extends AppCompatActivity {
     private ActivityIssues7Binding mBinding;
     private static final String IMAGE_URL = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
     private static final String ERROR = "ERROR";
+    private static final int IMAGE_VIEW_WIDTH = 312;
+    private static final int IMAGE_VIEW_HEIGHT = 312;
+    private static final int ROUNDING_RADIUS = 24;
+    private static final int Y_OFFSET = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,96 +47,108 @@ public class Issues12Activity extends AppCompatActivity {
         mBinding = ActivityIssues7Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        final Bitmap[] bitmap = {null};
-
-        Observable.just(IMAGE_URL)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        setupProgressBar();
-                        hideIvDownload();
-                    }
-
-                    @Override
-                    public void onNext(@NonNull String s) {
+        mBinding.viewDownload.setOnClickListener(v -> {
+            Observable.fromCallable(() -> {
                         HttpURLConnection urlConnection = null;
+                        Bitmap bitmap = null;
                         try {
-                            URL url = new URL(s);
+                            URL url = new URL(IMAGE_URL);
                             urlConnection = (HttpURLConnection) url.openConnection();
                             InputStream inputStream = urlConnection.getInputStream();
                             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                             int fileLength = urlConnection.getContentLength();
+
+                            Handler handler = new Handler(Looper.getMainLooper());
 
                             byte[] data = new byte[1024];
                             long total = 0;
                             int count;
                             while ((count = inputStream.read(data)) != -1) {
                                 total += count;
-
                                 outputStream.write(data, 0, count);
 
                                 if (fileLength > 0) {
-                                    int progress = (int) (total * 100 / fileLength);
-                                    mBinding.progressBarDownload.setProgress(progress);
-                                    mBinding.tvProgress.setText(getString(R.string.text_progress, progress));
+                                    long finalTotal = total;
+                                    handler.post(() -> {
+                                        int progress = (int) (finalTotal * 100 / fileLength);
+                                        mBinding.progressBarDownload.setProgress(progress);
+                                        mBinding.tvProgress.setText(getString(R.string.text_progress, progress));
+                                    });
                                 }
                             }
 
                             byte[] imageData = outputStream.toByteArray();
-                            bitmap[0] = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-
+                            bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
                             inputStream.close();
                             outputStream.close();
-
                         } catch (Exception e) {
-                            Log.e(ERROR, e.getMessage());
+                            Log.e(ERROR, Log.getStackTraceString(e));
                         } finally {
                             if (urlConnection != null) {
                                 urlConnection.disconnect();
                             }
                         }
-                    }
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.e(ERROR, Objects.requireNonNull(e.getMessage()));
-                        hideProgressBar();
-                        setupLoadFailed();
-                    }
+                        return bitmap;
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<Bitmap>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+                            setupProgressBar();
+                            hideIvDownload();
+                        }
 
-                    @Override
-                    public void onComplete() {
-                        hideProgressBar();
-                        setupLoadSuccess(bitmap[0]);
-                    }
-                });
+                        @Override
+                        public void onNext(@NonNull Bitmap bitmap) {
+                            if (bitmap != null) {
+                                hideProgressBar();
+                                setupLoadSuccess(bitmap);
+                            } else {
+                                hideProgressBar();
+                                setupLoadFailed();
+                            }
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            Log.e(ERROR, Objects.requireNonNull(e.getMessage()));
+                            hideProgressBar();
+                            setupLoadFailed();
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        });
     }
 
     private void showToastSuccess() {
         Toast toast = new Toast(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.toast_download_success, null);
+        View view = View.inflate(this, R.layout.toast_download_success, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
         toast.show();
     }
 
     private void showToastFailed() {
         Toast toast = new Toast(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.toast_download_failed, null);
+        View view = View.inflate(this, R.layout.toast_download_failed, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
         toast.show();
     }
 
     private void setupLoadSuccess(Bitmap bitmap) {
-        Glide.with(getApplicationContext())
+        Glide.with(this)
                 .load(bitmap)
-                .transform(new CenterCrop(), new RoundedCorners(24))
-                .override(312, 312)
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .override(IMAGE_VIEW_WIDTH, IMAGE_VIEW_HEIGHT)
                 .into(mBinding.ivDownload);
         mBinding.viewDownload.setEnabled(false);
         mBinding.viewDownload.setOnClickListener(null);
@@ -140,10 +157,10 @@ public class Issues12Activity extends AppCompatActivity {
 
     private void setupLoadFailed() {
         mBinding.tvDownload.setText(getString(R.string.textview_text_try_again));
-        Glide.with(getApplicationContext())
+        Glide.with(this)
                 .load(R.drawable.img_failed)
-                .transform(new CenterCrop(), new RoundedCorners(24))
-                .override(312, 312)
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .override(IMAGE_VIEW_WIDTH, IMAGE_VIEW_HEIGHT)
                 .into(mBinding.ivDownload);
         showToastFailed();
     }
@@ -161,10 +178,10 @@ public class Issues12Activity extends AppCompatActivity {
     }
 
     private void hideIvDownload() {
-        Glide.with(getApplicationContext())
+        Glide.with(this)
                 .load(0)
-                .transform(new CenterCrop(), new RoundedCorners(24))
-                .override(312, 312)
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .override(IMAGE_VIEW_WIDTH, IMAGE_VIEW_HEIGHT)
                 .into(mBinding.ivDownload);
     }
 }
