@@ -126,18 +126,9 @@ public class Issues12Activity extends AppCompatActivity {
         });
     }
 
-    private void showToastSuccess() {
+    private void showToast(boolean status) {
         Toast toast = new Toast(this);
-        View view = View.inflate(this, R.layout.toast_download_success, null);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
-        toast.show();
-    }
-
-    private void showToastFailed() {
-        Toast toast = new Toast(this);
-        View view = View.inflate(this, R.layout.toast_download_failed, null);
+        View view = View.inflate(this, status ? R.layout.toast_download_success : R.layout.toast_download_failed, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
         toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
@@ -152,7 +143,7 @@ public class Issues12Activity extends AppCompatActivity {
                 .into(mBinding.ivDownload);
         mBinding.viewDownload.setEnabled(false);
         mBinding.viewDownload.setOnClickListener(null);
-        showToastSuccess();
+        showToast(true);
     }
 
     private void setupLoadFailed() {
@@ -162,7 +153,7 @@ public class Issues12Activity extends AppCompatActivity {
                 .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
                 .override(IMAGE_VIEW_WIDTH, IMAGE_VIEW_HEIGHT)
                 .into(mBinding.ivDownload);
-        showToastFailed();
+        showToast(false);
     }
 
     private void hideProgressBar() {
