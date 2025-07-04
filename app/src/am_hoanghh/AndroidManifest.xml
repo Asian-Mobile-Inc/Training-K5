@@ -22,8 +22,7 @@
             android:name="issues6.ex2.GpsService"
             android:foregroundServiceType="location" />
 
-        <activity
-            android:name="issues8.Issues8Activity"
+        <activity android:name="issues12.Issues12Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="issues8.Issues8Activity"
+            android:exported="false" />
         <activity
             android:name="issues7.ex2.Issues7Ex2Activity"
             android:exported="false" />
