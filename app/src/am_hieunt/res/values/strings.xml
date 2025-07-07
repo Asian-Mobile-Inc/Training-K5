@@ -103,4 +103,5 @@
     <string name="code_language_dutch" translatable="false">nl</string>
     <string name="code_language_russian" translatable="false">ru</string>
     <string name="code_language_polish" translatable="false">pl</string>
+    <string name="total_in_the_past_24_hours" translatable="false">Total in the past 24 hours</string>
 </resources>
