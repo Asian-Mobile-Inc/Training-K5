@@ -47,7 +47,13 @@
             android:name=".issue4.ActivityLanguage"
             android:exported="false" />
         <activity
+            android:name=".issue7.ex1.DownloadActivity"
+            android:exported="false" />
+        <activity
             android:name=".issue5.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issue7.ex2.DownloadActivity"
             android:exported="false" />
         <activity
             android:name=".issue2.ex3.ActivityEx3"
