@@ -144,4 +144,9 @@
     <string name="toast_text_user_has_been_added">User has been added.</string>
     <string name="textview_text_years_old">%1$s years old</string>
     <string name="imageview_content_description_bottom_bar">BOTTOM BAR</string>
+    <string name="textview_text_download_image">Download Image</string>
+    <string name="imageview_content_description_select">SELECT</string>
+    <string name="textview_text_camera">Camera</string>
+    <string name="imageview_content_description_gallery">GALLERY</string>
+    <string name="textview_text_gallery">Gallery</string>
 </resources>
