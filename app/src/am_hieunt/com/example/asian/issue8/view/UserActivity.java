@@ -2,6 +2,7 @@ package com.example.asian.issue8.view;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,7 +36,6 @@ import java.util.List;
 
 public class UserActivity extends AppCompatActivity {
     private EditText mEdtUserName, mEdtAge;
-    private RecyclerView mRvListUser;
     private UserAdapter mUserAdapter;
     private Button mBtnShow, mTvDeleteAll, mBtnAddUser;
     private TextView mTvLabel, mTvContent, mTvCancelDialog, mTvDeleteDialog;;
@@ -53,59 +53,34 @@ public class UserActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        mEdtUserName = findViewById(R.id.edtUserName);
-        mEdtAge = findViewById(R.id.edtAge);
-        mBtnShow = findViewById(R.id.btnShow);
-        mRvListUser = findViewById(R.id.rvListUser);
-        mTvDeleteAll = findViewById(R.id.btnDeleteAll);
-        mBtnAddUser = findViewById(R.id.btnAddUser);
-        mTvDeleteAll.setVisibility(View.GONE);
-        mTvLabel = findViewById(R.id.tvLabel);
-        mIvList = findViewById(R.id.ivList);
-        mUsers = new ArrayList<>();
-        mUsers = UserDatabase.getInstance(this).getAllUser();
-        mUserAdapter = new UserAdapter(this);
-        mRvListUser.setAdapter(mUserAdapter);
-        mRvListUser.setLayoutManager(new LinearLayoutManager(this));
+        initView();
         initAlertDialog();
         initListener();
     }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
     private void initListener() {
-        mBtnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTvLabel.setVisibility(View.GONE);
-                mIvList.setVisibility(View.GONE);
-                mBtnShow.setVisibility(View.GONE);
-                mTvDeleteAll.setVisibility(View.VISIBLE);
-                mUserAdapter.submitList(mUsers);
+        mBtnShow.setOnClickListener(v -> {
+            mTvLabel.setVisibility(View.GONE);
+            mIvList.setVisibility(View.GONE);
+            mBtnShow.setVisibility(View.GONE);
+            mTvDeleteAll.setVisibility(View.VISIBLE);
+            mUserAdapter.submitList(mUsers);
+        });
+        mTvDeleteAll.setOnClickListener(v -> {
+            if (!mUserAdapter.getCurrentList().isEmpty()) {
+                mTvContent.setText(getString(R.string.are_you_sure_you_want_to_delete_all) + " " + mUserAdapter.getCurrentList().size() + " " + getString(R.string.users) + " ?");
+                mAlertDialog.show();
             }
         });
-        mTvDeleteAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mUserAdapter.getCurrentList().size() > 0) {
-                    mTvContent.setText(getString(R.string.are_you_sure_you_want_to_delete_all) + " " + mUserAdapter.getCurrentList().size() + " " + getString(R.string.users) + " ?");
-                    mAlertDialog.show();
-                }
-            }
+        mTvCancelDialog.setOnClickListener(v -> {
+            mAlertDialog.dismiss();
         });
-        mTvCancelDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAlertDialog.dismiss();
-            }
-        });
-        mTvDeleteDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAlertDialog.dismiss();
-                UserDatabase.getInstance(UserActivity.this).deleteAllUser();
-                mUsers = new ArrayList<>();
-                mUserAdapter.submitList(mUsers);
-            }
+        mTvDeleteDialog.setOnClickListener(v -> {
+            mAlertDialog.dismiss();
+            UserDatabase.getInstance(UserActivity.this).deleteAllUser();
+            mUsers = new ArrayList<>();
+            mUserAdapter.submitList(mUsers);
         });
         mEdtUserName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -135,20 +110,34 @@ public class UserActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-        mBtnAddUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mEdtUserName.length() != 0 && mEdtAge.length() != 0) {
-                    User user = new User();
-                    user.setUsername(mEdtUserName.getText().toString());
-                    user.setAge(Integer.parseInt(mEdtAge.getText().toString()));
-                    UserDatabase.getInstance(UserActivity.this).insertUser(user);
-                    List<User> users = new ArrayList<>(mUserAdapter.getCurrentList());
-                    users.add(UserDatabase.getInstance(UserActivity.this).getNewUser());
-                    mUserAdapter.submitList(users);
-                }
+        mBtnAddUser.setOnClickListener(v -> {
+            if (mEdtUserName.length() != 0 && mEdtAge.length() != 0) {
+                User user = new User();
+                user.setUsername(mEdtUserName.getText().toString());
+                user.setAge(Integer.parseInt(mEdtAge.getText().toString()));
+                UserDatabase.getInstance(UserActivity.this).insertUser(user);
+                List<User> users = new ArrayList<>(mUserAdapter.getCurrentList());
+                users.add(UserDatabase.getInstance(UserActivity.this).getNewUser());
+                mUserAdapter.submitList(users);
             }
         });
+    }
+
+    private void initView() {
+        mEdtUserName = findViewById(R.id.edtUserName);
+        mEdtAge = findViewById(R.id.edtAge);
+        mBtnShow = findViewById(R.id.btnShow);
+        RecyclerView mRvListUser = findViewById(R.id.rvListUser);
+        mTvDeleteAll = findViewById(R.id.btnDeleteAll);
+        mBtnAddUser = findViewById(R.id.btnAddUser);
+        mTvDeleteAll.setVisibility(View.GONE);
+        mTvLabel = findViewById(R.id.tvLabel);
+        mIvList = findViewById(R.id.ivList);
+        mUsers = new ArrayList<>();
+        mUsers = UserDatabase.getInstance(this).getAllUser();
+        mUserAdapter = new UserAdapter(this);
+        mRvListUser.setAdapter(mUserAdapter);
+        mRvListUser.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -164,9 +153,5 @@ public class UserActivity extends AppCompatActivity {
         if (mAlertDialog.getWindow() != null) {
             mAlertDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.my_dialog));
         }
-    }
-
-    private int dpToPx(int dp) {
-        return Math.round(dp * this.getResources().getDisplayMetrics().density);
     }
 }
