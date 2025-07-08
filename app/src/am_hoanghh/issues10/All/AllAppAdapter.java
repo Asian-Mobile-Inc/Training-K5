@@ -1,6 +1,8 @@
 package issues10.All;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.TypedValue;
@@ -16,11 +18,9 @@ import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.databinding.ItemRvAppBinding;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Queue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import issues10.Model.AppModel;
 import issues10.Util.DBHandler;
@@ -46,6 +46,7 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
         return new AllAppAdapter.ViewHolder(binding);
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppModel item = getItem(position);
@@ -60,12 +61,14 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
                 .override(pxToDp(WIDTH_FAV_ICON, mContext), pxToDp(WIDTH_FAV_ICON, mContext))
                 .into(holder.mBinding.ivFavorite);
         holder.mBinding.ivFavorite.setOnClickListener(v -> {
-            holder.mBinding.ivFavorite.setEnabled(false);
-            mDbHandler.updateApp(item.getmIsFavorite() ^ 1, item.getmId());
-            submitList(mDbHandler.readApps());
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                holder.mBinding.ivFavorite.setEnabled(true);
-            }, DELAY);
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    mDbHandler.updateApp(item.getmIsFavorite() ^ 1, item.getmId());
+                    submitList(mDbHandler.readApps());
+                    return null;
+                }
+            }.execute();
         });
     }
 
