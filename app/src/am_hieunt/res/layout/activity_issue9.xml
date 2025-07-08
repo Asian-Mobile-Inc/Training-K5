@@ -16,15 +16,58 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-    <FrameLayout
-        android:id="@+id/flWeather"
-        android:layout_width="match_parent"
-        android:layout_height="358dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableLeftCompat="@drawable/ic_homepage"
+        android:text="@string/da_nang"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_marginTop="100dp"
+        android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tvTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_21"
+        android:textColor="@color/white"
+        android:textSize="102sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLocation"/>
+    <TextView
+        android:id="@+id/tvCloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partly_cloudy"
+        android:textColor="@color/blue_ABE4FF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTemperature"/>
+    <TextView
+        android:id="@+id/tvHL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/h_29_l_15"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCloud"/>
+    <com.example.asian.issue9.customview.Weather
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHL"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,13 @@
 package com.example.asian.issue9.model;
 
 public class Hour {
-    private Float mRain, mWintryMix, mSnow, mTemperatureStart, mTemperatureEnd;
+    private Float mRain, mWintryMix, mSnow, mTemperature;
 
-    public Hour(Float mRain, Float mWintryMix, Float mSnow, Float mTemperatureStart, Float mTemperatureEnd) {
+    public Hour(Float mRain, Float mWintryMix, Float mSnow, Float mTemperature) {
         this.mRain = mRain;
         this.mWintryMix = mWintryMix;
         this.mSnow = mSnow;
-        this.mTemperatureStart = mTemperatureStart;
-        this.mTemperatureEnd = mTemperatureEnd;
+        this.mTemperature = mTemperature;
     }
 
     public Float getRain() {
@@ -35,19 +34,11 @@ public class Hour {
         this.mSnow = mSnow;
     }
 
-    public Float getTemperatureStart() {
-        return mTemperatureStart;
+    public Float getTemperature() {
+        return mTemperature;
     }
 
-    public void setTemperatureStart(Float mTemperatureStart) {
-        this.mTemperatureStart = mTemperatureStart;
-    }
-
-    public Float getTemperatureEnd() {
-        return mTemperatureEnd;
-    }
-
-    public void setTemperatureEnd(Float mTemperatureEnd) {
-        this.mTemperatureEnd = mTemperatureEnd;
+    public void setTemperature(Float mTemperature) {
+        this.mTemperature = mTemperature;
     }
 }
