@@ -103,6 +103,18 @@
     <string name="code_language_dutch" translatable="false">nl</string>
     <string name="code_language_russian" translatable="false">ru</string>
     <string name="code_language_polish" translatable="false">pl</string>
+    <string name="user_name" translatable="false">User name</string>
+    <string name="user_age" translatable="false">User age</string>
+    <string name="add_user" translatable="false">Add user</string>
+    <string name="click_the_button_to_display_the_full_list_of_users" translatable="false">Click the button to display the full list of users.</string>
+    <string name="show_all" translatable="false">Show all</string>
+    <string name="delete_all" translatable="false">Delete all</string>
+    <string name="delete" translatable="false">Delete</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="are_you_sure_you_want_to_delete" translatable="false">Are you sure you want to delete</string>
+    <string name="are_you_sure_you_want_to_delete_all" translatable="false">Are you sure you want to delete all</string>
+    <string name="users" translatable="false">users</string>
+    <string name="years_old" translatable="false">years old</string>
     <string name="location" translatable="false">Location</string>
     <string name="permission" translatable="false">Permission</string>
     <string name="allow_necessary_permissions" translatable="false">Allow necessary permissions for full functionality. Your data stays private.</string>
