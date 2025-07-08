@@ -47,6 +47,15 @@
             android:name=".issue4.ActivityLanguage"
             android:exported="false" />
         <activity
+            android:name=".issue7.ex1.DownloadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issue5.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issue7.ex2.DownloadActivity"
+            android:exported="false" />
+        <activity
             android:name=".issue2.ex3.ActivityEx3"
             android:exported="false" />
         <activity
@@ -61,10 +70,10 @@
             android:name=".issue2.ex2.ActivityEx2"
             android:exported="false" />
         <activity
-            android:name=".issue5.MainActivity"
+            android:name=".issue6.ex1.PermissionActivity"
             android:exported="false"/>
         <activity
-            android:name=".issue6.ex1.PermissionActivity"
+            android:name=".issue8.view.UserActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
