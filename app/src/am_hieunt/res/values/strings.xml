@@ -113,4 +113,17 @@
     <string name="_21" translatable="false">21°</string>
     <string name="partly_cloudy" translatable="false">Partly Cloudy</string>
     <string name="h_29_l_15" translatable="false">H:29° L:15°</string>
+    <string name="location" translatable="false">Location</string>
+    <string name="permission" translatable="false">Permission</string>
+    <string name="allow_necessary_permissions" translatable="false">Allow necessary permissions for full functionality. Your data stays private.</string>
+    <string name="permission_is_not_allowed" translatable="false">Permission is not allowed</string>
+    <string name="asian_mobile_company" translatable="false">Asian Mobile Company</string>
+    <string name="permission_is_allowed" translatable="false">Permission is allowed</string>
+    <string name="location_service" translatable="false">Location Service</string>
+    <string name="running" translatable="false">Running</string>
+    <string name="no_internet" translatable="false">Không có kết nối Internet</string>
+    <string name="download" translatable="false">Download</string>
+    <string name="try_again" translatable="false">Try Again</string>
+    <string name="downloaded_successfully" translatable="false">Downloaded successfully</string>
+    <string name="downloaded_failed" translatable="false">Downloaded failed</string>
 </resources>
