@@ -9,10 +9,14 @@
     <color name="gray">#858585</color>
     <color name="red">#F44336</color>
     <color name="yellow">#FCCF11</color>
+    <color name="yellow_FFAD2A">#FFAD2A</color>
     <color name="gray_D7D7D7">#D7D7D7</color>
     <color name="transparent">#00F44336</color>
     <color name="blue_D8F9FD">#D8F9FD</color>
     <color name="gray_9B9B9B">#9B9B9B</color>
+    <color name="blue_81CFFA">#81CFFA</color>
+    <color name="blue_8185FA">#8185FA</color>
+    <color name="blue_ABE4FF">#ABE4FF</color>
     <color name="gray_AFAFAF">#AFAFAF</color>
     <color name="blue_9AA8FF">#9AA8FF</color>
     <color name="blue_F0F2FD">#F0F2FD</color>

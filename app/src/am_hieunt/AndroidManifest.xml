@@ -56,6 +56,9 @@
             android:name=".issue7.ex2.DownloadActivity"
             android:exported="false" />
         <activity
+            android:name=".issue8.view.UserActivity"
+            android:exported="false" />
+        <activity
             android:name=".issue2.ex3.ActivityEx3"
             android:exported="false" />
         <activity
@@ -73,7 +76,7 @@
             android:name=".issue6.ex1.PermissionActivity"
             android:exported="false"/>
         <activity
-            android:name=".issue8.view.UserActivity"
+            android:name=".issue9.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
