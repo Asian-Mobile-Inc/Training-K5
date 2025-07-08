@@ -190,13 +190,13 @@ public class Weather extends View {
             mIcon.setBounds((int) (getWidth() - pxToDp(45) - paintTotal.measureText(mTemperature)), pxToDp(sizeTotal - 26), (int) (getWidth() - pxToDp(15) - paintTotal.measureText(mTemperature)), pxToDp(sizeTotal + 5));
             mIcon.draw(canvas);
         }
-        sizeTotal += 12 + 10;
+        sizeTotal += 12 + 20;
         canvas.drawText(mTitle, pxToDp(10), pxToDp(sizeTotal), paintTextX);
         float xCenter = getWidth() / 2f;
         float textWidth = paintTextX.measureText(mHour);
         float x = xCenter - textWidth / 2f;
         canvas.drawText(mHour, x, pxToDp(sizeTotal), paintTextX);
-        sizeTotal += 10;
+        sizeTotal += 20;
         drawCoordinate(pxToDp(10), pxToDp(sizeTotal), getWidth() - pxToDp(10), getHeight() - pxToDp(40),
                 getWidth() - pxToDp(20), getHeight() - pxToDp(40 + sizeTotal), canvas);
         int distance = (int) ((getWidth() - pxToDp(20) - (pxToDp(68)
@@ -265,7 +265,9 @@ public class Weather extends View {
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
-                detectSelectedColumn(event.getX());
+                if (event.getX() >= startXChart && event.getX() <= endXChart && event.getY() >= startYChart && event.getY() <= endYChart){
+                    detectSelectedColumn(event.getX());
+                }
                 break;
         }
         return true;
@@ -330,7 +332,7 @@ public class Weather extends View {
                 canvas.drawLine(x, startY, x, y, paintDotted);
             }
             label = String.format("%02d", i);
-            canvas.drawText(label, x,y + pxToDp(12) + 5, paintTextX);
+            canvas.drawText(label, x,y + pxToDp(17), paintTextX);
         }
         canvas.restore();
         canvas.save();
