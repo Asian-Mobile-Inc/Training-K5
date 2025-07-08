@@ -47,84 +47,90 @@ public class Issues12Activity extends AppCompatActivity {
         mBinding = ActivityIssues7Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        mBinding.viewDownload.setOnClickListener(v -> {
-            Observable.fromCallable(() -> {
-                        HttpURLConnection urlConnection = null;
-                        Bitmap bitmap = null;
-                        try {
-                            URL url = new URL(IMAGE_URL);
-                            urlConnection = (HttpURLConnection) url.openConnection();
-                            InputStream inputStream = urlConnection.getInputStream();
-                            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                            int fileLength = urlConnection.getContentLength();
+        initListeners();
+    }
 
-                            Handler handler = new Handler(Looper.getMainLooper());
+    private void initListeners() {
+        mBinding.viewDownload.setOnClickListener(mOnClickListener);
+    }
 
-                            byte[] data = new byte[1024];
-                            long total = 0;
-                            int count;
-                            while ((count = inputStream.read(data)) != -1) {
-                                total += count;
-                                outputStream.write(data, 0, count);
+    private final View.OnClickListener mOnClickListener = view -> {
+        Observable.fromCallable(() -> {
+                    HttpURLConnection urlConnection = null;
+                    Bitmap bitmap = null;
+                    try {
+                        URL url = new URL(IMAGE_URL);
+                        urlConnection = (HttpURLConnection) url.openConnection();
+                        InputStream inputStream = urlConnection.getInputStream();
+                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                        int fileLength = urlConnection.getContentLength();
 
-                                if (fileLength > 0) {
-                                    long finalTotal = total;
-                                    handler.post(() -> {
-                                        int progress = (int) (finalTotal * 100 / fileLength);
-                                        mBinding.progressBarDownload.setProgress(progress);
-                                        mBinding.tvProgress.setText(getString(R.string.text_progress, progress));
-                                    });
-                                }
-                            }
+                        Handler handler = new Handler(Looper.getMainLooper());
 
-                            byte[] imageData = outputStream.toByteArray();
-                            bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-                            inputStream.close();
-                            outputStream.close();
-                        } catch (Exception e) {
-                            Log.e(ERROR, Log.getStackTraceString(e));
-                        } finally {
-                            if (urlConnection != null) {
-                                urlConnection.disconnect();
+                        byte[] data = new byte[1024];
+                        long total = 0;
+                        int count;
+                        while ((count = inputStream.read(data)) != -1) {
+                            total += count;
+                            outputStream.write(data, 0, count);
+
+                            if (fileLength > 0) {
+                                long finalTotal = total;
+                                handler.post(() -> {
+                                    int progress = (int) (finalTotal * 100 / fileLength);
+                                    mBinding.progressBarDownload.setProgress(progress);
+                                    mBinding.tvProgress.setText(getString(R.string.text_progress, progress));
+                                });
                             }
                         }
 
-                        return bitmap;
-                    })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<Bitmap>() {
-                        @Override
-                        public void onSubscribe(@NonNull Disposable d) {
-                            setupProgressBar();
-                            hideIvDownload();
+                        byte[] imageData = outputStream.toByteArray();
+                        bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                        inputStream.close();
+                        outputStream.close();
+                    } catch (Exception e) {
+                        Log.e(ERROR, Log.getStackTraceString(e));
+                    } finally {
+                        if (urlConnection != null) {
+                            urlConnection.disconnect();
                         }
+                    }
 
-                        @Override
-                        public void onNext(@NonNull Bitmap bitmap) {
-                            if (bitmap != null) {
-                                hideProgressBar();
-                                setupLoadSuccess(bitmap);
-                            } else {
-                                hideProgressBar();
-                                setupLoadFailed();
-                            }
-                        }
+                    return bitmap;
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Bitmap>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        setupProgressBar();
+                        hideIvDownload();
+                    }
 
-                        @Override
-                        public void onError(@NonNull Throwable e) {
-                            Log.e(ERROR, Objects.requireNonNull(e.getMessage()));
+                    @Override
+                    public void onNext(@NonNull Bitmap bitmap) {
+                        if (bitmap != null) {
+                            hideProgressBar();
+                            setupLoadSuccess(bitmap);
+                        } else {
                             hideProgressBar();
                             setupLoadFailed();
                         }
+                    }
 
-                        @Override
-                        public void onComplete() {
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(ERROR, Objects.requireNonNull(e.getMessage()));
+                        hideProgressBar();
+                        setupLoadFailed();
+                    }
 
-                        }
-                    });
-        });
-    }
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    };
 
     private void showToast(boolean status) {
         Toast toast = new Toast(this);
