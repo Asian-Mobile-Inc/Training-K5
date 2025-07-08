@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
-    private static final String BASE_URL = "https://api.gyazo.com/api/";
+    private static String sBaseUrl;
     private static Retrofit sRetrofit;
     private static final String ACCESS_TOKEN = "L8QpJEHeSKHxpGrJdD-QFwvCFNzjW0aZWd3FA5odKD4";
 
@@ -31,14 +31,15 @@ public class RetrofitInstance {
         if (sRetrofit == null) {
             sRetrofit = new Retrofit.Builder()
                     .client(CLIENT)
-                    .baseUrl(BASE_URL)
+                    .baseUrl(sBaseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return sRetrofit;
     }
 
-    public static ApiInterface getApiInterface() {
+    public static ApiInterface getApiInterface(String baseUrl) {
+        sBaseUrl = baseUrl;
         return getRetrofitInstance().create(ApiInterface.class);
     }
 }
