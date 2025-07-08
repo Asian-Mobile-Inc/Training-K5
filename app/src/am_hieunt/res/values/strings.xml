@@ -113,6 +113,18 @@
     <string name="_21" translatable="false">21°</string>
     <string name="partly_cloudy" translatable="false">Partly Cloudy</string>
     <string name="h_29_l_15" translatable="false">H:29° L:15°</string>
+    <string name="user_name" translatable="false">User name</string>
+    <string name="user_age" translatable="false">User age</string>
+    <string name="add_user" translatable="false">Add user</string>
+    <string name="click_the_button_to_display_the_full_list_of_users" translatable="false">Click the button to display the full list of users.</string>
+    <string name="show_all" translatable="false">Show all</string>
+    <string name="delete_all" translatable="false">Delete all</string>
+    <string name="delete" translatable="false">Delete</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="are_you_sure_you_want_to_delete" translatable="false">Are you sure you want to delete</string>
+    <string name="are_you_sure_you_want_to_delete_all" translatable="false">Are you sure you want to delete all</string>
+    <string name="users" translatable="false">users</string>
+    <string name="years_old" translatable="false">years old</string>
     <string name="location" translatable="false">Location</string>
     <string name="permission" translatable="false">Permission</string>
     <string name="allow_necessary_permissions" translatable="false">Allow necessary permissions for full functionality. Your data stays private.</string>

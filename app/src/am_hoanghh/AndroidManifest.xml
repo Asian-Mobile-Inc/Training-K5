@@ -23,7 +23,7 @@
             android:foregroundServiceType="location" />
 
         <activity
-            android:name="issues8.Issues8Activity"
+            android:name="issues9.Issues9Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +32,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="issues8.Issues8Activity"
+            android:exported="false" />
+        <activity
             android:name="issues7.ex2.Issues7Ex2Activity"
             android:exported="false" />
         <activity
@@ -39,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name="issues6.ex2.Issue6Ex2Activity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="issues6.ex1.LocationActivity"
             android:exported="false" />
@@ -51,7 +54,7 @@
             android:exported="false" />
         <activity
             android:name="issues4.LanguageActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name="issues2.ex1.SubEx1Activity"
             android:exported="false" />
@@ -68,6 +71,7 @@
             android:name=".MainActivity"
             android:exported="false" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
