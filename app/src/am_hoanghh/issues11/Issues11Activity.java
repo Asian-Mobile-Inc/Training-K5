@@ -173,15 +173,12 @@ public class Issues11Activity extends AppCompatActivity {
 
     private final ActivityResultLauncher<Intent> mCameraActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        if (result.getData() != null) {
-                            Bundle extras = result.getData().getExtras();
-                            if (extras != null) {
-                                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                            }
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    if (result.getData() != null) {
+                        Bundle extras = result.getData().getExtras();
+                        if (extras != null) {
+                            Bitmap imageBitmap = (Bitmap) extras.get("data");
                         }
                     }
                 }
@@ -189,22 +186,19 @@ public class Issues11Activity extends AppCompatActivity {
 
     private final ActivityResultLauncher<Intent> mPhotoPickerCameraActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent selectedImage = result.getData();
-                        if (selectedImage != null) {
-                            if (selectedImage.getData() != null) {
-                                Uri uri = selectedImage.getData();
-                                if (uri.getPath() != null) {
-                                    try {
-                                        File file = uriToFile(uri, getApplicationContext());
-                                        Log.d("debug", file.getPath());
-                                        uploadImage(file);
-                                    } catch (IOException e) {
-                                        throw new RuntimeException(e);
-                                    }
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent selectedImage = result.getData();
+                    if (selectedImage != null) {
+                        if (selectedImage.getData() != null) {
+                            Uri uri = selectedImage.getData();
+                            if (uri.getPath() != null) {
+                                try {
+                                    File file = uriToFile(uri, getApplicationContext());
+                                    Log.d("debug", file.getPath());
+                                    uploadImage(file);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
                                 }
                             }
                         }
