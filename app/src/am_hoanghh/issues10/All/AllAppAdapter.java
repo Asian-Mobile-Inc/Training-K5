@@ -18,6 +18,8 @@ import com.bumptech.glide.Glide;
 import com.example.asian.R;
 import com.example.asian.databinding.ItemRvAppBinding;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -61,14 +63,12 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
                 .override(pxToDp(WIDTH_FAV_ICON, mContext), pxToDp(WIDTH_FAV_ICON, mContext))
                 .into(holder.mBinding.ivFavorite);
         holder.mBinding.ivFavorite.setOnClickListener(v -> {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    mDbHandler.updateApp(item.getmIsFavorite() ^ 1, item.getmId());
-                    submitList(mDbHandler.readApps());
-                    return null;
-                }
-            }.execute();
+            List<AppModel> currentLists = new ArrayList<>(getCurrentList());
+            AppModel currentItem = currentLists.get(holder.getAdapterPosition());
+            currentLists.set(holder.getAdapterPosition(), new AppModel(currentItem.getmId(), currentItem.getmIcon(), currentItem.getmName(), currentItem.getmIsFavorite() ^ 1));
+            submitList(currentLists);
+
+            new Thread(() -> mDbHandler.updateApp(currentItem.getmIsFavorite() ^ 1, currentItem.getmId())).start();
         });
     }
 
