@@ -1,5 +1,6 @@
 package issues11;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,8 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -40,6 +39,7 @@ import java.util.List;
 import java.util.Objects;
 
 import issues11.Adapter.ImageAdapter;
+import issues11.Adapter.OnImageListener;
 import issues11.Model.Image;
 import issues11.Retrofit.RetrofitInstance;
 import okhttp3.MediaType;
@@ -49,7 +49,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Issues11Activity extends AppCompatActivity {
+public class Issues11Activity extends AppCompatActivity implements OnImageListener {
     private ActivityIssues11Binding mBinding;
     private Dialog mDialog;
     private List<Image> mImageLists = new ArrayList<>();
@@ -58,6 +58,7 @@ public class Issues11Activity extends AppCompatActivity {
     private static final String ERROR = "ERROR";
     private static final String BASE_URL_UPLOAD = "https://upload.gyazo.com/api/";
     private static final String BASE_URL_GET = "https://api.gyazo.com/api/";
+    private static boolean sIsSelectedBtn = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,14 +78,39 @@ public class Issues11Activity extends AppCompatActivity {
         setSupportActionBar(mBinding.toolbar);
     }
 
+    @SuppressLint("ResourceType")
     private void initListeners() {
         mBinding.viewDownload.setOnClickListener(v -> {
             getImageLists();
         });
+
+        mBinding.ivSelect.setOnClickListener(v -> {
+            if (!mBinding.viewDownload.isEnabled()) {
+                sIsSelectedBtn = !sIsSelectedBtn;
+                if (!sIsSelectedBtn) {
+                    Log.d("debug", String.valueOf(mBinding.ivSelect.getId() == R.drawable.ic_subtract_purple));
+                    if (mBinding.ivSelect.getId() == R.drawable.ic_subtract_purple) {
+                        Glide.with(this)
+                                .load(R.drawable.ic_delete_selector)
+                                .into(mBinding.ivSelect);
+                    }
+                }
+                mBinding.ivSelect.setSelected(sIsSelectedBtn);
+                List<Image> newLists = new ArrayList<>();
+                for (Image item: mImageLists) {
+                    Image newItem = new Image(item.getId(), item.getUrl(), item.getStatusType(), item.isSelected(), item.isChecked());
+                    newItem.setSelected(sIsSelectedBtn);
+                    newItem.setChecked(sIsSelectedBtn);
+                    newLists.add(newItem);
+                }
+                mImageLists = newLists;
+                mImageAdapter.submitList(mImageLists);
+            }
+        });
     }
 
     private void initAdapter() {
-        mImageAdapter = new ImageAdapter(this, this::initDialogListeners);
+        mImageAdapter = new ImageAdapter(this, this);
         mBinding.rvImages.setLayoutManager(new GridLayoutManager(this, 3));
         mBinding.rvImages.setAdapter(mImageAdapter);
     }
@@ -144,13 +170,33 @@ public class Issues11Activity extends AppCompatActivity {
     }
 
     private void uploadImage(File file) {
-        MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+//        MultipartBody.Part filePart = MultipartBody.Part.createFormData("imagedata", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
-        RetrofitInstance.getApiInterface(BASE_URL_UPLOAD).uploadImage(filePart).enqueue(new Callback<Image>() {
+        Log.d("debug", file.getName());
+
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData(
+                "imagedata",
+                file.getName(),
+                RequestBody.create(MediaType.parse("image/*"), file)
+        );
+
+        RetrofitInstance.getApiInterface(BASE_URL_UPLOAD).uploadImage("h8dOaQrEYtR7ZJRPxcwKp4fFeDJ2LabnhBT8jlKlx4o", filePart).enqueue(new Callback<Image>() {
             @Override
             public void onResponse(@NonNull Call<Image> call, @NonNull Response<Image> response) {
-                Image item = response.body();
-                Log.d("debug", item.getId());
+                Log.d("debug", "URL = " + call.request().url());
+                Log.d("debug", "Response code = " + response.code());
+
+                if (response.isSuccessful() && response.body() != null) {
+                    Image item = response.body();
+                    Log.d("debug", "ID = " + item.getId() + ", URL = " + item.getUrl());
+                } else {
+                    try {
+                        String errorStr = response.errorBody() != null ? response.errorBody().string() : "null";
+                        Log.e("debug", "Error body = " + errorStr);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
@@ -195,7 +241,7 @@ public class Issues11Activity extends AppCompatActivity {
                             if (uri.getPath() != null) {
                                 try {
                                     File file = uriToFile(uri, getApplicationContext());
-                                    Log.d("debug", file.getPath());
+                                    Log.d("debug", String.valueOf(file.getPath()));
                                     uploadImage(file);
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
@@ -207,7 +253,7 @@ public class Issues11Activity extends AppCompatActivity {
             });
 
     public File uriToFile(Uri uri, Context context) throws IOException {
-        File file = new File(context.getCacheDir(), "temp_file");
+        File file = new File(context.getCacheDir(), "new_file");
         try (InputStream inputStream = context.getContentResolver().openInputStream(uri);
              OutputStream outputStream = new FileOutputStream(file)) {
             byte[] buffer = new byte[1024];
@@ -218,7 +264,6 @@ public class Issues11Activity extends AppCompatActivity {
         }
         return file;
     }
-
 
     private void initDialog() {
         mDialog = new Dialog(this);
@@ -239,6 +284,7 @@ public class Issues11Activity extends AppCompatActivity {
             mDialog.dismiss();
             openPhotoPickerActivityForResult();
         });
+        mDialog.setCanceledOnTouchOutside(true);
         mDialog.show();
     }
 
@@ -249,5 +295,17 @@ public class Issues11Activity extends AppCompatActivity {
         toast.setView(view);
         toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
         toast.show();
+    }
+
+    @Override
+    public void onUploadImage() {
+        initDialogListeners();
+    }
+
+    @Override
+    public void onSubtractIcon() {
+        Glide.with(this)
+                .load(R.drawable.ic_subtract_purple)
+                .into(mBinding.ivSelect);
     }
 }

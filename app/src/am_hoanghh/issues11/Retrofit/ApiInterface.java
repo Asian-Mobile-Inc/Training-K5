@@ -20,7 +20,10 @@ public interface ApiInterface {
 
     @Multipart
     @POST("upload")
-    Call<Image> uploadImage(@Part MultipartBody.Part filePart);
+    Call<Image> uploadImage(
+            @Header("Authorization") String authorization,
+            @Part MultipartBody.Part filePart
+    );
 
     @GET("images/{image_id}")
     Call<Image> getImageById(@Path("image_id") String id);

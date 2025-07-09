@@ -14,12 +14,22 @@ public class Image {
     private String url;
     private int statusType;
     private boolean isSelected;
+    private boolean isChecked;
 
     public Image(String id, String url) {
         this.id = id;
         this.url = url;
         this.statusType = TYPE_IMAGE;
         this.isSelected = false;
+        this.isChecked = true;
+    }
+
+    public Image(String id, String url, int statusType, boolean isSelected, boolean isChecked) {
+        this.id = id;
+        this.url = url;
+        this.statusType = statusType;
+        this.isSelected = isSelected;
+        this.isChecked = isChecked;
     }
 
     public Image(int statusType) {
@@ -57,5 +67,13 @@ public class Image {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
     }
 }

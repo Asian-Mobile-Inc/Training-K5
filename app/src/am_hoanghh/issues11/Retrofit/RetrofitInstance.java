@@ -14,14 +14,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
     private static String sBaseUrl;
     private static Retrofit sRetrofit;
-    private static final String ACCESS_TOKEN = "L8QpJEHeSKHxpGrJdD-QFwvCFNzjW0aZWd3FA5odKD4";
+    private static final String ACCESS_TOKEN = "h8dOaQrEYtR7ZJRPxcwKp4fFeDJ2LabnhBT8jlKlx4o";
 
     private static final OkHttpClient CLIENT = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
         @NonNull
         @Override
         public Response intercept(@NonNull Chain chain) throws IOException {
             Request newRequest = chain.request().newBuilder()
-                    .addHeader("Authorization", " Bearer " + ACCESS_TOKEN)
+                    .header("Authorization", " Bearer " + ACCESS_TOKEN)
                     .build();
             return chain.proceed(newRequest);
         }

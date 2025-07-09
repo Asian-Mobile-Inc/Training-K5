@@ -17,18 +17,20 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.asian.R;
 import com.example.asian.databinding.ItemRvImageDownloadBinding;
-import com.example.asian.databinding.ItemRvImageUploadBinding;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import issues11.Model.Image;
 
 public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
     private final Context mContext;
-    private static final int IMAGE_SIZE = 103;
-    private final OnUploadImageListener listener;
+    private static final int IMAGE_SIZE_WIDTH = 103;
+    private static final int IMAGE_SIZE_HEIGHT = 105;
+    private final OnImageListener listener;
 
-    public ImageAdapter(Context context, OnUploadImageListener listener) {
+    public ImageAdapter(Context context, OnImageListener listener) {
         super(DIFF_CALLBACK);
         this.mContext = context;
         this.listener = listener;
@@ -44,15 +46,40 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Image item = getItem(position);
-        Log.d("debug", position + " " + item.getStatusType());
 
         if (item.getStatusType() == Image.TYPE_IMAGE) {
             Glide.with(mContext)
                     .load(item.getUrl())
                     .transform(new CenterCrop(), new RoundedCorners(pxToDp(8, mContext)))
-                    .override(pxToDp(IMAGE_SIZE, mContext), pxToDp(IMAGE_SIZE, mContext))
+                    .override(pxToDp(IMAGE_SIZE_WIDTH, mContext), pxToDp(IMAGE_SIZE_HEIGHT, mContext))
                     .into(holder.mBinding.ivImage);
-            holder.mBinding.ivDelete.setVisibility(ViewGroup.VISIBLE);
+            if (item.isSelected()) {
+                holder.mBinding.ivRemove.setVisibility(View.VISIBLE);
+                holder.mBinding.ivDelete.setVisibility(View.GONE);
+                holder.mBinding.ivRemove.setSelected(item.isChecked());
+                holder.itemView.setOnClickListener(v -> {
+                    boolean isSubtract = true;
+                    List<Image> oldLists = new ArrayList<>(getCurrentList());
+                    List<Image> newLists = new ArrayList<>();
+                    for (int i = 0; i < oldLists.size() - 1; i++) {
+                        Image image = oldLists.get(i);
+                        isSubtract = image.isChecked();
+                        if (i == holder.getAdapterPosition()) {
+                            newLists.add(new Image(image.getId(), image.getUrl(), image.getStatusType(), image.isSelected(), !image.isChecked()));
+                        } else {
+                            newLists.add(image);
+                        }
+                    }
+                    newLists.add(oldLists.get(oldLists.size() - 1));
+                    submitList(newLists);
+                    if (isSubtract) {
+                        listener.onSubtractIcon();
+                    }
+                });
+            } else {
+                holder.mBinding.ivRemove.setVisibility(View.GONE);
+                holder.mBinding.ivDelete.setVisibility(View.VISIBLE);
+            }
         }
 
         if (item.getStatusType() == Image.TYPE_UPLOAD) {
@@ -65,11 +92,10 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
         }
 
         if (item.getStatusType() == Image.TYPE_FAILED) {
-            Log.d("debug", String.valueOf(item.getStatusType()));
             holder.mBinding.getRoot().setBackgroundResource(R.drawable.bg_image_download_item_failed);
             Glide.with(mContext)
                     .load(R.drawable.ic_download_item_failed)
-                    .override(pxToDp(IMAGE_SIZE, mContext), pxToDp(IMAGE_SIZE, mContext))
+                    .override(pxToDp(IMAGE_SIZE_WIDTH, mContext), pxToDp(IMAGE_SIZE_WIDTH, mContext))
                     .into(holder.mBinding.ivImage);
         }
     }
@@ -84,7 +110,8 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
         public boolean areContentsTheSame(@NonNull Image oldItem, @NonNull Image newItem) {
             return Objects.equals(oldItem.getUrl(), newItem.getUrl()) &&
                     Objects.equals(oldItem.isSelected(), newItem.isSelected()) &&
-                    Objects.equals(oldItem.getStatusType(), newItem.getStatusType());
+                    Objects.equals(oldItem.getStatusType(), newItem.getStatusType()) &&
+                    Objects.equals(oldItem.isChecked(), newItem.isChecked());
         }
     };
 
