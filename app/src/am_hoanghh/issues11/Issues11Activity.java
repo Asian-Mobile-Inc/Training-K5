@@ -97,13 +97,21 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                 }
                 mBinding.ivSelect.setSelected(sIsSelectedBtn);
                 List<Image> newLists = new ArrayList<>();
-                for (Image item: mImageLists) {
-                    Image newItem = new Image(item.getId(), item.getUrl(), item.getStatusType(), item.isSelected(), item.isChecked());
-                    newItem.setSelected(sIsSelectedBtn);
-                    newItem.setChecked(sIsSelectedBtn);
-                    newLists.add(newItem);
+                for (int i = 0; i < mImageLists.size(); i++) {
+                    Image item = mImageLists.get(i);
+                    if (item.getStatusType() != Image.TYPE_UPLOAD) {
+                        Log.d("debug", item.getId());
+                        Image newItem = new Image(item.getId(), item.getUrl(), item.getStatusType(), sIsSelectedBtn, sIsSelectedBtn);
+                        newLists.add(newItem);
+                    }
                 }
+//                newLists.add(new Image(Image.TYPE_UPLOAD));
+                newLists.add(new Image("UPLOAD_ID", Image.TYPE_UPLOAD));
                 mImageLists = newLists;
+                int cnt = 0;
+                for (Image item: mImageLists) {
+                    Log.d("debug", cnt++ + item.getId() + " " + item.getStatusType());
+                }
                 mImageAdapter.submitList(mImageLists);
             }
         });
@@ -129,7 +137,16 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
             public void onResponse(@NonNull Call<List<Image>> call, @NonNull Response<List<Image>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     mImageLists = new ArrayList<>(response.body());
-                    mImageLists.add(new Image(Image.TYPE_UPLOAD));
+
+                    List<Image> filtered = new ArrayList<>();
+                    for (Image item : mImageLists) {
+                        if (item.getStatusType() != Image.TYPE_UPLOAD) {
+                            filtered.add(item);
+                        }
+                    }
+
+                    filtered.add(new Image("UPLOAD ID", Image.TYPE_UPLOAD));
+                    mImageLists = filtered;
 
                     runOnUiThread(() -> {
                         mImageAdapter.submitList(mImageLists);

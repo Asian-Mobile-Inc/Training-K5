@@ -37,6 +37,11 @@ public class Image {
         this.isSelected = false;
     }
 
+    public Image(String id, int statusType) {
+        this.id = id;
+        this.statusType = statusType;
+    }
+
     public String getId() {
         return id;
     }

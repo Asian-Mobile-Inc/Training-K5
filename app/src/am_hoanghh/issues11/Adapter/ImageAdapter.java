@@ -26,8 +26,8 @@ import issues11.Model.Image;
 
 public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
     private final Context mContext;
-    private static final int IMAGE_SIZE_WIDTH = 103;
-    private static final int IMAGE_SIZE_HEIGHT = 105;
+    private static final int IMAGE_SIZE_WIDTH = 104;
+    private static final int IMAGE_SIZE_HEIGHT = 104;
     private final OnImageListener listener;
 
     public ImageAdapter(Context context, OnImageListener listener) {
