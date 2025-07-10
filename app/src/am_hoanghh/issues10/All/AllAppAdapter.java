@@ -2,9 +2,6 @@ package issues10.All;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -21,8 +18,6 @@ import com.example.asian.databinding.ItemRvAppBinding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import issues10.Model.AppModel;
 import issues10.Util.DBHandler;
@@ -32,7 +27,6 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
     private final DBHandler mDbHandler;
     private static final int WIDTH_ICON = 46;
     private static final int WIDTH_FAV_ICON = 24;
-    private static final int DELAY = 1000;
     private static final int IS_FAVORITE_TRUE = 1;
 
     protected AllAppAdapter(Context context, DBHandler dbHandler) {
