@@ -23,6 +23,9 @@
             android:foregroundServiceType="location" />
 
         <activity
+            android:name="issues12.Issues12Activity"
+            android:exported="false" />
+        <activity
             android:name="issues10.Issues10Activity"
             android:exported="true">
             <intent-filter>
@@ -31,6 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="issues9.Issues9Activity"
+            android:exported="false" />
         <activity
             android:name="issues8.Issues8Activity"
             android:exported="false" />
