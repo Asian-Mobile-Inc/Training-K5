@@ -29,6 +29,7 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
     private static final int IMAGE_SIZE_WIDTH = 104;
     private static final int IMAGE_SIZE_HEIGHT = 104;
     private final OnImageListener listener;
+    private static final String UPLOAD_ITEM_ID = "UPLOAD_ITEM_ID";
 
     public ImageAdapter(Context context, OnImageListener listener) {
         super(DIFF_CALLBACK);
@@ -58,27 +59,65 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
                 holder.mBinding.ivDelete.setVisibility(View.GONE);
                 holder.mBinding.ivRemove.setSelected(item.isChecked());
                 holder.itemView.setOnClickListener(v -> {
-                    boolean isSubtract = true;
+                    int countCheckedItem = 0;
                     List<Image> oldLists = new ArrayList<>(getCurrentList());
                     List<Image> newLists = new ArrayList<>();
-                    for (int i = 0; i < oldLists.size() - 1; i++) {
+                    Image uploadImage = null;
+                    for (int i = 0; i < oldLists.size(); i++) {
                         Image image = oldLists.get(i);
-                        isSubtract = image.isChecked();
-                        if (i == holder.getAdapterPosition()) {
-                            newLists.add(new Image(image.getId(), image.getUrl(), image.getStatusType(), image.isSelected(), !image.isChecked()));
+                        if (UPLOAD_ITEM_ID.equals(image.getId())) {
+                            uploadImage = image;
                         } else {
-                            newLists.add(image);
+                            boolean newCheckedValue = !image.isChecked();
+                            if (i == holder.getAdapterPosition()) {
+                                newLists.add(new Image(image.getId(), image.getUrl(), image.getStatusType(), image.isSelected(), newCheckedValue));
+                                if (newCheckedValue) {
+                                    ++countCheckedItem;
+                                }
+                            } else {
+                                newLists.add(image);
+                                if (image.isChecked()) {
+                                    ++countCheckedItem;
+                                }
+                            }
                         }
                     }
-                    newLists.add(oldLists.get(oldLists.size() - 1));
-                    submitList(newLists);
-                    if (isSubtract) {
-                        listener.onSubtractIcon();
+                    if (uploadImage != null) {
+                        newLists.add(uploadImage);
                     }
+                    int finalCountCheckedItem = countCheckedItem;
+                    submitList(newLists, () -> {
+                        listener.onUpdateImageLists(new ArrayList<>(getCurrentList()));
+                        listener.onSubtractIcon(finalCountCheckedItem);
+                    });
                 });
             } else {
                 holder.mBinding.ivRemove.setVisibility(View.GONE);
                 holder.mBinding.ivDelete.setVisibility(View.VISIBLE);
+                holder.mBinding.ivDelete.setOnClickListener(v -> {
+                    List<Image> oldLists = new ArrayList<>(getCurrentList());
+                    List<Image> newLists = new ArrayList<>();
+                    Image uploadImage = null;
+                    for (int i = 0; i < oldLists.size(); i++) {
+                        Image image = oldLists.get(i);
+                        if (UPLOAD_ITEM_ID.equals(image.getId())) {
+                            uploadImage = image;
+                        } else {
+                            if (i == holder.getAdapterPosition()) {
+                                newLists.add(new Image(image.getId(), image.getUrl(), image.getStatusType(), true, true));
+                            } else {
+                                newLists.add(new Image(image.getId(), image.getUrl(), image.getStatusType(), true, false));
+                            }
+                        }
+                    }
+                    if (uploadImage != null) {
+                        newLists.add(uploadImage);
+                    }
+                    submitList(newLists, () -> {
+                        listener.onUpdateImageLists(new ArrayList<>(getCurrentList()));
+                        listener.onSubtractIcon(1);
+                    });
+                });
             }
         }
 

@@ -166,4 +166,5 @@
     <string name="imageview_content_description_gallery">GALLERY</string>
     <string name="textview_text_gallery">Gallery</string>
     <string name="textview_text_upload_image">Upload image</string>
+    <string name="textview_text_delete_image_item">Delete (%1$d)</string>
 </resources>

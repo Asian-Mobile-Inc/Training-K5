@@ -1,5 +1,7 @@
 package issues11.Retrofit;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
@@ -12,34 +14,41 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
-    private static String sBaseUrl;
-    private static Retrofit sRetrofit;
     private static final String ACCESS_TOKEN = "h8dOaQrEYtR7ZJRPxcwKp4fFeDJ2LabnhBT8jlKlx4o";
 
-    private static final OkHttpClient CLIENT = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
-        @NonNull
-        @Override
-        public Response intercept(@NonNull Chain chain) throws IOException {
-            Request newRequest = chain.request().newBuilder()
-                    .header("Authorization", " Bearer " + ACCESS_TOKEN)
-                    .build();
-            return chain.proceed(newRequest);
-        }
-    }).build();
+//    private static final OkHttpClient CLIENT = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+//        @NonNull
+//        @Override
+//        public Response intercept(@NonNull Chain chain) throws IOException {
+//            Request newRequest = chain.request().newBuilder()
+//                    .header("Authorization", "Bearer " + ACCESS_TOKEN)
+//                    .build();
+//            return chain.proceed(newRequest);
+//        }
+//    }).build();
 
-    public static Retrofit getRetrofitInstance() {
-        if (sRetrofit == null) {
-            sRetrofit = new Retrofit.Builder()
-                    .client(CLIENT)
-                    .baseUrl(sBaseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-        return sRetrofit;
+    public static Retrofit getRetrofitInstance(String baseUrl) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @NonNull
+                    @Override
+                    public Response intercept(@NonNull Chain chain) throws IOException {
+                        Request newRequest = chain.request().newBuilder()
+                                .header("Authorization", "Bearer " + ACCESS_TOKEN)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .build();
+
+        return new Retrofit.Builder()
+                .client(client)
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public static ApiInterface getApiInterface(String baseUrl) {
-        sBaseUrl = baseUrl;
-        return getRetrofitInstance().create(ApiInterface.class);
+        return getRetrofitInstance(baseUrl).create(ApiInterface.class);
     }
 }

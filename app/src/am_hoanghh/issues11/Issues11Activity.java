@@ -29,6 +29,7 @@ import com.example.asian.R;
 import com.example.asian.databinding.ActivityIssues11Binding;
 import com.example.asian.databinding.DialogPickImageBinding;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -59,6 +60,8 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
     private static final String BASE_URL_UPLOAD = "https://upload.gyazo.com/api/";
     private static final String BASE_URL_GET = "https://api.gyazo.com/api/";
     private static boolean sIsSelectedBtn = false;
+    private static boolean sIsOnSubtractIcon = false;
+    private static final String UPLOAD_ITEM_ID = "UPLOAD_ITEM_ID";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,43 +81,19 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
         setSupportActionBar(mBinding.toolbar);
     }
 
-    @SuppressLint("ResourceType")
     private void initListeners() {
         mBinding.viewDownload.setOnClickListener(v -> {
             getImageLists();
         });
 
-        mBinding.ivSelect.setOnClickListener(v -> {
-            if (!mBinding.viewDownload.isEnabled()) {
-                sIsSelectedBtn = !sIsSelectedBtn;
-                if (!sIsSelectedBtn) {
-                    Log.d("debug", String.valueOf(mBinding.ivSelect.getId() == R.drawable.ic_subtract_purple));
-                    if (mBinding.ivSelect.getId() == R.drawable.ic_subtract_purple) {
-                        Glide.with(this)
-                                .load(R.drawable.ic_delete_selector)
-                                .into(mBinding.ivSelect);
-                    }
-                }
-                mBinding.ivSelect.setSelected(sIsSelectedBtn);
-                List<Image> newLists = new ArrayList<>();
-                for (int i = 0; i < mImageLists.size(); i++) {
-                    Image item = mImageLists.get(i);
-                    if (item.getStatusType() != Image.TYPE_UPLOAD) {
-                        Log.d("debug", item.getId());
-                        Image newItem = new Image(item.getId(), item.getUrl(), item.getStatusType(), sIsSelectedBtn, sIsSelectedBtn);
-                        newLists.add(newItem);
-                    }
-                }
-//                newLists.add(new Image(Image.TYPE_UPLOAD));
-                newLists.add(new Image("UPLOAD_ID", Image.TYPE_UPLOAD));
-                mImageLists = newLists;
-                int cnt = 0;
-                for (Image item: mImageLists) {
-                    Log.d("debug", cnt++ + item.getId() + " " + item.getStatusType());
-                }
-                mImageAdapter.submitList(mImageLists);
+        mBinding.viewDelete.setOnClickListener(v -> {
+            int cnt = 0;
+            for (Image item : mImageLists) {
+                Log.d("debug", cnt++ + " " + item.isSelected() + " " + item.isChecked() + " " + item.getStatusType());
             }
         });
+
+        ivImageListeners();
     }
 
     private void initAdapter() {
@@ -127,8 +106,60 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
         mImageLists.add(new Image(Image.TYPE_DEFAULT));
         mImageLists.add(new Image(Image.TYPE_DEFAULT));
         mImageLists.add(new Image(Image.TYPE_DEFAULT));
-        mImageLists.add(new Image(Image.TYPE_UPLOAD));
+        mImageLists.add(new Image(UPLOAD_ITEM_ID, null, Image.TYPE_UPLOAD, false, false));
         mImageAdapter.submitList(mImageLists);
+    }
+
+    private void ivImageListeners() {
+        mBinding.ivSelect.setOnClickListener(v -> {
+            if (!mBinding.viewDownload.isEnabled()) {
+                sIsSelectedBtn = !sIsSelectedBtn;
+                if (!sIsSelectedBtn) {
+                    if (sIsOnSubtractIcon) {
+                        sIsOnSubtractIcon = false;
+                        Glide.with(this)
+                                .load(R.drawable.ic_select_selector)
+                                .into(mBinding.ivSelect);
+                    } else {
+                        mBinding.tvDelete.setText(getString(R.string.textview_text_delete_all));
+                        showDeleteButton(true);
+                    }
+                } else {
+                    mBinding.tvDelete.setText(getString(R.string.textview_text_delete_all));
+                    showDeleteButton(true);
+                }
+                mBinding.ivSelect.setSelected(sIsSelectedBtn);
+                mBinding.viewDelete.setEnabled(sIsSelectedBtn);
+                mImageLists = getImages();
+                mImageAdapter.submitList(mImageLists);
+            }
+        });
+    }
+
+    private @NonNull List<Image> getImages() {
+        List<Image> newLists = new ArrayList<>();
+        Image uploadItem = null;
+//        for (int i = 0; i < mImageLists.size(); i++) {
+//            Image item = mImageLists.get(i);
+//            if (item.getStatusType() != Image.TYPE_UPLOAD) {
+//                Image newItem = new Image(item.getId(), item.getUrl(), item.getStatusType(), sIsSelectedBtn, sIsSelectedBtn);
+//                newLists.add(newItem);
+//            } else {
+//                uploadItem = item;
+//            }
+//        }
+        for (Image item: mImageLists) {
+            if (UPLOAD_ITEM_ID.equals(item.getId())) {
+                uploadItem = item;
+            } else {
+                Image newItem = new Image(item.getId(), item.getUrl(), item.getStatusType(), sIsSelectedBtn, sIsSelectedBtn);
+                newLists.add(newItem);
+            }
+        }
+        if (uploadItem != null) {
+            newLists.add(uploadItem);
+        }
+        return newLists;
     }
 
     private void getImageLists() {
@@ -137,16 +168,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
             public void onResponse(@NonNull Call<List<Image>> call, @NonNull Response<List<Image>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     mImageLists = new ArrayList<>(response.body());
-
-                    List<Image> filtered = new ArrayList<>();
-                    for (Image item : mImageLists) {
-                        if (item.getStatusType() != Image.TYPE_UPLOAD) {
-                            filtered.add(item);
-                        }
-                    }
-
-                    filtered.add(new Image("UPLOAD ID", Image.TYPE_UPLOAD));
-                    mImageLists = filtered;
+                    mImageLists.add(new Image(UPLOAD_ITEM_ID, null, Image.TYPE_UPLOAD, false, false));
 
                     runOnUiThread(() -> {
                         mImageAdapter.submitList(mImageLists);
@@ -163,7 +185,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                 tmpLists.add(new Image(Image.TYPE_FAILED));
                 tmpLists.add(new Image(Image.TYPE_FAILED));
                 tmpLists.add(new Image(Image.TYPE_FAILED));
-                tmpLists.add(new Image(Image.TYPE_UPLOAD));
+                tmpLists.add(new Image(UPLOAD_ITEM_ID, null, Image.TYPE_UPLOAD, false, false));
                 mImageLists = new ArrayList<>(tmpLists);
                 runOnUiThread(() -> {
                     mImageAdapter.submitList(mImageLists);
@@ -187,40 +209,27 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
     }
 
     private void uploadImage(File file) {
-//        MultipartBody.Part filePart = MultipartBody.Part.createFormData("imagedata", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
-
-        Log.d("debug", file.getName());
-
         MultipartBody.Part filePart = MultipartBody.Part.createFormData(
                 "imagedata",
                 file.getName(),
                 RequestBody.create(MediaType.parse("image/*"), file)
         );
 
-        RetrofitInstance.getApiInterface(BASE_URL_UPLOAD).uploadImage("h8dOaQrEYtR7ZJRPxcwKp4fFeDJ2LabnhBT8jlKlx4o", filePart).enqueue(new Callback<Image>() {
-            @Override
-            public void onResponse(@NonNull Call<Image> call, @NonNull Response<Image> response) {
-                Log.d("debug", "URL = " + call.request().url());
-                Log.d("debug", "Response code = " + response.code());
-
-                if (response.isSuccessful() && response.body() != null) {
-                    Image item = response.body();
-                    Log.d("debug", "ID = " + item.getId() + ", URL = " + item.getUrl());
-                } else {
-                    try {
-                        String errorStr = response.errorBody() != null ? response.errorBody().string() : "null";
-                        Log.e("debug", "Error body = " + errorStr);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        RetrofitInstance.getApiInterface(BASE_URL_UPLOAD)
+                .uploadImage(filePart)
+                .enqueue(new Callback<Image>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Image> call, @NonNull Response<Image> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            Image item = response.body();
+                        }
                     }
-                }
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<Image> call, @NonNull Throwable t) {
-                Log.e(ERROR, Objects.requireNonNull(t.getMessage()));
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Call<Image> call, @NonNull Throwable t) {
+                        Log.e("debug", Objects.requireNonNull(t.getMessage()));
+                    }
+                });
     }
 
     private void openPhotoPickerActivityForResult() {
@@ -242,6 +251,22 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                         Bundle extras = result.getData().getExtras();
                         if (extras != null) {
                             Bitmap imageBitmap = (Bitmap) extras.get("data");
+                            try {
+                                File f = new File(this.getCacheDir(), "images");
+                                f.createNewFile();
+
+                                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                                imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos);
+                                byte[] bitmapData = bos.toByteArray();
+
+                                FileOutputStream fos = new FileOutputStream(f);
+                                fos.write(bitmapData);
+                                fos.flush();
+                                fos.close();
+                                uploadImage(f);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
@@ -258,7 +283,6 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                             if (uri.getPath() != null) {
                                 try {
                                     File file = uriToFile(uri, getApplicationContext());
-                                    Log.d("debug", String.valueOf(file.getPath()));
                                     uploadImage(file);
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
@@ -320,9 +344,29 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
     }
 
     @Override
-    public void onSubtractIcon() {
+    public void onSubtractIcon(int itemDelete) {
+        sIsOnSubtractIcon = true;
         Glide.with(this)
                 .load(R.drawable.ic_subtract_purple)
                 .into(mBinding.ivSelect);
+        showDeleteButton(true);
+        mBinding.tvDelete.setText(getString(R.string.textview_text_delete_image_item, itemDelete));
+        Log.d("debug", String.valueOf(itemDelete));
+        mBinding.viewDelete.setEnabled(true);
+    }
+
+    @Override
+    public void onUpdateImageLists(List<Image> imageLists) {
+        mImageLists.clear();
+        mImageLists.addAll(imageLists);
+    }
+
+    private void showDeleteButton(boolean condition) {
+        mBinding.viewDelete.setVisibility(condition ? View.VISIBLE : View.GONE);
+//        mBinding.ivDelete.setVisibility(condition ? View.VISIBLE : View.GONE);
+//        mBinding.tvDelete.setVisibility(condition ? View.VISIBLE : View.GONE);
+        mBinding.viewDownload.setVisibility(condition ? View.GONE : View.VISIBLE);
+        mBinding.ivDownloadIcon.setVisibility(condition ? View.GONE : View.VISIBLE);
+        mBinding.tvDownload.setVisibility(condition ? View.GONE : View.VISIBLE);
     }
 }
