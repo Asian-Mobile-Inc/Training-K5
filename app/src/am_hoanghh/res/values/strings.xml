@@ -167,4 +167,9 @@
     <string name="textview_text_gallery">Gallery</string>
     <string name="textview_text_upload_image">Upload image</string>
     <string name="textview_text_delete_image_item">Delete (%1$d)</string>
+    <string name="textview_text_upload_successfully">Upload successfully</string>
+    <string name="textview_text_upload_failed">Upload failed</string>
+    <string name="textview_text_delete_successfully">Delete successfully</string>
+    <string name="textview_text_delete_failed">Delete failed</string>
+    <string name="toast_text_have_no_images">"Have no images"</string>
 </resources>

@@ -7,6 +7,7 @@ import issues11.Model.Image;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -26,6 +27,6 @@ public interface ApiInterface {
             @Part MultipartBody.Part filePart
     );
 
-    @GET("images/{image_id}")
-    Call<Image> getImageById(@Path("image_id") String id);
+    @DELETE("images/{image_id}")
+    Call<Image> deleteImageById(@Path("image_id") String id);
 }

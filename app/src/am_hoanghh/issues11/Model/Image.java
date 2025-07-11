@@ -2,6 +2,8 @@ package issues11.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Timestamp;
+
 public class Image {
     public static final int TYPE_DEFAULT = 1;
     public static final int TYPE_IMAGE = 0;
@@ -12,6 +14,8 @@ public class Image {
     private String id;
     @SerializedName("url")
     private String url;
+    @SerializedName("created_at")
+    private Timestamp createdAt;
     private int statusType;
     private boolean isSelected;
     private boolean isChecked;
@@ -22,6 +26,15 @@ public class Image {
         this.statusType = TYPE_IMAGE;
         this.isSelected = false;
         this.isChecked = true;
+    }
+
+    public Image(String id, String url, Timestamp createdAt, int statusType, boolean isSelected, boolean isChecked) {
+        this.id = id;
+        this.url = url;
+        this.createdAt = createdAt;
+        this.statusType = statusType;
+        this.isSelected = isSelected;
+        this.isChecked = isChecked;
     }
 
     public Image(String id, String url, int statusType, boolean isSelected, boolean isChecked) {
@@ -80,5 +93,13 @@ public class Image {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }

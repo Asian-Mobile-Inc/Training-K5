@@ -45,6 +45,12 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        Image item = getItem(position);
+        return item.getStatusType();
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Image item = getItem(position);
 
@@ -87,7 +93,6 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
                     }
                     int finalCountCheckedItem = countCheckedItem;
                     submitList(newLists, () -> {
-                        listener.onUpdateImageLists(new ArrayList<>(getCurrentList()));
                         listener.onSubtractIcon(finalCountCheckedItem);
                     });
                 });
@@ -114,7 +119,6 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
                         newLists.add(uploadImage);
                     }
                     submitList(newLists, () -> {
-                        listener.onUpdateImageLists(new ArrayList<>(getCurrentList()));
                         listener.onSubtractIcon(1);
                     });
                 });
