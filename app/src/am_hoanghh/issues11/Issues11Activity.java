@@ -124,16 +124,20 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
             if (!mBinding.viewDownload.isEnabled()) {
                 sIsSelectedBtn = !sIsSelectedBtn;
                 if (!sIsSelectedBtn) {
+                    // ivSelect is unselected
                     if (sIsOnSubtractIcon) {
+                        // subtract icon -> convert to iv selector
                         sIsOnSubtractIcon = false;
                         Glide.with(this)
                                 .load(R.drawable.ic_select_selector)
                                 .into(mBinding.ivSelect);
                     } else {
+                        // not subtract icon -> delete all
                         mBinding.tvDelete.setText(getString(R.string.textview_text_delete_all));
                         showDeleteButton(true);
                     }
                 } else {
+                    // ivSelect is selected -> delete all
                     mBinding.tvDelete.setText(getString(R.string.textview_text_delete_all));
                     showDeleteButton(true);
                 }
@@ -146,7 +150,9 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
     }
 
     private void viewDeleteListeners() {
+        // delete image item
         mBinding.viewDelete.setOnClickListener(v -> {
+            // count selected item to delete
             List<Image> selectedLists = new ArrayList<>();
             for (Image item : mImageAdapter.getCurrentList()) {
                 if (item.isSelected() && item.isChecked()) {
@@ -159,41 +165,62 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                 return;
             }
 
-            final int totalRequest = selectedLists.size();
-            final int[] successImage = {0};
-            final int[] completedImage = {0};
+            // add loading progress to delete item
+            List<Image> newLists = new ArrayList<>();
+            for (Image item : mImageAdapter.getCurrentList()) {
+                boolean loading = item.isLoading();
+                if (item.isSelected() && item.isChecked()) {
+                    loading = true;
+                }
+                newLists.add(new Image(item.getId(), item.getUrl(), item.getCreatedAt(), item.getStatusType(), item.isSelected(), item.isChecked(), loading));
+            }
+            mImageAdapter.submitList(newLists);
+
+            final int totalRequest = selectedLists.size(); // total selected item to delete
+            final int[] successImage = {0}; // count item delete success
+            final int[] completedImage = {0}; // count complete item
             for (Image item : selectedLists) {
                 RetrofitInstance.getApiInterface(BASE_URL_GET).deleteImageById(item.getId()).enqueue(new Callback<Image>() {
                     @Override
                     public void onResponse(@NonNull Call<Image> call, @NonNull Response<Image> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            successImage[0]++;
+                            successImage[0]++; // success
                         }
-                        completedImage[0]++;
+                        completedImage[0]++; // complete
                         checkComplete();
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<Image> call, @NonNull Throwable t) {
                         Log.e(ERROR, Objects.requireNonNull(t.getMessage()));
-                        completedImage[0]++;
+                        completedImage[0]++; // complete and not success
                         checkComplete();
                     }
 
                     private void checkComplete() {
+                        // if complete total item
                         if (completedImage[0] == totalRequest) {
                             runOnUiThread(() -> {
-                                boolean isDeleteSuccess = successImage[0] > 0;
+                                boolean isDeleteSuccess = successImage[0] > 0; // delete success at least 1 item
                                 showToastDelete(isDeleteSuccess);
                                 if (isDeleteSuccess) {
-                                    updateImageLists();
+                                    updateImageLists(); // update list adapter
                                 }
+                                reloadLoadingStatus(); // hide loading progress
                             });
                         }
                     }
                 });
             }
         });
+    }
+
+    private void reloadLoadingStatus() {
+        List<Image> newLists = new ArrayList<>();
+        for (Image item : mImageAdapter.getCurrentList()) {
+            newLists.add(new Image(item.getId(), item.getUrl(), item.getCreatedAt(), item.getStatusType(), item.isSelected(), item.isChecked(), false));
+        }
+        mImageAdapter.submitList(newLists);
     }
 
     private @NonNull List<Image> getImages() {
@@ -225,6 +252,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                             initDefaultImageLists();
                         });
                     } else {
+                        // sort by createdAt
                         Collections.sort(mImageLists, new Comparator<Image>() {
                             @Override
                             public int compare(Image a, Image b) {
@@ -252,6 +280,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                 tmpLists.add(new Image(UPLOAD_ITEM_ID, null, Image.TYPE_UPLOAD, false, false));
                 mImageLists = new ArrayList<>(tmpLists);
                 runOnUiThread(() -> {
+                    // if loading item failed -> add failed item
                     mImageAdapter.submitList(mImageLists);
                     mBinding.tvDownload.setText(getString(R.string.textview_text_try_again));
                     showToastDownload(false);

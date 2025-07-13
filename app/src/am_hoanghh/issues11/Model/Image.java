@@ -19,13 +19,16 @@ public class Image {
     private int statusType;
     private boolean isSelected;
     private boolean isChecked;
+    private boolean isLoading;
 
-    public Image(String id, String url) {
+    public Image(String id, String url, Timestamp createdAt, int statusType, boolean isSelected, boolean isChecked, boolean isLoading) {
         this.id = id;
         this.url = url;
-        this.statusType = TYPE_IMAGE;
-        this.isSelected = false;
-        this.isChecked = true;
+        this.createdAt = createdAt;
+        this.statusType = statusType;
+        this.isSelected = isSelected;
+        this.isChecked = isChecked;
+        this.isLoading = isLoading;
     }
 
     public Image(String id, String url, Timestamp createdAt, int statusType, boolean isSelected, boolean isChecked) {
@@ -48,11 +51,6 @@ public class Image {
     public Image(int statusType) {
         this.statusType = statusType;
         this.isSelected = false;
-    }
-
-    public Image(String id, int statusType) {
-        this.id = id;
-        this.statusType = statusType;
     }
 
     public String getId() {
@@ -101,5 +99,13 @@ public class Image {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading = loading;
     }
 }
