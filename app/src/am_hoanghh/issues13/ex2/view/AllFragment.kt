@@ -55,13 +55,15 @@ class AllFragment : Fragment() {
             viewModel.images.observe(viewLifecycleOwner) { images ->
                 images?.let {
                     adapter.submitList(images)
-                    binding.viewDownload.visibility = View.GONE
+                    binding.viewDownload.postDelayed({
+                        binding.viewDownload.visibility = View.GONE
+                    }, 1000)
                     binding.rvAllImages.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                 }
             }
-            binding.rvAllImages.visibility = View.GONE
             binding.viewDownload.isEnabled = false
+            binding.rvAllImages.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
             viewModel.addImagesFromServerApi()
         }

@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 class ImageViewModel(context: Context) : ViewModel() {
     private val db = DatabaseProvider.getDatabase(context)
     private val imageDao = db.imageDao()
-    private val _images =  MutableLiveData<List<ImageModel>>()
+    private val _images = MutableLiveData<List<ImageModel>>()
     val images: LiveData<List<ImageModel>> get() = _images
     private val retrofit: Retrofit = RetrofitClient.getClient()
     private val imageApi = retrofit.create(ImageApi::class.java)
@@ -43,7 +43,7 @@ class ImageViewModel(context: Context) : ViewModel() {
                 imageDao.insertAllSafely(result)
                 selectAllImages()
             } catch (e: Exception) {
-                Log.e("DEBUG", "Error loading images", e)
+                Log.e(DEBUG, ERROR_LOADING_IMAGES, e)
             }
         }
     }
@@ -60,5 +60,10 @@ class ImageViewModel(context: Context) : ViewModel() {
             imageDao.updateFavoriteImage(imageId, isFavorite)
             selectFavoriteImages(true)
         }
+    }
+
+    companion object {
+        private const val DEBUG = "DEBUG"
+        private const val ERROR_LOADING_IMAGES = "Error loading images"
     }
 }

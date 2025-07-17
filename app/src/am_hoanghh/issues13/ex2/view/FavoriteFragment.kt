@@ -11,7 +11,7 @@ import issues13.ex2.viewmodel.FavoriteAdapter
 import issues13.ex2.viewmodel.ImageViewModel
 
 class FavoriteFragment : Fragment() {
-    private lateinit var binding : FragmentFavoriteImageBinding
+    private lateinit var binding: FragmentFavoriteImageBinding
     private lateinit var viewModel: ImageViewModel
     private lateinit var adapter: FavoriteAdapter
 

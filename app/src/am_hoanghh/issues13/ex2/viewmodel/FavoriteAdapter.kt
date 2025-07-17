@@ -1,7 +1,6 @@
 package issues13.ex2.viewmodel
 
 import android.content.Context
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -15,9 +14,13 @@ import com.example.asian.databinding.ItemRvImageAllFavoriteBinding
 import issues13.ex2.model.ImageModel
 import kotlin.math.roundToInt
 
-class FavoriteAdapter(private val onFavoriteListener: OnFavoriteListener) : ListAdapter<ImageModel, FavoriteAdapter.ViewHolder>(DIFF_CALLBACK) {
+class FavoriteAdapter(private val onFavoriteListener: OnFavoriteListener) :
+    ListAdapter<ImageModel, FavoriteAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    class ViewHolder(private val binding: ItemRvImageAllFavoriteBinding, private val onFavoriteListener: OnFavoriteListener) :
+    class ViewHolder(
+        private val binding: ItemRvImageAllFavoriteBinding,
+        private val onFavoriteListener: OnFavoriteListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(image: ImageModel) {
             val context: Context = itemView.context

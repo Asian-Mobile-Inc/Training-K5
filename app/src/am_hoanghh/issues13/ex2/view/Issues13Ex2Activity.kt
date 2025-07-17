@@ -1,12 +1,10 @@
 package issues13.ex2.view
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.asian.databinding.ActivityIssues13Binding
-import issues13.ex2.viewmodel.ImageViewModel
 import issues13.ex2.viewpager.MyPagerAdapter
 
 class Issues13Ex2Activity : AppCompatActivity() {
