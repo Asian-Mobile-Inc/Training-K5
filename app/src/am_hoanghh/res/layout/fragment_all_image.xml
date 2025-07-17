@@ -11,11 +11,10 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="32dp" />
 
-    <ProgressBar
+    <issues13.ex2.customview.CircularLoadingView
         android:id="@+id/progressBar"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:indeterminateDrawable="@drawable/custom_progressbar"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/viewDownload"
         app:layout_constraintEnd_toEndOf="parent"
