@@ -70,12 +70,10 @@
         android:background="#80FFFFFF"
         android:visibility="gone" />
 
-    <ProgressBar
+    <issues11.Customview.CircularLoadingView
         android:id="@+id/progressBar"
-        style="@android:style/Widget.ProgressBar.Small"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:indeterminate="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

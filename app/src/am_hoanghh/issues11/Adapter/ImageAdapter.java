@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -60,13 +59,8 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
                     .transform(new CenterCrop(), new RoundedCorners(pxToDp(8, mContext)))
                     .override(pxToDp(IMAGE_SIZE_WIDTH, mContext), pxToDp(IMAGE_SIZE_HEIGHT, mContext))
                     .into(holder.mBinding.ivImage);
-            if (item.isLoading()) { // Deleting
-                CircularProgressDrawable drawable = new CircularProgressDrawable(holder.itemView.getContext());
-                drawable.setStrokeWidth(6f);
-                drawable.setCenterRadius(20f);
-                drawable.setColorSchemeColors(mContext.getColor(R.color.purple_576CEC));
-                drawable.start();
-                holder.mBinding.progressBar.setIndeterminateDrawable(drawable);
+            if (item.isLoading()) {
+                // Deleting
                 holder.mBinding.progressBar.setVisibility(View.VISIBLE);
                 holder.mBinding.viewGrayOverlay.setVisibility(View.VISIBLE);
             } else {
