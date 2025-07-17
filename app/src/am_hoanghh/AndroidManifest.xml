@@ -38,6 +38,9 @@
             android:name="issues12.Issues12Activity"
             android:exported="false" />
         <activity
+            android:name="issues10.Issues10Activity"
+            android:exported="false" />
+        <activity
             android:name="issues9.Issues9Activity"
             android:exported="false" />
         <activity
