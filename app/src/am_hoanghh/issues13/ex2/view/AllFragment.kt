@@ -91,6 +91,8 @@ class AllFragment : Fragment(), OnFavoriteListener {
                     ImageAction.DOWNLOAD -> {
                         binding.viewDownload.postDelayed({
                             binding.viewDownload.visibility = View.GONE
+                            binding.ivDownloadIcon.visibility = View.GONE
+                            binding.tvDownload.visibility = View.GONE
                         }, delayMillis)
                         binding.rvAllImages.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
