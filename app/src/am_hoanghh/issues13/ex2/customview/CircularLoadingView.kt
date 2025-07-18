@@ -19,6 +19,8 @@ class CircularLoadingView @JvmOverloads constructor(
     private val sweepAngle = 45f
     private var rotateAngle = 0f
     private val duration = 1000L
+    private val startAngle = 0f
+    private val sweepAngleBg = 360f
 
     private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = context.getColor(R.color.blue_B3BDFF)
@@ -66,7 +68,7 @@ class CircularLoadingView @JvmOverloads constructor(
             cy + radius
         )
 
-        canvas.drawArc(rect, 0f, 360f, false, bgPaint)
+        canvas.drawArc(rect, startAngle, sweepAngleBg, false, bgPaint)
         canvas.drawArc(rect, rotateAngle, sweepAngle, false, fgPaint)
     }
 }

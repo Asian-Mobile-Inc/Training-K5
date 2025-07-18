@@ -39,6 +39,9 @@ class FavoriteAdapter(private val onFavoriteListener: OnFavoriteListener) :
             binding.ivFavorite.setOnClickListener {
                 onFavoriteListener.onFavorite(image.imageId, !image.isFavorite)
             }
+            itemView.setOnClickListener {
+                onFavoriteListener.onItemViewClick(image.url)
+            }
         }
 
         private fun dpToPx(dp: Int, context: Context): Int {
