@@ -138,4 +138,7 @@
     <string name="try_again" translatable="false">Try Again</string>
     <string name="downloaded_successfully" translatable="false">Downloaded successfully</string>
     <string name="downloaded_failed" translatable="false">Downloaded failed</string>
+    <string name="download_image" translatable="false">Download Image</string>
+    <string name="delete_successfully" translatable="false">Delete successfully</string>
+    <string name="delete_failed" translatable="false">Delete failed</string>
 </resources>

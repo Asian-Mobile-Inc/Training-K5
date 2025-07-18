@@ -28,6 +28,9 @@
     <style name="rounded_corner">
         <item name="cornerSize">20dp</item>
     </style>
+    <style name="rounded_corner_image">
+        <item name="cornerSize">8dp</item>
+    </style>
     <style name="rounded_corner_download">
         <item name="cornerSize">24dp</item>
     </style>
