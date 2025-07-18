@@ -58,7 +58,7 @@ class AllAdapter(private val onFavoriteListener: OnFavoriteListener) :
             }
         }
 
-        private const val RADIUS = 8;
+        private const val RADIUS = 8
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

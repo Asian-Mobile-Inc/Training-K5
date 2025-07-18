@@ -1,29 +1,40 @@
 package issues13.ex2.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.asian.databinding.FragmentAllImageBinding
+import issues13.ex2.database.DatabaseProvider
+import issues13.ex2.repository.ImageRepository
+import issues13.ex2.retrofit.ImageApi
+import issues13.ex2.retrofit.RetrofitClient
 import issues13.ex2.viewmodel.AllAdapter
 import issues13.ex2.viewmodel.ImageViewModel
+import issues13.ex2.viewmodel.ImageViewModelFactory
 import issues13.ex2.viewmodel.OnFavoriteListener
 
 class AllFragment : Fragment(), OnFavoriteListener {
-    private lateinit var binding: FragmentAllImageBinding
+    private var _binding: FragmentAllImageBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: ImageViewModel
     private lateinit var adapter: AllAdapter
     private val delayMillis = 1000L
+    private var currentAction = ImageAction.NONE
+
+    private enum class ImageAction {
+        NONE, DOWNLOAD
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAllImageBinding.inflate(inflater, container, false)
+        _binding = FragmentAllImageBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,11 +43,27 @@ class AllFragment : Fragment(), OnFavoriteListener {
 
         initViewModel()
         initAdapter()
+        observeViewModel()
         initListeners()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? FragmentCallback)?.onFragmentReady(this)
+    }
+
     private fun initViewModel() {
-        viewModel = context?.let { ImageViewModel(it) }!!
+        val context = requireContext().applicationContext
+        val imageDao = DatabaseProvider.getDatabase(context).imageDao()
+        val imageApi = RetrofitClient.getClient().create(ImageApi::class.java)
+        val repository = ImageRepository(imageDao, imageApi)
+        val factory = ImageViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[ImageViewModel::class.java]
     }
 
     private fun initAdapter() {
@@ -48,16 +75,7 @@ class AllFragment : Fragment(), OnFavoriteListener {
 
     fun initListeners() {
         binding.viewDownload.setOnClickListener {
-            viewModel.images.observe(viewLifecycleOwner) { images ->
-                images?.let {
-                    adapter.submitList(images)
-                    binding.viewDownload.postDelayed({
-                        binding.viewDownload.visibility = View.GONE
-                    }, delayMillis)
-                    binding.rvAllImages.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
+            currentAction = ImageAction.DOWNLOAD
             binding.viewDownload.isEnabled = false
             binding.rvAllImages.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
@@ -65,21 +83,33 @@ class AllFragment : Fragment(), OnFavoriteListener {
         }
     }
 
-    fun refresh() {
+    private fun observeViewModel() {
         viewModel.images.observe(viewLifecycleOwner) { images ->
             images?.let {
                 adapter.submitList(images)
+                when (currentAction) {
+                    ImageAction.DOWNLOAD -> {
+                        binding.viewDownload.postDelayed({
+                            binding.viewDownload.visibility = View.GONE
+                        }, delayMillis)
+                        binding.rvAllImages.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                    }
+                    else -> {}
+                }
             }
         }
-        viewModel.selectAllImages()
+    }
+
+    fun refresh() {
+        if (::viewModel.isInitialized) {
+            currentAction = ImageAction.NONE
+            viewModel.selectAllImages()
+        }
     }
 
     override fun onFavorite(imageId: String, isFavorite: Boolean) {
-        viewModel.images.observe(viewLifecycleOwner) { images ->
-            images?.let {
-                adapter.submitList(images)
-            }
-        }
+        currentAction = ImageAction.NONE
         viewModel.updateFavoriteImage(imageId, isFavorite)
     }
 

@@ -1,13 +1,14 @@
 package issues13.ex2.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.asian.databinding.ActivityIssues13Binding
 import issues13.ex2.viewpager.MyPagerAdapter
 
-class Issues13Ex2Activity : AppCompatActivity() {
+class Issues13Ex2Activity : AppCompatActivity(), FragmentCallback {
     private lateinit var binding: ActivityIssues13Binding
     private lateinit var adapter: MyPagerAdapter
 
@@ -37,13 +38,6 @@ class Issues13Ex2Activity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 setSelectedItem(position)
-
-                val fragment: Fragment = adapter.getFragment(position)
-                if (fragment is AllFragment) {
-                    fragment.refresh()
-                } else if (fragment is FavoriteFragment) {
-                    fragment.refresh()
-                }
             }
         })
     }
@@ -56,5 +50,13 @@ class Issues13Ex2Activity : AppCompatActivity() {
     companion object {
         private const val ALL_POSITION: Int = 0
         private const val FAVORITE_POSITION: Int = 1
+    }
+
+    override fun onFragmentReady(fragment: Fragment) {
+        if (fragment is AllFragment) {
+            fragment.refresh()
+        } else if (fragment is FavoriteFragment) {
+            fragment.refresh()
+        }
     }
 }

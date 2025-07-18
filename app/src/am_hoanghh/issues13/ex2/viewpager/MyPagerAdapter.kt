@@ -8,17 +8,14 @@ import issues13.ex2.view.FavoriteFragment
 
 class MyPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
-    private var fragments: Array<Fragment> = arrayOf(AllFragment(), FavoriteFragment())
 
-    override fun getItemCount(): Int {
-        return fragments.size
-    }
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
-        return fragments[position]
-    }
-
-    fun getFragment(position: Int): Fragment {
-        return fragments[position]
+        return when (position) {
+            0 -> AllFragment()
+            1 -> FavoriteFragment()
+            else -> throw IllegalArgumentException("Invalid position")
+        }
     }
 }

@@ -8,17 +8,24 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.asian.databinding.FragmentFavoriteImageBinding
+import issues13.ex2.database.DatabaseProvider
+import issues13.ex2.repository.ImageRepository
+import issues13.ex2.retrofit.ImageApi
+import issues13.ex2.retrofit.RetrofitClient
 import issues13.ex2.viewmodel.FavoriteAdapter
 import issues13.ex2.viewmodel.ImageViewModel
+import issues13.ex2.viewmodel.ImageViewModelFactory
 import issues13.ex2.viewmodel.OnFavoriteListener
 
 class FavoriteFragment : Fragment(), OnFavoriteListener {
-    private lateinit var binding: FragmentFavoriteImageBinding
+    private var _binding: FragmentFavoriteImageBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: ImageViewModel
     private lateinit var adapter: FavoriteAdapter
 
@@ -27,7 +34,7 @@ class FavoriteFragment : Fragment(), OnFavoriteListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoriteImageBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoriteImageBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,11 +43,27 @@ class FavoriteFragment : Fragment(), OnFavoriteListener {
 
         initViewModel()
         initAdapter()
+        observeViewModel()
         initListeners()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? FragmentCallback)?.onFragmentReady(this)
+    }
+
     private fun initViewModel() {
-        viewModel = context?.let { ImageViewModel(it) }!!
+        val context = requireContext().applicationContext
+        val imageDao = DatabaseProvider.getDatabase(context).imageDao()
+        val imageApi = RetrofitClient.getClient().create(ImageApi::class.java)
+        val repository = ImageRepository(imageDao, imageApi)
+        val factory = ImageViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[ImageViewModel::class.java]
     }
 
     private fun initAdapter() {
@@ -56,21 +79,21 @@ class FavoriteFragment : Fragment(), OnFavoriteListener {
         }
     }
 
-    fun refresh() {
+    private fun observeViewModel() {
         viewModel.images.observe(viewLifecycleOwner) { images ->
             images?.let {
                 adapter.submitList(images)
             }
         }
-        viewModel.selectFavoriteImages(true)
+    }
+
+    fun refresh() {
+        if (::viewModel.isInitialized) {
+            viewModel.selectFavoriteImages(true)
+        }
     }
 
     override fun onFavorite(imageId: String, isFavorite: Boolean) {
-        viewModel.images.observe(viewLifecycleOwner) { images ->
-            images?.let {
-                adapter.submitList(images)
-            }
-        }
         viewModel.updateNotFavoriteImage(imageId, isFavorite)
     }
 

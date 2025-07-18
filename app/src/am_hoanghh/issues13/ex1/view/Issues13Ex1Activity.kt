@@ -9,20 +9,29 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.asian.R
 import com.example.asian.databinding.ActivityIssues8Binding
 import com.example.asian.databinding.DialogConfirmDeleteBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import issues13.ex1.database.DatabaseProvider
 import issues13.ex1.model.UserModel
+import issues13.ex1.repository.UserRepository
 import issues13.ex1.viewmodel.UserAdapter
 import issues13.ex1.viewmodel.UserViewModel
+import issues13.ex1.viewmodel.UserViewModelFactory
 
 class Issues13Ex1Activity : AppCompatActivity() {
     private lateinit var binding: ActivityIssues8Binding
     private lateinit var viewModel: UserViewModel
     private lateinit var dialog: Dialog
     private lateinit var userAdapter: UserAdapter
+    private var currentAction = UserAction.NONE
+
+    private enum class UserAction {
+        NONE, INSERT
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +43,7 @@ class Issues13Ex1Activity : AppCompatActivity() {
         initDialog()
         initListeners()
         initAdapter()
+        observeUserLists()
     }
 
     private fun initBottomSheet() {
@@ -43,7 +53,10 @@ class Issues13Ex1Activity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = UserViewModel(this)
+        val userDao = DatabaseProvider.getDatabase(this).userDao()
+        val repository = UserRepository(userDao)
+        val factory = UserViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
     }
 
     private fun initDialog() {
@@ -70,20 +83,7 @@ class Issues13Ex1Activity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                viewModel.users.observe(this) { users ->
-                    users?.let {
-                        userAdapter.submitList(users)
-                        Toast.makeText(
-                            this,
-                            getString(R.string.toast_text_user_has_been_added),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        binding.edtUsername.text.clear()
-                        binding.edtAge.text.clear()
-                        binding.edtUsername.clearFocus()
-                        binding.edtAge.clearFocus()
-                    }
-                }
+                currentAction = UserAction.INSERT
                 viewModel.addUser(UserModel(name = name, age = age))
             }
         }
@@ -95,18 +95,31 @@ class Issues13Ex1Activity : AppCompatActivity() {
 
     private fun initAdapter() {
         userAdapter = UserAdapter { userId ->
-            observeUserLists()
+            currentAction = UserAction.NONE
             viewModel.deleteUser(UserModel(userId = userId, name = "", age = ""))
         }
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         binding.rvUsers.adapter = userAdapter
-        observeUserLists()
     }
 
     private fun observeUserLists() {
         viewModel.users.observe(this) { users ->
             users?.let {
                 userAdapter.submitList(users)
+                when (currentAction) {
+                    UserAction.INSERT -> {
+                        Toast.makeText(
+                            this,
+                            getString(R.string.toast_text_user_has_been_added),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        binding.edtUsername.text.clear()
+                        binding.edtAge.text.clear()
+                        binding.edtUsername.clearFocus()
+                        binding.edtAge.clearFocus()
+                    }
+                    else -> {}
+                }
             }
         }
     }
@@ -131,7 +144,7 @@ class Issues13Ex1Activity : AppCompatActivity() {
         }
         dialogConfirmDeleteBinding.tvConfirm.setOnClickListener {
             dialog.dismiss()
-            observeUserLists()
+            currentAction = UserAction.NONE
             viewModel.deleteAll()
         }
         dialog.show()
