@@ -205,6 +205,13 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                                 showToastDelete(isDeleteSuccess);
                                 if (isDeleteSuccess) {
                                     updateImageLists(); // update list adapter
+                                    sIsSelectedBtn  = false;
+                                    sIsOnSubtractIcon = false;
+                                    Glide.with(getApplicationContext())
+                                            .load(R.drawable.ic_select_selector)
+                                            .into(mBinding.ivSelect);
+                                    mBinding.ivSelect.setSelected(sIsSelectedBtn);
+                                    mBinding.viewDelete.setEnabled(sIsSelectedBtn);
                                 }
                                 reloadLoadingStatus(); // hide loading progress
                             });
@@ -307,6 +314,13 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                                 updateImageLists();
                                 showToastUpload(true);
                                 mBinding.viewDownload.setEnabled(false);
+                                sIsSelectedBtn  = false;
+                                sIsOnSubtractIcon = false;
+                                Glide.with(getApplicationContext())
+                                        .load(R.drawable.ic_select_selector)
+                                        .into(mBinding.ivSelect);
+                                mBinding.ivSelect.setSelected(sIsSelectedBtn);
+                                mBinding.viewDelete.setEnabled(sIsSelectedBtn);
                             });
                         }
                     }
@@ -497,7 +511,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                 .into(mBinding.ivSelect);
         showDeleteButton(true);
         mBinding.tvDelete.setText(getString(R.string.textview_text_delete_image_item, itemDelete));
-        mBinding.viewDelete.setEnabled(true);
+        mBinding.viewDelete.setEnabled(itemDelete > 0);
     }
 
     private void showDeleteButton(boolean condition) {
