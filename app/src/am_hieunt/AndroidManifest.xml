@@ -19,10 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
+        <activity
+            android:name=".issue13.ex1.view.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issue9.view.MainActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".issue6.ex2.StopServiceReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
         <receiver
             android:name=".issue6.ex2.InternetReceiver"
             android:enabled="true"
@@ -74,9 +81,9 @@
             android:exported="false" />
         <activity
             android:name=".issue6.ex1.PermissionActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
-            android:name=".issue9.view.MainActivity"
+            android:name=".issue13.ex2.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
