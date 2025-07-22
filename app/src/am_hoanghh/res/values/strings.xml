@@ -160,4 +160,16 @@
     <string name="drawtext_text_hour">%1$02d</string>
     <string name="text_0_mm">0 mm</string>
     <string name="text_level_rain">%1$.2f</string>
+    <string name="textview_text_all">ALL</string>
+    <string name="textview_text_favorite">FAVORITE</string>
+    <string name="imageview_content_description_app">APP</string>
+    <string name="textview_text_your_hodername">Your hodername</string>
+    <string name="imageview_content_description_favorite">FAVORITE</string>
+    <string name="app_item_text_app_store">App Store</string>
+    <string name="app_item_text_apple_music">Apple music</string>
+    <string name="app_item_text_facetime">Facetime</string>
+    <string name="app_item_text_messenger">Messenger</string>
+    <string name="app_item_text_facebook">Facebook</string>
+    <string name="app_item_text_voice_memos">Voice memos</string>
+    <string name="app_item_text_netflix">Netflix</string>
 </resources>
