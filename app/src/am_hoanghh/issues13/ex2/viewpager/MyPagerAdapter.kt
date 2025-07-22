@@ -13,9 +13,8 @@ class MyPagerAdapter(fragmentActivity: FragmentActivity) :
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> AllFragment()
             1 -> FavoriteFragment()
-            else -> throw IllegalArgumentException("Invalid position")
+            else -> AllFragment()
         }
     }
 }
