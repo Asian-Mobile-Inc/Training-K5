@@ -148,4 +148,7 @@
     <string name="voice_memos" translatable="false">Voice memos</string>
     <string name="netflix" translatable="false">Netflix</string>
     <string name="your_holder_name" translatable="false">Your hodername</string>
+    <string name="download_image" translatable="false">Download Image</string>
+    <string name="delete_successfully" translatable="false">Delete successfully</string>
+    <string name="delete_failed" translatable="false">Delete failed</string>
 </resources>

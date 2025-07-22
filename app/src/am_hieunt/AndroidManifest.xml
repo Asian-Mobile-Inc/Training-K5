@@ -19,6 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:theme">
+        <activity
+            android:name=".issue12.ex1.DownloadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".issue9.view.MainActivity"
+            android:exported="false" />
+
 
         <receiver
             android:name=".issue6.ex2.StopServiceReceiver"
@@ -81,6 +88,7 @@
             android:exported="false" />
         <activity
             android:name=".issue10.view.MainActivity"
+            android:name=".issue12.ex2.DownloadActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
