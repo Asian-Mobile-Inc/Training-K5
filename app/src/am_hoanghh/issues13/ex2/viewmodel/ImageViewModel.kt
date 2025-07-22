@@ -10,46 +10,36 @@ import issues13.ex2.repository.ImageRepository
 import kotlinx.coroutines.launch
 
 class ImageViewModel(private val repository: ImageRepository) : ViewModel() {
-    private val _images = MutableLiveData<List<ImageModel>>()
-    val images: LiveData<List<ImageModel>> get() = _images
+    private val _images = MutableLiveData<MutableList<ImageModel>>()
+    val images: LiveData<MutableList<ImageModel>> get() = _images
 
-    fun selectAllImages() {
-        viewModelScope.launch {
-            val data = repository.getAllImages()
-            _images.postValue(data)
-        }
+    fun selectAllImages() = viewModelScope.launch {
+        val data = repository.getAllImages()
+        _images.postValue(data)
     }
 
-    fun selectFavoriteImages(favorite: Boolean) {
-        viewModelScope.launch {
-            val data = repository.getFavoriteImages(favorite)
-            _images.postValue(data)
-        }
+    fun selectFavoriteImages(favorite: Boolean) = viewModelScope.launch {
+        val data = repository.getFavoriteImages(favorite)
+        _images.postValue(data)
     }
 
-    fun addImagesFromServerApi() {
-        viewModelScope.launch {
-            try {
-                repository.fetchImagesFromServerApi()
-                selectAllImages()
-            } catch (e: Exception) {
-                Log.e(DEBUG, ERROR_LOADING_IMAGES, e)
-            }
-        }
-    }
-
-    fun updateFavoriteImage(imageId: String, isFavorite: Boolean) {
-        viewModelScope.launch {
-            repository.updateFavoriteImage(imageId, isFavorite)
+    fun addImagesFromServerApi() = viewModelScope.launch {
+        try {
+            repository.fetchImagesFromServerApi()
             selectAllImages()
+        } catch (e: Exception) {
+            Log.e(DEBUG, ERROR_LOADING_IMAGES, e)
         }
     }
 
-    fun updateNotFavoriteImage(imageId: String, isFavorite: Boolean) {
-        viewModelScope.launch {
-            repository.updateFavoriteImage(imageId, isFavorite)
-            selectFavoriteImages(true)
-        }
+    fun updateFavoriteImage(imageId: String, isFavorite: Boolean) = viewModelScope.launch {
+        repository.updateFavoriteImage(imageId, isFavorite)
+        selectAllImages()
+    }
+
+    fun updateNotFavoriteImage(imageId: String, isFavorite: Boolean) = viewModelScope.launch {
+        repository.updateFavoriteImage(imageId, isFavorite)
+        selectFavoriteImages(true)
     }
 
     companion object {

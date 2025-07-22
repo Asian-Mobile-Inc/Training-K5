@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import issues13.ex2.repository.ImageRepository
 
 class ImageViewModelFactory(private val repository: ImageRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(ImageRepository::class.java).newInstance(repository)
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        modelClass.getConstructor(ImageRepository::class.java).newInstance(repository)
 }

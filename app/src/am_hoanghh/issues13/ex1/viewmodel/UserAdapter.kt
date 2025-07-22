@@ -1,6 +1,6 @@
 package issues13.ex1.viewmodel
 
-import android.app.Dialog
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,9 +17,8 @@ import issues13.ex1.model.UserModel
 class UserAdapter(private val onDeleteListener: OnDeleteListener) :
     ListAdapter<UserModel, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    class ViewHolder(
-        private val binding: ItemRvUserBinding,
-        private val onDeleteListener: OnDeleteListener
+    inner class ViewHolder(
+        private val binding: ItemRvUserBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserModel) {
@@ -29,31 +28,27 @@ class UserAdapter(private val onDeleteListener: OnDeleteListener) :
             binding.tvUsername.text = user.name
             binding.tvAge.text = context.getString(R.string.textview_text_years_old, user.age)
 
-            val dialog = Dialog(context)
+            val dialogBinding: DialogConfirmDeleteBinding = DialogConfirmDeleteBinding.inflate(
+                LayoutInflater.from(context)
+            )
+            val dialog = AlertDialog.Builder(context).apply {
+                setView(dialogBinding.root)
+                setCancelable(false)
+            }.create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogBinding.tvCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.tvConfirm.setOnClickListener {
+                dialog.dismiss()
+                onDeleteListener.onDelete(user.userId)
+            }
 
             binding.ivDeleteUser.setOnClickListener {
-                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                val dialogBinding: DialogConfirmDeleteBinding = DialogConfirmDeleteBinding.inflate(
-                    LayoutInflater.from(context)
-                )
-                dialog.setContentView(dialogBinding.root)
-                dialog.window?.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                dialog.setCancelable(false)
-
                 dialogBinding.tvExplain.text = context.getString(
                     R.string.textview_text_are_you_sure_you_want_to_delete,
                     user.name
                 )
-                dialogBinding.tvCancel.setOnClickListener {
-                    dialog.dismiss()
-                }
-                dialogBinding.tvConfirm.setOnClickListener {
-                    dialog.dismiss()
-                    onDeleteListener.onDelete(user.userId)
-                }
                 dialog.show()
             }
         }
@@ -61,25 +56,19 @@ class UserAdapter(private val onDeleteListener: OnDeleteListener) :
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserModel>() {
-            override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
-                return oldItem.userId == newItem.userId
-            }
+            override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean =
+                oldItem.userId == newItem.userId
 
-            override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
-                return oldItem.name == newItem.name &&
+            override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean =
+                oldItem.name == newItem.name &&
                         oldItem.age == newItem.age &&
                         oldItem.countNumber == newItem.countNumber
-            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemRvUserBinding =
-            ItemRvUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, onDeleteListener)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(ItemRvUserBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position))
-    }
 }

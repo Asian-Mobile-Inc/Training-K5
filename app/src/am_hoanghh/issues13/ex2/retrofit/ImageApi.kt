@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ImageApi {
     @GET("images")
-    suspend fun getImages(): List<ImageModel>
+    suspend fun getImages(): MutableList<ImageModel>
 }

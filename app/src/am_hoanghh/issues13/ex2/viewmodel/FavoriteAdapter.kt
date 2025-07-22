@@ -17,9 +17,8 @@ import kotlin.math.roundToInt
 class FavoriteAdapter(private val onFavoriteListener: OnFavoriteListener) :
     ListAdapter<ImageModel, FavoriteAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    class ViewHolder(
-        private val binding: ItemRvImageAllFavoriteBinding,
-        private val onFavoriteListener: OnFavoriteListener
+    inner class ViewHolder(
+        private val binding: ItemRvImageAllFavoriteBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(image: ImageModel) {
@@ -44,34 +43,28 @@ class FavoriteAdapter(private val onFavoriteListener: OnFavoriteListener) :
             }
         }
 
-        private fun dpToPx(dp: Int, context: Context): Int {
-            return (dp * context.resources.displayMetrics.density).roundToInt()
-        }
+        private fun dpToPx(dp: Int, context: Context): Int =
+            (dp * context.resources.displayMetrics.density).roundToInt()
     }
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ImageModel>() {
-            override fun areItemsTheSame(oldItem: ImageModel, newItem: ImageModel): Boolean {
-                return oldItem.imageId == newItem.imageId
-            }
+            override fun areItemsTheSame(oldItem: ImageModel, newItem: ImageModel): Boolean =
+                oldItem.imageId == newItem.imageId
 
-            override fun areContentsTheSame(oldItem: ImageModel, newItem: ImageModel): Boolean {
-                return oldItem.url == newItem.url &&
-                        oldItem.isFavorite == newItem.isFavorite
-            }
+            override fun areContentsTheSame(oldItem: ImageModel, newItem: ImageModel): Boolean =
+                oldItem.url == newItem.url && oldItem.isFavorite == newItem.isFavorite
         }
 
         private const val RADIUS = 8
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemRvImageAllFavoriteBinding = ItemRvImageAllFavoriteBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
+        ItemRvImageAllFavoriteBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return ViewHolder(binding, onFavoriteListener)
-    }
+    )
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position))
-    }
 }

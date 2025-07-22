@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface UserDao {
     @Query("SELECT * FROM user")
-    suspend fun readUsers(): List<UserModel>
+    suspend fun readUsers(): MutableList<UserModel>
 
     @Insert
     suspend fun addNewUser(userModel: UserModel)

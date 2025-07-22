@@ -11,10 +11,8 @@ class MyPagerAdapter(fragmentActivity: FragmentActivity) :
 
     override fun getItemCount(): Int = 2
 
-    override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            1 -> FavoriteFragment()
-            else -> AllFragment()
-        }
+    override fun createFragment(position: Int): Fragment = when (position) {
+        1 -> FavoriteFragment()
+        else -> AllFragment()
     }
 }

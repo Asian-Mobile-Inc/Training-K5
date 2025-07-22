@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import issues13.ex1.repository.UserRepository
 
 class UserViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(UserRepository::class.java).newInstance(repository)
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        modelClass.getConstructor(UserRepository::class.java).newInstance(repository)
 }

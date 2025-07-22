@@ -10,13 +10,13 @@ import issues13.ex2.model.ImageModel.Companion.TABLE_NAME
 @Dao
 interface ImageDao {
     @Query("SELECT * FROM $TABLE_NAME")
-    suspend fun selectAllImages(): List<ImageModel>
+    suspend fun selectAllImages(): MutableList<ImageModel>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE is_favorite == :favorite")
-    suspend fun selectFavoriteImages(favorite: Boolean): List<ImageModel>
+    suspend fun selectFavoriteImages(favorite: Boolean): MutableList<ImageModel>
 
     @Transaction
-    suspend fun insertAllSafely(items: List<ImageModel>) {
+    suspend fun insertAllSafely(items: MutableList<ImageModel>) {
         items.forEach { insert(it) }
     }
 

@@ -1,9 +1,11 @@
 package issues13.ex1.view
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -25,7 +27,8 @@ import issues13.ex1.viewmodel.UserViewModelFactory
 class Issues13Ex1Activity : AppCompatActivity() {
     private lateinit var binding: ActivityIssues8Binding
     private lateinit var viewModel: UserViewModel
-    private lateinit var dialog: Dialog
+    private lateinit var dialog: AlertDialog
+    private lateinit var dialogBinding: DialogConfirmDeleteBinding
     private lateinit var userAdapter: UserAdapter
     private var currentAction = UserAction.NONE
 
@@ -60,7 +63,20 @@ class Issues13Ex1Activity : AppCompatActivity() {
     }
 
     private fun initDialog() {
-        dialog = Dialog(this)
+        dialogBinding = DialogConfirmDeleteBinding.inflate(layoutInflater)
+        dialog = AlertDialog.Builder(this).apply {
+            setView(dialogBinding.root)
+            setCancelable(false)
+            dialogBinding.tvCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialogBinding.tvConfirm.setOnClickListener {
+                dialog.dismiss()
+                currentAction = UserAction.NONE
+                viewModel.deleteAll()
+            }
+        }.create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     private fun initListeners() {
@@ -89,7 +105,11 @@ class Issues13Ex1Activity : AppCompatActivity() {
         }
 
         binding.flDeleteAll.setOnClickListener {
-            initDialogListeners()
+            dialogBinding.tvExplain.text = getString(
+                R.string.textview_text_are_you_sure_you_want_to_delete_all,
+                userAdapter.currentList.size
+            )
+            dialog.show()
         }
     }
 
@@ -122,31 +142,5 @@ class Issues13Ex1Activity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun initDialogListeners() {
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val dialogConfirmDeleteBinding: DialogConfirmDeleteBinding =
-            DialogConfirmDeleteBinding.inflate(layoutInflater)
-        dialog.setContentView(dialogConfirmDeleteBinding.root)
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCancelable(false)
-
-        dialogConfirmDeleteBinding.tvExplain.text = getString(
-            R.string.textview_text_are_you_sure_you_want_to_delete_all,
-            userAdapter.currentList.size
-        )
-        dialogConfirmDeleteBinding.tvCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialogConfirmDeleteBinding.tvConfirm.setOnClickListener {
-            dialog.dismiss()
-            currentAction = UserAction.NONE
-            viewModel.deleteAll()
-        }
-        dialog.show()
     }
 }

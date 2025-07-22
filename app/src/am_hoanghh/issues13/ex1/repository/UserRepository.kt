@@ -6,26 +6,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class UserRepository(private val userDao: UserDao) {
-    suspend fun getUsers(): List<UserModel> =
-        withContext(Dispatchers.IO) {
-            val data = userDao.readUsers()
-            var cnt = 0
-            data.forEach { it.countNumber = cnt++ }
-            data
-        }
+    suspend fun getUsers(): MutableList<UserModel> {
+        val data = userDao.readUsers()
+        var cnt = 0
+        data.forEach { it.countNumber = cnt++ }
+        return data
+    }
 
     suspend fun insertUser(userModel: UserModel) =
-        withContext(Dispatchers.IO) {
-            userDao.addNewUser(userModel)
-        }
+        userDao.addNewUser(userModel)
 
     suspend fun deleteUser(userModel: UserModel) =
-        withContext(Dispatchers.IO) {
-            userDao.deleteUser(userModel)
-        }
+        userDao.deleteUser(userModel)
 
     suspend fun deleteAll() =
-        withContext(Dispatchers.IO) {
-            userDao.deleteAll()
-        }
+        userDao.deleteAll()
 }
