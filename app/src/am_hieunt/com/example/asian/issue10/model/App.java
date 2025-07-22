@@ -1,11 +1,14 @@
 package com.example.asian.issue10.model;
 
+import androidx.annotation.Nullable;
+
 public class App {
     private int mId;
     private int mIcon;
     private String mName;
     private String mHolder;
     private Boolean mFavorite;
+    private Boolean mSelected;
 
     public App(int mId, int mIcon, String mName, String mHolder, Boolean mFavorite) {
         this.mId = mId;
@@ -13,6 +16,7 @@ public class App {
         this.mName = mName;
         this.mHolder = mHolder;
         this.mFavorite = mFavorite;
+        this.mSelected = false;
     }
 
     public int getId() {
@@ -53,5 +57,13 @@ public class App {
 
     public void setFavorite(Boolean mFavorite) {
         this.mFavorite = mFavorite;
+    }
+
+    public Boolean getSelected() {
+        return mSelected;
+    }
+
+    public void setSelected(Boolean mSelected) {
+        this.mSelected = mSelected;
     }
 }

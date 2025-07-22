@@ -54,30 +54,30 @@ public class MainActivity extends AppCompatActivity {
             public void onAppSelected(List<App> apps) {
                 mApps = apps;
                 if (selected == 1) {
-                    mAppAdapter.setApps(getFavoriteApp());
-                    mAppAdapter.notifyDataSetChanged();
+                    mAppAdapter.submitList(getFavoriteApp());
                 }
             }
         });
         mRvApp.setAdapter(mAppAdapter);
         mRvApp.setLayoutManager(new LinearLayoutManager(this));
+        mAppAdapter.submitList(mApps);
     }
 
     private void initData() {
         mApps = new ArrayList<>();
-        App app = new App(1, R.drawable.ic_app_store, getString(R.string.app_store), getString(R.string.your_holder_name), false);
+        App app = new App(0, R.drawable.ic_app_store, getString(R.string.app_store), getString(R.string.your_holder_name), false);
         mApps.add(app);
-        app = new App(2, R.drawable.ic_apple_music, getString(R.string.apple_music), getString(R.string.your_holder_name), false);
+        app = new App(1, R.drawable.ic_apple_music, getString(R.string.apple_music), getString(R.string.your_holder_name), false);
         mApps.add(app);
-        app = new App(3, R.drawable.ic_facetime, getString(R.string.facetime), getString(R.string.your_holder_name), false);
+        app = new App(2, R.drawable.ic_facetime, getString(R.string.facetime), getString(R.string.your_holder_name), false);
         mApps.add(app);
-        app = new App(4, R.drawable.ic_messenger, getString(R.string.messenger), getString(R.string.your_holder_name), false);
+        app = new App(3, R.drawable.ic_messenger, getString(R.string.messenger), getString(R.string.your_holder_name), false);
         mApps.add(app);
-        app = new App(5, R.drawable.img_facebook, getString(R.string.facebook), getString(R.string.your_holder_name), false);
+        app = new App(4, R.drawable.img_facebook, getString(R.string.facebook), getString(R.string.your_holder_name), false);
         mApps.add(app);
-        app = new App(6, R.drawable.ic_voice, getString(R.string.voice_memos), getString(R.string.your_holder_name), false);
+        app = new App(5, R.drawable.ic_voice, getString(R.string.voice_memos), getString(R.string.your_holder_name), false);
         mApps.add(app);
-        app = new App(7, R.drawable.ic_netflix, getString(R.string.netflix), getString(R.string.your_holder_name), false);
+        app = new App(6, R.drawable.ic_netflix, getString(R.string.netflix), getString(R.string.your_holder_name), false);
         mApps.add(app);
     }
 
@@ -88,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
             mTvAll.setTextColor(getColor(R.color.blue_1877F2));
             mTvFavorite.setSelected(false);
             mTvFavorite.setTextColor(getColor(R.color.gray_D3D3D3));
-            mAppAdapter.setApps(mApps);
-            mAppAdapter.notifyDataSetChanged();
+            mAppAdapter.submitList(new ArrayList<>(mApps));
             selected = 0;
         });
         mTvFavorite.setOnClickListener(v -> {
@@ -98,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
             mTvFavorite.setSelected(true);
             mTvFavorite.setTextColor(getColor(R.color.blue_1877F2));
             if (selected == 0) {
-                mAppAdapter.setApps(getFavoriteApp());
-                mAppAdapter.notifyDataSetChanged();
+                mAppAdapter.submitList(getFavoriteApp());
             }
             selected = 1;
         });

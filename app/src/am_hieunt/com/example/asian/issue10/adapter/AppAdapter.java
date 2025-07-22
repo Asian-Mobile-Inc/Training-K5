@@ -24,26 +24,33 @@ import com.example.asian.issue10.model.App;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
+public class AppAdapter extends ListAdapter<App, AppAdapter.ViewHolder> {
     private final Context mContext;
     private final OnAppSelectedListener mListener;
-    private List<App> mAllApps;
-    private List<App> mApps;
+    private final List<App> mApps;
 
     public interface OnAppSelectedListener {
         void onAppSelected(List<App> apps);
     }
 
     public AppAdapter(Context context, List<App> apps, OnAppSelectedListener listener) {
+        super(DIFF_CALLBACK);
         this.mContext = context;
         this.mListener = listener;
-        this.mAllApps = apps;
-        this.mApps = apps;
+        this.mApps = new ArrayList<>(apps);
     }
 
-    public void setApps(List<App> apps) {
-        this.mApps = apps;
-    }
+    public static final DiffUtil.ItemCallback<App> DIFF_CALLBACK = new DiffUtil.ItemCallback<App>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull App oldItem, @NonNull App newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull App oldItem, @NonNull App newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 
     @NonNull
     @Override
@@ -54,29 +61,22 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        App app = mApps.get(position);
-        new Thread(() -> {
-            ((Activity) mContext).runOnUiThread(() -> {
-                Glide.with(mContext)
-                        .load(app.getFavorite() ? R.drawable.ic_favorite_selected : R.drawable.ic_favorite)
-                        .dontAnimate()
-                        .into(holder.mIvFavorite);
-                Glide.with(mContext)
-                        .load(app.getIcon())
-                        .dontAnimate()
-                        .into(holder.mIvApp);
-                holder.mTvName.setText(app.getName());
-                holder.mTvHolder.setText(app.getHolder());
-                holder.mIvFavorite.setOnClickListener(v -> {
-                    changeFavorite(app.getId(), holder.getAdapterPosition());
-                });
-            });
-        }).start();
-    }
-
-    @Override
-    public int getItemCount() {
-        return mApps.size();
+        App app = getItem(position);
+        Log.d("SSSS", app.getFavorite()+"");
+        Glide.with(mContext)
+                .load(app.getFavorite() ? R.drawable.ic_favorite_selected : R.drawable.ic_favorite)
+                .dontAnimate()
+                .into(holder.mIvFavorite);
+        Glide.with(mContext)
+                .load(app.getIcon())
+                .dontAnimate()
+                .into(holder.mIvApp);
+        holder.mTvName.setText(app.getName());
+        holder.mTvHolder.setText(app.getHolder());
+        holder.mIvFavorite.setOnClickListener(v -> {
+            app.setSelected(true);
+            updateApp(app.getId());
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -92,11 +92,23 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         }
     }
 
-    private void changeFavorite(int id, int position) {
-        mApps.get(position).setFavorite(!mApps.get(position).getFavorite());
-        notifyItemChanged(position);
+    private void updateApp(int id) {
+        List<App> newApps = new ArrayList<>();
+        List<App> oldApps = getCurrentList();
+        for (int i = 0; i < oldApps.size(); i++) {
+            App app = oldApps.get(i);
+            if (app.getId() == id || app.getSelected()) {
+                App a = new App(app.getId(), app.getIcon(), app.getName(), app.getHolder(), !app.getFavorite());
+                newApps.add(a);
+                mApps.set(app.getId(), a);
+            } else {
+                newApps.add(app);
+                mApps.set(app.getId(), app);
+            }
+        }
+        submitList(newApps);
         if (mListener != null) {
-            mListener.onAppSelected(mAllApps);
+            mListener.onAppSelected(mApps);
         }
     }
 }
