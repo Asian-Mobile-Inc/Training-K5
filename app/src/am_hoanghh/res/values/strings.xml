@@ -124,7 +124,7 @@
     <string name="imageview_content_description_success">SUCCESS</string>
     <string name="textview_text_downloaded_successfully">Downloaded successfully</string>
     <string name="textview_text_download_failed">Download failed</string>
-    <string name="textview_text_try_again">"Try Again"</string>
+    <string name="textview_text_try_again">Try Again</string>
     <string name="text_progress">%1$d %%</string>
     <string name="textview_text_user_name">User name</string>
     <string name="textview_text_user_age">User age</string>
@@ -172,5 +172,17 @@
     <string name="app_item_text_facebook">Facebook</string>
     <string name="app_item_text_voice_memos">Voice memos</string>
     <string name="app_item_text_netflix">Netflix</string>
+    <string name="textview_text_download_image">Download Image</string>
+    <string name="imageview_content_description_select">SELECT</string>
+    <string name="textview_text_camera">Camera</string>
+    <string name="imageview_content_description_gallery">GALLERY</string>
+    <string name="textview_text_gallery">Gallery</string>
+    <string name="textview_text_upload_image">Upload image</string>
+    <string name="textview_text_delete_image_item">Delete (%1$d)</string>
+    <string name="textview_text_upload_successfully">Upload successfully</string>
+    <string name="textview_text_upload_failed">Upload failed</string>
+    <string name="textview_text_delete_successfully">Delete successfully</string>
+    <string name="textview_text_delete_failed">Delete failed</string>
+    <string name="toast_text_have_no_images">"Have no images"</string>
     <string name="imageview_content_description_image_full_screen">IMAGE FULL SCREEN</string>
 </resources>
