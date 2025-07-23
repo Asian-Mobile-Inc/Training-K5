@@ -23,15 +23,13 @@ import issues10.Model.AppModel;
 import issues10.Util.DBHandler;
 
 public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolder> {
-    private final Context mContext;
     private final DBHandler mDbHandler;
     private static final int WIDTH_ICON = 46;
     private static final int WIDTH_FAV_ICON = 24;
     private static final int IS_FAVORITE_TRUE = 1;
 
-    protected AllAppAdapter(Context context, DBHandler dbHandler) {
+    protected AllAppAdapter(DBHandler dbHandler) {
         super(DIFF_CALLBACK);
-        this.mContext = context;
         this.mDbHandler = dbHandler;
     }
 
@@ -46,15 +44,16 @@ public class AllAppAdapter extends ListAdapter<AppModel, AllAppAdapter.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AppModel item = getItem(position);
+        Context context = holder.itemView.getContext();
 
-        Glide.with(mContext)
+        Glide.with(context)
                 .load(item.getmIcon())
-                .override(pxToDp(WIDTH_ICON, mContext), pxToDp(WIDTH_ICON, mContext))
+                .override(pxToDp(WIDTH_ICON, context), pxToDp(WIDTH_ICON, context))
                 .into(holder.mBinding.ivIconApp);
         holder.mBinding.tvAppName.setText(item.getmName());
-        Glide.with(mContext)
+        Glide.with(context)
                 .load(item.getmIsFavorite() == IS_FAVORITE_TRUE ? R.drawable.ic_heart_fill_blue : R.drawable.ic_heart_line_blue)
-                .override(pxToDp(WIDTH_FAV_ICON, mContext), pxToDp(WIDTH_FAV_ICON, mContext))
+                .override(pxToDp(WIDTH_FAV_ICON, context), pxToDp(WIDTH_FAV_ICON, context))
                 .into(holder.mBinding.ivFavorite);
         holder.mBinding.ivFavorite.setOnClickListener(v -> {
             List<AppModel> currentLists = new ArrayList<>(getCurrentList());

@@ -1,12 +1,7 @@
 package issues4;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -16,28 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.example.asian.R;
+import com.example.asian.databinding.ItemRvLanguageBinding;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter.ViewHolder> {
     private static int selectedPosition = 0;
-    private List<LanguageItem> languageLists;
+    private static final int ROUNDING_RADIUS = 9999;
 
-    protected LanguagesAdapter(List<LanguageItem> languageLists) {
+    protected LanguagesAdapter() {
         super(DIFF_CALLBACK);
-        this.languageLists = languageLists;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_rv_language, parent, false);
-
-        return new LanguagesAdapter.ViewHolder(view);
+        return new LanguagesAdapter.ViewHolder(ItemRvLanguageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -46,11 +35,11 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
 
         Glide.with(holder.itemView.getContext())
                 .load(item.getIcResId())
-                .transform(new CenterCrop(), new RoundedCorners(9999))
-                .into(holder.getImageView());
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .into(holder.mBinding.ivFlag);
 
-        holder.getTextView().setText(item.getLanguageName());
-        holder.getRadioButton().setChecked(item.isSelected());
+        holder.mBinding.tvItemRecyclerView.setText(item.getLanguageName());
+        holder.mBinding.rbLanguage.setChecked(item.isSelected());
         holder.itemView.setSelected(holder.getAdapterPosition() == selectedPosition);
 
         holder.itemView.setOnClickListener(view -> {
@@ -59,7 +48,7 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
             submitList(getNewLanguageList(selectedPosition));
         });
 
-        holder.getRadioButton().setOnClickListener(view -> {
+        holder.mBinding.rbLanguage.setOnClickListener(view -> {
             holder.itemView.performClick();
         });
     }
@@ -78,27 +67,11 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
             };
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView imageView;
-        private final TextView textView;
-        private final RadioButton radioButton;
+        private final ItemRvLanguageBinding mBinding;
 
-        public ViewHolder(View view) {
-            super(view);
-            imageView = (ImageView) view.findViewById(R.id.ivFlag);
-            textView = (TextView) view.findViewById(R.id.tvItemRecyclerView);
-            radioButton = (RadioButton) view.findViewById(R.id.rbLanguage);
-        }
-
-        public TextView getTextView() {
-            return textView;
-        }
-
-        public ImageView getImageView() {
-            return imageView;
-        }
-
-        public RadioButton getRadioButton() {
-            return radioButton;
+        public ViewHolder(ItemRvLanguageBinding binding) {
+            super(binding.getRoot());
+            this.mBinding = binding;
         }
     }
 
@@ -112,7 +85,7 @@ public class LanguagesAdapter extends ListAdapter<LanguageItem, LanguagesAdapter
 
     public ArrayList<LanguageItem> getNewLanguageList(int position) {
         ArrayList<LanguageItem> newLanguageLists = new ArrayList<>();
-        for (LanguageItem item : languageLists) {
+        for (LanguageItem item : getCurrentList()) {
             newLanguageLists.add(new LanguageItem(item.getIcResId(), item.getLanguageName(), item.getLanguageCode()));
         }
 

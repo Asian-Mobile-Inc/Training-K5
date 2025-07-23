@@ -40,7 +40,7 @@ public class AllFragment extends Fragment {
     }
 
     private void initAdapter() {
-        mAdapter = new AllAppAdapter(getContext(), mDbHandler);
+        mAdapter = new AllAppAdapter(mDbHandler);
         mBinding.rvAllApp.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.rvAllApp.setAdapter(mAdapter);
         refresh();

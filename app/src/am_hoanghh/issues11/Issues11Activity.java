@@ -98,7 +98,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
     }
 
     private void initAdapter() {
-        mImageAdapter = new ImageAdapter(this, this);
+        mImageAdapter = new ImageAdapter(this);
         mBinding.rvImages.setLayoutManager(new GridLayoutManager(this, 3));
         mBinding.rvImages.setAdapter(mImageAdapter);
     }
@@ -110,6 +110,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
         defaultLists.add(new Image(null, null, Image.TYPE_DEFAULT, false, false));
         defaultLists.add(new Image(UPLOAD_ITEM_ID, null, Image.TYPE_UPLOAD, false, false));
         mImageLists = new ArrayList<>(defaultLists);
+
         mBinding.rvImages.setRecycledViewPool(new RecyclerView.RecycledViewPool());
         showDeleteButton(false);
         mBinding.viewDownload.setEnabled(true);
@@ -205,7 +206,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                                 showToastDelete(isDeleteSuccess);
                                 if (isDeleteSuccess) {
                                     updateImageLists(); // update list adapter
-                                    sIsSelectedBtn  = false;
+                                    sIsSelectedBtn = false;
                                     sIsOnSubtractIcon = false;
                                     Glide.with(getApplicationContext())
                                             .load(R.drawable.ic_select_selector)
@@ -300,7 +301,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
         MultipartBody.Part filePart = MultipartBody.Part.createFormData(
                 IMAGE_DATA,
                 file.getName(),
-                RequestBody.create(MediaType.parse("image/*"), file)
+                RequestBody.create(file, MediaType.parse("image/*"))
         );
 
         RetrofitInstance.getApiInterface(BASE_URL_UPLOAD)
@@ -314,7 +315,7 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                                 updateImageLists();
                                 showToastUpload(true);
                                 mBinding.viewDownload.setEnabled(false);
-                                sIsSelectedBtn  = false;
+                                sIsSelectedBtn = false;
                                 sIsOnSubtractIcon = false;
                                 Glide.with(getApplicationContext())
                                         .load(R.drawable.ic_select_selector)
@@ -393,10 +394,16 @@ public class Issues11Activity extends AppCompatActivity implements OnImageListen
                             Bitmap imageBitmap = (Bitmap) extras.get(DATA);
                             try {
                                 File f = new File(this.getCacheDir(), IMAGES);
-                                f.createNewFile();
+                                boolean fileCreated = f.createNewFile();
+                                // return true if the named file does not exist and was successfully created; false if the named file already exists
+                                if (fileCreated) {
+                                    throw new IOException("Unable to create file");
+                                }
 
                                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                                imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos);
+                                if (imageBitmap != null) {
+                                    imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, bos);
+                                }
                                 byte[] bitmapData = bos.toByteArray();
 
                                 FileOutputStream fos = new FileOutputStream(f);

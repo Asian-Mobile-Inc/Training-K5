@@ -42,7 +42,7 @@ public class FavoriteFragment extends Fragment {
     }
 
     private void initAdapter() {
-        mAdapter = new FavoriteAppAdapter(getContext(), mDbHandler);
+        mAdapter = new FavoriteAppAdapter(mDbHandler);
         mBinding.rvFavoriteApp.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.rvFavoriteApp.setAdapter(mAdapter);
         refresh();

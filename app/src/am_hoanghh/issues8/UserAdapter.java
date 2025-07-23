@@ -23,13 +23,11 @@ import java.util.Objects;
 
 public class UserAdapter extends ListAdapter<UserModel, UserAdapter.ViewHolder> {
     private final DBHandler mDbHandler;
-    private final Context mContext;
     private static final String DEBUG = "DEBUG";
 
-    protected UserAdapter(DBHandler dbHandler, Context context) {
+    protected UserAdapter(DBHandler dbHandler) {
         super(DIFF_CALLBACK);
         this.mDbHandler = dbHandler;
-        this.mContext = context;
     }
 
     @NonNull
@@ -42,23 +40,24 @@ public class UserAdapter extends ListAdapter<UserModel, UserAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         UserModel userModel = getItem(position);
+        Context context = holder.itemView.getContext();
 
         holder.mBinding.tvCountNumber.setText(String.valueOf(userModel.getCountNumber()));
         holder.mBinding.tvUsername.setText(userModel.getName());
-        holder.mBinding.tvAge.setText(mContext.getString(R.string.textview_text_years_old, userModel.getAge()));
+        holder.mBinding.tvAge.setText(context.getString(R.string.textview_text_years_old, userModel.getAge()));
 
-        Dialog dialog = new Dialog(mContext);
+        Dialog dialog = new Dialog(context);
 
         holder.mBinding.ivDeleteUser.setOnClickListener(v -> {
             Log.d(DEBUG, String.valueOf(userModel.getId()));
 
             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            DialogConfirmDeleteBinding dialogBinding = DialogConfirmDeleteBinding.inflate(LayoutInflater.from(mContext));
+            DialogConfirmDeleteBinding dialogBinding = DialogConfirmDeleteBinding.inflate(LayoutInflater.from(context));
             dialog.setContentView(dialogBinding.getRoot());
             Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.setCancelable(false);
 
-            dialogBinding.tvExplain.setText(mContext.getString(R.string.textview_text_are_you_sure_you_want_to_delete, userModel.getName()));
+            dialogBinding.tvExplain.setText(context.getString(R.string.textview_text_are_you_sure_you_want_to_delete, userModel.getName()));
             dialogBinding.tvCancel.setOnClickListener(view -> {
                 dialog.dismiss();
             });

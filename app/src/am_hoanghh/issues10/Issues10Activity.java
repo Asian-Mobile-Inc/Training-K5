@@ -29,12 +29,8 @@ public class Issues10Activity extends AppCompatActivity {
     }
 
     private void initListeners() {
-        mBinding.btnAll.setOnClickListener(v -> {
-            mBinding.viewPager.setCurrentItem(ALL_POSITION);
-        });
-        mBinding.btnFavorite.setOnClickListener(v -> {
-            mBinding.viewPager.setCurrentItem(FAVORITE_POSITION);
-        });
+        mBinding.btnAll.setOnClickListener(v -> mBinding.viewPager.setCurrentItem(ALL_POSITION));
+        mBinding.btnFavorite.setOnClickListener(v -> mBinding.viewPager.setCurrentItem(FAVORITE_POSITION));
     }
 
     private void initViewPager() {

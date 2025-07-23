@@ -5,18 +5,16 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.asian.R;
 import com.example.asian.databinding.ActivityIssues5Binding;
 
 import issues5.DrawText.OnDrawTextSelectedListener;
+import issues5.Viewpager.MyPagerAdapter;
 
 public class Issues5Activity extends AppCompatActivity implements OnDrawTextSelectedListener {
-    private ActivityIssues5Binding binding;
+    private ActivityIssues5Binding mBinding;
     private String previousFragmentName = "";
     private static final int HOME_POSITION = 0;
     private static final int DRAW_TEXT_POSITION = 1;
@@ -28,8 +26,8 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityIssues5Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        mBinding = ActivityIssues5Binding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
         initToolbar();
         initViewPager();
@@ -38,15 +36,14 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
     }
 
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+        mBinding.toolbar.setTitle("");
+        setSupportActionBar(mBinding.toolbar);
     }
 
     private void initViewPager() {
-        binding.viewPager.setAdapter(new MyPagerAdapter(this));
-        binding.viewPager.setOffscreenPageLimit(4);
-        binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        mBinding.viewPager.setAdapter(new MyPagerAdapter(this));
+        mBinding.viewPager.setOffscreenPageLimit(4);
+        mBinding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -57,31 +54,31 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
     }
 
     private void initListeners() {
-        binding.tvHome.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(HOME_POSITION);
+        mBinding.tvHome.setOnClickListener(v -> {
+            mBinding.viewPager.setCurrentItem(HOME_POSITION);
         });
-        binding.tvDrawText.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(DRAW_TEXT_POSITION);
+        mBinding.tvDrawText.setOnClickListener(v -> {
+            mBinding.viewPager.setCurrentItem(DRAW_TEXT_POSITION);
         });
-        binding.tvDraw.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(DRAW_POSITION);
+        mBinding.tvDraw.setOnClickListener(v -> {
+            mBinding.viewPager.setCurrentItem(DRAW_POSITION);
         });
-        binding.tvMine.setOnClickListener(v -> {
-            binding.viewPager.setCurrentItem(MINE_POSITION);
+        mBinding.tvMine.setOnClickListener(v -> {
+            mBinding.viewPager.setCurrentItem(MINE_POSITION);
         });
     }
 
     private void setSelectedNavBarItem(int position) {
-        binding.tvHome.setSelected(position == HOME_POSITION);
-        binding.tvDrawText.setSelected(position == DRAW_TEXT_POSITION);
-        binding.tvDraw.setSelected(position == DRAW_POSITION);
-        binding.tvMine.setSelected(position == MINE_POSITION);
+        mBinding.tvHome.setSelected(position == HOME_POSITION);
+        mBinding.tvDrawText.setSelected(position == DRAW_TEXT_POSITION);
+        mBinding.tvDraw.setSelected(position == DRAW_POSITION);
+        mBinding.tvMine.setSelected(position == MINE_POSITION);
     }
 
     private void updateNewFragmentName() {
-        binding.tvPreviousFragment.setText(previousFragmentName);
+        mBinding.tvPreviousFragment.setText(previousFragmentName);
 
-        int currentItem = binding.viewPager.getCurrentItem();
+        int currentItem = mBinding.viewPager.getCurrentItem();
         Fragment currentFragment = getSupportFragmentManager().findFragmentByTag("f" + currentItem);
         if (currentFragment != null) {
             previousFragmentName = currentFragment.getClass().getSimpleName().replace(FRAGMENT, "");
@@ -92,6 +89,6 @@ public class Issues5Activity extends AppCompatActivity implements OnDrawTextSele
 
     @Override
     public void onDrawTextSelected(Typeface typeface) {
-        binding.tvPreviousFragment.setTypeface(typeface);
+        mBinding.tvPreviousFragment.setTypeface(typeface);
     }
 }

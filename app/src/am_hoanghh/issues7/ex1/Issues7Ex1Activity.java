@@ -3,7 +3,6 @@ package issues7.ex1;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,6 +23,11 @@ public class Issues7Ex1Activity extends AppCompatActivity {
     private ActivityIssues7Binding mBinding;
     private static final String IMAGE_URL = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
     private static final String DEBUG = "DEBUG";
+    private static final String DOWNLOAD_SUCCESS = "Download success: ";
+    private static final int WIDTH_IMAGE_VIEW = 312;
+    private static final int HEIGHT_IMAGE_VIEW = 312;
+    private static final int ROUNDING_RADIUS = 24;
+    private static final int Y_OFFSET = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class Issues7Ex1Activity extends AppCompatActivity {
 
             ExecutorService executorService = Executors.newFixedThreadPool(3);
             executorService.execute(new FileDownloader(url, file.getAbsolutePath(), () -> {
-                Log.d(DEBUG, "Download success: " + file.getAbsolutePath());
+                Log.d(DEBUG, DOWNLOAD_SUCCESS + file.getAbsolutePath());
 
                 runOnUiThread(() -> {
                     loadIntoImageView(file);
@@ -59,18 +63,18 @@ public class Issues7Ex1Activity extends AppCompatActivity {
         if (file.exists()) {
             Glide.with(this)
                     .load(file)
-                    .transform(new CenterCrop(), new RoundedCorners(24))
-                    .override(312, 312)
+                    .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                    .override(WIDTH_IMAGE_VIEW, HEIGHT_IMAGE_VIEW)
                     .into(mBinding.ivDownload);
         }
     }
 
     private void showToast() {
         Toast toast = new Toast(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.toast_download_success, null);
+        View view = View.inflate(this, R.layout.toast_download_success, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
         toast.show();
     }
 }

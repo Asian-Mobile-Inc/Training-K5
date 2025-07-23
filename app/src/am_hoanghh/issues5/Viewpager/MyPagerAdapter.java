@@ -1,4 +1,4 @@
-package issues5;
+package issues5.Viewpager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

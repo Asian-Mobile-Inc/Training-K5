@@ -1,26 +1,22 @@
 package issues9;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
-import com.example.asian.R;
 import com.example.asian.databinding.ActivityIssues9Binding;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Issues9Activity extends AppCompatActivity {
-    private ActivityIssues9Binding mBinding;
     private List<Hour> mHourLists;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = ActivityIssues9Binding.inflate(getLayoutInflater());
+        ActivityIssues9Binding mBinding = ActivityIssues9Binding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
         initHourLists();
