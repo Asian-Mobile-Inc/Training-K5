@@ -15,10 +15,12 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     val users: LiveData<MutableList<UserModel>> get() = _users
 
     init {
-        fetchUsers()
+        viewModelScope.launch {
+            fetchUsers()
+        }
     }
 
-    private fun fetchUsers() = viewModelScope.launch {
+    private suspend fun fetchUsers() {
         val data = repository.getUsers()
         _users.postValue(data)
     }

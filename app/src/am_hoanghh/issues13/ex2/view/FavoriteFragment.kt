@@ -9,6 +9,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -22,6 +23,7 @@ import issues13.ex2.viewmodel.FavoriteAdapter
 import issues13.ex2.viewmodel.ImageViewModel
 import issues13.ex2.viewmodel.ImageViewModelFactory
 import issues13.ex2.viewmodel.OnFavoriteListener
+import kotlinx.coroutines.launch
 
 class FavoriteFragment : Fragment(), OnFavoriteListener {
     private var _binding: FragmentFavoriteImageBinding? = null
@@ -89,7 +91,9 @@ class FavoriteFragment : Fragment(), OnFavoriteListener {
 
     fun refresh() {
         if (::viewModel.isInitialized) {
-            viewModel.selectFavoriteImages(true)
+            lifecycleScope.launch {
+                viewModel.selectFavoriteImages(true)
+            }
         }
     }
 

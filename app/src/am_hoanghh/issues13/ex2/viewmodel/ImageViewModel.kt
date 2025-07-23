@@ -13,12 +13,12 @@ class ImageViewModel(private val repository: ImageRepository) : ViewModel() {
     private val _images = MutableLiveData<MutableList<ImageModel>>()
     val images: LiveData<MutableList<ImageModel>> get() = _images
 
-    fun selectAllImages() = viewModelScope.launch {
+    suspend fun selectAllImages() {
         val data = repository.getAllImages()
         _images.postValue(data)
     }
 
-    fun selectFavoriteImages(favorite: Boolean) = viewModelScope.launch {
+    suspend fun selectFavoriteImages(favorite: Boolean) {
         val data = repository.getFavoriteImages(favorite)
         _images.postValue(data)
     }

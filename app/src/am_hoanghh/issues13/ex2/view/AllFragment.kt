@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.asian.databinding.FragmentAllImageBinding
 import issues13.ex2.database.DatabaseProvider
@@ -16,6 +17,7 @@ import issues13.ex2.viewmodel.AllAdapter
 import issues13.ex2.viewmodel.ImageViewModel
 import issues13.ex2.viewmodel.ImageViewModelFactory
 import issues13.ex2.viewmodel.OnFavoriteListener
+import kotlinx.coroutines.launch
 
 class AllFragment : Fragment(), OnFavoriteListener {
     private var _binding: FragmentAllImageBinding? = null
@@ -106,7 +108,9 @@ class AllFragment : Fragment(), OnFavoriteListener {
     fun refresh() {
         if (::viewModel.isInitialized) {
             currentAction = ImageAction.NONE
-            viewModel.selectAllImages()
+            lifecycleScope.launch {
+                viewModel.selectAllImages()
+            }
         }
     }
 
