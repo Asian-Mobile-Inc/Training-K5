@@ -26,6 +26,7 @@
             android:name=".issue9.view.MainActivity"
             android:exported="false" />
 
+
         <receiver
             android:name=".issue6.ex2.StopServiceReceiver"
             android:enabled="true"
@@ -47,6 +48,9 @@
             android:foregroundServiceType="location"
             tools:ignore="ExportedService" />
 
+        <activity
+            android:name=".issue12.ex2.DownloadActivity"
+            android:exported="false" />
         <activity
             android:name=".issue6.ex1.LocationActivity"
             android:exported="false" />
@@ -83,7 +87,7 @@
             android:name=".issue6.ex1.PermissionActivity"
             android:exported="false" />
         <activity
-            android:name=".issue12.ex2.DownloadActivity"
+            android:name=".issue10.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
