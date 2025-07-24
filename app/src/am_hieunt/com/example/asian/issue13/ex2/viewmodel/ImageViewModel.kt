@@ -7,20 +7,21 @@ import androidx.lifecycle.viewModelScope
 import com.example.asian.issue13.ex2.database.ImageDatabase
 import com.example.asian.issue13.ex2.model.Image
 import com.example.asian.issue13.ex2.repository.ImageRepository
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ImageViewModel(application: Application): AndroidViewModel(application) {
-    private val allImage: LiveData<List<Image>>
+    val allImage: LiveData<List<Image>>
     private val repository: ImageRepository
     init {
         val imageDAO = ImageDatabase.getDatabase(application).imageDAO()
         repository = ImageRepository(imageDAO)
         allImage = repository.allImage
     }
-    fun updateImage(image: Image) = viewModelScope.launch {
-        repository.updateImage(image)
-    }
-    fun addImage(image: Image) = viewModelScope.launch {
+    suspend fun addImage(image: Image) {
         repository.insertImage(image)
+    }
+    fun deleteImage(image: Image) = viewModelScope.launch {
+        repository.deleteImage(image)
     }
 }

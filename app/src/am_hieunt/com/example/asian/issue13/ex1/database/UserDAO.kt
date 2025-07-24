@@ -11,8 +11,6 @@ import com.example.asian.issue13.ex1.model.User
 @Dao interface UserDAO {
     @Query("SELECT * FROM User")
     fun getAllUser(): LiveData<List<User>>
-    @Query("SELECT * FROM User WHERE user_id = :id")
-    suspend fun getUserById(id: Int): User
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
     @Delete

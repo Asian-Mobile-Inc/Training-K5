@@ -1,60 +1,111 @@
 package com.example.asian.issue13.ex2.fragment
 
+import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.asian.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.asian.databinding.FragmentAllBinding
+import com.example.asian.issue13.ex2.adapter.AllImageAdapter
+import com.example.asian.issue13.ex2.api.ApiService
+import com.example.asian.issue13.ex2.model.Image
+import com.example.asian.issue13.ex2.viewmodel.ImageViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.net.URL
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AllFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var mBinding: FragmentAllBinding
+    private val ACCESS_TOKEN: String = "Bearer 37NgYdmLpLPbBFla_63tC23jBk9_iJaIxXdm4l9KX68"
+    private lateinit var mImageAdapter: AllImageAdapter
+    private lateinit var mImages: List<Image>
+    private lateinit var mImageViewModel: ImageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all, container, false)
+        inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
+        mBinding = FragmentAllBinding.inflate(inflater, container, false)
+        initView()
+        initData()
+        initListener()
+        return mBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AllFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    @SuppressLint("UseRequireInsteadOfGet")
+    private fun initView() {
+        mImageAdapter = AllImageAdapter(context!!)
+        mBinding.rvImage.layoutManager = GridLayoutManager(context, 3)
+        mBinding.rvImage.adapter = mImageAdapter
+        mBinding.rvImage.visibility = View.GONE
+        mBinding.btnDownload.visibility = View.GONE
+        mBinding.pbLoading.visibility = View.VISIBLE
+        mBinding.pbLoading.animateProgress()
+        mImageViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[ImageViewModel::class.java]
+    }
+
+    private fun initData() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val response = ApiService.apiService.getImages(ACCESS_TOKEN)
+            if (response.isSuccessful) {
+                mImages = response.body()!!
+                val downloadImage = mImages.map {
+                    async {
+                        val url = URL(it.url)
+                        it.img = url.readBytes()
+                    }
+                }
+                downloadImage.awaitAll()
+                withContext(Dispatchers.Main) {
+                    mBinding.rvImage.visibility = View.VISIBLE
+                    mBinding.btnDownload.visibility = View.VISIBLE
+                    mBinding.pbLoading.visibility = View.GONE
+                    mBinding.pbLoading.close()
+                    mImageAdapter.submitList(mImages)
                 }
             }
+        }
+    }
+
+    private fun initListener() {
+        mBinding.btnDownload.setOnClickListener {
+            mBinding.btnDownload.isSelected = true
+            mBinding.btnDownload.isEnabled = false
+            mBinding.rvImage.visibility = View.GONE
+            mBinding.pbLoading.visibility = View.VISIBLE
+            mBinding.pbLoading.animateProgress()
+            mImages = mImageAdapter.currentList
+            lifecycleScope.launch(Dispatchers.IO) {
+                val saveImage = mImages.map {
+                    async {
+                        if (it.favorite) {
+                            mImageViewModel.addImage(it)
+                        }
+                    }
+                }
+                saveImage.awaitAll()
+                withContext(Dispatchers.Main) {
+                    mBinding.btnDownload.isSelected = false
+                    mBinding.btnDownload.isEnabled = true
+                    mBinding.rvImage.visibility = View.VISIBLE
+                    mBinding.pbLoading.visibility = View.GONE
+                    mBinding.pbLoading.close()
+                }
+            }
+        }
     }
 }

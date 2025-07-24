@@ -9,7 +9,7 @@ class ImageRepository(private var imageDAO: ImageDAO) {
     suspend fun insertImage(image: Image) {
         imageDAO.insertImage(image)
     }
-    suspend fun updateImage(image: Image) {
-        imageDAO.updateImage(image)
+    suspend fun deleteImage(image: Image) {
+        imageDAO.deleteImage(image)
     }
 }

@@ -30,7 +30,7 @@
             android:name=".issue12.ex1.DownloadActivity"
             android:exported="false" />
         <activity
-            android:name=".issue9.view.MainActivity"
+            android:name=".issue12.ex2.DownloadActivity"
             android:exported="false" />
 
         <receiver
@@ -91,7 +91,6 @@
             android:exported="false" />
         <activity
             android:name=".issue13.ex2.view.MainActivity"
-            android:name=".issue12.ex2.DownloadActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

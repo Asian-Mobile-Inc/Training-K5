@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.asian.R
 import com.example.asian.databinding.ActivityIssue13Binding
-import com.example.asian.issue13.ex1.adapter.ViewPageAdapter
+import com.example.asian.issue13.ex2.adapter.ViewPageAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityIssue13Binding
@@ -39,11 +39,14 @@ class MainActivity : AppCompatActivity() {
                 super.onPageSelected(position)
                 if (position == 0) {
                     mBinding.tvAll.isSelected = true
-                    mBinding.tvAll.textColors
                     mBinding.tvFavorite.isSelected = false
+                    mBinding.tvAll.setTextColor(getColor(R.color.blue_576CEC))
+                    mBinding.tvFavorite.setTextColor(getColor(R.color.blue_C5CDFA))
                 } else {
                     mBinding.tvAll.isSelected = false
                     mBinding.tvFavorite.isSelected = true
+                    mBinding.tvAll.setTextColor(getColor(R.color.blue_C5CDFA))
+                    mBinding.tvFavorite.setTextColor(getColor(R.color.blue_576CEC))
                 }
             }
         })

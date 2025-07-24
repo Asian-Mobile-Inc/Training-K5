@@ -1,4 +1,4 @@
-package com.example.asian.issue13.ex1.adapter
+package com.example.asian.issue13.ex2.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
