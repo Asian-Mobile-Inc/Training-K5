@@ -34,6 +34,9 @@
     <style name="rounded_corner_download">
         <item name="cornerSize">24dp</item>
     </style>
+    <style name="rounded_corner_photo">
+        <item name="cornerSize">8dp</item>
+    </style>
     <style name="circle">
         <item name="cornerSize">50%</item>
     </style>
