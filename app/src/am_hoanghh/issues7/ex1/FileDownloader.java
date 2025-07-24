@@ -1,5 +1,7 @@
 package issues7.ex1;
 
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,6 +12,7 @@ public class FileDownloader implements Runnable {
     private final String mFileUrl;
     private final String mSaveDir;
     private final Runnable mOnSuccess;
+    private static final String DEBUG = "DEBUG";
 
     public FileDownloader(String fileURL, String saveDir, Runnable onSuccess) {
         this.mFileUrl = fileURL;
@@ -33,7 +36,7 @@ public class FileDownloader implements Runnable {
 
             if (mOnSuccess != null) mOnSuccess.run();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(DEBUG, e.toString());
         }
     }
 }

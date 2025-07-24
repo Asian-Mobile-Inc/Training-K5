@@ -19,34 +19,34 @@ public class CircularLoadingView extends View {
     private static final float SWEEP_ANGLE = 45f;
     private static final long DURATION = 1000L;
     private static float sRotateAngle = 0f;
-    private final Context context;
+    private final Context mContext;
     private Paint bgPaint;
     private Paint fgPaint;
-    private ValueAnimator animator;
+    private ValueAnimator mAnimator;
 
     public CircularLoadingView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.context = context;
+        this.mContext = context;
         init();
     }
 
     private void init() {
         bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        bgPaint.setColor(context.getColor(R.color.black_801A1A1A));
+        bgPaint.setColor(mContext.getColor(R.color.black_801A1A1A));
         bgPaint.setStyle(Paint.Style.STROKE);
         bgPaint.setStrokeWidth(STROKE_WIDTH);
 
         fgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        fgPaint.setColor(context.getColor(R.color.purple_576CEC));
+        fgPaint.setColor(mContext.getColor(R.color.purple_576CEC));
         fgPaint.setStyle(Paint.Style.STROKE);
         fgPaint.setStrokeWidth(STROKE_WIDTH);
         fgPaint.setStrokeCap(Paint.Cap.ROUND);
 
-        animator = ValueAnimator.ofFloat(0f, 360f);
-        animator.setDuration(DURATION);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.addUpdateListener(v -> {
+        mAnimator = ValueAnimator.ofFloat(0f, 360f);
+        mAnimator.setDuration(DURATION);
+        mAnimator.setInterpolator(new LinearInterpolator());
+        mAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mAnimator.addUpdateListener(v -> {
             sRotateAngle = (float) v.getAnimatedValue();
             invalidate();
         });
@@ -55,13 +55,13 @@ public class CircularLoadingView extends View {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        animator.start();
+        mAnimator.start();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        animator.cancel();
+        mAnimator.cancel();
     }
 
     @Override

@@ -1,18 +1,12 @@
 package issues4;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.asian.R;
@@ -26,7 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguageActivity extends AppCompatActivity {
-    private ActivityLanguageBinding binding;
+    private ActivityLanguageBinding mBinding;
+    private List<LanguageItem> mLanguageLists;
+    private LanguagesAdapter mLanguagesAdapter;
+    private SharedPreferences mSharedPreferences;
+    private String mLanguageCode;
     private static final String LANGUAGE_CODE = "LANGUAGE_CODE";
     private static final String ENGLISH_LANGUAGE_CODE = "en";
     private static final String SPANISH_LANGUAGE_CODE = "es";
@@ -54,72 +52,70 @@ public class LanguageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mBinding = ActivityLanguageBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
-        binding = ActivityLanguageBinding.inflate(getLayoutInflater());
+        initSharedPreferences();
+        initToolbar();
+        initAdapters();
+        initListeners();
+    }
 
+    private void initSharedPreferences() {
         // Get selected language position
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.user_preferences_key), MODE_PRIVATE);
-        String languageCode = sharedPreferences.getString(LANGUAGE_CODE, "");
+        mSharedPreferences = getSharedPreferences(getString(R.string.user_preferences_key), MODE_PRIVATE);
+        mLanguageCode = mSharedPreferences.getString(LANGUAGE_CODE, "");
 
-        if (languageCode.isEmpty()) {
-            languageCode = ENGLISH_LANGUAGE_CODE;
+        if (mLanguageCode.isEmpty()) {
+            mLanguageCode = ENGLISH_LANGUAGE_CODE;
         }
 
         // Localization
-        Locale locale = new Locale(languageCode);
+        Locale locale = new Locale(mLanguageCode);
         Configuration config = getBaseContext().getResources().getConfiguration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
 
-        // Set textview language
-        binding.tvLanguage.setText(getString(R.string.language));
+    private void initToolbar() {
+        mBinding.tvLanguage.setText(getString(R.string.language));
 
-        setContentView(binding.getRoot());
-        ViewCompat.setOnApplyWindowInsetsListener(binding.clLanguages, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        mBinding.toolbar.setTitle("");
+        setSupportActionBar(mBinding.toolbar);
+    }
 
-        // Setup toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-
+    private void initAdapters() {
         // Initial language item of recyclerview
-        List<LanguageItem> languageLists = getLanguageLists(languageCode);
+        mLanguageLists = getLanguageLists(mLanguageCode);
 
         // Setup adapter
-        LanguagesAdapter languagesAdapter = new LanguagesAdapter(languageLists);
-        binding.rvLanguage.setLayoutManager(new LinearLayoutManager(this));
-        binding.rvLanguage.setAdapter(languagesAdapter);
+        mLanguagesAdapter = new LanguagesAdapter();
+        mBinding.rvLanguage.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.rvLanguage.setAdapter(mLanguagesAdapter);
 
         // Set position of selected language position
-        languagesAdapter.setPosition(languagePosition);
-        languagesAdapter.submitList(languageLists);
+        mLanguagesAdapter.setPosition(languagePosition);
+        mLanguagesAdapter.submitList(mLanguageLists);
+    }
 
-        binding.ivDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int selectedPosition = languagesAdapter.getSelectedPosition();
+    private void initListeners() {
+        mBinding.ivDone.setOnClickListener(view -> {
+            int selectedPosition = mLanguagesAdapter.getSelectedPosition();
+            String languageCode1 = mLanguageLists.get(selectedPosition).getLanguageCode();
 
-                String languageCode = languageLists.get(selectedPosition).getLanguageCode();
+            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            editor.putString(LANGUAGE_CODE, languageCode1);
+            editor.apply();
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(LANGUAGE_CODE, languageCode);
-                editor.apply();
-
-                // Restart activity
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-            }
+            // Restart activity
+            @SuppressLint("UnsafeIntentLaunch") Intent intent = getIntent();
+            finish();
+            startActivity(intent);
         });
     }
 
     public ArrayList<LanguageItem> getLanguageLists(String languageCode) {
         ArrayList<LanguageItem> languageLists = new ArrayList<>();
-
         languageLists.add(new LanguageItem(R.drawable.ic_english, getString(R.string.language_item_english), ENGLISH_LANGUAGE_CODE));
         languageLists.add(new LanguageItem(R.drawable.ic_spain, getString(R.string.language_item_spainish), SPANISH_LANGUAGE_CODE));
         languageLists.add(new LanguageItem(R.drawable.ic_vietnam, getString(R.string.language_item_vietnamese), VIETNAMESE_LANGUAGE_CODE));

@@ -29,6 +29,7 @@ import com.example.asian.R;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressLint("ViewConstructor")
 public class Weather extends View {
     private final Context mContext;
     private Paint mTempPaint;

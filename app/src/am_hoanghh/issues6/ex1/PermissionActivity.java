@@ -31,22 +31,19 @@ public class PermissionActivity extends AppCompatActivity {
     }
 
     private void initListeners() {
-        mBinding.switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        // Permission already granted
-                        Toast.makeText(getApplicationContext(), getString(R.string.toast_text_permission_already_granted), Toast.LENGTH_SHORT).show();
-                        setAllowedPermission();
-                        moveToLocationActivity();
-                    } else {
-                        mRequestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
-                    }
+        mBinding.switchCompat.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    // Permission already granted
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_text_permission_already_granted), Toast.LENGTH_SHORT).show();
+                    setAllowedPermission();
+                    moveToLocationActivity();
                 } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.toast_text_gps_disabled), Toast.LENGTH_SHORT).show();
-                    setNotAllowedPermission();
+                    mRequestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
                 }
+            } else {
+                Toast.makeText(getApplicationContext(), getString(R.string.toast_text_gps_disabled), Toast.LENGTH_SHORT).show();
+                setNotAllowedPermission();
             }
         });
     }

@@ -1,6 +1,7 @@
 package issues6.ex1;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -21,9 +22,9 @@ import com.google.android.gms.location.LocationServices;
 public class LocationActivity extends AppCompatActivity {
     private ActivityLocationBinding mBinding;
     private FusedLocationProviderClient mLocationClient;
-    private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     private static final String LOCATION = "Location";
+    private static final int INTERVAL = 5000;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,14 +49,15 @@ public class LocationActivity extends AppCompatActivity {
         mLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
     }
 
+    @SuppressLint("VisibleForTests")
     private void startLocationUpdates() {
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(5000);
-        mLocationRequest.setFastestInterval(5000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(INTERVAL);
+        locationRequest.setFastestInterval(INTERVAL);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+            mLocationClient.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper());
         }
     }
 

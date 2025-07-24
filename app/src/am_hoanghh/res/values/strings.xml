@@ -184,4 +184,5 @@
     <string name="textview_text_delete_successfully">Delete successfully</string>
     <string name="textview_text_delete_failed">Delete failed</string>
     <string name="toast_text_have_no_images">"Have no images"</string>
+    <string name="imageview_content_description_image_full_screen">IMAGE FULL SCREEN</string>
 </resources>
