@@ -3,9 +3,7 @@ package issues5.DrawText;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
@@ -14,52 +12,46 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.asian.R;
+import com.example.asian.databinding.ItemGridDrawTextBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DrawTextAdapter extends ListAdapter<DrawText, DrawTextAdapter.ViewHolder> {
-    private static int selectedPosition = 0;
-    private final List<DrawText> drawTextLists;
-    private final Context context;
-    private final OnDrawTextSelectedListener listener;
+    private static int sSelectedPosition = 0;
+    private final OnDrawTextSelectedListener mListener;
 
-    protected DrawTextAdapter(Context context, List<DrawText> drawTextLists, OnDrawTextSelectedListener listener) {
+    protected DrawTextAdapter(OnDrawTextSelectedListener listener) {
         super(DIFF_CALLBACK);
-        this.drawTextLists = drawTextLists;
-        this.context = context;
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     @NonNull
     @Override
     public DrawTextAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_grid_draw_text, parent, false);
-
-        return new DrawTextAdapter.ViewHolder(view);
+        return new DrawTextAdapter.ViewHolder(ItemGridDrawTextBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(DrawTextAdapter.ViewHolder holder, int position) {
         DrawText item = getItem(position);
+        Context context = holder.itemView.getContext();
 
-        holder.getTextView().setText(item.getContent());
+        holder.mBinding.tvDrawText.setText(item.getContent());
         Typeface typeface = ResourcesCompat.getFont(context, item.getFont());
-        holder.getTextView().setTypeface(typeface);
+        holder.mBinding.tvDrawText.setTypeface(typeface);
 
         if (item.isSelected()) {
-            holder.getTextView().setTextColor(context.getColor(R.color.black_181818));
-            holder.getTextView().setBackgroundResource(R.drawable.bg_draw_text_rounded_textview_focus);
+            holder.mBinding.tvDrawText.setTextColor(context.getColor(R.color.black_181818));
+            holder.mBinding.tvDrawText.setBackgroundResource(R.drawable.bg_draw_text_rounded_textview_focus);
         } else {
-            holder.getTextView().setTextColor(context.getColor(R.color.gray_9B9B9B));
-            holder.getTextView().setBackgroundResource(R.drawable.bg_draw_text_rounded_textview);
+            holder.mBinding.tvDrawText.setTextColor(context.getColor(R.color.gray_9B9B9B));
+            holder.mBinding.tvDrawText.setBackgroundResource(R.drawable.bg_draw_text_rounded_textview);
         }
 
         holder.itemView.setOnClickListener(view -> {
-            selectedPosition = holder.getAdapterPosition();
-            submitList(getNewDrawTextList(selectedPosition));
-            listener.onDrawTextSelected(typeface);
+            sSelectedPosition = holder.getAdapterPosition();
+            submitList(getNewDrawTextList(sSelectedPosition));
+            mListener.onDrawTextSelected(typeface);
         });
     }
 
@@ -77,21 +69,17 @@ public class DrawTextAdapter extends ListAdapter<DrawText, DrawTextAdapter.ViewH
             };
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final ItemGridDrawTextBinding mBinding;
 
-        public ViewHolder(View view) {
-            super(view);
-            textView = (TextView) view.findViewById(R.id.tvDrawText);
-        }
-
-        public TextView getTextView() {
-            return textView;
+        public ViewHolder(ItemGridDrawTextBinding binding) {
+            super(binding.getRoot());
+            this.mBinding = binding;
         }
     }
 
     public ArrayList<DrawText> getNewDrawTextList(int position) {
         ArrayList<DrawText> newDrawTextLists = new ArrayList<>();
-        for (DrawText item : drawTextLists) {
+        for (DrawText item : getCurrentList()) {
             newDrawTextLists.add(new DrawText(item.getContent(), item.getFont()));
         }
         newDrawTextLists.get(position).setSelected(true);

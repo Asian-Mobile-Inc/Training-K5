@@ -13,14 +13,14 @@ import com.example.asian.R;
 import com.example.asian.databinding.FragmentMineBinding;
 
 public class MineFragment extends Fragment {
-    private FragmentMineBinding binding;
+    private FragmentMineBinding mBinding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentMineBinding.inflate(inflater, container, false);
+        mBinding = FragmentMineBinding.inflate(inflater, container, false);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     @Override
@@ -31,14 +31,14 @@ public class MineFragment extends Fragment {
     }
 
     private void initListeners() {
-        binding.tvMyAlbum.setOnClickListener(v -> {
-            binding.tvMyAlbum.setBackgroundResource(R.drawable.bg_nav_bar_textview_yellow);
-            binding.tvFavourite.setBackgroundResource(R.drawable.bg_nav_bar_textview);
+        mBinding.tvMyAlbum.setOnClickListener(v -> {
+            mBinding.tvMyAlbum.setBackgroundResource(R.drawable.bg_nav_bar_textview_yellow);
+            mBinding.tvFavourite.setBackgroundResource(R.drawable.bg_nav_bar_textview);
         });
 
-        binding.tvFavourite.setOnClickListener(v -> {
-            binding.tvMyAlbum.setBackgroundResource(R.drawable.bg_nav_bar_textview);
-            binding.tvFavourite.setBackgroundResource(R.drawable.bg_nav_bar_textview_yellow);
+        mBinding.tvFavourite.setOnClickListener(v -> {
+            mBinding.tvMyAlbum.setBackgroundResource(R.drawable.bg_nav_bar_textview);
+            mBinding.tvFavourite.setBackgroundResource(R.drawable.bg_nav_bar_textview_yellow);
         });
     }
 }

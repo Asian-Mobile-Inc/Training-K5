@@ -24,16 +24,14 @@ import java.util.Objects;
 import issues11.Model.Image;
 
 public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
-    private final Context mContext;
     private static final int IMAGE_SIZE_WIDTH = 104;
     private static final int IMAGE_SIZE_HEIGHT = 104;
-    private final OnImageListener listener;
+    private final OnImageListener mListener;
     private static final String UPLOAD_ITEM_ID = "UPLOAD_ITEM_ID";
 
-    public ImageAdapter(Context context, OnImageListener listener) {
+    public ImageAdapter(OnImageListener listener) {
         super(DIFF_CALLBACK);
-        this.mContext = context;
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -52,12 +50,13 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Image item = getItem(position);
+        Context context = holder.itemView.getContext();
 
         if (item.getStatusType() == Image.TYPE_IMAGE) {
-            Glide.with(mContext)
+            Glide.with(context)
                     .load(item.getUrl())
-                    .transform(new CenterCrop(), new RoundedCorners(pxToDp(8, mContext)))
-                    .override(pxToDp(IMAGE_SIZE_WIDTH, mContext), pxToDp(IMAGE_SIZE_HEIGHT, mContext))
+                    .transform(new CenterCrop(), new RoundedCorners(pxToDp(8, context)))
+                    .override(pxToDp(IMAGE_SIZE_WIDTH, context), pxToDp(IMAGE_SIZE_HEIGHT, context))
                     .into(holder.mBinding.ivImage);
             if (item.isLoading()) {
                 // Deleting
@@ -100,7 +99,7 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
                         newLists.add(uploadImage);
                     }
                     int finalCountCheckedItem = countCheckedItem;
-                    submitList(newLists, () -> listener.onSubtractIcon(finalCountCheckedItem));
+                    submitList(newLists, () -> mListener.onSubtractIcon(finalCountCheckedItem));
                 });
             } else {
                 // Enable select delete item
@@ -125,7 +124,7 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
                     if (uploadImage != null) {
                         newLists.add(uploadImage);
                     }
-                    submitList(newLists, () -> listener.onSubtractIcon(1));
+                    submitList(newLists, () -> mListener.onSubtractIcon(1));
                 });
             }
         }
@@ -135,15 +134,15 @@ public class ImageAdapter extends ListAdapter<Image, ImageAdapter.ViewHolder> {
             holder.mBinding.ivDelete.setVisibility(View.GONE);
             holder.mBinding.tvUpload.setVisibility(View.VISIBLE);
             holder.mBinding.tvUpload.setOnClickListener(v -> {
-                listener.onUploadImage();
+                mListener.onUploadImage();
             });
         }
 
         if (item.getStatusType() == Image.TYPE_FAILED) {
             holder.mBinding.getRoot().setBackgroundResource(R.drawable.bg_image_download_item_failed);
-            Glide.with(mContext)
+            Glide.with(context)
                     .load(R.drawable.ic_download_item_failed)
-                    .override(pxToDp(IMAGE_SIZE_WIDTH, mContext), pxToDp(IMAGE_SIZE_WIDTH, mContext))
+                    .override(pxToDp(IMAGE_SIZE_WIDTH, context), pxToDp(IMAGE_SIZE_WIDTH, context))
                     .into(holder.mBinding.ivImage);
         }
     }

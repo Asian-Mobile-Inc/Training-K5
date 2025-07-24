@@ -1,6 +1,7 @@
 package issues6.ex2;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -33,12 +34,14 @@ import java.util.Objects;
 
 public class GpsService extends Service {
     private FusedLocationProviderClient mLocationClient;
-    private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     private static final String LOCATION = "Location";
     private static final String GPS_IS_RUNNING_IN_BACKGROUND = "GPS is running in background";
     private static final String NETWORK = "Network";
     private static final String GPS_CHANNEL = "gps_channel";
+    private static final String INTERNET = "Internet";
+    private static final String NO_INTERNET = "No internet";
+    private static final int INTERVAL = 20000;
     private BroadcastReceiver mReceiver;
     private IntentFilter mIntentFilter;
 
@@ -77,14 +80,15 @@ public class GpsService extends Service {
         mLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
     }
 
+    @SuppressLint("VisibleForTests")
     private void startLocationUpdates() {
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(20000);
-        mLocationRequest.setFastestInterval(20000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // High priority
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(INTERVAL);
+        locationRequest.setFastestInterval(INTERVAL);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // High priority
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+            mLocationClient.requestLocationUpdates(locationRequest, mLocationCallback, Looper.myLooper());
         }
     }
 
@@ -138,14 +142,14 @@ public class GpsService extends Service {
                     NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
                     if (activeNetwork != null && activeNetwork.isConnected()) {
-                        Log.d(NETWORK, "Internet");
+                        Log.d(NETWORK, INTERNET);
                         if (mLocationClient == null) {
                             setupLocationService();
                             createLocationCallback();
                             startLocationUpdates();
                         }
                     } else {
-                        Log.d(NETWORK, "No internet");
+                        Log.d(NETWORK, NO_INTERNET);
                         if (mLocationClient != null) {
                             removeLocationUpdates();
                         }

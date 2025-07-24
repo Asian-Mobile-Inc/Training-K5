@@ -141,6 +141,16 @@
     <string name="position" translatable="false">%d</string>
     <string name="all_is13" translatable="false">ALL</string>
     <string name="favorite_is13" translatable="false">FAVORITE</string>
+    <string name="all" translatable="false">ALL</string>
+    <string name="favorite" translatable="false">FAVORITE</string>
+    <string name="app_store" translatable="false">App Store</string>
+    <string name="apple_music" translatable="false">Apple music</string>
+    <string name="facetime" translatable="false">Facetime</string>
+    <string name="messenger" translatable="false">Messenger</string>
+    <string name="facebook" translatable="false">Facebook</string>
+    <string name="voice_memos" translatable="false">Voice memos</string>
+    <string name="netflix" translatable="false">Netflix</string>
+    <string name="your_holder_name" translatable="false">Your hodername</string>
     <string name="download_image" translatable="false">Download Image</string>
     <string name="delete_successfully" translatable="false">Delete successfully</string>
     <string name="delete_failed" translatable="false">Delete failed</string>

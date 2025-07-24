@@ -5,38 +5,34 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.asian.R;
 import com.example.asian.databinding.ActivitySubScreenEx1Binding;
 
 public class SubEx1Activity extends AppCompatActivity {
-    private ActivitySubScreenEx1Binding binding;
+    private ActivitySubScreenEx1Binding mBinding;
     private static final String TEXT_EMAIL = "email";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mBinding = ActivitySubScreenEx1Binding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
 
-        binding = ActivitySubScreenEx1Binding.inflate(getLayoutInflater());
+        initIntent();
+        initListeners();
+    }
 
-        setContentView(binding.getRoot());
-        ViewCompat.setOnApplyWindowInsetsListener(binding.clSubExercise1, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
+    private void initIntent() {
         Intent intent = getIntent();
         String email = intent.getStringExtra(TEXT_EMAIL);
 
         if (email != null) {
-            binding.tvEmail.setText(email);
+            mBinding.tvEmail.setText(email);
         }
+    }
 
-        binding.ivBack.setOnClickListener(view -> {
+    private void initListeners() {
+        mBinding.ivBack.setOnClickListener(view -> {
             Intent i = new Intent(getApplicationContext(), Ex1Activity.class);
             startActivity(i);
             finish();

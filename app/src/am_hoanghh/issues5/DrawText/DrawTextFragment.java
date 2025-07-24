@@ -16,16 +16,16 @@ import com.example.asian.databinding.FragmentDrawTextBinding;
 import java.util.ArrayList;
 
 public class DrawTextFragment extends Fragment {
-    private FragmentDrawTextBinding binding;
-    private ArrayList<DrawText> lists;
+    private FragmentDrawTextBinding mBinding;
+    private ArrayList<DrawText> mLists;
     private static final String DRAW_ANIME = "Draw Anime";
+    private static final int SPAN_COUNT = 2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentDrawTextBinding.inflate(inflater, container, false);
-
-        return binding.getRoot();
+        mBinding = FragmentDrawTextBinding.inflate(inflater, container, false);
+        return mBinding.getRoot();
     }
 
     @Override
@@ -37,30 +37,30 @@ public class DrawTextFragment extends Fragment {
     }
 
     private void initDrawTextLists() {
-        lists = new ArrayList<>();
-        lists.add(new DrawText(DRAW_ANIME, R.font.fuzzy_bubbles, true));
-        lists.add(new DrawText(DRAW_ANIME, R.font.fugaz_one));
-        lists.add(new DrawText(DRAW_ANIME, R.font.frijole));
-        lists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
-        lists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
-        lists.add(new DrawText(DRAW_ANIME, R.font.fontdiner_swanky));
-        lists.add(new DrawText(DRAW_ANIME, R.font.inter_thin));
-        lists.add(new DrawText(DRAW_ANIME, R.font.bigshot_one));
-        lists.add(new DrawText(DRAW_ANIME, R.font.boogaloo));
-        lists.add(new DrawText(DRAW_ANIME, R.font.scriptmtbold));
-        lists.add(new DrawText(DRAW_ANIME, R.font.montserrat_thin));
-        lists.add(new DrawText(DRAW_ANIME, R.font.mr_dafoe));
+        mLists = new ArrayList<>();
+        mLists.add(new DrawText(DRAW_ANIME, R.font.fuzzy_bubbles, true));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.fugaz_one));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.frijole));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.fredericka_the_great));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.fontdiner_swanky));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.inter_thin));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.bigshot_one));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.boogaloo));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.scriptmtbold));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.montserrat_thin));
+        mLists.add(new DrawText(DRAW_ANIME, R.font.mr_dafoe));
     }
 
     private void initDrawTextAdapter() {
-        DrawTextAdapter drawTextAdapter = new DrawTextAdapter(getContext(), lists, typeface -> {
+        DrawTextAdapter drawTextAdapter = new DrawTextAdapter(typeface -> {
             if (getActivity() instanceof OnDrawTextSelectedListener) {
                 ((OnDrawTextSelectedListener) getActivity()).onDrawTextSelected(typeface);
             }
         });
 
-        binding.rvDrawText.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        binding.rvDrawText.setAdapter(drawTextAdapter);
-        drawTextAdapter.submitList(lists);
+        mBinding.rvDrawText.setLayoutManager(new GridLayoutManager(getContext(), SPAN_COUNT));
+        mBinding.rvDrawText.setAdapter(drawTextAdapter);
+        drawTextAdapter.submitList(mLists);
     }
 }

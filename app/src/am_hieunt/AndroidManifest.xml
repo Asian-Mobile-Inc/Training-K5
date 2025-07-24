@@ -55,6 +55,9 @@
             tools:ignore="ExportedService" />
 
         <activity
+            android:name=".issue10.view.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".issue6.ex1.LocationActivity"
             android:exported="false" />
         <activity

@@ -71,14 +71,12 @@ public class Issues8Activity extends AppCompatActivity {
             }
         });
 
-        mBinding.flDeleteAll.setOnClickListener(v -> {
-            initDialogListeners();
-        });
+        mBinding.flDeleteAll.setOnClickListener(v -> initDialogListeners());
     }
 
     private void initAdapter() {
         List<UserModel> userModelLists = mDbHandler.readUsers();
-        mUserAdapter = new UserAdapter(mDbHandler, this);
+        mUserAdapter = new UserAdapter(mDbHandler);
         mBinding.rvUsers.setLayoutManager(new LinearLayoutManager(this));
         mBinding.rvUsers.setAdapter(mUserAdapter);
         mUserAdapter.submitList(userModelLists);
@@ -105,9 +103,7 @@ public class Issues8Activity extends AppCompatActivity {
         mDialog.setCancelable(false);
 
         dialogConfirmDeleteBinding.tvExplain.setText(getString(R.string.textview_text_are_you_sure_you_want_to_delete_all, mUserAdapter.getCurrentList().size()));
-        dialogConfirmDeleteBinding.tvCancel.setOnClickListener(view -> {
-            mDialog.dismiss();
-        });
+        dialogConfirmDeleteBinding.tvCancel.setOnClickListener(view -> mDialog.dismiss());
         dialogConfirmDeleteBinding.tvConfirm.setOnClickListener(view -> {
             mDialog.dismiss();
             mDbHandler.deleteAll();

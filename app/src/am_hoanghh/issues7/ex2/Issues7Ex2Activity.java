@@ -30,6 +30,10 @@ public class Issues7Ex2Activity extends AppCompatActivity {
     private ActivityIssues7Binding mBinding;
     private static final String IMAGE_URL = "https://haycafe.vn/wp-content/uploads/2022/01/hinh-anh-galaxy-vu-tru-dep.jpg";
     private static final String ERROR = "ERROR";
+    private static final int WIDTH_IMAGE_VIEW = 312;
+    private static final int HEIGHT_IMAGE_VIEW = 312;
+    private static final int ROUNDING_RADIUS = 24;
+    private static final int Y_OFFSET = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,27 +120,27 @@ public class Issues7Ex2Activity extends AppCompatActivity {
 
     private void showToastSuccess() {
         Toast toast = new Toast(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.toast_download_success, null);
+        View view = View.inflate(this, R.layout.toast_download_success, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
         toast.show();
     }
 
     private void showToastFailed() {
         Toast toast = new Toast(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.toast_download_failed, null);
+        View view = View.inflate(this, R.layout.toast_download_failed, null);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 100);
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, Y_OFFSET);
         toast.show();
     }
 
     private void setupLoadSuccess(Bitmap bitmap) {
         Glide.with(getApplicationContext())
                 .load(bitmap)
-                .transform(new CenterCrop(), new RoundedCorners(24))
-                .override(312, 312)
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .override(WIDTH_IMAGE_VIEW, HEIGHT_IMAGE_VIEW)
                 .into(mBinding.ivDownload);
         mBinding.viewDownload.setEnabled(false);
         mBinding.viewDownload.setOnClickListener(null);
@@ -147,8 +151,8 @@ public class Issues7Ex2Activity extends AppCompatActivity {
         mBinding.tvDownload.setText(getString(R.string.textview_text_try_again));
         Glide.with(getApplicationContext())
                 .load(R.drawable.img_failed)
-                .transform(new CenterCrop(), new RoundedCorners(24))
-                .override(312, 312)
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .override(WIDTH_IMAGE_VIEW, HEIGHT_IMAGE_VIEW)
                 .into(mBinding.ivDownload);
         showToastFailed();
     }
@@ -168,8 +172,8 @@ public class Issues7Ex2Activity extends AppCompatActivity {
     private void hideIvDownload() {
         Glide.with(getApplicationContext())
                 .load(0)
-                .transform(new CenterCrop(), new RoundedCorners(24))
-                .override(312, 312)
+                .transform(new CenterCrop(), new RoundedCorners(ROUNDING_RADIUS))
+                .override(WIDTH_IMAGE_VIEW, HEIGHT_IMAGE_VIEW)
                 .into(mBinding.ivDownload);
     }
 }
