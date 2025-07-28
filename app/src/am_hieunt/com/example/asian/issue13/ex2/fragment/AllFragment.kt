@@ -26,9 +26,16 @@ import java.net.URL
 class AllFragment : Fragment() {
     private lateinit var mBinding: FragmentAllBinding
     private val ACCESS_TOKEN: String = "Bearer 37NgYdmLpLPbBFla_63tC23jBk9_iJaIxXdm4l9KX68"
-    private lateinit var mImageAdapter: AllImageAdapter
+    private val mImageAdapter: AllImageAdapter by lazy {
+        AllImageAdapter(requireContext())
+    }
     private lateinit var mImages: List<Image>
-    private lateinit var mImageViewModel: ImageViewModel
+    private val mImageViewModel: ImageViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[ImageViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,17 +52,12 @@ class AllFragment : Fragment() {
 
     @SuppressLint("UseRequireInsteadOfGet")
     private fun initView() {
-        mImageAdapter = AllImageAdapter(context!!)
         mBinding.rvImage.layoutManager = GridLayoutManager(context, 3)
         mBinding.rvImage.adapter = mImageAdapter
         mBinding.rvImage.visibility = View.GONE
         mBinding.btnDownload.visibility = View.GONE
         mBinding.pbLoading.visibility = View.VISIBLE
         mBinding.pbLoading.animateProgress()
-        mImageViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        )[ImageViewModel::class.java]
     }
 
     private fun initData() {

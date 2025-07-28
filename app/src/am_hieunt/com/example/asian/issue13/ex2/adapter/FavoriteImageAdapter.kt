@@ -42,21 +42,23 @@ class FavoriteImageAdapter(private val mContext: Context, private val mViewModel
 
     override fun onBindViewHolder(holder: FavoriteImageAdapter.ViewHolder, position: Int) {
         val image = getItem(position)
-        Glide.with(mContext)
-            .load(R.drawable.ic_heart_selected)
-            .into(holder.binding.ivFavorite)
-        val img = image.img?.let { convertByteToBitmap(it) }
-        holder.binding.sivPhoto.setImageBitmap(img)
-        holder.binding.ivFavorite.setOnClickListener {
-            mViewModel.deleteImage(image)
-        }
-        holder.binding.sivPhoto.setOnClickListener {
-            showImage(img!!)
-        }
-
+        holder.bind(image)
     }
 
     inner class ViewHolder(var binding: ItemPhotoBinding):  RecyclerView.ViewHolder(binding.root) {
+        fun bind(image: Image) {
+            Glide.with(mContext)
+                .load(R.drawable.ic_heart_selected)
+                .into(binding.ivFavorite)
+            val img = image.img?.let { convertByteToBitmap(it) }
+            binding.sivPhoto.setImageBitmap(img)
+            binding.ivFavorite.setOnClickListener {
+                mViewModel.deleteImage(image)
+            }
+            binding.sivPhoto.setOnClickListener {
+                showImage(img!!)
+            }
+        }
     }
 
     private fun convertByteToBitmap(byte: ByteArray): Bitmap = BitmapFactory.decodeByteArray(byte, 0, byte.size)

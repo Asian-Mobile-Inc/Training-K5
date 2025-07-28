@@ -18,8 +18,15 @@ import com.example.asian.issue13.ex2.viewmodel.ImageViewModel
 
 class FavoriteFragment : Fragment() {
     private lateinit var mBinding: FragmentFavoriteBinding
-    private lateinit var mImageViewModel: ImageViewModel
-    private lateinit var mImageAdapter: FavoriteImageAdapter
+    private val mImageViewModel: ImageViewModel by lazy {
+        ViewModelProvider (
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        )[ImageViewModel::class.java]
+    }
+    private val mImageAdapter: FavoriteImageAdapter by lazy {
+        FavoriteImageAdapter(requireContext(), mImageViewModel)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +41,6 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun initView() {
-        mImageViewModel = ViewModelProvider (
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        )[ImageViewModel::class.java]
-        mImageAdapter = FavoriteImageAdapter(requireContext(), mImageViewModel)
         mBinding.rvFavorite.layoutManager = GridLayoutManager(context, 3)
         mBinding.rvFavorite.adapter = mImageAdapter
     }

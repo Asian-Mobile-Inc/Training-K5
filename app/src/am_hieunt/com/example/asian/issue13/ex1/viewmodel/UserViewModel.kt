@@ -26,4 +26,20 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
     fun deleteAllUser() = viewModelScope.launch {
         repository.deleteAllUser()
     }
+    fun updatePosition(users: List<User>, userDeleteId: Int): List<User> {
+        var index = 0
+        val newUsers = mutableListOf<User>()
+        for (user in users) {
+            if (user.id > userDeleteId) {
+                val us = User(user.name, user.age)
+                us.id = user.id
+                us.position = index
+                newUsers.add(us)
+            } else {
+                newUsers.add(user)
+            }
+            index++
+        }
+        return newUsers
+    }
 }

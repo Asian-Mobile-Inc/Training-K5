@@ -34,16 +34,19 @@ class AllImageAdapter(private val mContext: Context): ListAdapter<Image, AllImag
 
     override fun onBindViewHolder(holder: AllImageAdapter.ViewHolder, position: Int) {
         val img: Image = getItem(position)
-        holder.binding.sivPhoto.setImageBitmap(img.img?.let { convertByteToBitmap(it) })
-        Glide.with(mContext)
-            .load(if (img.favorite) R.drawable.ic_heart_selected else R.drawable.ic_heart_default)
-            .into(holder.binding.ivFavorite)
-        holder.binding.ivFavorite.setOnClickListener {
-            updateImage(holder.adapterPosition)
-        }
+        holder.bind(img)
     }
 
     inner class ViewHolder(var binding: ItemPhotoBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(img: Image) {
+            binding.sivPhoto.setImageBitmap(img.img?.let { convertByteToBitmap(it) })
+            Glide.with(mContext)
+                .load(if (img.favorite) R.drawable.ic_heart_selected else R.drawable.ic_heart_default)
+                .into(binding.ivFavorite)
+            binding.ivFavorite.setOnClickListener {
+                updateImage(adapterPosition)
+            }
+        }
     }
 
     private fun updateImage(position: Int) {

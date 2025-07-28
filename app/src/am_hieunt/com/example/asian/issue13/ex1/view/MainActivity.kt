@@ -22,10 +22,17 @@ import com.example.asian.issue13.ex1.model.User
 import com.example.asian.issue13.ex1.viewmodel.UserViewModel
 
 class MainActivity : AppCompatActivity(), UserAdapter.UserClickDeleteListener {
-    private lateinit var mViewModel: UserViewModel
+    private val mViewModel: UserViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        )[UserViewModel::class.java]
+    }
+    private val mUserAdapter: UserAdapter by lazy {
+        UserAdapter(this, this)
+    }
     private lateinit var mBinding: ActivityUserBinding
     private lateinit var mBindingDialog: ItemDialogBinding
-    private lateinit var mUserAdapter: UserAdapter
     private lateinit var mAlertDialog: AlertDialog
     private var mUserDelete: User? = null
 
@@ -46,32 +53,14 @@ class MainActivity : AppCompatActivity(), UserAdapter.UserClickDeleteListener {
 
     private fun initView() {
         mBinding.rvListUser.layoutManager = LinearLayoutManager(this)
-        mViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        )[UserViewModel::class.java]
-        mUserAdapter = UserAdapter(this, this)
         mBinding.rvListUser.adapter = mUserAdapter
     }
 
     private fun initData() {
         mViewModel.allUser.observe(this) { list ->
             list?.let {
-                var index: Int = 0;
                 if (mUserDelete != null) {
-                    val newUsers = mutableListOf<User>()
-                    for (user in it) {
-                        if (user.id > mUserDelete!!.id) {
-                            val us = User(user.name, user.age)
-                            us.id = user.id
-                            us.position = index
-                            newUsers.add(us)
-                        } else {
-                            newUsers.add(user)
-                        }
-                        index++
-                    }
-                    mUserAdapter.submitList(newUsers)
+                    mUserAdapter.submitList(mViewModel.updatePosition(it, mUserDelete!!.id))
                     mUserDelete = null
                 } else {
                     mUserAdapter.submitList(it)
@@ -129,14 +118,12 @@ class MainActivity : AppCompatActivity(), UserAdapter.UserClickDeleteListener {
         })
         mBinding.btnAddUser.setOnClickListener {
             if (mBinding.edtUserName.length() != 0 && mBinding.edtAge.length() != 0) {
-                val user : User? = mBinding.edtAge.text.toString().toIntOrNull()
-                    ?.let { it1 -> User(mBinding.edtUserName.text.toString(), it1) }
-                if (user != null) {
-                    mViewModel.addUser(user)
-                }
+                val user = User(mBinding.edtUserName.text.toString(), mBinding.edtAge.text.toString().toInt())
+                mViewModel.addUser(user)
             }
         }
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun initAlertDialog() {
         val dialogBuilder : AlertDialog.Builder = AlertDialog.Builder(this)

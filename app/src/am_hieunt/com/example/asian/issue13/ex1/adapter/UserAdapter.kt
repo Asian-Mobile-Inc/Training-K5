@@ -34,16 +34,19 @@ class UserAdapter(private val mContext: Context, private val userDeleteListener:
     @SuppressLint("DefaultLocale")
     override fun onBindViewHolder(holder: UserAdapter.ViewHolder, position: Int) {
         val user: User = getItem(position)
-        user.position = 0;
-        holder.binding.tvStt.text = mContext.getString(R.string.position, position + 1)
-        holder.binding.tvUserName.text = user.name
-        holder.binding.tvAge.text = user.age.toString()
-        holder.binding.ivDelete.setOnClickListener {
-            userDeleteListener.onDelete(user)
-        }
+        holder.bind(position, user)
     }
 
-    inner class ViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(position: Int, user: User) {
+            user.position = -1
+            binding.tvStt.text = mContext.getString(R.string.position, position + 1)
+            binding.tvUserName.text = user.name
+            binding.tvAge.text = user.age.toString()
+            binding.ivDelete.setOnClickListener {
+                userDeleteListener.onDelete(user)
+            }
+        }
     }
 
     interface UserClickDeleteListener {
