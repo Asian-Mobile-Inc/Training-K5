@@ -138,6 +138,9 @@
     <string name="try_again" translatable="false">Try Again</string>
     <string name="downloaded_successfully" translatable="false">Downloaded successfully</string>
     <string name="downloaded_failed" translatable="false">Downloaded failed</string>
+    <string name="position" translatable="false">%d</string>
+    <string name="all_is13" translatable="false">ALL</string>
+    <string name="favorite_is13" translatable="false">FAVORITE</string>
     <string name="all" translatable="false">ALL</string>
     <string name="favorite" translatable="false">FAVORITE</string>
     <string name="app_store" translatable="false">App Store</string>
